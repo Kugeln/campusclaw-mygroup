@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}登录 · CampusClaw{% endblock %}
+{% block body_class %}login-page{% endblock %}
+{% block main_class %}login-shell{% endblock %}
+{% block content %}
+<div class="login-layout">
+<section class="login-intro" aria-labelledby="campusclaw-title">
+<div class="login-logo" aria-hidden="true"><img src="{{ url_for('static', filename='logo.png') }}" alt=""></div>
+<h1 id="campusclaw-title">CampusClaw</h1>
+<p class="login-tagline">班级课程材料管理平台</p>
+<p class="login-description">让课程资料的上传、阅读与共享更加简单。</p>
+<ul class="login-capabilities" aria-label="平台能力">
+  <li>班级资料管理</li>
+  <li>教师上传</li>
+  <li>学生阅读</li>
+  <li>权限隔离</li>
+</ul>
+</section>
+<section class="login-card" aria-labelledby="login-title">
+<h2 id="login-title">登录 CampusClaw</h2>
+<p class="subtitle">使用课程账号进入班级材料库</p>
+<form id="login" method="post" action="/api/auth/login" class="login-form">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <label>账号 <input name="username" autocomplete="username" required></label>
+  <label>密码 <input name="password" type="password" autocomplete="current-password" required></label>
+  <button type="submit" class="button-primary">登录</button>
+</form>
+<p id="message" role="alert"></p>
+<p class="login-note">连接课堂，让每一份知识有处可寻。</p>
+</section>
+</div>
+<script>
+document.getElementById('login').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const response = await fetch(event.target.action, {method: 'POST', body: new FormData(event.target)});
+  if (response.ok) { location.assign('/materials'); }
+  else { document.getElementById('message').textContent = '登录失败，请检查账号密码后重试。'; }
+});
+</script>
+{% endblock %}
