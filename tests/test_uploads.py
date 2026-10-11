@@ -7,7 +7,7 @@ from werkzeug.datastructures import FileStorage
 from app.materials import prepare_upload
 
 from app.db import connect
-from conftest import csrf_headers, sign_in
+from conftest import auth_headers, sign_in
 
 
 def snapshot(app):
@@ -27,7 +27,7 @@ def session_snapshot(app):
 
 
 def upload(client, content=b'New teaching material', name='new.txt', **fields):
-    return client.post('/api/materials', data={'file': (BytesIO(content), name), **fields}, headers=csrf_headers(client))
+    return client.post('/api/materials', data={'file': (BytesIO(content), name), **fields}, headers=auth_headers(client))
 
 
 def test_upload_identity(app, client):
@@ -96,7 +96,7 @@ def test_successful_upload_is_committed(app, client):
 def test_upload_validation(app, client):
     sign_in(client, app)
     before = snapshot(app)
-    assert client.post('/api/materials', headers=csrf_headers(client)).status_code == 400
+    assert client.post('/api/materials', headers=auth_headers(client)).status_code == 400
     for name, content in [('empty.txt', b''), ('bad.pdf', b'text'), ('bad.txt', b'\xff'), ('nul.md', b'hello\x00world')]:
         assert upload(client, content, name).status_code == 400
         assert snapshot(app) == before
@@ -108,22 +108,23 @@ def test_teacher_student_page_and_read_only(app, client):
     response = upload(client, b'<script>alert(1)</script>', '<script>alert(1)</script>.txt')
     assert response.status_code == 201
     material_id = response.json['material_id']
-    assert material_id.encode() in client.get('/materials').data
+    assert material_id.encode() not in client.get('/materials').data
     sign_in(client, app, 'student_a1')
     page = client.get('/materials')
-    assert b'id="upload"' not in page.data
-    assert material_id.encode() in page.data
+    assert b'id="upload-card" hidden' in page.data
+    assert material_id.encode() not in page.data
     assert b'<script>alert(1)</script>' not in page.data
-    assert b'.textContent = material.plain_text' in page.data
+    assert b'.textContent = material.plain_text' in client.get('/static/materials.js').data
     before = snapshot(app)
     assert upload(client).status_code == 403
     for method in ('put', 'patch', 'delete', 'post'):
-        assert getattr(client, method)(f'/api/materials/{material_id}', data={'plain_text': 'overwrite'}, headers=csrf_headers(client)).status_code == 405
+        assert getattr(client, method)(f'/api/materials/{material_id}', data={'plain_text': 'overwrite'}, headers=auth_headers(client)).status_code == 405
     assert snapshot(app) == before
     # Legacy metadata is escaped by the template too.
     with connect(app.config['DATABASE']) as db:
         db.execute('UPDATE materials SET original_name=? WHERE id=?', ('<script>filename</script>.txt', material_id))
-    assert b'&lt;script&gt;filename&lt;/script&gt;.txt' in client.get('/materials').data
+    assert b'<script>filename</script>' not in client.get('/materials').data
+    assert b'cell.textContent = value' in client.get('/static/materials.js').data
     items = client.get('/api/materials').json['items']
     assert items == sorted(items, key=lambda r: (r['created_at'], r['id']), reverse=True)
 
@@ -146,19 +147,20 @@ def test_forged_identity_cannot_grant_upload(app, client, group):
         student = db.execute('SELECT id,class_id FROM users WHERE username=?', (username,)).fetchone()
     forged = {'role': 'teacher', 'class_id': str(teacher['class_id']), 'user_id': str(teacher['id'])}
     client.get('/login')
-    response = client.post('/api/auth/login', json={'username': username, 'password': app.test_password, **forged}, headers=csrf_headers(client))
+    response = client.post('/api/auth/login', json={'username': username, 'password': app.test_password, **forged}, headers=auth_headers(client))
     assert response.status_code == 200
-    with client.session_transaction() as session:
-        assert (session['user_id'], session['class_id'], session['role']) == (*student, 'student')
+    client.environ_base['HTTP_AUTHORIZATION'] = 'Bearer ' + response.json['access_token']
+    principal = client.get('/api/auth/me').json
+    assert (principal['user_id'], principal['class_id'], principal['role']) == (*student, 'student')
     # Self-declared identity cookies/headers are not session identity.
     for name, value in forged.items():
         client.set_cookie(name, value)
     before, sessions = snapshot(app), session_snapshot(app)
     responses = [
         upload(client), upload(client, **forged),
-        client.post('/api/materials', json=forged, headers=csrf_headers(client)),
-        client.post('/api/materials', query_string=forged, data={'file': (BytesIO(b'valid'), 'a.txt')}, headers=csrf_headers(client)),
-        client.post('/api/materials', data={'file': (BytesIO(b'valid'), 'a.txt')}, headers={**csrf_headers(client), 'X-Role': 'teacher', 'X-User-Id': forged['user_id'], 'X-Class-Id': forged['class_id']}),
+        client.post('/api/materials', json=forged, headers=auth_headers(client)),
+        client.post('/api/materials', query_string=forged, data={'file': (BytesIO(b'valid'), 'a.txt')}, headers=auth_headers(client)),
+        client.post('/api/materials', data={'file': (BytesIO(b'valid'), 'a.txt')}, headers={**auth_headers(client), 'X-Role': 'teacher', 'X-User-Id': forged['user_id'], 'X-Class-Id': forged['class_id']}),
         client.post('/api/materials', data={'file': (BytesIO(b'valid'), 'a.txt')}),
     ]
     for denied in responses:

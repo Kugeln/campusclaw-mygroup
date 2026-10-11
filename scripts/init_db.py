@@ -82,6 +82,23 @@ if __name__ == '__main__':
     parser.add_argument('--uploads', default=os.environ.get('UPLOAD_ROOT', 'uploads'))
     parser.add_argument('--fresh', action='store_true', help='Initialize missing database and seeds atomically; preserve existing database')
     args = parser.parse_args()
+    if os.environ.get('MATERIAL_BACKEND') == 'mysql':
+        if args.fresh:
+            from scripts.serve_retrieval import prepare
+            prepare()
+        elif args.seed:
+            from app.storage.mysql import MySQLStorage
+            initialize(args.database)
+            storage = MySQLStorage(dict(os.environ))
+            storage.initialize()
+            with closing(connect(args.database)) as connection:
+                with connection:
+                    seed_accounts(connection, environment_password)
+                storage.seed_materials(connection, args.uploads)
+        else:
+            raise SystemExit('Use --seed or --fresh for the MySQL material repository')
+        print('MySQL material repository ready.')
+        sys.exit(0)
     if args.fresh:
         initialize_fresh(args.database, args.uploads)
         print('Database ready.')

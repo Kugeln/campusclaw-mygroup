@@ -1,13 +1,11 @@
 {% extends "base.html" %}
-{% set class_label = class_name if class_name.endswith('班') else class_name ~ '班' %}
-{% block title %}{{ class_label }} · CampusClaw{% endblock %}
+{% block title %}班级材料 · CampusClaw{% endblock %}
 {% block header %}
 <header class="topbar">
 <div class="topbar-inner">
   <div class="brand"><img class="materials-logo" src="{{ url_for('static', filename='logo.png') }}" alt=""><span>CampusClaw</span><span class="brand-caption">课程资料空间</span></div>
-  <div class="account-area"><span class="class-badge">{{ class_label }}</span><span class="role-badge">{% if role == 'teacher' %}教师{% else %}学生{% endif %}</span>
+  <div class="account-area"><span class="class-badge"><span data-class></span></span><span class="role-badge" id="role"></span>
 <form id="logout" action="/api/auth/logout" method="post">
-  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
   <button type="submit">退出登录</button>
 </form>
   </div>
@@ -16,11 +14,11 @@
 {% endblock %}
 {% block content %}
 <div class="page-heading">
-  <div><p class="eyebrow">课堂资源 · 共享知识</p><h1>{{ class_label }} · 班级材料</h1><p class="subtitle">汇集课程资料，让学习与分享更有序。</p></div>
-  <span class="scope-label">{{ class_label }}专属资料空间</span>
+  <div><p class="eyebrow">课堂资源 · 共享知识</p><h1><span data-class></span> · 班级材料</h1><p class="subtitle">汇集课程资料，让学习与分享更有序。</p></div>
+  <span class="scope-label"><span data-class></span>专属资料空间</span>
 </div>
-{% if role == 'teacher' %}
-<section class="card upload-card">
+<p><a href="/knowledge">打开知识库问答</a></p>
+<section class="card upload-card" id="upload-card" hidden>
 <div class="card-heading">
 <div>
 <h2>上传材料</h2>
@@ -28,59 +26,22 @@
 </div><span class="format-badge">TXT / MD</span>
 </div>
 <form id="upload" action="/api/materials" method="post" enctype="multipart/form-data" class="upload-form">
-  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
   <label>UTF-8 文本文件（.txt / .md） <input type="file" name="file" accept=".txt,.md" required></label>
   <button type="submit" class="button-primary">上传</button>
 </form>
 </section>
-{% else %}
-<p class="student-note">你可以阅读和下载本班材料。</p>
-{% endif %}
+<p class="student-note" id="student-note" hidden>你可以阅读和下载本班材料。</p>
 <p id="message" role="alert"></p>
 <section class="card library-card" aria-labelledby="library-title">
 <div class="card-heading"><div><h2 id="library-title">材料列表</h2><p class="subtitle">课程资料集中呈现，随时阅读与下载。</p></div></div>
 <div class="table-scroll" tabindex="0" role="region" aria-label="本班材料列表">
 <table class="materials-table">
   <thead><tr><th>文件名</th><th>材料 ID</th><th>大小（字节）</th><th>上传时间（UTC）</th><th>上传者</th><th>操作</th></tr></thead>
-  <tbody>
-  {% for item in items %}
-  <tr>
-    <td class="file-name">{{ item.original_name }}</td><td class="material-id">{{ item.id }}</td><td class="file-size">{{ item.size }}</td><td class="upload-time">{{ item.created_at }}</td><td class="uploader">{{ item.uploader }}</td>
-    <td class="material-actions"><button type="button" data-material="{{ item.id }}">阅读文本</button> <a href="/api/materials/{{ item.id }}/file">下载</a></td>
-  </tr>
-  {% else %}
-  <tr><td colspan="6" class="empty-state">本班暂无材料。</td></tr>
-  {% endfor %}
-  </tbody>
+  <tbody id="materials"></tbody>
 </table>
 </div>
 </section>
 <pre id="text" class="reading-panel"></pre>
-<script>
-const message = document.getElementById('message');
-for (const form of document.querySelectorAll('form')) {
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    try {
-      const response = await fetch(form.action, {method: 'POST', body: new FormData(form)});
-      if (response.ok) {
-        if (form.id === 'logout') location.assign('/login');
-        else location.reload();
-      } else {
-        message.textContent = response.status === 413 ? '文件超过大小限制。' : '操作失败，请检查文件或重新登录。';
-      }
-    } catch { message.textContent = '连接失败，请稍后重试。'; }
-  });
-}
-for (const button of document.querySelectorAll('[data-material]')) {
-  button.addEventListener('click', async () => {
-    try {
-      const response = await fetch('/api/materials/' + encodeURIComponent(button.dataset.material));
-      if (!response.ok) { message.textContent = '无法读取材料，请重新登录后重试。'; return; }
-      const material = await response.json();
-      document.getElementById('text').textContent = material.plain_text;
-    } catch { message.textContent = '连接失败，请稍后重试。'; }
-  });
-}
-</script>
+<script src="{{ url_for('static', filename='api.js') }}" defer></script>
+<script src="{{ url_for('static', filename='materials.js') }}" defer></script>
 {% endblock %}

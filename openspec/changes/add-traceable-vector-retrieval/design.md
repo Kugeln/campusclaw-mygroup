@@ -1,21 +1,21 @@
 ## Context
 
-动机和范围见 [proposal.md](proposal.md)，行为契约见 [spec.md](specs/traceable-vector-retrieval/spec.md)。当前实际服务是 Flask/Python + SQLite，没有 Go、Nginx、MySQL 或向量服务。用户已确认不迁移 HTTP 框架，不重写第 3 课。
+动机和范围见 [proposal.md](proposal.md)，行为契约见 [spec.md](specs/traceable-vector-retrieval/spec.md)。原第 3 课服务为 Flask/Python + SQLite；本 change 继续当前 Flask/Bearer 服务并接入 MySQL/Qdrant，不推进另一个 Go 迁移 change。用户已确认不迁移 HTTP 框架，不重写第 3 课。
 
 当前可复用的实现：
 
-- `app/auth.py::authenticated` 从服务端 Session 查询用户并核对角色、班级及会话版本；`teacher_required` 在上传处理前拒绝学生。`app/sessions.py` 已实现 SQLite 服务端会话，必须继续使用。
+- `app/auth.py::authenticated` 验证 Bearer Token 后查询用户并核对角色、班级及撤销版本；`teacher_required` 在上传处理前拒绝学生。不恢复 Session/CSRF 认证路径。
 - `app/materials.py::persist_prepared` 在同一关系型事务中写 materials/knowledge_entries，保存原文件，失败时回滚并清理文件。现有正文列为 plain_text，并非教程中的 body_text。
 - `app/db.py` 的材料查询包含班级条件及 users 联表；`app/routes.py` 返回的 plain_text 被现有页面使用。`app/recovery.py` 启动时根据材料记录检查、清理文件，迁移后不能继续根据旧 SQLite 材料快照清理新文件。
-- 既有测试直接访问 SQLite，并包含事务失败、文件补偿、Session 和双向隔离测试。最近一次实施记录为 36 passed；Apply 必须重新取得基线，不能把此记录当作新实现通过。
+- 既有测试直接访问 SQLite，并包含事务失败、文件补偿、认证和双向隔离测试（Session 专属项按 Bearer 等价适配）。最近一次实施记录为 36 passed；Apply 必须重新取得基线，不能把此记录当作新实现通过。
 
-本次输入明确规定 MySQL FULLTEXT WITH PARSER ngram、token 长度 2，故采用必要的 MySQL 材料迁移，而非将 MySQL 解释为可替换的参考实现。正式主 specs 仍为空；本 capability 补充两个现有 change，仅替代材料存储位置及原“不做检索问答”的范围决定，不改写认证或会话规约。
+本次输入明确规定 MySQL FULLTEXT WITH PARSER ngram、token 长度 2，故采用必要的 MySQL 材料迁移，而非将 MySQL 解释为可替换的参考实现。正式主 specs 仍为空；本 capability 补充两个现有 change，仅替代材料存储位置及原“不做检索问答”的范围决定，按用户确认与当前 Bearer 契约对齐，不恢复旧会话认证。
 
 ## Goals / Non-Goals
 
 **Goals:**
 
-- 检索核心只处理已注入的可信班级、查询和证据对象，数据库 SQL、Flask request/session 与外部 HTTP 不混入排序算法。
+- 检索核心只处理已注入的可信班级、查询和证据对象，数据库 SQL、Flask request/principal 与外部 HTTP 不混入排序算法。
 - MySQL 是正文与索引可见状态的权威来源，Qdrant 仅召回编号；失败不能删除原文或发布部分索引。
 - 以小型 Python 模块实现三模式检索及来源问答，既有上传、查看、下载、认证语义保持兼容。
 
@@ -33,7 +33,7 @@
 
 | 模块 | 职责和输入输出 |
 | --- | --- |
-| `app/retrieval_routes.py` | Flask 鉴权、CSRF、请求校验、注入可信身份、错误到 HTTP 的映射；不执行 SQL 或排名融合 |
+| `app/retrieval_routes.py` | Flask Bearer 鉴权、请求校验、注入可信身份、错误到 HTTP 的映射；不执行 SQL 或排名融合 |
 | `app/retrieval/service.py` | `search(scope, query, mode, limit)`，组织两路召回、回表、去重、排序，返回 Evidence 列表 |
 | `app/retrieval/ranking.py` | 纯函数 RRF，输入两路合法 ID 排名，输出融合顺序；不依赖 Flask/数据库 |
 | `app/retrieval/chunking.py` | 纯文本与策略到有序切片；不调用网关 |
@@ -51,13 +51,13 @@ Evidence 为 `{chunk_id, material_id, knowledge_entry_id, title, chunk_index, ch
 
 ### 2. 必要的材料迁移，保留身份数据库
 
-SQLite 继续保存 users、classes、sessions 和原占位结构。只将 materials、knowledge_entries 迁到 MySQL；新增 knowledge_chunks。原始文件继续使用现有 UPLOAD_ROOT，不移动或重命名。材料/正文放在同一 MySQL 事务中，避免双库写入原文；禁止运行时同时写 SQLite 和 MySQL 材料表。
+SQLite 继续保存 users（含 Token 撤销版本）、classes 及历史 sessions 占位结构；历史表不再参与认证。只将 materials、knowledge_entries 迁到 MySQL；新增 knowledge_chunks。原始文件继续使用现有 UPLOAD_ROOT，不移动或重命名。材料/正文放在同一 MySQL 事务中，避免双库写入原文；禁止运行时同时写 SQLite 和 MySQL 材料表。
 
 MySQL 与 SQLite 无跨库外键。class_id/uploader_id 由可信身份写入，迁移时验证所有编号在身份库存在；用户/班级管理本来就不在本轮范围。原 `JOIN users` 改为对已按班级选出的材料批量解析上传者名称，不复制一套可修改的用户身份到 MySQL。SQLite 用户查询仍由现有身份模块承担，检索核心不接触它。
 
 生产课程配置明确选择 MySQL 材料 repository。保留封装原 SQLite 材料实现的适配器供原有回归测试使用；它不是第 4 课检索后端，不实现 SQLite keyword 替代品。新增真实 MySQL 集成验收重复第三课核心 API/文件事务断言，不能只在旧适配器测试通过就声称课程实现通过。缺少 MySQL 的课程配置不得静默切回 SQLite。旧测试默认夹具可继续使用原 SQLite 数据，不删除现有数据库级失败测试。
 
-材料 repository 返回的 DTO 保持旧字段，MySQL body_text 在详情边界映射成 plain_text，原模板和 JavaScript 不变。`prepare_upload` 文本解析、文件大小限制和路径防护继续复用。持久化只替换 SQL/事务适配：原文与元数据一起提交、文件失败一起补偿；Embedding 不属于上传原文事务。
+材料 repository 返回的 DTO 保持旧字段，MySQL body_text 在详情边界映射成 plain_text，保留当前 Bearer 页面与原 API 字段，新增最小问答入口。`prepare_upload` 文本解析、文件大小限制和路径防护继续复用。持久化只替换 SQL/事务适配：原文与元数据一起提交、文件失败一起补偿；Embedding 不属于上传原文事务。
 
 ### 3. MySQL 模型与全文索引
 
@@ -83,11 +83,11 @@ MySQL ngram 是内置解析器，token 大小在启动时配置，建 FULLTEXT �
 - markdown：使用行首 ATX 标题 `#` 到 `######` 作为段开始，标题保留，代码围栏中的 `#` 不视为标题；段内同样窗口切片。
 - 不跨显式段边界重叠；默认 fixed 在窗口间重叠。只丢弃全空白片段，不做摘要或改写；索引序号从 1 连续递增。正文只有空白时零切片、无模型调用，作为无可检索内容处理。
 
-上传仍只接收现有 file/CSRF 字段，不给上传表单新增策略字段。上传成功后同步调用默认索引流程；教师通过重建 API 指定策略。同步方式满足本轮规模且无需队列；HTTP 网关请求设有限超时和每次索引总时限，超过时限走 failed，不能影响已提交原文。全体 Embedding 暂存在进程内，全部通过校验才开始 Qdrant 写入，不把向量存 MySQL。
+上传仍只接收现有 file 字段（Authorization Header 携带 Bearer），不给上传表单新增策略字段。上传成功后同步调用默认索引流程；教师通过重建 API 指定策略。同步方式满足本轮规模且无需队列；HTTP 网关请求设有限超时和每次索引总时限，超过时限走 failed，不能影响已提交原文。全体 Embedding 暂存在进程内，全部通过校验才开始 Qdrant 写入，不把向量存 MySQL。
 
 ### 5. 两个网关和 Qdrant client
 
-Embedding client 使用课程网关的 OpenAI-compatible `POST /embeddings`：输入 model、单段 input，读取 embedding 数组，验证固定维度、有限数及非零范数。入库逐片调用，查询单独调用同一模型。base URL、key、model、dimension 来自服务端配置；不预设课程未提供的真实地址、密钥或维度。索引与查询必须配置同一模型/维度，改变模型需教师重建，不能混用旧向量。
+Embedding client 由服务端 `EMBEDDING_API_FORMAT` 选择协议：`ark_multimodal`（默认，保持当前运行配置）使用 `POST /embeddings/multimodal`、`input=[{type:text,text:正文}]`、`data.embedding`；`openai` 使用 `POST /embeddings`、字符串 input、`data[0].embedding`。两种协议均验证固定维度、有限数及非零范数。入库逐片调用，查询单独调用同一模型。base URL、key、model、dimension 来自服务端配置；不预设课程未提供的真实地址、密钥或维度。索引与查询必须配置同一模型/维度，本轮保留 vision/2048 与现有 collection；配置或响应维度不符时拒绝操作，不删除、重建或清空既有数据。不同模型的向量也不得混用；未来模型切换需另行授权。
 
 对话 client 使用独立课程网关配置和 OpenAI-compatible chat 请求适配，输入系统约束、编号证据和用户问题。即使网关实际上由同一供应方提供，也不共用全局密钥变量或混合 client。对话 client 不访问 MySQL/Qdrant、不决定班级，Embedding client 不生成答案。实际端点、模型名和密钥属于部署输入，不影响本方案模块边界。
 
@@ -131,12 +131,12 @@ Qdrant collection 固定 campusclaw_chunks，distance=Cosine、size=配置维度
 | API | 请求及行为 |
 | --- | --- |
 | GET /api/search | `q`、`mode`（默认 hybrid）；200 `{mode,items:[{material_id,title,chunk_id,chunk_index,chunk_text,score}]}`，空命中 items=[] |
-| POST /api/ask | JSON `{question,mode?}`，现有 CSRF；内部调用 search(limit=4)，200 `{answer,sources:[{number,material_id,title,chunk_id,chunk_index,chunk_text}]}` |
-| POST /api/materials/{id}/reindex | 本班教师、现有 CSRF，JSON `{strategy,size?,overlap?,delimiter?}`；200 表示全部 ready，依赖失败 503，策略非法 400，并发处理中 409 |
+| POST /api/ask | JSON `{question,mode?}`，Bearer 鉴权；内部调用 search(limit=4)，200 `{answer,sources:[{number,material_id,title,chunk_id,chunk_index,chunk_text}]}` |
+| POST /api/materials/{id}/reindex | 本班教师、Bearer 鉴权，JSON `{strategy,size?,overlap?,delimiter?}`；200 表示全部 ready，依赖失败 503，策略非法 400，并发处理中 409 |
 
-新路由使用现有 authenticated；ask/reindex 使用现有 csrf_required；reindex 先 teacher_required，因此学生即使缺 CSRF 也先得到 403。上传继续返回原有 201/material_id，追加 index_status 说明 ready/failed（原文已提交时不能误报整个上传失败）。材料详情可追加同班 index_status/cleanup_required，旧字段不变，无需 UI 改动。
+新路由统一使用 authenticated 验证 Bearer；不接受 Cookie 作为身份，不使用 csrf_required。reindex 先 teacher_required，因此学生在参数校验之前即得到 403。上传继续返回原有 201/material_id，追加 index_status 说明 ready/failed（原文已提交时不能误报整个上传失败）。材料详情可追加同班 index_status/cleanup_required，旧字段不变，保留已授权最小问答页。
 
-search/ask 的 query、JSON、header、独立身份 Cookie 中自报 class_id/user_id/role 一律忽略，scope 只从已核验会话取得。客户端篡改真正的 Session ID 则按原认证契约 401。检索中不接受用户提交 material_id 作为越权读取捷径；结果 ID 是服务端产生。
+search/ask 的 query、JSON、header、独立身份 Cookie 中自报 class_id/user_id/role 一律忽略，scope 只从已核验 principal 取得。缺失、篡改、过期或撤销的 Bearer 按当前认证契约返回 401。检索中不接受用户提交 material_id 作为越权读取捷径；结果 ID 是服务端产生。
 
 跨班查询返回普通空结果和固定无依据回答，不发跨班 403/404；资源型重建依旧遵循原材料“不存在/跨班均 404”规则。所有 SQL/Qdrant 查询均强制班级条件，不能只依赖回表或只依赖向量过滤。
 
@@ -157,21 +157,21 @@ ask 在 Evidence 为空时直接返回 `{answer:'资料中未找到相关内容'
 
 服务端配置分别提供 MySQL 连接、Qdrant 地址、Embedding base URL/key/model/dimension、对话 base URL/key/model。网关 URL 不来自浏览器参数；所有调用有连接/读取超时，配置与错误日志只显示缺少的配置名称或通用失败原因，不输出密钥、原始请求正文或向量。具体依赖/镜像版本在 Apply 时锁定并进行集成验证，本次不修改 requirements 或 Compose。
 
-测试分三层但不是三套业务实现：原有全量测试；核心纯函数/客户端替身测试；真实 MySQL/Qdrant 配合可控课程网关替身的集成测试。MySQL ngram 排序、Qdrant payload 白名单/班级过滤不能只靠 mock 验收。A/B 各两角色、三种模式、伪造身份四种载体、两次班级过滤、空证据零对话调用、Embedding 第 N 片失败和 Qdrant 不可用均有明确断言。真实课程网关需运行时配置，自动化测试不使用真实密钥或按量模型作为必需依赖。
+测试分三层但不是三套业务实现：按 Bearer 等价适配的原有全量行为测试；核心纯函数/客户端替身测试；真实 MySQL/Qdrant 配合可控课程网关替身的集成测试。MySQL ngram 排序、Qdrant payload 白名单/班级过滤不能只靠 mock 验收。A/B 各两角色、三种模式、伪造身份四种载体、两次班级过滤、空证据零对话调用、Embedding 第 N 片失败和 Qdrant 不可用均有明确断言。真实课程网关需运行时配置，自动化测试不使用真实密钥或按量模型作为必需依赖。
 
 ## Risks / Trade-offs
 
-- [必要迁移涉及原上传数据访问] → 仅抽取材料 repository，保留原文事务和文件补偿；账号/Session 不迁移；MySQL 路径另做相同业务断言，不能只运行 SQLite 测试。
+- [必要迁移涉及原上传数据访问] → 仅抽取材料 repository，保留原文事务和文件补偿；账号/Token 撤销版本 不迁移；MySQL 路径另做相同业务断言，不能只运行 SQLite 测试。
 - [跨库无共同事务] → 先完成原文事务，再索引；ready 屏障和失败清理防止半成品可见，不假设批量向量写入具有跨库原子性。
-- [SQLite/MySQL 无跨库外键] → 写入身份来自会话和现存账号，迁移验证编号，材料/原文/切片在 MySQL 内用复合约束保持一致；不复制身份管理功能。
+- [SQLite/MySQL 无跨库外键] → 写入身份来自已核验 Token 和现存账号，迁移验证编号，材料/原文/切片在 MySQL 内用复合约束保持一致；不复制身份管理功能。
 - [同步逐片 Embedding 耗时/内存占用] → 每次索引设有限总时限，失败保留正文，教师可重建；接受课程单 worker 限制，不引入队列来扩大 scope。
 - [故障残留点占用向量候选] → 回表丢弃并在启动/下一次重建先清理；不会泄漏或发布部分数据，有限候选可能降低召回率。
 - [RRF 和模型回答不是相关性证明] → 保留阈值、rank 单测与可核实证据，空证据绝不生成；不以网关回答替代检索失败状态。
 
 ## Migration Plan
 
-1. Apply 前记录全量测试基线。以停写维护窗口备份 SQLite、原文件；不在普通启动时自动迁移已有材料，不在本次 Propose 执行任何数据操作。
+1. Apply 前记录全量测试基线。以停写维护窗口备份 SQLite、原文件；不在普通启动时自动迁移已有材料，只在隔离数据库验证迁移；不操作现有课堂数据。
 2. 建立 MySQL 三表和索引。显式迁移命令只读取旧库材料两表，校验账号/班级、ID、文本哈希、时间、数量和文件关联；原 plain_text 原样写入 body_text。保留旧整数 entry ID 并正确推进自增序列，不覆盖不一致的目标数据。重复迁移只接受完全一致记录，不静默覆盖冲突。
 3. 校验通过后配置课程材料 repository=MySQL，全部列表、详情、下载、上传、seed 和 recovery 使用同一选择。旧 SQLite 材料表仅为备份，不再写入/读取为在线材料权威；绝不能用它清理 MySQL 已引用的文件。新安装在身份库建立账号后，通过 MySQL repository 初始化样本材料。
-4. 为既有材料用同一默认索引流程建立切片；失败材料保留原文、标为 failed，教师可显式重建。未知/失败向量不发布。验证现有会话仍可用和全部第 3 课行为，再验收三种检索及问答。
+4. 为既有材料用同一默认索引流程建立切片；失败材料保留原文、标为 failed，教师可显式重建。未知/失败向量不发布。验证现有 Token 仍可用和全部第 3 课行为，再验收三种检索及问答。
 5. 回退须停写并使用成套数据备份或显式导出迁移后的材料，不能直接切回过期 SQLite 快照丢失新增上传，也不能执行旧 recovery 删除新文件。文档明确数据截止点；不引入自动回滚框架。

@@ -4,8 +4,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SECRET_KEY: ${SECRET_KEY:?Set SECRET_KEY in the server process environment}
-      COOKIE_SECURE: "false"
+      JWT_SIGNING_SECRET: ${JWT_SIGNING_SECRET:?Set JWT_SIGNING_SECRET in the server process environment}
       DATABASE: /var/lib/material-library/data/app.db
       UPLOAD_ROOT: /var/lib/material-library/uploads
       MAX_UPLOAD_BYTES: ${MAX_UPLOAD_BYTES:-20971520}

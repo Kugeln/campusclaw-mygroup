@@ -1,11 +1,11 @@
 ## Purpose
 
-在既有班级材料库和可信服务端 Session 上增加可追溯检索与简短问答。材料和切片正文由关系型存储提供，向量只负责召回；所有路径以登录班级限定证据，并在无有效证据时直接拒绝生成回答，保持第 3 课教师学生权限与双向班级隔离。
+在既有班级材料库和可信 Bearer Token 身份 上增加可追溯检索与简短问答。材料和切片正文由关系型存储提供，向量只负责召回；所有路径以登录班级限定证据，并在无有效证据时直接拒绝生成回答，保持第 3 课教师学生权限与双向班级隔离。
 
 ## ADDED Requirements
 
 ### Requirement: Preserve existing authentication and material behavior
-系统 MUST 保留现有服务端 Session、teacher/student 两种角色及权限。只有本班教师 SHALL 上传或重建材料索引；学生 SHALL 查看、下载、检索和提问本班材料，上传或重建 MUST 返回 403。材料上传 MUST 保持原文件及材料/原文同事务持久化契约，索引只能在原文可靠提交之后开始，后续索引失败不得撤销上传。
+系统 MUST 保留现有 Bearer Token 认证、teacher/student 两种角色及权限。只有本班教师 SHALL 上传或重建材料索引；学生 SHALL 查看、下载、检索和提问本班材料，上传或重建 MUST 返回 403。材料上传 MUST 保持原文件及材料/原文同事务持久化契约，索引只能在原文可靠提交之后开始，后续索引失败不得撤销上传。
 
 #### Scenario: Upload commits before indexing
 - **WHEN** 本班教师上传合法材料
@@ -28,7 +28,7 @@
 #### Scenario: Required material migration preserves data
 - **WHEN** 将既有 SQLite 材料数据迁入 MySQL
 - **THEN** 保留材料/原文 ID、班级、上传者、时间、完整文本及文件关联，plain_text 映射为 body_text
-- **AND** 既有详情响应继续提供 plain_text，账号/班级/Session 数据及权限不迁移或重置
+- **AND** 既有详情响应继续提供 plain_text，账号/班级/Token 撤销版本 数据及权限不迁移或重置
 
 ### Requirement: Deterministic configurable chunking
 系统 SHALL 从已提交 body_text 按顺序切片，默认目标长度 800 个 Unicode 字符、重叠 80 个字符，保存从 1 开始的 chunk_index。SHALL 支持固定长度、自定义字面分隔符及 Markdown 标题边界策略；边界内过长内容继续切片，重叠不得跨明确的段边界。相同正文与策略 MUST 产生相同的切片文本及次序，空白片段不入库。
@@ -107,8 +107,8 @@ vector MUST 对查询调用 Embedding，在 campusclaw_chunks 使用 Cosine 搜�
 - **WHEN** 两路均成功执行但仅一路有本班合法结果
 - **THEN** 使用该路排名贡献返回结果，不给缺席一路加分；空结果不等于依赖服务故障
 
-### Requirement: Session scoped search inputs and failures
-教师和学生 SHALL 使用 GET /api/search 或 POST /api/ask，班级只能由已认证服务端 Session 注入。客户端 query string、JSON、header、独立身份 Cookie 的 class_id/user_id/role MUST 被忽略，不能改变范围。空白查询或非法 mode MUST 返回 400。Qdrant 不可用时 vector/hybrid MUST 返回 503，不能静默降级 keyword；没有命中不属于 503。
+### Requirement: Bearer scoped search inputs and failures
+教师和学生 SHALL 使用 GET /api/search 或 POST /api/ask，班级只能由已认证 Bearer principal 注入。客户端 query string、JSON、header、独立身份 Cookie 的 class_id/user_id/role MUST 被忽略，不能改变范围。空白查询或非法 mode MUST 返回 400。Qdrant 不可用时 vector/hybrid MUST 返回 503，不能静默降级 keyword；没有命中不属于 503。
 
 #### Scenario: Bidirectional isolation under forged scope
 - **WHEN** A 班教师/学生提交只存在于 B 班的查询且伪造 B 班身份字段，或 B 班用户进行反向操作
@@ -135,3 +135,14 @@ POST /api/ask MUST 调用共享检索模块而非重写三种检索，默认 hyb
 - **WHEN** 对话网关失败、返回空回答、遗漏来源编号或引用不存在的编号
 - **THEN** 返回 502，不发布伪造引用，不自行添加模型未使用的来源掩盖错误
 - **AND** 材料中的指令作为证据数据处理，不得覆盖仅使用证据和本班隔离规则
+
+### Requirement: Configurable embedding protocol and preservation of existing vectors
+系统 SHALL 通过服务端 EMBEDDING_API_FORMAT 显式选择 ark_multimodal 或 openai，默认保留当前 ark_multimodal 行为。两种协议 MUST 独立于对话客户端，验证维度、有限数及非零范数。系统 MUST 保留当前 vision/2048 collection 及数据，不自动删除、重建或清空。
+
+#### Scenario: Compatible protocols
+- **WHEN** 配置 ark_multimodal 或 openai
+- **THEN** 分别使用 /embeddings/multimodal 的文本数组请求及 data.embedding，或 /embeddings 的字符串请求及 data[0].embedding；查询和索引使用同一配置
+
+#### Scenario: Dimension mismatch preserves existing data
+- **WHEN** 配置维度、响应维度或 collection 维度不一致
+- **THEN** 操作失败且不写入不匹配向量，不删除现有 collection、切片或向量以迎合配置

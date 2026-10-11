@@ -1,29 +1,60 @@
-from flask import Blueprint, g, jsonify, redirect, render_template, request, session
+from dataclasses import dataclass
 from functools import wraps
-from werkzeug.security import check_password_hash
+import re
 import sqlite3
 
+import jwt
+from flask import Blueprint, current_app, g, jsonify, render_template, request
+from werkzeug.security import check_password_hash
+
 from app.db import get_db
-from app.csrf import csrf_required, csrf_token
-from app.sessions import sid_hash
+from app.tokens import LIFETIME_SECONDS, issue_token, verify_token
 
 bp = Blueprint('auth', __name__)
 
 
-def authenticated(*, page=False):
+@dataclass(frozen=True)
+class AuthenticatedPrincipal:
+    user_id: int
+    role: str
+    class_id: int
+
+
+def valid_user(user):
+    return (user is not None and user['role'] in ('teacher', 'student')
+            and type(user['class_id']) is int and user['class_id'] > 0
+            and type(user['session_version']) is int
+            and 0 <= user['session_version'] < 9223372036854775807)
+
+
+def unauthorized():
+    return jsonify(error='Authentication required'), 401, {'WWW-Authenticate': 'Bearer'}
+
+
+def authenticated():
     def decorate(view):
         @wraps(view)
         def wrapped(*args, **kwargs):
-            user_id = session.get('user_id')
-            user = None
-            if isinstance(user_id, int) and not isinstance(user_id, bool):
-                user = get_db().execute('SELECT * FROM users WHERE id=?', (user_id,)).fetchone()
-            if user is None or any(session.get(field) != user[field] for field in ('role', 'class_id', 'session_version')):
-                session.clear()
-                if page:
-                    return redirect('/login')
-                return jsonify(error='Authentication required'), 401
-            g.user = user
+            values = request.headers.getlist('Authorization')
+            match = re.fullmatch(r'Bearer +([^\s,]+)', values[0], re.IGNORECASE) if len(values) == 1 else None
+            if match is None:
+                return unauthorized()
+            try:
+                claims = verify_token(match[1], current_app.config['JWT_SIGNING_SECRET'])
+            except (jwt.InvalidTokenError, ValueError, TypeError, OverflowError):
+                return unauthorized()
+            try:
+                user = get_db().execute(
+                    'SELECT u.id,u.role,u.class_id,u.session_version,c.name AS class_name '
+                    'FROM users u JOIN classes c ON c.id=u.class_id WHERE u.id=?',
+                    (int(claims['sub']),),
+                ).fetchone()
+            except sqlite3.Error:
+                return jsonify(error='Authentication storage unavailable'), 500
+            if not valid_user(user) or user['session_version'] != claims['ver']:
+                return unauthorized()
+            g.principal = AuthenticatedPrincipal(user['id'], user['role'], user['class_id'])
+            g.class_name = user['class_name']
             return view(*args, **kwargs)
         return wrapped
     return decorate
@@ -32,7 +63,7 @@ def authenticated(*, page=False):
 def teacher_required(view):
     @wraps(view)
     def wrapped(*args, **kwargs):
-        if g.user['role'] != 'teacher':
+        if g.principal.role != 'teacher':
             return jsonify(error='Teacher role required'), 403
         return view(*args, **kwargs)
     return wrapped
@@ -40,40 +71,52 @@ def teacher_required(view):
 
 @bp.get('/login')
 def login_page():
-    return render_template('login.html', csrf_token=csrf_token())
+    return render_template('login.html')
 
 
 @bp.post('/api/auth/login')
-@csrf_required
 def login():
     data = request.get_json(silent=True) if request.is_json else request.form
     data = data if isinstance(data, dict) or hasattr(data, 'get') else {}
     username, password = data.get('username'), data.get('password')
     user = None
-    if isinstance(username, str) and isinstance(password, str):
-        user = get_db().execute('SELECT * FROM users WHERE username=?', (username,)).fetchone()
-    session.clear()
-    if user is None or not check_password_hash(user['password_hash'], password):
+    try:
+        if isinstance(username, str) and isinstance(password, str):
+            user = get_db().execute(
+                'SELECT u.* FROM users u JOIN classes c ON c.id=u.class_id WHERE u.username=?',
+                (username,),
+            ).fetchone()
+    except sqlite3.Error:
+        return jsonify(error='Authentication storage unavailable'), 500
+    try:
+        password_ok = valid_user(user) and check_password_hash(user['password_hash'], password)
+    except (ValueError, TypeError):
+        password_ok = False
+    if not password_ok:
         return jsonify(error='Invalid credentials'), 401
-    session.rotate()
-    for field in ('id', 'role', 'class_id', 'session_version'):
-        session['user_id' if field == 'id' else field] = user[field]
-    session.permanent = True
-    csrf_token()
-    return jsonify(redirect='/materials'), 200
+    return jsonify(access_token=issue_token(user['id'], user['session_version'],
+                                           current_app.config['JWT_SIGNING_SECRET']),
+                   token_type='Bearer', expires_in=LIFETIME_SECONDS, redirect='/materials')
+
+
+@bp.get('/api/auth/me')
+@authenticated()
+def me():
+    principal = g.principal
+    return jsonify(user_id=principal.user_id, role=principal.role,
+                   class_id=principal.class_id, class_name=g.class_name)
 
 
 @bp.post('/api/auth/logout')
 @authenticated()
-@csrf_required
 def logout():
-    db = get_db()
     try:
+        db = get_db()
         with db:
-            db.execute('UPDATE users SET session_version=session_version+1 WHERE id=?', (g.user['id'],))
-            db.execute('DELETE FROM sessions WHERE sid_hash=?', (sid_hash(session.sid),))
+            result = db.execute('UPDATE users SET session_version=session_version+1 WHERE id=?',
+                                (g.principal.user_id,))
+            if result.rowcount != 1:
+                raise sqlite3.DatabaseError('Revocation did not update a user')
     except sqlite3.Error:
-        return jsonify(error='Session storage unavailable'), 500
-    session.clear()
-    session.sid = None  # Deletion has already committed with the version change.
+        return jsonify(error='Authentication storage unavailable'), 500
     return '', 204

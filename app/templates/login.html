@@ -20,7 +20,6 @@
 <h2 id="login-title">登录 CampusClaw</h2>
 <p class="subtitle">使用课程账号进入班级材料库</p>
 <form id="login" method="post" action="/api/auth/login" class="login-form">
-  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
   <label>账号 <input name="username" autocomplete="username" required></label>
   <label>密码 <input name="password" type="password" autocomplete="current-password" required></label>
   <button type="submit" class="button-primary">登录</button>
@@ -29,12 +28,6 @@
 <p class="login-note">连接课堂，让每一份知识有处可寻。</p>
 </section>
 </div>
-<script>
-document.getElementById('login').addEventListener('submit', async (event) => {
-  event.preventDefault();
-  const response = await fetch(event.target.action, {method: 'POST', body: new FormData(event.target)});
-  if (response.ok) { location.assign('/materials'); }
-  else { document.getElementById('message').textContent = '登录失败，请检查账号密码后重试。'; }
-});
-</script>
+<script src="{{ url_for('static', filename='api.js') }}" defer></script>
+<script src="{{ url_for('static', filename='login.js') }}" defer></script>
 {% endblock %}

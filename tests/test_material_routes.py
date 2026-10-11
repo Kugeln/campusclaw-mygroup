@@ -73,7 +73,7 @@ def test_both_roles_read_new_class_upload(app, client, group):
     for username in (teacher, student):
         assert sign_in(client, app, username).status_code == 200
         page = client.get('/materials')
-        assert page.status_code == 200 and material_id.encode() in page.data
+        assert page.status_code == 200 and material_id.encode() not in page.data
         listing = client.get('/api/materials')
         assert listing.status_code == 200 and material_id in {r['id'] for r in listing.json['items']}
         detail = client.get(f'/api/materials/{material_id}')

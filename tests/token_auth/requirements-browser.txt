@@ -1,0 +1,2 @@
+# Optional isolated browser acceptance dependency; not a production dependency.
+playwright==1.58.0

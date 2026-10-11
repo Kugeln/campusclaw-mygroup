@@ -1,0 +1,69 @@
+name: campusclaw-retrieval-demo
+services:
+  app:
+    image: campusclaw-retrieval-demo:local
+    build: .
+    command: ["python", "scripts/serve_retrieval.py"]
+    ports:
+      - "127.0.0.1:${DEMO_HTTP_PORT:-8080}:8080"
+    environment:
+      MATERIAL_BACKEND: mysql
+      JWT_SIGNING_SECRET: ${JWT_SIGNING_SECRET:-}
+      DATABASE: /var/lib/material-library/data/app.db
+      UPLOAD_ROOT: /var/lib/material-library/uploads
+      MYSQL_HOST: mysql
+      MYSQL_PORT: "3306"
+      MYSQL_DATABASE: campusclaw_retrieval
+      MYSQL_USER: campusclaw
+      MYSQL_PASSWORD: ${RETRIEVAL_MYSQL_PASSWORD:-}
+      QDRANT_URL: http://qdrant:6333
+      EMBEDDING_BASE_URL: ${EMBEDDING_BASE_URL:-}
+      EMBEDDING_API_KEY: ${EMBEDDING_API_KEY:-}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-}
+      EMBEDDING_DIMENSION: ${EMBEDDING_DIMENSION:-}
+      EMBEDDING_API_FORMAT: ${EMBEDDING_API_FORMAT:-ark_multimodal}
+      DIALOGUE_BASE_URL: ${DIALOGUE_BASE_URL:-}
+      DIALOGUE_API_KEY: ${DIALOGUE_API_KEY:-}
+      DIALOGUE_MODEL: ${DIALOGUE_MODEL:-}
+      SEED_TEACHER_A_PASSWORD: ${SEED_TEACHER_A_PASSWORD:-}
+      SEED_STUDENT_A1_PASSWORD: ${SEED_STUDENT_A1_PASSWORD:-}
+      SEED_TEACHER_B_PASSWORD: ${SEED_TEACHER_B_PASSWORD:-}
+      SEED_STUDENT_B1_PASSWORD: ${SEED_STUDENT_B1_PASSWORD:-}
+    volumes:
+      - demo-materials:/var/lib/material-library
+      - ./app:/app/app:ro
+      - ./scripts:/app/scripts:ro
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks: [services, outbound]
+  mysql:
+    image: mysql:8.4.4
+    command: ["--ngram-token-size=2"]
+    environment:
+      MYSQL_DATABASE: campusclaw_retrieval
+      MYSQL_USER: campusclaw
+      MYSQL_PASSWORD: ${RETRIEVAL_MYSQL_PASSWORD:-}
+      MYSQL_ROOT_PASSWORD: ${RETRIEVAL_MYSQL_ROOT_PASSWORD:-}
+    volumes:
+      - demo-mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=\"$$MYSQL_PASSWORD\" mysql --protocol=TCP -h 127.0.0.1 -u\"$$MYSQL_USER\" -D\"$$MYSQL_DATABASE\" -e 'SELECT 1' >/dev/null 2>&1"]
+      interval: 3s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+    networks: [services]
+  qdrant:
+    image: qdrant/qdrant:v1.13.4
+    volumes:
+      - demo-qdrant:/qdrant/storage
+    networks: [services]
+networks:
+  services:
+    internal: true
+  outbound:
+volumes:
+  demo-materials:
+  demo-mysql:
+  demo-qdrant:
