@@ -1,11 +1,17 @@
 FROM golang:1.26.0-alpine3.23 AS build
 WORKDIR /src
 COPY go.mod go.sum ./
-RUN go mod download
+ARG GOPROXY=https://proxy.golang.org,direct
+RUN GOPROXY=$GOPROXY go mod download
 COPY cmd ./cmd
 COPY internal ./internal
 RUN CGO_ENABLED=0 go build -trimpath -o /server ./cmd/server
-FROM scratch
+RUN CGO_ENABLED=0 go build -trimpath -o /bootstrap ./cmd/bootstrap
+FROM alpine:3.23.3 AS initializer
+COPY --from=build /bootstrap /bootstrap
+USER 10001:10001
+ENTRYPOINT ["/bootstrap"]
+FROM scratch AS server
 COPY --from=build /server /server
 USER 10001:10001
 EXPOSE 8080

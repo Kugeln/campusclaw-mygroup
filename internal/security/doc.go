@@ -1,3 +1,3 @@
-// Package security is the boundary for future CSRF and trusted identity checks.
-// No authentication or authorization is implemented during Phase 1.
+// Package security provides password primitives. Bearer authentication and
+// trusted request identity live in internal/auth; no Cookie/CSRF session exists.
 package security

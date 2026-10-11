@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>班级材料 · CampusClaw</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="">
+
+<header class="topbar">
+<div class="topbar-inner">
+  <div class="brand"><img class="materials-logo" src="/static/logo.png" alt=""><span>CampusClaw</span><span class="brand-caption">课程资料空间</span></div>
+  <div class="account-area"><span class="class-badge"><span data-class></span></span><span class="role-badge" id="role"></span>
+<form id="logout" action="/api/auth/logout" method="post">
+  <button type="submit">退出登录</button>
+</form>
+  </div>
+</div>
+</header>
+
+  <main class="page-shell">
+<div class="page-heading">
+  <div><p class="eyebrow">课堂资源 · 共享知识</p><h1><span data-class></span> · 班级材料</h1><p class="subtitle">汇集课程资料，让学习与分享更有序。</p></div>
+  <span class="scope-label"><span data-class></span>专属资料空间</span>
+</div>
+<section class="card upload-card" id="upload-card" hidden>
+<div class="card-heading">
+<div>
+<h2>上传材料</h2>
+<p class="subtitle">分享课程讲义与学习资料，同班成员即可阅读。</p>
+</div><span class="format-badge">TXT / MD</span>
+</div>
+<form id="upload" action="/api/materials" method="post" enctype="multipart/form-data" class="upload-form">
+  <label>UTF-8 文本文件（.txt / .md） <input type="file" name="file" accept=".txt,.md" required></label>
+  <button type="submit" class="button-primary">上传</button>
+</form>
+</section>
+<p class="student-note" id="student-note" hidden>你可以阅读和下载本班材料。</p>
+<p id="message" role="alert"></p>
+<section class="card library-card" aria-labelledby="library-title">
+<div class="card-heading"><div><h2 id="library-title">材料列表</h2><p class="subtitle">课程资料集中呈现，随时阅读与下载。</p></div></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="本班材料列表">
+<table class="materials-table">
+  <thead><tr><th>文件名</th><th>材料 ID</th><th>大小（字节）</th><th>上传时间（UTC）</th><th>上传者</th><th>操作</th></tr></thead>
+  <tbody id="materials"></tbody>
+</table>
+</div>
+</section>
+<pre id="text" class="reading-panel"></pre>
+<script src="/static/api.js" defer></script>
+<script src="/static/materials.js" defer></script>
+</main>
+</body>
+</html>
