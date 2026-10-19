@@ -1,0 +1,70 @@
+{
+  "utc": "2026-10-18T02:46:50.248985+00:00",
+  "authorization": "read-only provenance only; no generation permitted this turn",
+  "conclusion": "A: confirmed project gateway request IDs from local documentation, configuration and corroborating historical real-mode evidence; underlying mapping and current generation entitlement unverified",
+  "confirmed_request_configuration": {
+    "DIALOGUE_MODEL": "course-chat",
+    "EMBEDDING_MODEL": "course-embedding",
+    "EMBEDDING_DIMENSION": "2048",
+    "EMBEDDING_API_FORMAT": "openai"
+  },
+  "process_user_machine_model_variables": "not set at inspection",
+  "new_requests": {
+    "models_get": 1,
+    "dialogue": 0,
+    "embedding": 0,
+    "retries": 0
+  },
+  "phase53_cumulative": {
+    "dialogue": 0,
+    "embedding": 0,
+    "models_get": 2
+  },
+  "historical_evidence_only": {
+    "run": "realmodel-6f7a1447",
+    "dialogue": 4,
+    "embedding": 7,
+    "all_http200": true,
+    "not_counted_as_new": true
+  },
+  "models_response": {
+    "http": 200,
+    "count": 135,
+    "configured_aliases_listed": false,
+    "permission_fields_present": false,
+    "alias_absence_proves_invalid": false
+  },
+  "underlying_model_mapping_confirmed": false,
+  "current_generation_permission_confirmed": false,
+  "progress": "26/29",
+  "unchecked": [
+    "5.3",
+    "5.4",
+    "5.5"
+  ],
+  "config_modified": false,
+  "code_modified": false,
+  "database_qdrant_resources_modified": false,
+  "git_commit_push": false,
+  "strict_validate_exit": 0,
+  "protected_files_checked": 36,
+  "protected_hash_drift": [],
+  "configuration_file_sha256": "e57082e1cb555d39019754a238d3009f343cced6a993fe3c575deb04b5fe5f7e",
+  "source_sha256": {
+    "tests/go_rag/README.md": "c08acf9b356f6d7d7fab90889f957ac58bc21e2c025ffa944506cc4b34658c3d",
+    "runtime/course-gateway/load-model-env.ps1": "27a958997f93efd2d536ead3d78e9cde663e322f0283228975ff0a4354605696",
+    "runtime/course-gateway/preflight.py": "61e590fdc20fab78540bab98e5349b90a5ce57bcb3638b2dc9de95a2e6b9f87b",
+    "runtime/course-gateway/preflight.json": "77e73fca835755592b02ab4bc4baf8fd41422c5ff99182e3ab4167d2db0c6b4e",
+    "internal/config/rag.go": "90f96fa7094e98dcc3da2dd5e29548125b4e06939f9041d21b41e93ea3572f69",
+    "internal/rag/clients.go": "7569ac6dc017b98028ca00660dd123afa0ef58da468e790a58083e649f38163e",
+    "internal/conversation/stream.go": "18cd8ad5d5de60e5156e0f4a50d77512c6f789a9f569e2f5d10b48bbf1c0e569",
+    "internal/http/tutor_browser_integration_test.go": "a4835acfaff02e3c7c6ef5bd941d24cde060f3c0edb38e986deeb8440f1bb0e6",
+    "internal/http/real_budget_test.go": "68df80f6b111253f47fc6998ed35962fb04cc623f2203123fa91a1e3baeaa6ff",
+    "runtime/campusclaw-week5-rag-ee706bec/realmodel-6f7a1447/real-stats.json": "e1decfa14983d7305814f8806b25908cfa1bd791079c157c073ebf14735309f7",
+    "runtime/campusclaw-week5-rag-ee706bec/realmodel-6f7a1447/result.json": "2b53251899f0a4edca531c6b62283831d3840b9f65066d3e45dcd4af12747335",
+    "runtime/campusclaw-week5-rag-ee706bec/realmodel-6f7a1447/browser.json": "e4fb02b1f8c250a0ac9b3dea46af7b6f50eaf486b91c4d70647628b24b099dc2",
+    "openspec/changes/add-week5-ai-tutor-and-streaming-chat/real-model-verification.md": "81d73ae45928c7f596f22d3512050b94834ff64e7161d9f86df8e29dae7e1e10",
+    "runtime/align-real-provenance/models-readonly.json": "9e22682443e42840d3a9c5f3c9b2ea934642fedd12acf9c77d3242fc153d753a"
+  },
+  "updated_record_sha256": "79a0a7cd487ca6c20b0f5a5b6657c809babd53cb320ba264012674b5b1fe011a"
+}

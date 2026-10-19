@@ -1,0 +1,263 @@
+{
+  "state": "phase1_complete_stop_before_phase2",
+  "date": "2026-10-18",
+  "timezone": "Asia/Shanghai",
+  "branch": "feature/week5-phase1-go-rag",
+  "head": "51a8749f6550c279efebe63bb67eda724878f5a1",
+  "final_run": "runtime/week6-phase1-20261018T105629Z-032749c0",
+  "final_runner_completed": true,
+  "final_runner_command_count": 13,
+  "final_runner_exit_code": 0,
+  "source_hashes_verified": {
+    ".dockerignore": "07406cb973fb8a1e719260bfec386ddd26bc34acd7bbfd68773cfa02844061e0",
+    "compose.test.yml": "bc66c8dfd543ac494d77a7eea2a2f0947d3cbb64e936696fc7ae68c5ef3abcda",
+    "Dockerfile": "8716531692122b32c5be60033f7a88a710edb34730306a8f048c569a12b19e90",
+    "go.mod": "8e82977b481b64541b6f215487d9667804ee856d922cc4be7ce909d7fb8790b5",
+    "README.md": "f5c660a1589fa068d2481e44a03b48f1c5a366a8d6e63531d3ee4697718f290f",
+    "run_phase1.py": "ef7c31a93e3ec4886a83a119c9146a60048381b7e7b59dbccc3e06b68ea6bb6c",
+    "tests\\process_test.go": "06578a5167faf6967269c5953bf797a3e5a98a762bec60df536b245d8dec0367",
+    "cmd\\mcp-server\\main.go": "84110ac94851935fe3c54abc66c985dd9383428cec304acfbb864a9e872cc322",
+    "cmd\\probe\\main.go": "803ea0e1a6e0d0a6d4fc9eea3dfc4f157a952a3227eba996e7da502c3afec16a",
+    "internal\\checks\\checks.go": "691c4e4427a7d1818d7e87755a53e3ada49bd1107e44980885eb0cc7fc97bd3f",
+    "internal\\server\\server.go": "5a0f9f08c499dad376043d65646d08b7b02f41f97e8cb26706d4565abe666b9c",
+    "internal\\server\\server_test.go": "edd0aec6d45900d40624e56755fd232566faf22a7a948aa8450918ecbc11c60f",
+    "internal\\server\\tools.go": "ad95b65fb9c0023702ab7fae7c5db527bd94f4cc065e06ba90e360a3b524ab08"
+  },
+  "runtime_evidence_sha256": {
+    "runtime/week6-phase1-20261018T105137Z-c1bff1ae": {
+      "compose-config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compose-config.stdout": "7ae77e7127352374170e3414b12e99f45ea3c0670d14d9787395f0170afa8ed9",
+      "docker-build.stderr": "3fbb00cb0b87d49b1bc0684a44dc5b34162ddb6995afe5ba8f2a21cf423136b4",
+      "docker-build.stdout": "d169524d28fab600f291790838eb81ddebd50186631d26dc1c6b364e2fc82c27",
+      "docker-cleanup.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-existing.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-existing.stdout": "0f01e8bc1a1dba22a3c350eeccb775d4bc9da1a6e1566abf11fce5ef5f18e788",
+      "docker-up.stderr": "6dcc6981d4eca2428562314b6065ac383aa47a1c46f02d841eb08cfb95884d11",
+      "docker-up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "existing-container-state.json": "6b65f12954e3e87cbd581dfa810570a6494a5a4ce0dc304bbf58d7905bb48803",
+      "go-test.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "go-test.stdout": "34a68e1277aa3433faf86ef5351ea1097d73a20e6216cc311b20d9b05d54540f",
+      "go-vet.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "go-vet.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "host-network.json": "9de686e53b1e8ca6b814b3c32e39cf57b1d5e205557248f08b3f99e5f47933a3",
+      "result.json": "287da689d2eecc674e5685f41a614db141c266833d04cebf991ad7b894879b0b"
+    },
+    "runtime/week6-phase1-20261018T105339Z-6b8a2300": {
+      "compose-config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compose-config.stdout": "14b7401655297bb02f319712430a5b6f244057fd2a61b2a751f4341ebc2781c8",
+      "docker-build.stderr": "02ff3ff7071aafdabc154400912922009eadfed24efac35aabb4538ab47bbbc2",
+      "docker-build.stdout": "fa2025e45f0d3852b521a965d8c7c0876ae4a21acd3f0de585bc2db5367fe95b",
+      "docker-cleanup.stderr": "c46f081e8903abab7db876dfbb2efc1a90c3d4bc180da62db80824ed2266aa18",
+      "docker-cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-existing.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-existing.stdout": "0f01e8bc1a1dba22a3c350eeccb775d4bc9da1a6e1566abf11fce5ef5f18e788",
+      "docker-network.stderr": "e4b8fe1d1443fef10c30a816cd62e822280de8592f62a070f3ee51ff8284fbf8",
+      "docker-network.stdout": "cd759b06e773ae2cb5b20865b96341cbd869f0279543a32392eed5773019e147",
+      "docker-offline.stderr": "9b9ef030096563d14c65a887c78d50474b136b310ad8033dd1db961010145f69",
+      "docker-offline.stdout": "6bce1555711597627a95ffd7de1d216d370fe364f7baccfce4341162655d1e0a",
+      "docker-service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-service-logs.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-stop.stderr": "fc5f2fa7caa54d1cdb83c2346e6c499639f42abd47a0c43a50f2446adfc47627",
+      "docker-stop.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-up.stderr": "180a6fa6741b5452f3bc9f88f603bdbd033c4ee8e11a4d3db2542bbdd2af7f5f",
+      "docker-up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "existing-container-state.json": "6b65f12954e3e87cbd581dfa810570a6494a5a4ce0dc304bbf58d7905bb48803",
+      "go-test.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "go-test.stdout": "2acd63520f135ef42cc0334682f799582d0ea5e7e38295d174132f409d888260",
+      "go-vet.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "go-vet.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "host-network.json": "9de686e53b1e8ca6b814b3c32e39cf57b1d5e205557248f08b3f99e5f47933a3",
+      "result.json": "fb8237fc8661b959a80aae591971b2c311b29d1e2d79ea40978c592ea923a931"
+    },
+    "runtime/week6-phase1-20261018T105524Z-e629c755": {
+      "compose-config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compose-config.stdout": "af200ce425e486af91adeb33028953a90e177096040bcde0bb229a8f8a27b967",
+      "docker-build.stderr": "2f31ddc028bb6aea16d141a92fea55db331586c8819bd0990509e82449171d13",
+      "docker-build.stdout": "43f3d8a690d2af27e5a094d25ee003588a293928dcbbdd66322de97a98498e23",
+      "docker-cleanup.stderr": "c206fa66b0f334733867075daf1baf8048d8a027afb869e4e987c201bb8a7eef",
+      "docker-cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-existing.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-existing.stdout": "0f01e8bc1a1dba22a3c350eeccb775d4bc9da1a6e1566abf11fce5ef5f18e788",
+      "docker-network.stderr": "09c63fa50aa441a9fe829acbc9888bae267ae42793615636d291b7e9b6059b49",
+      "docker-network.stdout": "cd759b06e773ae2cb5b20865b96341cbd869f0279543a32392eed5773019e147",
+      "docker-offline.stderr": "916e59a14818f1c45edb35c8d3c47387da730f06993de0e7cbfafe19d8f2c455",
+      "docker-offline.stdout": "6bce1555711597627a95ffd7de1d216d370fe364f7baccfce4341162655d1e0a",
+      "docker-service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-service-logs.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-stop.stderr": "ee21aa94f8c7af04af520610b7a2beaac333d01f56011a1f422f49bc6afd7abf",
+      "docker-stop.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-up.stderr": "339b8511f4617e5e947b889cc2a543c21bb6028ed7c61095635a7d25dc9c2bca",
+      "docker-up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "existing-container-state.json": "fb9a6e1f712524ceb059c025af412e289c6e043b684d5805ebe66b46c7d3c696",
+      "go-test.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "go-test.stdout": "42888542331394f60a8768881f39a5641a81ac795f68f0d479121b425aaecefd",
+      "go-vet.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "go-vet.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "host-network.json": "9de686e53b1e8ca6b814b3c32e39cf57b1d5e205557248f08b3f99e5f47933a3",
+      "result.json": "9f047740efd28ac59468961509156f1af46ddc026828c7a52f9c3eed54cb067f"
+    },
+    "runtime/week6-phase1-20261018T105629Z-032749c0": {
+      "compose-config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compose-config.stdout": "6fadaf724636cb93edfddbc9a693534e20b17164d24d69ae3e68e7fde62d2637",
+      "docker-build.stderr": "6356d488149dbac134ef715f42c6f6490601527fa64a4c9970b365770ec2c62a",
+      "docker-build.stdout": "451197ade6ab468248cebd93f3429494160ed7736445a069545375b926bdb79a",
+      "docker-cleanup.stderr": "c6e27129772a9e73ce035f8453f43da50c12082efeab513426aa1566e592d738",
+      "docker-cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-existing.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-existing.stdout": "0f01e8bc1a1dba22a3c350eeccb775d4bc9da1a6e1566abf11fce5ef5f18e788",
+      "docker-image-config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-image-config.stdout": "135347cc845aaed76fd3e9695a4b038992f4580d48a61569a952debd24b75e11",
+      "docker-image-history.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-image-history.stdout": "4c66c842ef2b5fae7623474bf96f87abd1723a32f574aff6b9e0620334570427",
+      "docker-network.stderr": "a3d419acb850dd7d3e67b260ec20a2096861dc05f9ffa987c44d476ba8157577",
+      "docker-network.stdout": "67327aa3a6e461570f84ae5c5e4d88abc92f3f116b590bcfdc7c95e211371312",
+      "docker-offline.stderr": "c50f760d16a501f832af39a2c76e45dcaee416017a42483395f510738e06bf23",
+      "docker-offline.stdout": "6bce1555711597627a95ffd7de1d216d370fe364f7baccfce4341162655d1e0a",
+      "docker-service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-service-logs.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-stop.stderr": "5d3ab761d47bf9c4811a46db7b791bf10bc502f5462e0b65cc68527333e02e6e",
+      "docker-stop.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docker-up.stderr": "623c710a0c79504b1583fd098adabe757a30b54ce7c01091ab7b13e70873b93a",
+      "docker-up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "existing-container-state.json": "fb9a6e1f712524ceb059c025af412e289c6e043b684d5805ebe66b46c7d3c696",
+      "go-test.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "go-test.stdout": "927ab6892090bc83da2a8e54f712ec99166a8200c4235356fd414ac5e27f37e7",
+      "go-vet.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "go-vet.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "host-network.json": "b5be5f75279608aea7fb740a247764cb381394b797b6986369f0f1b758a3db1b",
+      "result.json": "7210fd7b713041674c224ce8fe9773ea484dfabb74414d9de6b5068ed9a8a3f4"
+    }
+  },
+  "test_counts": {
+    "go_leaf_passed": 62,
+    "docker_protocol_passed": 52,
+    "docker_stopped_rpc_passed": 1,
+    "total_counted_checks_passed": 115,
+    "final_failed": 0,
+    "phase1_required_unexecuted": 0,
+    "go_packages_without_test_files": 3,
+    "note": "Host protocol 52 are included in Go leaf 62; do not add them twice. Startup/log/host-stop assertions also passed inside parent test. Three Go package skip events mean no test files, not skipped required tests."
+  },
+  "controlled_faults": {
+    "deadline_seconds_observed": 3.01,
+    "request_cancel_passed": true,
+    "at_most_one_execution_passed": true,
+    "test_seam": "Injected executor through real TCP in Go tests, not a production fault endpoint"
+  },
+  "security": {
+    "bearer_schema_origin_body_limits_passed": true,
+    "ephemeral_credential_output_scan_passed": true,
+    "image_config_history_scan_passed": true,
+    "service_logs_no_credential": true,
+    "no_real_secrets_loaded": true
+  },
+  "historical_failure": {
+    "run": "runtime/week6-phase1-20261018T105137Z-c1bff1ae",
+    "stage": "docker-up",
+    "exit_code": 1,
+    "reason": "all predefined address pools have been fully subnetted",
+    "preserved": true,
+    "resolved": "Read occupied subnets, use explicit nonoverlapping 10.240.1.0/24 in a new internal test network; no existing networks removed",
+    "subsequent_successful_runs": [
+      "20261018T105339Z-6b8a2300",
+      "20261018T105524Z-e629c755",
+      "20261018T105629Z-032749c0"
+    ]
+  },
+  "docker_closeout": {
+    "checked_at_utc": "2026-10-18T12:42:31.661402+00:00",
+    "read_only": true,
+    "existing_container_count": 213,
+    "lifecycle_drift_since_final_run": [],
+    "projects": [
+      {
+        "project": "campusclaw-w6-20261018t105137z-c1bff1ae",
+        "containers": [],
+        "networks": []
+      },
+      {
+        "project": "campusclaw-w6-20261018t105339z-6b8a2300",
+        "containers": [],
+        "networks": []
+      },
+      {
+        "project": "campusclaw-w6-20261018t105524z-e629c755",
+        "containers": [],
+        "networks": []
+      },
+      {
+        "project": "campusclaw-w6-20261018t105629z-032749c0",
+        "containers": [],
+        "networks": []
+      }
+    ],
+    "all_phase1_test_containers_networks_removed": true,
+    "scope": "Lifecycle fields compared; natural health-probe timestamp changes excluded. No existing resource mutations or database access performed."
+  },
+  "preservation": {
+    "baseline": "phase1-preservation-baseline.json",
+    "existing_files_hashed": 467,
+    "outside_change_existing_files": 449,
+    "protected_existing_changes": [],
+    "week5_task_counts": [
+      32,
+      29
+    ],
+    "no_database_operations": true,
+    "no_phase2_implementation": true,
+    "spec_files_unchanged": true,
+    "official_management_operations": 8,
+    "modified_existing_files": [
+      "openspec/changes/add-week6-mcp-tool-integration/review-summary.md",
+      "openspec/changes/add-week6-mcp-tool-integration/tasks.md",
+      "openspec/changes/add-week6-mcp-tool-integration/verification-result.json"
+    ],
+    "new_files": [
+      "mcp-server/.dockerignore",
+      "mcp-server/Dockerfile",
+      "mcp-server/README.md",
+      "mcp-server/cmd/mcp-server/main.go",
+      "mcp-server/cmd/probe/main.go",
+      "mcp-server/compose.test.yml",
+      "mcp-server/go.mod",
+      "mcp-server/internal/checks/checks.go",
+      "mcp-server/internal/server/server.go",
+      "mcp-server/internal/server/server_test.go",
+      "mcp-server/internal/server/tools.go",
+      "mcp-server/run_phase1.py",
+      "mcp-server/tests/process_test.go",
+      "openspec/changes/add-week6-mcp-tool-integration/phase1-closeout-docker.json",
+      "openspec/changes/add-week6-mcp-tool-integration/phase1-preservation-baseline.json",
+      "openspec/changes/add-week6-mcp-tool-integration/phase1-verification.json",
+      "openspec/changes/add-week6-mcp-tool-integration/phase1-verification.md"
+    ]
+  },
+  "tasks": {
+    "1.1": "passed",
+    "1.2": "passed",
+    "1.3": "passed",
+    "1.4": "passed",
+    "1.5": "passed",
+    "1.6": "passed"
+  },
+  "phase2_prerequisites_met": true,
+  "phase2_authorized": false,
+  "blockers": [],
+  "this_closeout_reexecuted_business_tests": false,
+  "strict": {
+    "command": "openspec validate add-week6-mcp-tool-integration --strict",
+    "exit_code": 0,
+    "output": "Change 'add-week6-mcp-tool-integration' is valid"
+  },
+  "task_progress": {
+    "total": 42,
+    "complete": 10,
+    "phase0_complete": 4,
+    "phase1_complete": 6,
+    "phase2_to_6_incomplete": 32,
+    "requirements": 72,
+    "main_scenarios": 72
+  },
+  "broken_local_links": []
+}

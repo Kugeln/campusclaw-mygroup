@@ -1,0 +1,1677 @@
+{
+  "url": "https://devops.hello1023.com/week06/openapi.json",
+  "verified_date": "2026-10-18",
+  "http_status": 200,
+  "sha256_utf8_content": "69cff10b191f9b35ea46582dc29f458913cbe2b69f1270d121bcb2b04c89e566",
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/api/mcp/servers",
+      "contract": {
+        "description": "只有教师可读。响应不含 auth_token，只含 has_auth 与 tool_count。\n\n认证：需要 Authorization: Bearer 访问令牌，并且用户表中的角色必须是 teacher。\n\n幂等：是。重复提交：只读。重复请求不写库\n\n限流：不限流\n\n错误码：\n\n| 错误码 | HTTP 状态码 | 描述 | 触发条件 |\n| --- | --- | --- | --- |\n| UNAUTHORIZED | 401 | 未登录或会话已失效 | 没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在 |\n| UNAVAILABLE | 503 | 服务暂时不可用，请稍后重试 | 查询吊销记录或按 sub 读取用户时数据库不可用；读取 MCP 服务器时数据库不可用 |\n| FORBIDDEN | 403 | 当前角色无权执行该操作 | 已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色 |\n",
+        "operationId": "MCP-001",
+        "parameters": [
+          {
+            "description": "访问令牌。格式为 Bearer 加一个空格再加 JWT。角色和班级不在令牌里",
+            "example": "Bearer <jwt>",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "servers": [
+                    {
+                      "base_url": "http://mcp-demo:8090",
+                      "connected": true,
+                      "has_auth": true,
+                      "id": 1,
+                      "name": "campus-tools",
+                      "tool_count": 2
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/OpMCP001Response"
+                }
+              }
+            },
+            "description": "完整响应体见 example。JSON 内不再另放 HTTP 状态或业务码"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAUTHORIZED": {
+                    "summary": "未登录或会话已失效",
+                    "value": {
+                      "error": "未登录或会话已失效"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAUTHORIZED：未登录或会话已失效。触发条件：没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "FORBIDDEN": {
+                    "summary": "当前角色无权执行该操作",
+                    "value": {
+                      "error": "当前角色无权执行该操作"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "FORBIDDEN：当前角色无权执行该操作。触发条件：已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAVAILABLE": {
+                    "summary": "服务暂时不可用，请稍后重试",
+                    "value": {
+                      "error": "服务暂时不可用，请稍后重试"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAVAILABLE：服务暂时不可用，请稍后重试。触发条件：查询吊销记录或按 sub 读取用户时数据库不可用；读取 MCP 服务器时数据库不可用"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "列出本班 MCP 服务器",
+        "tags": [
+          "mcp"
+        ],
+        "x-auth": {
+          "roles": [
+            "teacher"
+          ],
+          "scheme": "bearer"
+        },
+        "x-errors": [
+          {
+            "code": "UNAUTHORIZED",
+            "description": "未登录或会话已失效",
+            "status": 401,
+            "when": "没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          {
+            "code": "UNAVAILABLE",
+            "description": "服务暂时不可用，请稍后重试",
+            "status": 503,
+            "when": "查询吊销记录或按 sub 读取用户时数据库不可用；读取 MCP 服务器时数据库不可用"
+          },
+          {
+            "code": "FORBIDDEN",
+            "description": "当前角色无权执行该操作",
+            "status": 403,
+            "when": "已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          }
+        ],
+        "x-idempotency": {
+          "idempotent": true,
+          "repeat": "只读。重复请求不写库"
+        },
+        "x-rate-limit": {
+          "dimension": "",
+          "enabled": false,
+          "exceeded": "",
+          "note": "不限流",
+          "threshold": "",
+          "window": ""
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/mcp/servers",
+      "contract": {
+        "description": "只有教师可登记。auth_token 写入数据库，响应不返回令牌。登记后状态为未连接。\n\n认证：需要 Authorization: Bearer 访问令牌，并且用户表中的角色必须是 teacher。\n\n幂等：否。重复提交：每次成功新增一行。同班同名返回 400\n\n限流：不限流\n\n错误码：\n\n| 错误码 | HTTP 状态码 | 描述 | 触发条件 |\n| --- | --- | --- | --- |\n| UNAUTHORIZED | 401 | 未登录或会话已失效 | 没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在 |\n| UNAVAILABLE | 503 | 服务暂时不可用，请稍后重试 | 查询吊销记录或按 sub 读取用户时数据库不可用；写入数据库失败 |\n| FORBIDDEN | 403 | 当前角色无权执行该操作 | 已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色 |\n| BAD_REQUEST | 400 | 本班已有同名 MCP 服务器 | 名称重复 |\n",
+        "operationId": "MCP-002",
+        "parameters": [
+          {
+            "description": "访问令牌。格式为 Bearer 加一个空格再加 JWT。角色和班级不在令牌里",
+            "example": "Bearer <jwt>",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "auth_token": "secret",
+                "base_url": "http://mcp-demo:8090",
+                "name": "campus-tools"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/OpMCP002Request"
+              }
+            }
+          },
+          "description": "字段、是否必填和校验规则见 schema 与示例",
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "base_url": "http://mcp-demo:8090",
+                  "connected": false,
+                  "has_auth": true,
+                  "id": 1,
+                  "name": "campus-tools",
+                  "tool_count": 0
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/OpMCP002Response"
+                }
+              }
+            },
+            "description": "完整响应体见 example。JSON 内不再另放 HTTP 状态或业务码"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "BAD_REQUEST": {
+                    "summary": "本班已有同名 MCP 服务器",
+                    "value": {
+                      "error": "本班已有同名 MCP 服务器"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "BAD_REQUEST：本班已有同名 MCP 服务器。触发条件：名称重复"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAUTHORIZED": {
+                    "summary": "未登录或会话已失效",
+                    "value": {
+                      "error": "未登录或会话已失效"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAUTHORIZED：未登录或会话已失效。触发条件：没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "FORBIDDEN": {
+                    "summary": "当前角色无权执行该操作",
+                    "value": {
+                      "error": "当前角色无权执行该操作"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "FORBIDDEN：当前角色无权执行该操作。触发条件：已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAVAILABLE": {
+                    "summary": "服务暂时不可用，请稍后重试",
+                    "value": {
+                      "error": "服务暂时不可用，请稍后重试"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAVAILABLE：服务暂时不可用，请稍后重试。触发条件：查询吊销记录或按 sub 读取用户时数据库不可用；写入数据库失败"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "登记 MCP 服务器",
+        "tags": [
+          "mcp"
+        ],
+        "x-auth": {
+          "roles": [
+            "teacher"
+          ],
+          "scheme": "bearer"
+        },
+        "x-errors": [
+          {
+            "code": "UNAUTHORIZED",
+            "description": "未登录或会话已失效",
+            "status": 401,
+            "when": "没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          {
+            "code": "UNAVAILABLE",
+            "description": "服务暂时不可用，请稍后重试",
+            "status": 503,
+            "when": "查询吊销记录或按 sub 读取用户时数据库不可用；写入数据库失败"
+          },
+          {
+            "code": "FORBIDDEN",
+            "description": "当前角色无权执行该操作",
+            "status": 403,
+            "when": "已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          {
+            "code": "BAD_REQUEST",
+            "description": "本班已有同名 MCP 服务器",
+            "status": 400,
+            "when": "名称重复"
+          }
+        ],
+        "x-idempotency": {
+          "idempotent": false,
+          "repeat": "每次成功新增一行。同班同名返回 400"
+        },
+        "x-rate-limit": {
+          "dimension": "",
+          "enabled": false,
+          "exceeded": "",
+          "note": "不限流",
+          "threshold": "",
+          "window": ""
+        }
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/mcp/servers/{id}",
+      "contract": {
+        "description": "删除服务器及其工具缓存。历史 mcp_tool_calls 保留。\n\n认证：需要 Authorization: Bearer 访问令牌，并且用户表中的角色必须是 teacher。\n\n幂等：是。重复提交：重复删除返回 404\n\n限流：不限流\n\n错误码：\n\n| 错误码 | HTTP 状态码 | 描述 | 触发条件 |\n| --- | --- | --- | --- |\n| UNAUTHORIZED | 401 | 未登录或会话已失效 | 没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在 |\n| UNAVAILABLE | 503 | 服务暂时不可用，请稍后重试 | 查询吊销记录或按 sub 读取用户时数据库不可用；删除失败 |\n| FORBIDDEN | 403 | 当前角色无权执行该操作 | 已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色 |\n| NOT_FOUND | 404 | 资源不存在 | 服务器不存在或不属于本班 |\n",
+        "operationId": "MCP-004",
+        "parameters": [
+          {
+            "description": "访问令牌。格式为 Bearer 加一个空格再加 JWT。角色和班级不在令牌里",
+            "example": "Bearer <jwt>",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "服务器编号",
+            "example": 1,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "无响应体"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAUTHORIZED": {
+                    "summary": "未登录或会话已失效",
+                    "value": {
+                      "error": "未登录或会话已失效"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAUTHORIZED：未登录或会话已失效。触发条件：没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "FORBIDDEN": {
+                    "summary": "当前角色无权执行该操作",
+                    "value": {
+                      "error": "当前角色无权执行该操作"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "FORBIDDEN：当前角色无权执行该操作。触发条件：已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "NOT_FOUND": {
+                    "summary": "资源不存在",
+                    "value": {
+                      "error": "资源不存在"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "NOT_FOUND：资源不存在。触发条件：服务器不存在或不属于本班"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAVAILABLE": {
+                    "summary": "服务暂时不可用，请稍后重试",
+                    "value": {
+                      "error": "服务暂时不可用，请稍后重试"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAVAILABLE：服务暂时不可用，请稍后重试。触发条件：查询吊销记录或按 sub 读取用户时数据库不可用；删除失败"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "删除 MCP 服务器",
+        "tags": [
+          "mcp"
+        ],
+        "x-auth": {
+          "roles": [
+            "teacher"
+          ],
+          "scheme": "bearer"
+        },
+        "x-errors": [
+          {
+            "code": "UNAUTHORIZED",
+            "description": "未登录或会话已失效",
+            "status": 401,
+            "when": "没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          {
+            "code": "UNAVAILABLE",
+            "description": "服务暂时不可用，请稍后重试",
+            "status": 503,
+            "when": "查询吊销记录或按 sub 读取用户时数据库不可用；删除失败"
+          },
+          {
+            "code": "FORBIDDEN",
+            "description": "当前角色无权执行该操作",
+            "status": 403,
+            "when": "已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          {
+            "code": "NOT_FOUND",
+            "description": "资源不存在",
+            "status": 404,
+            "when": "服务器不存在或不属于本班"
+          }
+        ],
+        "x-idempotency": {
+          "idempotent": true,
+          "repeat": "重复删除返回 404"
+        },
+        "x-rate-limit": {
+          "dimension": "",
+          "enabled": false,
+          "exceeded": "",
+          "note": "不限流",
+          "threshold": "",
+          "window": ""
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/mcp/servers/{id}",
+      "contract": {
+        "description": "修改地址或令牌后会清空连接状态与已发现工具。auth_token 留空表示不修改令牌。\n\n认证：需要 Authorization: Bearer 访问令牌，并且用户表中的角色必须是 teacher。\n\n幂等：是。重复提交：相同内容覆盖原记录\n\n限流：不限流\n\n错误码：\n\n| 错误码 | HTTP 状态码 | 描述 | 触发条件 |\n| --- | --- | --- | --- |\n| UNAUTHORIZED | 401 | 未登录或会话已失效 | 没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在 |\n| UNAVAILABLE | 503 | 服务暂时不可用，请稍后重试 | 查询吊销记录或按 sub 读取用户时数据库不可用；更新失败 |\n| FORBIDDEN | 403 | 当前角色无权执行该操作 | 已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色 |\n| NOT_FOUND | 404 | 资源不存在 | 服务器不存在或不属于本班 |\n",
+        "operationId": "MCP-003",
+        "parameters": [
+          {
+            "description": "访问令牌。格式为 Bearer 加一个空格再加 JWT。角色和班级不在令牌里",
+            "example": "Bearer <jwt>",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "服务器编号",
+            "example": 1,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "base_url": "http://mcp-demo:8090",
+                "name": "campus-tools"
+              },
+              "schema": {
+                "$ref": "#/components/schemas/OpMCP003Request"
+              }
+            }
+          },
+          "description": "字段、是否必填和校验规则见 schema 与示例",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "base_url": "http://mcp-demo:8090",
+                  "connected": false,
+                  "has_auth": true,
+                  "id": 1,
+                  "name": "campus-tools",
+                  "tool_count": 0
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/OpMCP003Response"
+                }
+              }
+            },
+            "description": "完整响应体见 example。JSON 内不再另放 HTTP 状态或业务码"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAUTHORIZED": {
+                    "summary": "未登录或会话已失效",
+                    "value": {
+                      "error": "未登录或会话已失效"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAUTHORIZED：未登录或会话已失效。触发条件：没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "FORBIDDEN": {
+                    "summary": "当前角色无权执行该操作",
+                    "value": {
+                      "error": "当前角色无权执行该操作"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "FORBIDDEN：当前角色无权执行该操作。触发条件：已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "NOT_FOUND": {
+                    "summary": "资源不存在",
+                    "value": {
+                      "error": "资源不存在"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "NOT_FOUND：资源不存在。触发条件：服务器不存在或不属于本班"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAVAILABLE": {
+                    "summary": "服务暂时不可用，请稍后重试",
+                    "value": {
+                      "error": "服务暂时不可用，请稍后重试"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAVAILABLE：服务暂时不可用，请稍后重试。触发条件：查询吊销记录或按 sub 读取用户时数据库不可用；更新失败"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "修改 MCP 服务器",
+        "tags": [
+          "mcp"
+        ],
+        "x-auth": {
+          "roles": [
+            "teacher"
+          ],
+          "scheme": "bearer"
+        },
+        "x-errors": [
+          {
+            "code": "UNAUTHORIZED",
+            "description": "未登录或会话已失效",
+            "status": 401,
+            "when": "没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          {
+            "code": "UNAVAILABLE",
+            "description": "服务暂时不可用，请稍后重试",
+            "status": 503,
+            "when": "查询吊销记录或按 sub 读取用户时数据库不可用；更新失败"
+          },
+          {
+            "code": "FORBIDDEN",
+            "description": "当前角色无权执行该操作",
+            "status": 403,
+            "when": "已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          {
+            "code": "NOT_FOUND",
+            "description": "资源不存在",
+            "status": 404,
+            "when": "服务器不存在或不属于本班"
+          }
+        ],
+        "x-idempotency": {
+          "idempotent": true,
+          "repeat": "相同内容覆盖原记录"
+        },
+        "x-rate-limit": {
+          "dimension": "",
+          "enabled": false,
+          "exceeded": "",
+          "note": "不限流",
+          "threshold": "",
+          "window": ""
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/mcp/servers/{id}/connect",
+      "contract": {
+        "description": "对 base_url/mcp 发起 JSON-RPC initialize 与 tools/list，成功则标记 connected 并刷新 mcp_tools。\n\n认证：需要 Authorization: Bearer 访问令牌，并且用户表中的角色必须是 teacher。\n\n幂等：是。重复提交：再次连接会覆盖工具缓存\n\n限流：不限流\n\n错误码：\n\n| 错误码 | HTTP 状态码 | 描述 | 触发条件 |\n| --- | --- | --- | --- |\n| UNAUTHORIZED | 401 | 未登录或会话已失效 | 没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在 |\n| UNAVAILABLE | 503 | 服务暂时不可用，请稍后重试 | 查询吊销记录或按 sub 读取用户时数据库不可用 |\n| FORBIDDEN | 403 | 当前角色无权执行该操作 | 已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色 |\n| NOT_FOUND | 404 | 资源不存在 | 服务器不存在或不属于本班 |\n| BAD_GATEWAY | 502 | 无法连接 MCP 服务器，请检查地址与令牌 | 远端不可达或鉴权失败 |\n",
+        "operationId": "MCP-005",
+        "parameters": [
+          {
+            "description": "访问令牌。格式为 Bearer 加一个空格再加 JWT。角色和班级不在令牌里",
+            "example": "Bearer <jwt>",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "服务器编号",
+            "example": 1,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "connected": true,
+                  "tools": [
+                    {
+                      "description": "提示",
+                      "name": "formula_hint"
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/OpMCP005Response"
+                }
+              }
+            },
+            "description": "完整响应体见 example。JSON 内不再另放 HTTP 状态或业务码"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAUTHORIZED": {
+                    "summary": "未登录或会话已失效",
+                    "value": {
+                      "error": "未登录或会话已失效"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAUTHORIZED：未登录或会话已失效。触发条件：没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "FORBIDDEN": {
+                    "summary": "当前角色无权执行该操作",
+                    "value": {
+                      "error": "当前角色无权执行该操作"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "FORBIDDEN：当前角色无权执行该操作。触发条件：已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "NOT_FOUND": {
+                    "summary": "资源不存在",
+                    "value": {
+                      "error": "资源不存在"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "NOT_FOUND：资源不存在。触发条件：服务器不存在或不属于本班"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "BAD_GATEWAY": {
+                    "summary": "无法连接 MCP 服务器，请检查地址与令牌",
+                    "value": {
+                      "error": "无法连接 MCP 服务器，请检查地址与令牌"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "BAD_GATEWAY：无法连接 MCP 服务器，请检查地址与令牌。触发条件：远端不可达或鉴权失败"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAVAILABLE": {
+                    "summary": "服务暂时不可用，请稍后重试",
+                    "value": {
+                      "error": "服务暂时不可用，请稍后重试"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAVAILABLE：服务暂时不可用，请稍后重试。触发条件：查询吊销记录或按 sub 读取用户时数据库不可用"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "连接并发现工具",
+        "tags": [
+          "mcp"
+        ],
+        "x-auth": {
+          "roles": [
+            "teacher"
+          ],
+          "scheme": "bearer"
+        },
+        "x-errors": [
+          {
+            "code": "UNAUTHORIZED",
+            "description": "未登录或会话已失效",
+            "status": 401,
+            "when": "没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          {
+            "code": "UNAVAILABLE",
+            "description": "服务暂时不可用，请稍后重试",
+            "status": 503,
+            "when": "查询吊销记录或按 sub 读取用户时数据库不可用"
+          },
+          {
+            "code": "FORBIDDEN",
+            "description": "当前角色无权执行该操作",
+            "status": 403,
+            "when": "已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          {
+            "code": "NOT_FOUND",
+            "description": "资源不存在",
+            "status": 404,
+            "when": "服务器不存在或不属于本班"
+          },
+          {
+            "code": "BAD_GATEWAY",
+            "description": "无法连接 MCP 服务器，请检查地址与令牌",
+            "status": 502,
+            "when": "远端不可达或鉴权失败"
+          }
+        ],
+        "x-idempotency": {
+          "idempotent": true,
+          "repeat": "再次连接会覆盖工具缓存"
+        },
+        "x-rate-limit": {
+          "dimension": "",
+          "enabled": false,
+          "exceeded": "",
+          "note": "不限流",
+          "threshold": "",
+          "window": ""
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/mcp/servers/{id}/disconnect",
+      "contract": {
+        "description": "标记未连接并清空 mcp_tools。断开后技能不得再绑定或调用该服务器上的工具。\n\n认证：需要 Authorization: Bearer 访问令牌，并且用户表中的角色必须是 teacher。\n\n幂等：是。重复提交：重复断开仍返回 connected false\n\n限流：不限流\n\n错误码：\n\n| 错误码 | HTTP 状态码 | 描述 | 触发条件 |\n| --- | --- | --- | --- |\n| UNAUTHORIZED | 401 | 未登录或会话已失效 | 没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在 |\n| UNAVAILABLE | 503 | 服务暂时不可用，请稍后重试 | 查询吊销记录或按 sub 读取用户时数据库不可用；更新状态失败 |\n| FORBIDDEN | 403 | 当前角色无权执行该操作 | 已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色 |\n| NOT_FOUND | 404 | 资源不存在 | 服务器不存在或不属于本班 |\n",
+        "operationId": "MCP-006",
+        "parameters": [
+          {
+            "description": "访问令牌。格式为 Bearer 加一个空格再加 JWT。角色和班级不在令牌里",
+            "example": "Bearer <jwt>",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "服务器编号",
+            "example": 1,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "connected": false
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/OpMCP006Response"
+                }
+              }
+            },
+            "description": "完整响应体见 example。JSON 内不再另放 HTTP 状态或业务码"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAUTHORIZED": {
+                    "summary": "未登录或会话已失效",
+                    "value": {
+                      "error": "未登录或会话已失效"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAUTHORIZED：未登录或会话已失效。触发条件：没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "FORBIDDEN": {
+                    "summary": "当前角色无权执行该操作",
+                    "value": {
+                      "error": "当前角色无权执行该操作"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "FORBIDDEN：当前角色无权执行该操作。触发条件：已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "NOT_FOUND": {
+                    "summary": "资源不存在",
+                    "value": {
+                      "error": "资源不存在"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "NOT_FOUND：资源不存在。触发条件：服务器不存在或不属于本班"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAVAILABLE": {
+                    "summary": "服务暂时不可用，请稍后重试",
+                    "value": {
+                      "error": "服务暂时不可用，请稍后重试"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAVAILABLE：服务暂时不可用，请稍后重试。触发条件：查询吊销记录或按 sub 读取用户时数据库不可用；更新状态失败"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "断开 MCP 服务器",
+        "tags": [
+          "mcp"
+        ],
+        "x-auth": {
+          "roles": [
+            "teacher"
+          ],
+          "scheme": "bearer"
+        },
+        "x-errors": [
+          {
+            "code": "UNAUTHORIZED",
+            "description": "未登录或会话已失效",
+            "status": 401,
+            "when": "没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          {
+            "code": "UNAVAILABLE",
+            "description": "服务暂时不可用，请稍后重试",
+            "status": 503,
+            "when": "查询吊销记录或按 sub 读取用户时数据库不可用；更新状态失败"
+          },
+          {
+            "code": "FORBIDDEN",
+            "description": "当前角色无权执行该操作",
+            "status": 403,
+            "when": "已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          {
+            "code": "NOT_FOUND",
+            "description": "资源不存在",
+            "status": 404,
+            "when": "服务器不存在或不属于本班"
+          }
+        ],
+        "x-idempotency": {
+          "idempotent": true,
+          "repeat": "重复断开仍返回 connected false"
+        },
+        "x-rate-limit": {
+          "dimension": "",
+          "enabled": false,
+          "exceeded": "",
+          "note": "不限流",
+          "threshold": "",
+          "window": ""
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/mcp/servers/{id}/tools",
+      "contract": {
+        "description": "返回最近一次 connect 写入的工具清单。未连接时列表可能为空。\n\n认证：需要 Authorization: Bearer 访问令牌，并且用户表中的角色必须是 teacher。\n\n幂等：是。重复提交：只读\n\n限流：不限流\n\n错误码：\n\n| 错误码 | HTTP 状态码 | 描述 | 触发条件 |\n| --- | --- | --- | --- |\n| UNAUTHORIZED | 401 | 未登录或会话已失效 | 没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在 |\n| UNAVAILABLE | 503 | 服务暂时不可用，请稍后重试 | 查询吊销记录或按 sub 读取用户时数据库不可用；读取失败 |\n| FORBIDDEN | 403 | 当前角色无权执行该操作 | 已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色 |\n| NOT_FOUND | 404 | 资源不存在 | 服务器不存在或不属于本班 |\n",
+        "operationId": "MCP-007",
+        "parameters": [
+          {
+            "description": "访问令牌。格式为 Bearer 加一个空格再加 JWT。角色和班级不在令牌里",
+            "example": "Bearer <jwt>",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "服务器编号",
+            "example": 1,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "tools": [
+                    {
+                      "description": "提示",
+                      "name": "formula_hint"
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/OpMCP007Response"
+                }
+              }
+            },
+            "description": "完整响应体见 example。JSON 内不再另放 HTTP 状态或业务码"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAUTHORIZED": {
+                    "summary": "未登录或会话已失效",
+                    "value": {
+                      "error": "未登录或会话已失效"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAUTHORIZED：未登录或会话已失效。触发条件：没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "FORBIDDEN": {
+                    "summary": "当前角色无权执行该操作",
+                    "value": {
+                      "error": "当前角色无权执行该操作"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "FORBIDDEN：当前角色无权执行该操作。触发条件：已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "NOT_FOUND": {
+                    "summary": "资源不存在",
+                    "value": {
+                      "error": "资源不存在"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "NOT_FOUND：资源不存在。触发条件：服务器不存在或不属于本班"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAVAILABLE": {
+                    "summary": "服务暂时不可用，请稍后重试",
+                    "value": {
+                      "error": "服务暂时不可用，请稍后重试"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAVAILABLE：服务暂时不可用，请稍后重试。触发条件：查询吊销记录或按 sub 读取用户时数据库不可用；读取失败"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "查看已发现的工具",
+        "tags": [
+          "mcp"
+        ],
+        "x-auth": {
+          "roles": [
+            "teacher"
+          ],
+          "scheme": "bearer"
+        },
+        "x-errors": [
+          {
+            "code": "UNAUTHORIZED",
+            "description": "未登录或会话已失效",
+            "status": 401,
+            "when": "没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          {
+            "code": "UNAVAILABLE",
+            "description": "服务暂时不可用，请稍后重试",
+            "status": 503,
+            "when": "查询吊销记录或按 sub 读取用户时数据库不可用；读取失败"
+          },
+          {
+            "code": "FORBIDDEN",
+            "description": "当前角色无权执行该操作",
+            "status": 403,
+            "when": "已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          {
+            "code": "NOT_FOUND",
+            "description": "资源不存在",
+            "status": 404,
+            "when": "服务器不存在或不属于本班"
+          }
+        ],
+        "x-idempotency": {
+          "idempotent": true,
+          "repeat": "只读"
+        },
+        "x-rate-limit": {
+          "dimension": "",
+          "enabled": false,
+          "exceeded": "",
+          "note": "不限流",
+          "threshold": "",
+          "window": ""
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/mcp/tool-calls",
+      "contract": {
+        "description": "返回本班最近 50 条 MCP 调用，含 tool_ref、server 名与 status。\n\n认证：需要 Authorization: Bearer 访问令牌，并且用户表中的角色必须是 teacher。\n\n幂等：是。重复提交：只读\n\n限流：不限流\n\n错误码：\n\n| 错误码 | HTTP 状态码 | 描述 | 触发条件 |\n| --- | --- | --- | --- |\n| UNAUTHORIZED | 401 | 未登录或会话已失效 | 没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在 |\n| UNAVAILABLE | 503 | 服务暂时不可用，请稍后重试 | 查询吊销记录或按 sub 读取用户时数据库不可用；读取失败 |\n| FORBIDDEN | 403 | 当前角色无权执行该操作 | 已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色 |\n",
+        "operationId": "MCP-008",
+        "parameters": [
+          {
+            "description": "访问令牌。格式为 Bearer 加一个空格再加 JWT。角色和班级不在令牌里",
+            "example": "Bearer <jwt>",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "calls": [
+                    {
+                      "id": 1,
+                      "server_name": "campus-tools",
+                      "status": "ok",
+                      "tool_name": "formula_hint",
+                      "tool_ref": "formula_hint@campus-tools",
+                      "user_id": 2
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/OpMCP008Response"
+                }
+              }
+            },
+            "description": "完整响应体见 example。JSON 内不再另放 HTTP 状态或业务码"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAUTHORIZED": {
+                    "summary": "未登录或会话已失效",
+                    "value": {
+                      "error": "未登录或会话已失效"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAUTHORIZED：未登录或会话已失效。触发条件：没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "FORBIDDEN": {
+                    "summary": "当前角色无权执行该操作",
+                    "value": {
+                      "error": "当前角色无权执行该操作"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "FORBIDDEN：当前角色无权执行该操作。触发条件：已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UNAVAILABLE": {
+                    "summary": "服务暂时不可用，请稍后重试",
+                    "value": {
+                      "error": "服务暂时不可用，请稍后重试"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "UNAVAILABLE：服务暂时不可用，请稍后重试。触发条件：查询吊销记录或按 sub 读取用户时数据库不可用；读取失败"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "MCP 工具调用审计",
+        "tags": [
+          "mcp"
+        ],
+        "x-auth": {
+          "roles": [
+            "teacher"
+          ],
+          "scheme": "bearer"
+        },
+        "x-errors": [
+          {
+            "code": "UNAUTHORIZED",
+            "description": "未登录或会话已失效",
+            "status": 401,
+            "when": "没有 Authorization: Bearer、方案不是 Bearer、令牌为空或含空格、签名或算法不对、缺少 sub、jti 或 exp、已过期、jti 已吊销，或 sub 对应的用户不存在"
+          },
+          {
+            "code": "UNAVAILABLE",
+            "description": "服务暂时不可用，请稍后重试",
+            "status": 503,
+            "when": "查询吊销记录或按 sub 读取用户时数据库不可用；读取失败"
+          },
+          {
+            "code": "FORBIDDEN",
+            "description": "当前角色无权执行该操作",
+            "status": 403,
+            "when": "已经登录，但用户表中的角色不是 teacher。不采信 X-Role、表单或正文里声明的角色"
+          }
+        ],
+        "x-idempotency": {
+          "idempotent": true,
+          "repeat": "只读"
+        },
+        "x-rate-limit": {
+          "dimension": "",
+          "enabled": false,
+          "exceeded": "",
+          "note": "不限流",
+          "threshold": "",
+          "window": ""
+        }
+      }
+    }
+  ],
+  "schemas": {
+    "ErrorBody": {
+      "properties": {
+        "error": {
+          "description": "给人读的错误说明。响应 JSON 内不再另放状态码或业务码",
+          "type": "string"
+        }
+      },
+      "required": [
+        "error"
+      ],
+      "type": "object"
+    },
+    "OpMCP001Response": {
+      "properties": {
+        "servers": {
+          "items": {
+            "properties": {
+              "base_url": {
+                "example": "http://mcp-demo:8090",
+                "type": "string"
+              },
+              "connected": {
+                "example": true,
+                "type": "boolean"
+              },
+              "has_auth": {
+                "example": true,
+                "type": "boolean"
+              },
+              "id": {
+                "example": 1,
+                "type": "integer"
+              },
+              "name": {
+                "example": "campus-tools",
+                "type": "string"
+              },
+              "tool_count": {
+                "example": 2,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "base_url",
+              "connected",
+              "has_auth",
+              "id",
+              "name",
+              "tool_count"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "servers"
+      ],
+      "type": "object"
+    },
+    "OpMCP002Request": {
+      "properties": {
+        "auth_token": {
+          "example": "secret",
+          "type": "string"
+        },
+        "base_url": {
+          "example": "http://mcp-demo:8090",
+          "type": "string"
+        },
+        "name": {
+          "example": "campus-tools",
+          "type": "string"
+        }
+      },
+      "required": [
+        "auth_token",
+        "base_url",
+        "name"
+      ],
+      "type": "object"
+    },
+    "OpMCP002Response": {
+      "properties": {
+        "base_url": {
+          "example": "http://mcp-demo:8090",
+          "type": "string"
+        },
+        "connected": {
+          "example": false,
+          "type": "boolean"
+        },
+        "has_auth": {
+          "example": true,
+          "type": "boolean"
+        },
+        "id": {
+          "example": 1,
+          "type": "integer"
+        },
+        "name": {
+          "example": "campus-tools",
+          "type": "string"
+        },
+        "tool_count": {
+          "example": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "base_url",
+        "connected",
+        "has_auth",
+        "id",
+        "name",
+        "tool_count"
+      ],
+      "type": "object"
+    },
+    "OpMCP003Request": {
+      "properties": {
+        "base_url": {
+          "example": "http://mcp-demo:8090",
+          "type": "string"
+        },
+        "name": {
+          "example": "campus-tools",
+          "type": "string"
+        }
+      },
+      "required": [
+        "base_url",
+        "name"
+      ],
+      "type": "object"
+    },
+    "OpMCP003Response": {
+      "properties": {
+        "base_url": {
+          "example": "http://mcp-demo:8090",
+          "type": "string"
+        },
+        "connected": {
+          "example": false,
+          "type": "boolean"
+        },
+        "has_auth": {
+          "example": true,
+          "type": "boolean"
+        },
+        "id": {
+          "example": 1,
+          "type": "integer"
+        },
+        "name": {
+          "example": "campus-tools",
+          "type": "string"
+        },
+        "tool_count": {
+          "example": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "base_url",
+        "connected",
+        "has_auth",
+        "id",
+        "name",
+        "tool_count"
+      ],
+      "type": "object"
+    },
+    "OpMCP005Response": {
+      "properties": {
+        "connected": {
+          "example": true,
+          "type": "boolean"
+        },
+        "tools": {
+          "items": {
+            "properties": {
+              "description": {
+                "example": "提示",
+                "type": "string"
+              },
+              "name": {
+                "example": "formula_hint",
+                "type": "string"
+              }
+            },
+            "required": [
+              "description",
+              "name"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "connected",
+        "tools"
+      ],
+      "type": "object"
+    },
+    "OpMCP006Response": {
+      "properties": {
+        "connected": {
+          "example": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "connected"
+      ],
+      "type": "object"
+    },
+    "OpMCP007Response": {
+      "properties": {
+        "tools": {
+          "items": {
+            "properties": {
+              "description": {
+                "example": "提示",
+                "type": "string"
+              },
+              "name": {
+                "example": "formula_hint",
+                "type": "string"
+              }
+            },
+            "required": [
+              "description",
+              "name"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "tools"
+      ],
+      "type": "object"
+    },
+    "OpMCP008Response": {
+      "properties": {
+        "calls": {
+          "items": {
+            "properties": {
+              "id": {
+                "example": 1,
+                "type": "integer"
+              },
+              "server_name": {
+                "example": "campus-tools",
+                "type": "string"
+              },
+              "status": {
+                "example": "ok",
+                "type": "string"
+              },
+              "tool_name": {
+                "example": "formula_hint",
+                "type": "string"
+              },
+              "tool_ref": {
+                "example": "formula_hint@campus-tools",
+                "type": "string"
+              },
+              "user_id": {
+                "example": 2,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "id",
+              "server_name",
+              "status",
+              "tool_name",
+              "tool_ref",
+              "user_id"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "calls"
+      ],
+      "type": "object"
+    }
+  },
+  "hash_scope": "Original fetched HTTP-decoded Content re-encoded UTF-8; not the pretty-printed subset stored here",
+  "review": "8 operations compared with design D3; no newly observed contract discrepancy; no prior OA hash exists so byte-level historical drift cannot be asserted"
+}

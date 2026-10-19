@@ -1,0 +1,44 @@
+{
+  "utc": "2026-10-19T00:59:03.144537+00:00",
+  "authority": "User Phase6 attachment plus explicit asynchronous answer approving option 2 for 6.5/T71",
+  "attachment_path": "User-supplied Phase 6 attachment; content identified by attachment_sha256 (original retained locally)",
+  "attachment_sha256": "82380dc2965c279d5f0800168215751b65f17ccb1c3a223d28d47051b49b1bbb",
+  "original_tasks": {
+    "6.5": "- [ ] 6.5 新授权限额内做最小真实模型教学与安全复验，用户人工审阅并锁账本；验证T71公式/换算/降级/注入不越教学边界，无授权不调用不勾选。 追踪：W6-F71；主测试：W6-T71。",
+    "6.7": "- [ ] 6.7 邀请真实同伴用本人账号完成C-apply§3四项交叉验证，留身份/时间/请求响应/截图或日志与本人确认；验证T68隔离、has_auth无Token、断开denied新增审计、本班审计四项，缺真实参与者保持未完成，禁止自动账号代签。 追踪：W6-F68；主测试：W6-T68。"
+  },
+  "adjustments": {
+    "6.5": {
+      "approved": true,
+      "method": "controlled HTTP model + real MCP + automated technical review",
+      "technical_assertions_retained": [
+        "tool execution",
+        "SSE",
+        "terminal audit",
+        "RAG fallback",
+        "permission and class isolation",
+        "error handling",
+        "formula/unit teaching boundary",
+        "injection rejection"
+      ],
+      "paid_model_authorized": false,
+      "human_review_required_for_project": false,
+      "original_real_model_and_human_gate_fulfilled": false
+    },
+    "6.7": {
+      "approved": true,
+      "method": "independent real test accounts; automated simulated cross verification of original four technical groups",
+      "real_peer_participation": false,
+      "original_course_real_peer_gate_fulfilled": false
+    }
+  },
+  "official_sources_modified": false,
+  "requirements_and_scenarios_original_text_preserved": true,
+  "completion_policy": "Only mark project-adjusted tasks complete after all unchanged technical assertions and evidence pass; do not claim original human/model participation.",
+  "publication_note": {
+    "kind": "sanitized derivative; original evidence unchanged",
+    "original_repository_path": "openspec/changes/add-week6-mcp-tool-integration/phase6-user-decisions.json",
+    "original_sha256": "db9fc76311a93cc13d009be4e20eaafefea8087661db905a9f584ffc5fc3249b",
+    "redaction": "Only local repository-root or personal attachment location replaced. All results, timestamps, original tasks, approval scope and assertion text preserved."
+  }
+}

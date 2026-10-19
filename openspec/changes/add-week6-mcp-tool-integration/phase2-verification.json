@@ -1,0 +1,561 @@
+{
+  "date": "2026-10-18",
+  "timezone": "Asia/Shanghai",
+  "state": "phase2_complete_stop_before_phase3",
+  "branch": "feature/week5-phase1-go-rag",
+  "head": "51a8749f6550c279efebe63bb67eda724878f5a1",
+  "final_run": "runtime/week6-phase2-20261018T133028Z-5844f06a",
+  "final_runner": {
+    "run_id": "20261018T133028Z-5844f06a",
+    "project": "campusclaw-w6-p2-20261018t133028z-5844f06a",
+    "commands": [
+      {
+        "name": "config",
+        "command": [
+          "docker",
+          "compose",
+          "-p",
+          "campusclaw-w6-p2-20261018t133028z-5844f06a",
+          "-f",
+          "tests/go_mcp/compose.test.yml",
+          "config",
+          "--format",
+          "json"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "build",
+        "command": [
+          "docker",
+          "compose",
+          "-p",
+          "campusclaw-w6-p2-20261018t133028z-5844f06a",
+          "-f",
+          "tests/go_mcp/compose.test.yml",
+          "build",
+          "--pull=false"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "up",
+        "command": [
+          "docker",
+          "compose",
+          "-p",
+          "campusclaw-w6-p2-20261018t133028z-5844f06a",
+          "-f",
+          "tests/go_mcp/compose.test.yml",
+          "up",
+          "-d",
+          "--wait",
+          "mysql",
+          "mcp-demo"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "capture",
+        "command": [
+          "docker",
+          "compose",
+          "-p",
+          "campusclaw-w6-p2-20261018t133028z-5844f06a",
+          "-f",
+          "tests/go_mcp/compose.test.yml",
+          "run",
+          "--rm",
+          "--no-deps",
+          "-e",
+          "MCP_CAPTURE=true",
+          "tests",
+          "go",
+          "test",
+          "-tags",
+          "mcpstorage",
+          "./internal/repository/mysql",
+          "-run",
+          "^TestMCPCapture$",
+          "-v",
+          "-count=1"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "integration",
+        "command": [
+          "docker",
+          "compose",
+          "-p",
+          "campusclaw-w6-p2-20261018t133028z-5844f06a",
+          "-f",
+          "tests/go_mcp/compose.test.yml",
+          "run",
+          "--rm",
+          "--no-deps",
+          "tests",
+          "go",
+          "test",
+          "-tags",
+          "mcpstorage",
+          "./internal/mcp",
+          "./internal/repository/mysql",
+          "./internal/transfer",
+          "-run",
+          "Test(Vault|Policy|MCP(Migration|Interrupted|Drift|Store|Backup|Client|Lock|SchemaReceipt))",
+          "-count=1",
+          "-json",
+          "-timeout",
+          "12m"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "compatibility",
+        "command": [
+          "docker",
+          "compose",
+          "-p",
+          "campusclaw-w6-p2-20261018t133028z-5844f06a",
+          "-f",
+          "tests/go_mcp/compose.test.yml",
+          "run",
+          "--rm",
+          "--no-deps",
+          "tests",
+          "go",
+          "test",
+          "./cmd/...",
+          "./internal/...",
+          "-count=1",
+          "-json",
+          "-timeout",
+          "5m"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "vet",
+        "command": [
+          "docker",
+          "compose",
+          "-p",
+          "campusclaw-w6-p2-20261018t133028z-5844f06a",
+          "-f",
+          "tests/go_mcp/compose.test.yml",
+          "run",
+          "--rm",
+          "--no-deps",
+          "tests",
+          "go",
+          "vet",
+          "./cmd/...",
+          "./internal/..."
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "service-logs",
+        "command": [
+          "docker",
+          "compose",
+          "-p",
+          "campusclaw-w6-p2-20261018t133028z-5844f06a",
+          "-f",
+          "tests/go_mcp/compose.test.yml",
+          "logs",
+          "--no-color",
+          "mysql",
+          "mcp-demo"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "cleanup",
+        "command": [
+          "docker",
+          "compose",
+          "-p",
+          "campusclaw-w6-p2-20261018t133028z-5844f06a",
+          "-f",
+          "tests/go_mcp/compose.test.yml",
+          "down",
+          "--remove-orphans"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "failures": [],
+    "paid_model_calls": 0,
+    "existing_database_connections": 0,
+    "catalog_reference_capture": {
+      "steps": 4,
+      "source": "new isolated reference database, not a migration target",
+      "sha256": "4728942a847a27486fe4c7fb6c65676fa0ffda38a9d38559a8aa6bdab82b3476"
+    },
+    "existing_containers_unchanged": 213,
+    "subnet": "10.241.1.0/24",
+    "owned_resources_removed": true,
+    "passed": true
+  },
+  "counts": {
+    "integration": {
+      "passed_leaf_tests": 84,
+      "failed": 0,
+      "skipped_tests": 0
+    },
+    "compatibility": {
+      "passed_leaf_tests": 217,
+      "failed": 0,
+      "skipped_tests": 0
+    }
+  },
+  "test_execution_count_excluding_capture": 301,
+  "unique_test_identifiers": 276,
+  "overlap_reexecuted_safety_units": 25,
+  "reference_capture_passed": 1,
+  "phase2_required_unexecuted": 0,
+  "legacy_ddl_hashes_preserved": 41,
+  "legacy_ddl_sources_and_artifact_unchanged": true,
+  "v4_ddl_steps": 4,
+  "v4_mcp_tables": 3,
+  "receipt": "Separate v4 receipt bound to unchanged original initialization receipt; offline-only resume; HTTP validation only",
+  "backup_restore": {
+    "backup_sha256": "aba4bb52ec4e36ceec7d65a9cea30b2d7137d2dc8519a841e79b30ecbd4cc1ce",
+    "legacy_after_sha256": "31d6a521696ab59ddf745913a4c3ffb52e59382bb4b6ebe5477e86748e550678",
+    "legacy_before_sha256": "31d6a521696ab59ddf745913a4c3ffb52e59382bb4b6ebe5477e86748e550678",
+    "material_file_sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "qdrant_reindex": false,
+    "restore_database": "w6_59549761030bd084",
+    "restored_material_file_sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "restored_sha256": "eb5f3654d6e24785c829fe14ce4475644ce5fbb92fb09fb8bafe3fc0e06e9d12",
+    "source_database": "w6_69cf30e49e1b7085",
+    "source_sha256": "eb5f3654d6e24785c829fe14ce4475644ce5fbb92fb09fb8bafe3fc0e06e9d12"
+  },
+  "docker_closeout": "phase2-docker-closeout.json",
+  "source_sha256": {
+    "cmd/bootstrap/main.go": "ae63dc475b974209ec987f62830029937029170e137a72a460077a8c1f5d3771",
+    "cmd/server/main.go": "f8be43f26ab6e2f556e6060bc522a7f513c97919d46e8271544b0ff6056aad35",
+    "internal/mcp/README.md": "dda4a4b681b635bed26b28cd8b4d07c2f60a525fd6e9dde4900b71be40a3fbf9",
+    "internal/mcp/client.go": "517272259654ef42c661d89251d5885ce999beb8f18227294940f4f104fc1f67",
+    "internal/mcp/client_integration_test.go": "f7e5a9cd3acbee1fcae4f0f8ff1da0b84e682bb9b58ad52c2c317c37614ac9ce",
+    "internal/mcp/security.go": "3a9586bbf6ebae87de357a4f5be17d68a4890c924101fd2817315a5a1e4d06eb",
+    "internal/mcp/security_test.go": "dcb0d361b4a3b906d8ef28721ea4034da6465aa7d8162a92c366cc55af19c5e7",
+    "internal/repository/mysql/catalog.go": "0c9a74f33a2d2f90396aa64cd93e33c3a3754a3af20baec1e1a7ef6eaa828ee8",
+    "internal/repository/mysql/mcp.go": "3e823eecce30b4a9a8d05ab52154b4e1bcf3c8beb63a7b6512f94d6c11dc2bed",
+    "internal/repository/mysql/mcp_integration_test.go": "435e38a6a6fbd976397019f58baa5141f0702bb5259cd46c4a9968d999dad8e9",
+    "internal/repository/mysql/mcp_schema.go": "92ed008b5650b9434a108de5192b523a3c90cb69ceb3ab001316bb43bdcd519f",
+    "internal/repository/mysql/rag_schema.go": "97748c48e770e92c1ecdec61207f27d7f3f1b324d319c714c57e46f894bf5220",
+    "internal/repository/mysql/schema_mcp_steps.json": "4728942a847a27486fe4c7fb6c65676fa0ffda38a9d38559a8aa6bdab82b3476",
+    "internal/repository/mysql/schema_mcp_v4.sql": "577ae77b37ce506e1bef02826770fdaebce3b5bdb1aea4a630f7fa6c1bdee3db",
+    "internal/repository/mysql/tutor_schema.go": "9167bb70b2fbfdefc4874dadb3ef4f2c46474b780fcd86ceba9951efd69c42e2",
+    "internal/transfer/mcp_receipt.go": "a2672b421a58ad248fcb693917d089c846de4445b440808460b7f1cf4efe1124",
+    "internal/transfer/mcp_receipt_integration_test.go": "4b73a2e27f7c04e94a36c850945a908309b36780fc7bac4d3ddb90a1659c1dad",
+    "internal/transfer/ready.go": "ca0faeeae9d95abffa3677e8d1e34193d67ee79addae298129d2251239c2c0bd",
+    "tests/go_mcp/Dockerfile": "e2ac386fefb0c627afb555b482c3b894e05a8eb76c90b745d2b6a6f63ffc7efa",
+    "tests/go_mcp/README.md": "2201acd43fe7f70ff7b1aa467af8f880c5c6203786099a27bb66ff4e60a8e74f",
+    "tests/go_mcp/compose.test.yml": "2442463b0ec1e2a816e8f3d28791eded60dc733045debdfc311215bed292ee99",
+    "tests/go_mcp/run_phase2.py": "a8a3ea19fd0b4c56c5b8c1cc48fc0d435b8ae893c0019c419c7f95896d228da7"
+  },
+  "runtime_evidence_sha256": {
+    "runtime/week6-phase2-20261018T125842Z-9b4d1045": {
+      "build.stderr": "3c097c992ae586a465efd7fd6816804194f5be7da786e5af67c6934e7384e9d5",
+      "build.stdout": "25e4c4520a3fb8da0a2b4436f96f6810f987b2e74d5ef895413dc0d367a1bd3e",
+      "cleanup.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "config.stdout": "b0af04881c24b84cc4097adcaf25cd5140b9bd77e246baca410a9bc188348d1f",
+      "existing-containers-before.txt": "08182b5f9eedc9465f037f918782e5b9ec26107e63e2c8487b5d7bf125875706",
+      "result.json": "ebef17a046587a54302da5cc71e3113fd2634d145df3c8639f255b3e21232df3",
+      "service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "service-logs.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "runtime/week6-phase2-20261018T130216Z-46402aac": {
+      "build.stderr": "36f659a652d526a104ad907ab43db761785bed3de8931106157ef9eb1245576b",
+      "build.stdout": "2a6999e30df6c291cab40177c41d14a7a3e077fcd923fe138c63849a9904dca4",
+      "capture.stderr": "f47a9c54bb87d64397d9ea30fa3e49648b93458367ec336e32c8aaa37c669e5e",
+      "capture.stdout": "a5f6ae0e2af79b5a74bfda72becf853742da442a3d7bea4faaaad65d81861830",
+      "cleanup.stderr": "a57d048560612739c31629b3fa3ff69dbd31f359c8ec15fba409ab7bdab6e228",
+      "cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "config.stdout": "a634f4478b3fdd89e6e931b010fbf687fd3e8a3ddd99ed077ba097cc24cf1516",
+      "existing-containers-before.txt": "08182b5f9eedc9465f037f918782e5b9ec26107e63e2c8487b5d7bf125875706",
+      "result.json": "fe2bb23e4813f4d366cb87e217cd0297a9773260e03778fc1ee5deb83eb3e094",
+      "service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "service-logs.stdout": "d56dfbfd154e959bb17a5d9ad4c6499b18c8d0f567fb137826c6e0630355bf4a",
+      "up.stderr": "402d7ec4ab3e0b85855770787ad3bc4a1f7f6b03519399b4c1125dbe3d036a22",
+      "up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "runtime/week6-phase2-20261018T130433Z-6a659130": {
+      "build.stderr": "21d1a5fc02ec9a3e9b3085b05ebc02c101b64635f1654321e461899721b43d83",
+      "build.stdout": "06ee7f7d9edab06243850b4b5091b181f0b5f9614c9472e0079b3f8c277206ca",
+      "capture.stderr": "52620d8d8d4405de448949dd92119ebee1287555acdb3451336bc84bba744a7b",
+      "capture.stdout": "363e22b2fe92a0b0a868f5f82d3bd2ebe481a19493af64c6c203e326d1fdce7a",
+      "cleanup.stderr": "6295c4933131663e56730ccb1449c099b140cc9829855cd67b3270d1b57dba99",
+      "cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "client-real-service.json": "1483c763fa3eeb9e14dd074757aafc096e0ec845e54fa10537e658a1487dff39",
+      "config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "config.stdout": "97ff8563f83fad9338e2498607ea8da4c4fbf46b075d3d25703e70af78300304",
+      "existing-containers-before.txt": "08182b5f9eedc9465f037f918782e5b9ec26107e63e2c8487b5d7bf125875706",
+      "integration.stderr": "fb46588e102893d3503dfdfd621a8285da862e2e5e34ab06a18df6c7bd0388f5",
+      "integration.stdout": "00fcdff1d524ff6b58a4bf18c4ed38af054c29c1dfe109bc65fff6f919969968",
+      "result.json": "dac2b95f32c0b8336ce6bbe9c7da9c70d100edc036947d24e18acff150208491",
+      "schema_mcp_steps.json": "a9b22b70d657d9cdb36b9167b73cc00b3964498a04d80c0315f46b1e9900409f",
+      "service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "service-logs.stdout": "7589f8ef08d5dea4bd2aa3f5a96007e97fe588f3208568e2a5c3f67042216568",
+      "up.stderr": "c6c93e99dcf0d930a0944b2ab5d0a130ec47bfe08405375a0a59fdc14a67f79f",
+      "up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "runtime/week6-phase2-20261018T130802Z-bfef1fb1": {
+      "build.stderr": "133b8c0461e604c9fe8a958e3298918a6b940aff41ff4f95a2b6315e15c8f4db",
+      "build.stdout": "abd8bea7b773764fa263488e1bdb49aef36970e41c7e6c0a6b14696a629646d4",
+      "capture.stderr": "4c322dbdefbe4fa78d6028afc25ce1cc3ce835771e21c089a0b0889d246abaee",
+      "capture.stdout": "0f8b237051e17a550f02766fd3f8b6da458b85ef5cd665abecb2faa1a46703c3",
+      "cleanup.stderr": "aacaf2e0889ff5d6579950648cd8123a0a66a6d82c9864f111cbb6fddda09b2d",
+      "cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "client-real-service.json": "1483c763fa3eeb9e14dd074757aafc096e0ec845e54fa10537e658a1487dff39",
+      "config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "config.stdout": "76e785816b86697029f548044d0d930afaad54b9bf771d8a6c4b7d05e5c0f187",
+      "existing-containers-before.txt": "08182b5f9eedc9465f037f918782e5b9ec26107e63e2c8487b5d7bf125875706",
+      "integration.stderr": "01a38c54279dd4dd2ae7ff81eaa04bf1464e6ea32bf682208be9d7576348ba89",
+      "integration.stdout": "e8c84ce25cb104e6f5aa44242de7534639dac29603a29223997badada55d7cf7",
+      "result.json": "a3b3497a9df894ee82d8de52e4e5b9d862154bfe10014ce65f0cc4890c85c7a3",
+      "schema_mcp_steps.json": "a9b22b70d657d9cdb36b9167b73cc00b3964498a04d80c0315f46b1e9900409f",
+      "service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "service-logs.stdout": "9870b8db2e668e07bb157e489d91e85106c3117784f6371581d829c65182aad1",
+      "up.stderr": "4265cf6fdc46f84cb88dda631423db7d3e74655601044751189a1f096535a625",
+      "up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "material-files/00000000-0000-4000-8000-000000000001": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+    },
+    "runtime/week6-phase2-20261018T131145Z-776daa1e": {
+      "build.stderr": "85e38e6c2d2dba91587e005f7ef2a9a5f4eafc100ff3a579fa84cbe0a3a9f6f3",
+      "build.stdout": "f2fb7055f62cf67c29749197a083bf3e7de09be92b99ac7d648cb46520112a2b",
+      "capture.stderr": "fec9abb7d5ab329498799f197907df62989c23ca34c697845376236162ab7c9e",
+      "capture.stdout": "eda29c9cecb5b6316cc24af7257cc0c725368a39e8006e4237747cf8b66b69da",
+      "cleanup.stderr": "b729b4e33187d613f259355bf0fcd53b9b42d2c5f4178a35c7916371c82feef4",
+      "cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "client-real-service.json": "1483c763fa3eeb9e14dd074757aafc096e0ec845e54fa10537e658a1487dff39",
+      "compatibility.stderr": "0925f2a75859725ec559eebfb8fc273c1b3e90ad5f4b505529d11d9eebbd6216",
+      "compatibility.stdout": "5850b4c0a6d671c911646c1bb0cced149bffe2990054f227b706701d2bb13b62",
+      "config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "config.stdout": "97aea4a1d7970a565058f06e0eae12eae31acdb4527cedc3d40a8c98737ec92c",
+      "existing-containers-before.txt": "08182b5f9eedc9465f037f918782e5b9ec26107e63e2c8487b5d7bf125875706",
+      "integration.stderr": "8652b0b750689e98840d3a10c43f16f177759872c6638ee02095e0fd8a46d2f4",
+      "integration.stdout": "9d8de760ccfc5a8be6af7cf3b3ebc3326461b59b7ae11f7fe89f0e97eeb9d4b3",
+      "isolated-backup.sql": "bbdf7074368651627c6c8c21a8ec5ac822677cffd8230fa6f008457a4d47e690",
+      "preservation-restore.json": "8e62d59b6a84b611def388688e376ce8a081c5f49ba4a4ec23cec6c2254d9b90",
+      "result.json": "53bd9d350c3c80d563bf7fe761e03a948f9bdfc95acfcb41012a33ff744c3541",
+      "schema_mcp_steps.json": "a9b22b70d657d9cdb36b9167b73cc00b3964498a04d80c0315f46b1e9900409f",
+      "service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "service-logs.stdout": "f3f7a7ef1406ef8b74764af645961996703113546022a26e92bcf5858504e542",
+      "up.stderr": "3f36c168a8db3c9636700e7c80a9490b870c2a1520a09450d46fa9e06946d50b",
+      "up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "vet.stderr": "ac64cc87356a0783c343df0af9df40dd681cd01aadc91ec2a565f93ed6946418",
+      "vet.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "backup-files/00000000-0000-4000-8000-000000000001": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "material-files/00000000-0000-4000-8000-000000000001": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "restored-files/00000000-0000-4000-8000-000000000001": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+    },
+    "runtime/week6-phase2-20261018T131705Z-fbcc6665": {
+      "build.stderr": "bcbe29c9b0548d246e2fd14d0c9680f5ecca4831a3dddad598e9fc0ae08dd875",
+      "build.stdout": "a0b58691318c184c17d50fc4b0fc0ee3da26cb597338aad21b24e6e3a84a334a",
+      "capture.stderr": "57567c73da7cf97618dd6683cf84da34368ff8fab6882260e7dd4786ab7b0954",
+      "capture.stdout": "9324f87d2b0eb97f9d26338bd3702d88044977008359a4b5924927299a4335e8",
+      "cleanup.stderr": "594ca985f26e2cf89c511e802d85b0eba683260ccc00416927fbad71ec5a8f85",
+      "cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "client-real-service.json": "1483c763fa3eeb9e14dd074757aafc096e0ec845e54fa10537e658a1487dff39",
+      "compatibility.stderr": "68893d759a96abee1c3451c91779750f710d0f8350473259ac5763edf4e1da3a",
+      "compatibility.stdout": "a453b9b239752093937d0ea5ed0ab89f3656b3b8e0651bf1858c4efa47c3702f",
+      "config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "config.stdout": "e869dfb9dc4572fb764c5281480916cb868f8cb79c10839cee2533846a7b94a7",
+      "existing-containers-before.txt": "08182b5f9eedc9465f037f918782e5b9ec26107e63e2c8487b5d7bf125875706",
+      "integration.stderr": "b151584acc8b98659fd3000d2e0dcb954f1c1c689fc5a47f117aefd0c1ef8b97",
+      "integration.stdout": "2400ab03a7452b716bd33255abb667a35310d5a4b644c785336d0d2f6938a8cd",
+      "isolated-backup.sql": "71ef0a3894f8ff45976637cc82f0c528c5e9c001255b30fdd07fd01af393f29c",
+      "preservation-restore.json": "17ef8929896923852550ff7489383f9074af0f8001f1406924e64abe41fb0506",
+      "result.json": "2f5201b348bc9c5ba7aefd0c4ce060aaf5609f509eb707e0dafc866dea55b043",
+      "schema_mcp_steps.json": "a9b22b70d657d9cdb36b9167b73cc00b3964498a04d80c0315f46b1e9900409f",
+      "service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "service-logs.stdout": "158e3fa93868c8c0f912c6ef70a71ac0112240f86744c2aed636facec35053a0",
+      "up.stderr": "915e14bab81c2114b65f527b47fb55ae22753a6dd9c731b0f21241025933cee9",
+      "up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "vet.stderr": "7ed380e30f6d30fbc026441203d01785678867b8e60fdf6289020a06e0723b5c",
+      "vet.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "backup-files/00000000-0000-4000-8000-000000000001": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "material-files/00000000-0000-4000-8000-000000000001": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "restored-files/00000000-0000-4000-8000-000000000001": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+    },
+    "runtime/week6-phase2-20261018T133028Z-5844f06a": {
+      "build.stderr": "d35eea5833c09f2061dea21a03510f65f33e02628a84522c38638f9819d51abe",
+      "build.stdout": "b77af935afd82ada9c6acb9223cdeebaddfe1b08729a28d5aa056ad3c4537532",
+      "capture.stderr": "caf7cd82bbc0951f23423f490f442ecb4d3d863d7cd6276f6751c00173546323",
+      "capture.stdout": "ea960c8534b1a0cf787dee4f056f263d4e1956c92fcef66b86f149902f989638",
+      "cleanup.stderr": "2c954c262c9a434a8a897b5fc3b2db394226b2e2bfa6307a8c49105616d47cd8",
+      "cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "client-real-service.json": "1483c763fa3eeb9e14dd074757aafc096e0ec845e54fa10537e658a1487dff39",
+      "compatibility.stderr": "3de75898451af2eb21c7c5088928aef842931439b370fb85536caf2211694685",
+      "compatibility.stdout": "22049cd2a1be19019e096ffc47181035f149e63678a58ebcb2c798139444876d",
+      "config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "config.stdout": "44bccc7f10f198b3a080d61551541eea0e3917c8cfe02f47dc71452ba46a9d77",
+      "existing-containers-before.txt": "08182b5f9eedc9465f037f918782e5b9ec26107e63e2c8487b5d7bf125875706",
+      "integration.stderr": "a3150592540af324090b1c9c06251ec67d73d4119e841f50c4629e461250f6d2",
+      "integration.stdout": "e3032790ccf11b2314a65f3601912e061787644ae102529e557159c37a0defd6",
+      "isolated-backup.sql": "aba4bb52ec4e36ceec7d65a9cea30b2d7137d2dc8519a841e79b30ecbd4cc1ce",
+      "preservation-restore.json": "9f0cda230689aa8261f6c68f028856b5517c4858b4e50395825a09895a82fd21",
+      "result.json": "14413f18509d51cedf6c75e8b39bbbf03b19cf8d9002648c35e3186c24945bfb",
+      "schema_mcp_steps.json": "a9b22b70d657d9cdb36b9167b73cc00b3964498a04d80c0315f46b1e9900409f",
+      "service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "service-logs.stdout": "7766e415db078c74998c84ea38ae42e1d51b50ef6c61f4f000f67cc1f17320a2",
+      "up.stderr": "678d98f9d4b9e4e416865868ba41af33f7b95746cb750321d9e458775c054316",
+      "up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "vet.stderr": "3014eaedc83036a3ca548edc1eb14af7f865b947fd81e1e0dfe61bc5959957a2",
+      "vet.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "backup-files/00000000-0000-4000-8000-000000000001": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "material-files/00000000-0000-4000-8000-000000000001": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "restored-files/00000000-0000-4000-8000-000000000001": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+    }
+  },
+  "history": [
+    {
+      "run": "runtime/week6-phase2-20261018T125842Z-9b4d1045",
+      "passed": false,
+      "failures": [
+        "RuntimeError: build failed"
+      ]
+    },
+    {
+      "run": "runtime/week6-phase2-20261018T130216Z-46402aac",
+      "passed": false,
+      "failures": [
+        "RuntimeError: capture failed"
+      ]
+    },
+    {
+      "run": "runtime/week6-phase2-20261018T130433Z-6a659130",
+      "passed": false,
+      "failures": [
+        "RuntimeError: integration failed"
+      ]
+    },
+    {
+      "run": "runtime/week6-phase2-20261018T130802Z-bfef1fb1",
+      "passed": false,
+      "failures": [
+        "RuntimeError: integration failed"
+      ]
+    },
+    {
+      "run": "runtime/week6-phase2-20261018T131145Z-776daa1e",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "run": "runtime/week6-phase2-20261018T131705Z-fbcc6665",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "run": "runtime/week6-phase2-20261018T133028Z-5844f06a",
+      "passed": true,
+      "failures": []
+    }
+  ],
+  "preservation": {
+    "baseline": "phase2-preservation-baseline.json",
+    "approved_existing_code_changes": [
+      "internal/repository/mysql/rag_schema.go",
+      "internal/repository/mysql/tutor_schema.go",
+      "cmd/bootstrap/main.go",
+      "cmd/server/main.go",
+      "internal/repository/mysql/catalog.go",
+      "internal/transfer/ready.go"
+    ],
+    "unexpected_existing_changes": [],
+    "phase1_source_unchanged": true,
+    "existing_files_hashed": 484,
+    "modified_existing_files": [
+      "internal/repository/mysql/rag_schema.go",
+      "internal/repository/mysql/tutor_schema.go",
+      "openspec/changes/add-week6-mcp-tool-integration/acceptance-matrix.md",
+      "openspec/changes/add-week6-mcp-tool-integration/design.md",
+      "openspec/changes/add-week6-mcp-tool-integration/requirements-traceability.md",
+      "openspec/changes/add-week6-mcp-tool-integration/review-summary.md",
+      "openspec/changes/add-week6-mcp-tool-integration/risks-and-open-questions.md",
+      "openspec/changes/add-week6-mcp-tool-integration/tasks.md",
+      "openspec/changes/add-week6-mcp-tool-integration/verification-result.json",
+      "cmd/bootstrap/main.go",
+      "cmd/server/main.go",
+      "internal/repository/mysql/catalog.go",
+      "internal/transfer/ready.go"
+    ],
+    "added_files": [
+      "internal/mcp/README.md",
+      "internal/mcp/client.go",
+      "internal/mcp/client_integration_test.go",
+      "internal/mcp/security.go",
+      "internal/mcp/security_test.go",
+      "internal/repository/mysql/mcp.go",
+      "internal/repository/mysql/mcp_integration_test.go",
+      "internal/repository/mysql/mcp_schema.go",
+      "internal/repository/mysql/schema_mcp_steps.json",
+      "internal/repository/mysql/schema_mcp_v4.sql",
+      "internal/transfer/mcp_receipt.go",
+      "internal/transfer/mcp_receipt_integration_test.go",
+      "openspec/changes/add-week6-mcp-tool-integration/phase2-docker-closeout.json",
+      "openspec/changes/add-week6-mcp-tool-integration/phase2-preservation-baseline.json",
+      "openspec/changes/add-week6-mcp-tool-integration/phase2-verification.json",
+      "openspec/changes/add-week6-mcp-tool-integration/phase2-verification.md",
+      "tests/go_mcp/Dockerfile",
+      "tests/go_mcp/README.md",
+      "tests/go_mcp/compose.test.yml",
+      "tests/go_mcp/run_phase2.py"
+    ],
+    "unmodified_existing_files": 471
+  },
+  "tasks": {
+    "2.1": "complete",
+    "2.2": "complete",
+    "2.3": "complete",
+    "2.4": "complete",
+    "2.5": "complete",
+    "2.6": "complete",
+    "2.7": "complete"
+  },
+  "phase3_prerequisites_met": true,
+  "phase3_authorized": false,
+  "blockers": [],
+  "scope_limits": [
+    "No management HTTP/UI routes, skill parser/routing, SSE or model input integration",
+    "No full Week5 browser/tagged integration/paid-model re-acceptance claimed",
+    "Qdrant not created or reindexed; chunk UUID/payload mapping and existing vector client source preserved",
+    "Audit INSERT and remote execution are not distributed-atomic; crash window remains",
+    "Schema metadata JSON object/type validation is not model authorization or a general tool argument generator"
+  ],
+  "real_model_calls": 0,
+  "existing_demo_database_connections": 0,
+  "checks": {
+    "requirements": 72,
+    "main_scenarios": 72,
+    "official_operations": 8,
+    "tasks": 42,
+    "completed": 17,
+    "phase0_complete": 4,
+    "phase1_complete": 6,
+    "phase2_complete": 7,
+    "phase3_to_6_incomplete": 25,
+    "specs_unchanged": true,
+    "broken_local_links": []
+  },
+  "strict": {
+    "command": "openspec validate add-week6-mcp-tool-integration --strict",
+    "exit_code": 0,
+    "output": "Change 'add-week6-mcp-tool-integration' is valid"
+  },
+  "security_additional_check": {
+    "test": "TestPolicyMetadataOverridesAllowlist",
+    "result": "passed in integration and compatibility suites",
+    "ipv6_metadata_hard_deny": "fd00:ec2::254",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html"
+  }
+}

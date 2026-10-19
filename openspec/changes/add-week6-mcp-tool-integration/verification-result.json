@@ -1,0 +1,3181 @@
+{
+  "initial_planning_verification": {
+    "date": "2026-10-18 Asia/Shanghai",
+    "state": "DRAFT / pending-source-verification",
+    "strict": {
+      "command": "openspec validate add-week6-mcp-tool-integration --strict",
+      "exit_code": 0,
+      "output": "Change 'add-week6-mcp-tool-integration' is valid",
+      "scope": "this change only; no business tests executed"
+    },
+    "planning_artifacts": "4/4",
+    "requirements": 72,
+    "scenarios": 72,
+    "tasks": {
+      "phase0": 4,
+      "phase1": 6,
+      "phase2": 7,
+      "phase3": 6,
+      "phase4": 7,
+      "phase5": 5,
+      "phase6": 6,
+      "total": 41,
+      "completed": 0
+    },
+    "source_verification": {
+      "courseware": "unavailable; no body read",
+      "task_list": "unavailable; no body read",
+      "official_requirement_count": "unknown",
+      "official_verified_requirements": 0
+    },
+    "preservation": {
+      "existing_files_hashed": 449,
+      "changed_existing_files": [],
+      "ignored_secrets_and_runtime": "not read or modified; not included in hash assertion"
+    },
+    "implementation_ready": false,
+    "blocking": [
+      "Official courseware and task list unavailable",
+      "Audit retention/deletion unspecified by unverified official source",
+      "Candidate protocol/API/schema/SDK and engineering choices require source reconciliation and review"
+    ],
+    "side_effects": {
+      "business_code_edits": 0,
+      "database_migrations": 0,
+      "docker_start_delete": 0,
+      "real_model_calls": 0,
+      "commit_push": 0
+    }
+  },
+  "alignment_review": {
+    "state": "official-source-aligned; awaiting-user-review; not-implemented",
+    "outside_change_sha256": {
+      "apitest/README.md": "4cd80942186d7128722434f96e091a9c7b8aca222622b1c21ed31ae7b745b539",
+      "apitest/__init__.py": "4c4b5d875cc73083d2fdd079fffb1f2f7fdb8d7e1a7653ebf36f276ef08ff380",
+      "apitest/cases/api/agents/GET.py": "4013914cc83e5511a659a04572be0d5c50cf2aaa1982a3babba04f4fa128ef2a",
+      "apitest/cases/api/agents/POST.py": "151ba6bce442ea4ef11546e5548a4e4d9352646c8699dc275ee65a0689294eed",
+      "apitest/cases/api/agents/{id}/GET.py": "49c222cd99bd5f9a13a3fa17d14bafcdd31b4bd7c4608d9149822105dc4d847d",
+      "apitest/cases/api/agents/{id}/PUT.py": "ae1ec4000489397ecaa118281b9d9fc30e30154515059d6db0a7b70f46e47335",
+      "apitest/cases/api/ask/POST.py": "9b1965232aec2bb30d62af501842babb6537fa04112d7d3259dc0b6afa43a4a2",
+      "apitest/cases/api/auth/login/POST.py": "9ccd0278d5b8ca6a0f2827090500d0a19fcdae8b3e467de2aca768c0f58d1c9c",
+      "apitest/cases/api/auth/logout/POST.py": "e4c4823c876b9d4547b2250f00c66a6dffdb88e11ffcc866c95fc28b33c47ec4",
+      "apitest/cases/api/auth/me/GET.py": "06908fe471eaaae8421365af1b3b5f30d7f437f0fd4ffd6d203b8391cdb51133",
+      "apitest/cases/api/conversations/GET.py": "10ff236be580a72d4dc9b3fde37c41cb066b30b317f24a8f52c285ca949b68bf",
+      "apitest/cases/api/conversations/POST.py": "7784c8a4753ef83f2e71162040d993bae56475eb2ff04e89703d351bf961e425",
+      "apitest/cases/api/conversations/{id}/GET.py": "7d2fbe5887af7049ba4afbd01c7946d8cb3c1756f5940c784e290132abe7b2dd",
+      "apitest/cases/api/conversations/{id}/messages/POST.py": "f0d72ef87d40a517083d02b8041208575becaaeb992024c2db421000b18ae775",
+      "apitest/cases/api/materials/GET.py": "f0c16dde10a3f9666cd93c492571e878a63b078add1a018ba45bec4224f6e001",
+      "apitest/cases/api/materials/POST.py": "5fa447230c965a32059d17816da0fc1c8b5eb19eeda9e4d02f8ba025296040e4",
+      "apitest/cases/api/materials/{id}/GET.py": "2583b7294ee2648907f3a75312895ca06d2795cc14422dc910c240ae258d8e10",
+      "apitest/cases/api/materials/{id}/file/GET.py": "7184b3310e8f80c1e2c6891c2ac6cdf0f596845e6a099a8c21b718ba7b56bbca",
+      "apitest/cases/api/materials/{id}/reindex/POST.py": "b667619040d749cacc5501096108f8f71150e80dc757e45214716699b052a5a5",
+      "apitest/cases/api/search/GET.py": "91e9881c816ab69b7e4e4ad9e1269bf5c0872d6e6202106fcf9a2333541353cc",
+      "apitest/cases/api/skills/GET.py": "2fe7bcaad55acbfa07db3b7de9a97f457292b95517940de3c2fdaa730e4de2af",
+      "apitest/cases/api/skills/POST.py": "af0cfbc657d07772c875f161fedb59e056797a504bdec7f48ef87822282e3d81",
+      "apitest/cases/api/skills/{id}/DELETE.py": "05ea2a00e561ad6ef7d57fc0b497e385239819a8ac3343bb93821d93cbf36a7f",
+      "apitest/cases/api/skills/{id}/GET.py": "0c53bf666ece356245feb4ae9aff239abc3caddc48ce2ae5c72b7bc98f837007",
+      "apitest/cases/api/skills/{id}/PUT.py": "f8141349588d4b6e5f9030568e37cf881317344d99b882b63088ff9d81eba761",
+      "apitest/cases/openapi.json/GET.py": "c34d7a01eb726c94350fcc800e38f31bf741f81ad482eb77ecb3c367010aeea8",
+      "apitest/cases/swagger/GET.py": "3b1b06f079f7e81540070be0e2dfe6d87bfe4cdb6d8d6ea17c4d6ccd4dcd6e96",
+      "apitest/cases/swagger/index.html/GET.py": "87047e60ef8d339045010ebf31daae307f47e20e892d1c5d0192700a223a8b97",
+      "apitest/run_all.py": "66cfd3355f962b501352590584d89856097188215d2289030cb3a1e2f86b4869",
+      "apitest/support.py": "01f8f64a7f9156385f4aa28ccb552dc3a27ac06a0a291833879ff3da6f8600c7",
+      "docker-compose.retrieval.host.yml": "fbaa5f5ae76726aa6f4833d569c34e1ccef89943accab4c4c03c11396802e1c2",
+      "docs/migration/phase5-contract-comparison.json": "74342f66be3a587cd2a13ad16d509c05e80a2ee133d1d4a82a087ccbda9bbaaa",
+      "internal/config/rag.go": "90f96fa7094e98dcc3da2dd5e29548125b4e06939f9041d21b41e93ea3572f69",
+      "internal/config/rag_test.go": "c6836f6635285eee39fc4cbdf0f6f2916a113e3e17f6c8597d034d70a236182e",
+      "internal/conversation/citation_prompt_test.go": "135cf47164766da129c7e4814528843ca7cace33443c54aef12c6cf80b2f11fa",
+      "internal/conversation/citations.go": "f4b2913559dd2e2da69d145b58e943a94ae86717760fee8dc1318fe71133dbe3",
+      "internal/conversation/citations_test.go": "277f00301a499ba842dc89bbb63b69b89c2526a3efe801c8c8b4c06bb0438b7d",
+      "internal/conversation/evidence_input_test.go": "52fd08170b7a3e86b78e1fc80e1f9cf34775b6a604a26c909f22a64c4b48de76",
+      "internal/conversation/stream.go": "18cd8ad5d5de60e5156e0f4a50d77512c6f789a9f569e2f5d10b48bbf1c0e569",
+      "internal/conversation/stream_test.go": "ff35f6c51d6793efe14fe25fcdb9349ea19f1490e731c838d48ad239ce96404b",
+      "internal/conversation/types.go": "d2eda742de330e194c8de6a162426209e32c987e63fe277e461b24156b60ed69",
+      "internal/conversation/window_test.go": "502e06f7f0b7bec88fc1fca250d4953a9d25df8e1ea8c706399ca8a6941912c5",
+      "internal/http/conversation.go": "e7b0b5d274a48c064133ac5deeb13636d2ee6b55835ccba4eb364297be31d590",
+      "internal/http/conversation_integration_test.go": "7d701bdf3a781d8e2cd9448702d8446059c95329019abc6e26f4f8bb7c358c6c",
+      "internal/http/documentation.go": "89b97265ab108d0c9b8b277c42f01f606727620092a21567699f83821029ccd3",
+      "internal/http/documentation_test.go": "5913b885af74bb53d8c318e0bfcc2fe5d9d161c88d620a13c9e206dcf3dd6e0d",
+      "internal/http/openapi_types.go": "c92e708337646feed543a9b238c21bd961a3c5bcaecd4155df51d53aebe30e4c",
+      "internal/http/rag.go": "75618d1f777579f56e2bdbc43d2da5a83f62c8debb3e1e1a6a29d04b44e24f28",
+      "internal/http/rag_integration_test.go": "6379d715224452678fbce2008ee724ca8fccc92bf825481af8e360e7cf2ba533",
+      "internal/http/real_budget_test.go": "68df80f6b111253f47fc6998ed35962fb04cc623f2203123fa91a1e3baeaa6ff",
+      "internal/http/tutor.go": "c9315b2d27daffd84592ffaaaa6abc67104f6eb2f44ce52dcd65410614ca9d3a",
+      "internal/http/tutor_browser_integration_test.go": "a4835acfaff02e3c7c6ef5bd941d24cde060f3c0edb38e986deeb8440f1bb0e6",
+      "internal/http/tutor_integration_test.go": "15fcb5d0b5d7df0ee8b3496de43b18f8dc03b37f24d6cd7c915ac9eb250248c9",
+      "internal/http/web/static/knowledge.js": "5c719236597fc28239f042d2d06f9d8c5b398239f03d84002b8b798959cdbb41",
+      "internal/http/web/static/sse.js": "a46e483054503e908a7f1956e4cddbd54ba5c3d75716cdd6317a89e55accd4ce",
+      "internal/http/web/static/tutor.css": "ea0ba9d4843a902142a6ee2c07460cc9f5a2b8549bf441e0e625720da976087c",
+      "internal/http/web/static/tutor.js": "d615ed67f7eb96ce37e5bd2e949e7f0f602d7fedb877f861366af717c970bad6",
+      "internal/http/web/swagger/index.html": "c007e6217a0712c668b1fdd3588a2b88f9e86618904ca5450e41f1d19099ac2b",
+      "internal/http/web/swagger/init.js": "b7b284258b1b4fd8ba01755c5102469f9d1ea7f90a3158137d4e247d97c86c96",
+      "internal/http/web/swagger/openapi.json": "3770acab9bd235cf81abe2f5ae9239b365eb03112ded2576a0ce4959d5651d1d",
+      "internal/http/web/swagger/vendor/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "internal/http/web/swagger/vendor/NOTICE.md": "53cdc993d24173e711b850c542a981406628aedb6b84a67a74527495951981f8",
+      "internal/http/web/swagger/vendor/swagger-ui-bundle.js": "c2e4a9ef08144839ff47c14202063ecfe4e59e70a4e7154a26bd50d880c88ba1",
+      "internal/http/web/swagger/vendor/swagger-ui.css": "40170f0ee859d17f92131ba707329a88a070e4f66874d11365e9a77d232f6117",
+      "internal/http/web/templates/knowledge.html": "9be60ea9ca85a3c9ab4b55e87d7637b26aa1a6b546c89ff8f6b0b27f64daa134",
+      "internal/http/web/templates/tutor.html": "23ceb44b585e6a7349d6f6ff40945a4e74ec5547c779bb768c1864d626fa94da",
+      "internal/rag/clients.go": "7569ac6dc017b98028ca00660dd123afa0ef58da468e790a58083e649f38163e",
+      "internal/rag/clients_test.go": "63840a124edf3061df6bef1849cb6ddc1495b1650cf0b220833ab3a2855b997f",
+      "internal/rag/core.go": "ee3f23ff7d9775110eb9e1f2a038e9e57f234887873e3550518b2a742b46af95",
+      "internal/rag/core_test.go": "bd7396f7ebdbeece56c8d7abcde20c9c068dbb0789f3575dab18a45a14b77b71",
+      "internal/rag/indexing.go": "dba4dc984fb7f56325ceff2d14f927c1e09045d6f53ae01bdfc2f3a26e6f4462",
+      "internal/rag/real_model_integration_test.go": "e5e4a929a4a895cf2486a25e1326ace7a98285ba42dc91124e2e36ba55dfadcc",
+      "internal/repository/mysql/conversation.go": "2814abe16b7a745b8983ba57476fad5850fa13051a749bd0cb15d018708c134d",
+      "internal/repository/mysql/conversation_delete.go": "e9752dbd15e891097964af3be0d0a33e43713c917b0a82d29277c3e39d3b4466",
+      "internal/repository/mysql/conversation_delete_integration_test.go": "fc0323b881e29eb42da83eff86f49f070b05f5f3cc04fd5ccea4aa67420e9a11",
+      "internal/repository/mysql/phase2_evidence_integration_test.go": "960c892ef0e700add2b02acf901dc0f09b231a4ce4f94abd593bb31e08c3f16b",
+      "internal/repository/mysql/phase2_history_integration_test.go": "60651472156b7a10fa05fb7a033ac0042884fceffc5c88bc65af9973edbae83f",
+      "internal/repository/mysql/phase2_http_integration_test.go": "35c044a4abea488263cc11d7a99677b7c0c7a1c0c4580a868eb6c4075af683bb",
+      "internal/repository/mysql/phase2_roles_integration_test.go": "f977fc84637c35608b457aff05dd6c82bbd6ded6da7da362d59fd73ac0c8b833",
+      "internal/repository/mysql/phase2_routing_integration_test.go": "fe6cd4a83b64eda910b9a726b7cdb4df6e73f3ae88b9967e0687cb57ea3976f9",
+      "internal/repository/mysql/phase2_week4_integration_test.go": "4450d910ffdc2e57dda3b868eaf7975673056630fbcdd19ba5bf1cb31f942805",
+      "internal/repository/mysql/phase3_services_integration_test.go": "0811bae9aa7fec6943804af077c1793703591dde217f5089fcc89e85353a775a",
+      "internal/repository/mysql/phase3_stream_integration_test.go": "0d5db32ebe6a2ba672382f656d5e1d17d9c0768fdcdd6cfe908e15c0acd99388",
+      "internal/repository/mysql/phase4_browser_integration_test.go": "cc4f16587ce21591c63469f187093ca7303ec5c9cb495a8c7a1f6aa3ae4aa71c",
+      "internal/repository/mysql/phase5_citation_retest_integration_test.go": "114653e05c97d2f23731d18847e46c033bc7ae59266546e7fe9ff30ff93de1c2",
+      "internal/repository/mysql/phase5_real_integration_test.go": "4ebd0d95eaf19534c1b907343ff7bac38f4b3f479bf5f3c3aaaec26d3132fa3d",
+      "internal/repository/mysql/phase5_remaining_real_integration_test.go": "1178f5e9e7cc7f2d3860122123f083fa7cce8af1e8ed3133eee0270fffed8122",
+      "internal/repository/mysql/rag.go": "596e132f22736510feb8825d79dcde7641f8cf1f0eeea9d86648c2f356f061ae",
+      "internal/repository/mysql/rag_catalog_capture_test.go": "3e4746c7a40e5388b271067d4476540f1c94fd4948413f0cf4434d4d0f049510",
+      "internal/repository/mysql/rag_schema.go": "306b4ce910cec90661f909c7fb7c6dbf39385f95d3933c8f1c11c79bd2723479",
+      "internal/repository/mysql/rag_schema_integration_test.go": "3aec58a84ccda894ac741ae55913bc94bec57c6e3f99d080b5f61267ad4367ca",
+      "internal/repository/mysql/schema_rag.sql": "180d265f65c341cff43264c958e2526c49cecbcd3a3d114b76ce03f9130d9c13",
+      "internal/repository/mysql/schema_rag_catalog.json": "7937493c6c0d01fe1ca60e0492d5f5d1548de4cf6e6df47c42f4426161073f6d",
+      "internal/repository/mysql/schema_tutor_v3.sql": "e8562713a6459c5103efe0065b580b5f2393a1dbde2cb178bdb7ae5753fe034b",
+      "internal/repository/mysql/schema_upgrade_steps.json": "57ddbc8a148aa45554b3bb17ef8ae8570c1bd3ec8782f9c63518b0b5c542a4b4",
+      "internal/repository/mysql/tutor.go": "8dee07a26cbbbcc4c5b8ec8ab414df0219192e1703e16d03fdff1dffff3d2330",
+      "internal/repository/mysql/tutor_migration.go": "c898e00c79ee909be6381c8ba8e31fc7d3f7b259f0629a9a2cd014f887d5a57c",
+      "internal/repository/mysql/tutor_migration_integration_test.go": "818be2820c3e48ca5fdf58c7b9caeaaa08b064f4df0680139da1eaf50fed2ace",
+      "internal/repository/mysql/tutor_recovery_integration_test.go": "b3178dc4bdc03d9a7c6ef6b728fa2a0c11b5633f9324f5e211789966bccc89af",
+      "internal/repository/mysql/tutor_schema.go": "2763ea3f54211961ed83323ea30496c378548565a10da8c625e0c02b7e7ea4ea",
+      "internal/repository/mysql/tutor_schema_integration_test.go": "70d77965a6bbf969722315f6809bdf01d2b6486cbeae150deed1c844d4bbb848",
+      "internal/repository/mysql/tutor_store_integration_test.go": "d6b72e5bde54baecaa23fe80d7280134a328d2e1c2532ce56d52eef4344d804b",
+      "internal/tutor/evidence_test.go": "2be871c5c7ac1ed40d0e7a15d4ec81898ff7b3148c330a98710895257d5de684",
+      "internal/tutor/legacy_skill.go": "f67bbfb84fc6f0e5995bda8c77c6e2d52088ebf893c3324482677b51ab4e9613",
+      "internal/tutor/roles_test.go": "05df96495fae97ce79ad1c35681cad23fd585a9a9aa52c39f28fee138000d697",
+      "internal/tutor/routing_test.go": "e57441d399248acb3393dfb05f1ca43d0b39f1308fcf69d88f75fd3605445514",
+      "internal/tutor/skill_source.go": "24811554f6289a505964a0c42e4c518535d51f1d459e2fb30680a787b78fcd0d",
+      "internal/tutor/skill_source_test.go": "06f535196a2b8ce9698778f64fa120aa85369bf4f741658c12b0c33ada491ea6",
+      "internal/tutor/tutor.go": "67f015576d15f32011f2e3e64e8df0c1bd393a7804d1ad7364bfcca214dff17b",
+      "internal/tutor/tutor_test.go": "0ed0f764ccadd7957bae930835166eb7e5f3efe98eacdccbba0ed9fdb1e6dc52",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/.openspec.yaml": "010447270992e8e9533b7bbfb4dbdecda78eab560f05c50428c80463aa9e0ec1",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/api-differences.md": "2ba40efab9dbc9746b87a687687c79f8f218aa6dda768ae516955bf9be386531",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/apitest-plan.md": "99315ceb1e28173bc7024657bf8bce07b9847f0a8e79238086b1f2c1f1622c78",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/design.md": "dfc38cb87da6808240241043c284e020f9277563306b35cc45b33963277c8262",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/phase1-verification.md": "7a29717ad09308dcb81fe8f0e6dafd481a0f1129870a1b060c4eec38b95b0be2",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/phase2-verification.md": "36be173b6a5b66cf15a3472a08347fe8987c1af1d2e001049709d4bf6e978bda",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/phase3-supplement-verification.md": "64e88025639ef952505c2bd0d2390d45387cfd0dd44855c2e1ea8aaf67876d00",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/phase3-verification.md": "6bd39fb19273c7e9ff4ba20360b3a1ae327181a3f44ce147d3753117f683b7d9",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/phase4-verification.md": "257d855e0962012f8c3b6aaac556b7ae5586d6633f987914eb72ed2305e2b7e9",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/phase5-verification.md": "bf4bdfc854c2cd254556d1a6701ef419636dc7644845aa1b372de072c5a32b3e",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/phase6-verification.md": "9314d1d517ca9cf1383786b128c815ab6a0ac0f01507bfebfa3f753a30909d03",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/proposal.md": "f76cf69c0fe6e343084b918303b9c964b3b5729b627838fbe89a6ce1fa83e7ca",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/real-model-verification.md": "81d73ae45928c7f596f22d3512050b94834ff64e7161d9f86df8e29dae7e1e10",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/specs/student-streaming-conversations/spec.md": "c9100cffba510dc9f95a91be253ec0cf412816c18da32f1aa0c7db14737a3126",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/specs/tutor-configuration/spec.md": "692484e6e5ac8e79bf65039041741ba8a2dc6d96fa7bac8e57f6fe3f040d51f8",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/specs/week5-api-documentation-and-acceptance/spec.md": "642915159e1d67eddeea0d92a0a408831500346b040595635858db9e75048216",
+      "openspec/changes/add-week5-ai-tutor-and-streaming-chat/tasks.md": "c59bdfed905769d983ecf87b7df2a29e3c8160a5297b96b1a313882e98e57a35",
+      "openspec/changes/align-week5-with-course-requirements/.openspec.yaml": "9cfa2ab963a8c9b58eecdb9fd5b55544e988fee8de8b887226ffc32d27744459",
+      "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md": "44997069d497cdbe4c4e0f8cf5c14177fdaab0cf93881cbc69a5dd2eeaaa16ec",
+      "openspec/changes/align-week5-with-course-requirements/acceptance-handoff-draft.md": "d0d0bc56f997d2b11a5e9e71bca9fac478ee1974d46253dc6d3f1ad91376b3e8",
+      "openspec/changes/align-week5-with-course-requirements/design.md": "018851f2ad99aa65027b86baf40ee8474cc63c17ceee13a955e4624105c656db",
+      "openspec/changes/align-week5-with-course-requirements/phase0-baseline.json": "c030bbbd2d705b32f5bb2d64bafcae3e5f3591c9a81cbff84bd8a17896f9abb2",
+      "openspec/changes/align-week5-with-course-requirements/phase0-check-result.json": "96d60dd24682121ff62a637bb225b1fd1f6b15cb4b7d929e90d9498ba7a8c0b7",
+      "openspec/changes/align-week5-with-course-requirements/phase0-source-review.json": "6b3416aabcc85653e8046fc9aa605e192e7bf81190b8c4941eef719f01177dd9",
+      "openspec/changes/align-week5-with-course-requirements/phase0-verification.md": "f56b52ddd5c337d596641172d9033424e756335253cac27552e4627a2a4e0e97",
+      "openspec/changes/align-week5-with-course-requirements/phase1-check-result.json": "75c3fc973412f91ea9953a9e9f09d2899f65ccd417301e06eb1f9f4a5068e513",
+      "openspec/changes/align-week5-with-course-requirements/phase1-history-baseline.json": "0c7704f06f72207db9d6ee61b590ffb08b799d9d234eec5f71c2102f363728eb",
+      "openspec/changes/align-week5-with-course-requirements/phase1-migration-preflight.md": "ebb62bb791a4a0aeab97fe509b6ce82bd095d1648a63abf3082fc7e322712175",
+      "openspec/changes/align-week5-with-course-requirements/phase1-verification.md": "05894cd70b3add0b626c32e9b019fd60d463988877d5b39f0e340d6da7340eb0",
+      "openspec/changes/align-week5-with-course-requirements/phase2-baseline.json": "b8b9ed8170bd52669d24c9bd6108670f007c86f32a6e832280a91b3fa957409f",
+      "openspec/changes/align-week5-with-course-requirements/phase2-check-result.json": "ce75806d8b4876b8c07cf5509d3de5cb0f385745251e90142cc73eab43e17306",
+      "openspec/changes/align-week5-with-course-requirements/phase2-verification.md": "5cd94c74a0ffb232e91e0ab014783ec37775ee02959014a698f39f6bab0c9038",
+      "openspec/changes/align-week5-with-course-requirements/phase3-baseline.json": "961082b1641a3ef797bf11c421ad7e6cd01ea0bc0d54a49ee0261f87567a43d8",
+      "openspec/changes/align-week5-with-course-requirements/phase3-check-result.json": "a19d4b04c74036c5a850e32919e082bcb1d9294a6851bca7900873e0dafc6583",
+      "openspec/changes/align-week5-with-course-requirements/phase3-verification.md": "89a2efb14ad5a3213f01c75ba2e78913d2b66779f05e3ef59f3af1bc8d0f11d0",
+      "openspec/changes/align-week5-with-course-requirements/phase4-baseline.json": "6e86cd39f593e7f3fe985bfb8c52ed56546ed57e0aa90f34376c689eb9278204",
+      "openspec/changes/align-week5-with-course-requirements/phase4-check-result.json": "bf65438caeee8b03bc2424004b9a2c3e3351baa9e7a7e57c5a2859c4aa16515d",
+      "openspec/changes/align-week5-with-course-requirements/phase4-verification.md": "9ae46533c8af45704fb0a7cbac5199d882c82da950e6bdef040454ffaf5f6416",
+      "openspec/changes/align-week5-with-course-requirements/phase5-baseline.json": "ca35354a6f594e2d7f72f5060f040357e0ab049b4796ab8df1cf67e874bf9e48",
+      "openspec/changes/align-week5-with-course-requirements/phase5-check-result.json": "510094a58ee30b078a5fd6b16f73838ea165bdced1a8150318677cee51d7004a",
+      "openspec/changes/align-week5-with-course-requirements/phase5-citation-prompt-baseline.json": "7de738497f7e8b561e2c3e344f735289d3b54899130512e3bbf824978d8c6592",
+      "openspec/changes/align-week5-with-course-requirements/phase5-citation-prompt-check.json": "8ab2dbaa89ce69b5e7248494edfe55f715c6572772bad51bbaf8bd5b1fcbf01e",
+      "openspec/changes/align-week5-with-course-requirements/phase5-citation-prompt-verification.md": "f68e5d619e9d8d426119d150d80442e9361ed05903cf01b778eeaf58b892d438",
+      "openspec/changes/align-week5-with-course-requirements/phase5-citation-retest-baseline.json": "3637390b0e3770fdda8606287b22aa1b2e37a3cfcb571fe618a2a3492c9d2db6",
+      "openspec/changes/align-week5-with-course-requirements/phase5-citation-retest-check.json": "a4ce82f4ef17267aba525a5962cad7a55e24322167bb22b024c4a24cc00845d3",
+      "openspec/changes/align-week5-with-course-requirements/phase5-citation-retest-verification.md": "85d0d9f60a8d1c3491793be0c091fc0157db5f29d92577fca2b0a91a5db08365",
+      "openspec/changes/align-week5-with-course-requirements/phase5-human-review-check.json": "9b7515b43027da3aed23aa59817875499f5765936c01577ac7d10e35c3a045ab",
+      "openspec/changes/align-week5-with-course-requirements/phase5-human-review-confirmation.md": "80625e5d42a07d1dad7594fa5467534b5dc74093148bb74beb38d2c1dd81d501",
+      "openspec/changes/align-week5-with-course-requirements/phase5-model-provenance-check.json": "5e514864d51ded31f9295c008aa14a624ddff6a5c59eca4303bf1f2a96dd4238",
+      "openspec/changes/align-week5-with-course-requirements/phase5-p1p4-baseline.json": "be8acd4a2e64c6dd3d2fe0547bf29bf114383bba3f61c031af4bde2d329f22b4",
+      "openspec/changes/align-week5-with-course-requirements/phase5-p1p4-check.json": "b1028aea3b291771dd8a7efa4881693f8d50e15e80a7386e9039107b17f55996",
+      "openspec/changes/align-week5-with-course-requirements/phase5-p1p4-technical-verification.md": "2fb026c176a4d7408a6a13d28c71b0fc0d8e325b201a9b6af9d3ea23f3444602",
+      "openspec/changes/align-week5-with-course-requirements/phase5-real-execution-check.json": "e9baa931c694facd00cef2d14d21849e5abad3ba2a50057e9c401c13afa83240",
+      "openspec/changes/align-week5-with-course-requirements/phase5-real-model-baseline.json": "5c1ff9e8d5e3342e1d0ee215b5559fe25a0070041935c46cc1e44b961c72e6a9",
+      "openspec/changes/align-week5-with-course-requirements/phase5-real-model-check-result.json": "3fe07e562737f8d60fff6ea353d0f732f82feb67e04b74c7279931b12a927df8",
+      "openspec/changes/align-week5-with-course-requirements/phase5-real-model-verification.md": "1da7dce6ba89f8f36d51034f2c99632992844e260bc59a16f4b89c3379b0f990",
+      "openspec/changes/align-week5-with-course-requirements/phase5-remaining-real-baseline.json": "00c8d7dffbfcb922522294093ef324d217c1e569d12727391378744bf36b04a6",
+      "openspec/changes/align-week5-with-course-requirements/phase5-remaining-real-check.json": "7828a4584e696d200147712d616330219696428e2b8e653f0c6e9767d1d5686f",
+      "openspec/changes/align-week5-with-course-requirements/phase5-remaining-real-verification.md": "3081aea73ecc2ab070b3f8e94ac233bda155bb81852d08c2a730bd754b4f18b6",
+      "openspec/changes/align-week5-with-course-requirements/phase5-report-baseline.json": "af235ecb01c30671ad16c619ad2eacb5f3a8ee73b1c7b25bf5f6be52007c17dd",
+      "openspec/changes/align-week5-with-course-requirements/phase5-report-check.json": "717260e77586ec1a33a35ee2f620c1f240addd7cf6d887ab0241a940dae7d5c4",
+      "openspec/changes/align-week5-with-course-requirements/phase5-verification.md": "68df3c4d6368d81f8795b0e288c2180d6d317248e3962475f5bf76ef51d3c796",
+      "openspec/changes/align-week5-with-course-requirements/project-acceptance-adjustment-baseline.json": "c0246182ff603952afb3b6bd12a9d4fbf479f38459275176abfe31f2543036fe",
+      "openspec/changes/align-week5-with-course-requirements/project-acceptance-adjustment-check.json": "5b6999f843447216e31c8a9904d5a3bdd648bb3e5efd1f9d80795d5d3cae5738",
+      "openspec/changes/align-week5-with-course-requirements/proposal.md": "1ef1f21475ce0b7c5ec261d8c5e280d5e48d46e564f7b1199ea498a8a8d30cca",
+      "openspec/changes/align-week5-with-course-requirements/specs/student-streaming-conversations/spec.md": "173fe8e53d9f00488cd155a57101bf7488ec846e12b830c70ec3e6338e2f3314",
+      "openspec/changes/align-week5-with-course-requirements/specs/tutor-configuration/spec.md": "28d69692372d1d0f69c9ee2ab2ae5eafc41abc5913eacab2c2fb2ee81580e0d0",
+      "openspec/changes/align-week5-with-course-requirements/specs/week5-api-documentation-and-acceptance/spec.md": "9c8594e6533d1591bea4aa40f51421aaa10642b6f35ec1c1b2e9b5fc027f3f90",
+      "openspec/changes/align-week5-with-course-requirements/specs/week5-schema-evolution/spec.md": "24a822d7b82c0ec9cfc49ab7fce139c3503323e58640bea4c81c5ebf6ae14ff9",
+      "openspec/changes/align-week5-with-course-requirements/tasks.md": "ef358e1b0632d516d4be0876c45ede1db0ce515dc6c2e56c1198793832889e03",
+      "scripts/generate_openapi.ps1": "be579a6436c42deb91d195367c7983decbcb541d975c748123af751fa7cefb56",
+      "scripts/openapi-convert/go.mod": "56afe89c6a4e9e8b200c70eb3724b99d70d65d3c8d35a60b81949969c6ae0248",
+      "scripts/openapi-convert/go.sum": "f13569ba03e234d67defcaedd9f1c11e56b54aba0dc7fb74586b8a705e2a46cf",
+      "scripts/openapi-convert/main.go": "0ca53849f3bdf98719e6dc8ca790a09f0021030ed6adf8e770b9104863225e83",
+      "scripts/openapi-convert/main_test.go": "4ffed46b90e584c8cc3105751f5fd4767f910080e5ed792a4916bb6c9af37323",
+      "tests/go_rag/Dockerfile": "24f313f641e3e458ea785c5122b56c836be7e11faf6ccaeec959f76cc9c4779e",
+      "tests/go_rag/README.md": "c08acf9b356f6d7d7fab90889f957ac58bc21e2c025ffa944506cc4b34658c3d",
+      "tests/go_rag/align_real_probe.py": "e310803fb725a247a46137c3b77e7a374da662bb542c9c7f7a3ccb629a5de322",
+      "tests/go_rag/align_storage_recovery.py": "4538376d37c9646071e33589997c42586ac0225acf4d558b60fb3f96457eb942",
+      "tests/go_rag/check_align_browser.py": "75f5c977cfd3878654b923a69c5e31573de3f374d38b4504f6e5dfc6865e6f97",
+      "tests/go_rag/check_align_p1p4.py": "f27a25d7507f247de182f8ea6bb6b4aec92d4f5a8a984c9558ed4a9b2c37f3b0",
+      "tests/go_rag/check_align_p1p4_ui.py": "8dc2eb440655618c1cd3e736cef79bff34f9c744c503be2aefa1cd8951570ffd",
+      "tests/go_rag/check_knowledge_browser.py": "4cf119ffb4ecae1f95c2303c85468ab3f7fbe8e05f21a28516e3de17a0831810",
+      "tests/go_rag/check_real_tutor_browser.py": "239ecbd0aff8773b99a3e616fb910a9902e98cb4d5251ae7c19ead7a0d32257c",
+      "tests/go_rag/check_swagger_browser.py": "b6e47646892dd8df1a51d04f1c7824aa2a034ecafc8f706d2e6e9d40f14b4b18",
+      "tests/go_rag/check_tutor_browser.py": "c0cb787f1f37a710560f058a8fabbb4216fc585e783aa753c19935828d87d514",
+      "tests/go_rag/compose.yml": "0282c2119b4d07f316793d3a912be44fad2b8038ba9e528b787db2d23b551a00",
+      "tests/go_rag/prepare_align_storage.ps1": "d0122b37305b78826b1f1b6292158c5ac26247c0816f495a655da923f2748059",
+      "tests/go_rag/prepare_align_stream.ps1": "2923b13c6bf487905fe3c3edc067755d8f8c2b90b45d0d9a727b9f321c17d5dd",
+      "tests/go_rag/run.ps1": "02fe715b9f44f24328727081886db50553c0ac414bc502d33eb45b0301408636",
+      "tests/go_rag/run_align_acceptance.ps1": "2f255dea6e3935473ec0fee8633389aa94a413160263d8728fb148f8b3e4145f",
+      "tests/go_rag/run_align_browser.ps1": "69c7647b5c60442ad51a71a5be655550c5b86088f20b6ee2ac8d3bce149d146f",
+      "tests/go_rag/run_align_p1p4_ui.ps1": "cb9af5fafe472a08ca057961eea98491458377b0199465d7797070a3dc49d7ae",
+      "tests/go_rag/run_align_real.ps1": "747095f26fe8082923569fa5d1c4fd76117b45bf4331885770a568d48c3a1f05",
+      "tests/go_rag/run_align_storage.ps1": "b5bd2970d6382e757f3ba32d70b9959fff7ccc7fe72e1f5c78991c459fd9a1a1",
+      "tests/go_rag/run_phase2.ps1": "80066bccffcb57dedca275cd448991021ff200c329fa660c10f807d27f9a2a96",
+      "tests/go_rag/run_phase3.ps1": "6f72af84f2ad0d35d50a2ede791720d25637b529757c9ff76289bde444520e21",
+      "tests/go_rag/run_phase4.ps1": "267ad47d827d3f80fe32fecfe0861d59f05a8c10d56af6bbaa29368cfd00fa86",
+      "tests/go_rag/sse.test.cjs": "22ecc622679b4deea3902fbec11b3cf266431e4fa39988d5f3f7a4f51c5bb777",
+      ".dockerignore": "3ae76c877982bfc9774440ba202d5c83cf086a9a54d75a745a666b7b07cb356d",
+      ".env.example": "a07b2a44ddbb36f4653827a907f23e33280610a1d7cb9eb927800bab1f91eb00",
+      ".gitignore": "51a1cb263324186ffd9347f3bca3c2e1e0a198f82c05dcb1143172a4d22c662a",
+      "Dockerfile": "39e9d635e37ebb20b0cfda445f9bf7d2f6554728c6d63f661d5deff53e387007",
+      "Dockerfile.backend": "231de0ed1730972c5a15bb5bf4c78418df32f577698b4b15c37b644be4f8a1e4",
+      "README.md": "f9bfaac16ff143033b351d8a83e6b91cbf6c2c93a56ff805f6fc66d4bfc60ed6",
+      "app/__init__.py": "a946bf75ea9ab1bb575d78e9871f3acbe02dee199bfe5731a74031ed9788348b",
+      "app/accounts.py": "1747b51530e6730f95dc9035e878fa005c0eb71b1b20f23728ac83dcf732b0a7",
+      "app/auth.py": "51c55dec7f4780aa37cff22db41987f14da046dbee8b7a2ecad44b1f6264289a",
+      "app/clients/__init__.py": "af96cb2fe0bb888bc5cbad327ac9df5c10e37f573b8cb36278dad6ccd203d7e0",
+      "app/clients/dialogue.py": "7d7c6ddaf64a6d1d27aaf9e464a8767ed8c6b4af08763c84be7d403e12cabb9c",
+      "app/clients/embedding.py": "5e5a7037ccc40025078f1087438adcaa3bd4bf83160fa664517671629607b84f",
+      "app/clients/http.py": "f17a7de230603e4c0fa32c4b0c2119cbc7ae7f893d27cff36e206633e1b7cf2e",
+      "app/clients/qdrant.py": "5cd1173adf61a5cbff2270bb00f468c3e899ec34a2132f07e2c4b3f9d3510daf",
+      "app/csrf.py": "e4427ef56b193e0cccf4e8ee33ba36d2cf1a944bd9e93a935af44f3da8269935",
+      "app/db.py": "977a153bb01f7dbca599cac96fcde5f963eaf99658726f7f26ac123eab73c02b",
+      "app/health.py": "de55e8cf5dc692ca87090041b8ff4c58f615b3403ce72ad3b1a2a22daf99da85",
+      "app/materials.py": "af15c425f203a4e27df383e1cee9ab77f3017241bff33f1d8b0f12509cffd8d8",
+      "app/recovery.py": "07b8df6e03739d1fbe81a08bea0bd10d332f9b0e2aa3f7d2f29fbd581c0b4de4",
+      "app/retrieval/__init__.py": "6f87b641ff524eaade3ea6a643591bd78117ac0cac7ae51161dd11b7f3106f52",
+      "app/retrieval/answering.py": "b5e4dc3bd31e1fe206e4b98e13f4dc493c9957244d3cf2fed3adbc6d22412dab",
+      "app/retrieval/chunking.py": "64a3f0beaa7ce3d32bd75fcc9503268572b83ac05ac9115aa8c68e9f6ba1d321",
+      "app/retrieval/indexing.py": "f4c1807b7ca59d1a36898a6bff5b1046d3e5a502c9affa200fd94db9dea24ead",
+      "app/retrieval/ranking.py": "7113fdefe4cb6f2b15223ee48f02cb864426f52c5c22ce4d6b12f3d1e85425e5",
+      "app/retrieval/service.py": "d1a22e0b18ee8b3380e7dd8df56bb6c3000479e4eb0bb42a0bae8088d1a6acef",
+      "app/retrieval/types.py": "dc3f6f0f81ac99bd36c20e9a4395ddbb5d3fe520c65d76229118502dc1cd1bef",
+      "app/retrieval_routes.py": "98a88e56ebd3cbbb46ba95315a66df8194283dc0721d5757f3babb7c4a9fc349",
+      "app/retrieval_setup.py": "cbd18b8d54725a80e2eec67f55c5252c7fd64189018afe5cc6c9dc9daf55d94a",
+      "app/routes.py": "e8cb6fe9fa825966aad53b9c016d6e5b347e5ec8f21b4fe06fbea2d289d55087",
+      "app/schema.sql": "2cf0426b04d895fc5acc76d2ac2534a3c9ca5a81333ddf39ec3854b5197ceb0b",
+      "app/session_schema.sql": "879f4f6c07c52bff8cb45cf26fc3fe38d88e1d87dc802801f1c3c4179d86cbd3",
+      "app/sessions.py": "f316bcd85917156167717c55ddf36d7f58c5a5c960c7463cee60006fe4a442ab",
+      "app/static/api.js": "037a7e364cdf6e0d61e6d8b0ec56e11bde1f0241bdac00f481ed24be4722bf2a",
+      "app/static/knowledge.js": "3fa8b034b0103aa95fcac7ef89400447b461a4ee26f2f2c756871ba68a12ad9f",
+      "app/static/login.js": "4dd06fd04534fcff6d196e615464b9cb31c6e05c4eb9bec2871a47ba0c5449ea",
+      "app/static/logo.png": "7a07bb109fc0c939d497b8db8baff0ebe6721fc5242ad2f8676f7d08d3a5a757",
+      "app/static/materials.js": "5cf7247379a7b18c66c7170232c31cba0dcc23b90b4faed1429f3dbb0349bab6",
+      "app/static/styles.css": "dbe523838a0a2e561a1cdbe5deffc6e337c49a4b1640e0ea4d0d03bce68d0790",
+      "app/storage/__init__.py": "eb9a0f3f5ffd10d7be7afe8b506af7c78d67febd7d5c291f35e6097308d2b1df",
+      "app/storage/materials.py": "f607add7458269713206fcaeef3b8b4f09ded759f28a438af115c03f828a9769",
+      "app/storage/migration.py": "75c9ca12c5e29a652e7c040839ff24a2c9968d11208914a9c0817aca74da23a8",
+      "app/storage/mysql.py": "25f4928e220ef71b77a9c8fd419fed5824ca5f24c2f80f3ac10b75985428cc6a",
+      "app/storage/retrieval.sql": "226be629ad739afc99d512ac6303ef2c9d89e46a3769359aa80670825543f57c",
+      "app/templates/base.html": "e2a6151bf96d4b27b459105aaf53a2b1825f4bf5e8ae10bdcbde9eff89dcec76",
+      "app/templates/knowledge.html": "21e4740d3e5554aced2648278a2429cf3542219eba6691abe8a55fdfc9384b5c",
+      "app/templates/login.html": "bfe5fc77d51132d2e7bc3aa8be35d640c3a18db643ea34b3e39cd1917d0e60f5",
+      "app/templates/materials.html": "0847db5a712dcecd191e655761e8865196cbd1fe35641af63a9b6308db40ae2e",
+      "app/tokens.py": "18e4a2e9e64d87349f9eb89731e7281d89ee86314285c68d23dfbdcfedf3b37f",
+      "cmd/admin/main.go": "46049211f9d28aad2fbd0a537582f8b44c0401d7e989d1f1c7a3b225e6ed6157",
+      "cmd/bootstrap/main.go": "c28706613406ac5184c59e9134c5396f488a1f091761390144f569983b6cc2eb",
+      "cmd/bootstrap/main_test.go": "5dd9349f28717bee9bdc33aa52948ba35c9ced10b6eea030f36dd4737c8c2d6a",
+      "cmd/migrate/main.go": "93f42b1e9567aaffbf49225639a355616ad1d02859c9e838cbb52c9b0abfb2ea",
+      "cmd/server/main.go": "b42ba0d7201512f0b131193dbd9efe08811812de3388d2f50c057f8bbffbbdbe",
+      "deploy/nginx.conf": "4ee6bdc95fe612b634822281f4665d77d7fc5aa42b72d488a2d10917dd57e910",
+      "docker-compose.legacy.yml": "8601ef86df66001561b777175c8886d9f343c85ff637bee76794c9bb2c6c38fb",
+      "docker-compose.retrieval.yml": "b7474220caedf2253802f2815c24abf20b1e1ad057d9ff289aa77e55ea89784c",
+      "docker-compose.yml": "4e24c4fe412a09942a67fad353da8d5b52e87c34e85815b699b39409f229510f",
+      "docs/auth/token-auth-results.md": "0e3bc32e2eb4f00c1fafff1cc5454016f5066b9db388d574fb67c17d01c7ce79",
+      "docs/auth/token-auth.md": "00aec51bbee1c504d4c29b65c575416ad5082edf1106fe8ad32a2238ee891813",
+      "docs/course-auth-knowledge-implementation.md": "b0a011945f14b104c9b21a1516bbd661ec8db9ed3785d81453bcb2202dc350dc",
+      "docs/migration/baseline-sha256.json": "b28a651b6a8b54fdacce41c81f4b5fed1943f870b6d3fbd4ff4bd2a2bc0c70e6",
+      "docs/migration/baseline.md": "31dfe22d8c3283a070743eae417b5bcf85703ad3fe1ddab672193579e33fbd97",
+      "docs/migration/go-mysql-operations-runbook.md": "6b74a6679436ae5766f5dd14acb234a30187b8f12d16beba7af77f7d9fb4c648",
+      "docs/migration/infrastructure.md": "c5c068ab6099f0e98babf6d88c7fff33b69f429b851dcac927e99c28da065f34",
+      "docs/migration/phase1-results.md": "744596b641bf083d8442293ab3315fbdc0343f7b97b1451370e9fb26ed7d0f1e",
+      "docs/migration/phase2-operations.md": "f30f5e7b11111b990606e5b2a6a43a3f80794289286b200a015e846b194e8c99",
+      "docs/migration/phase2-results.md": "78a839a211445813275bacf283c77b3e24625e4802b5831633c0c2ef1eb54b94",
+      "docs/migration/phase3-auth-results.md": "f527a760bf538fbbbd992a3bf62a2e839fc60caedd27d940151a99d3c17bc119",
+      "docs/migration/phase3-login-results.md": "26e237ac0fbcb181f88cad5029cc0ee0c920a14a917aca8f1c63fbf3525fd5e7",
+      "docs/migration/phase4-read-recovery-results.md": "53db560a31f1acde82204f39ee85530167e41d386e7ce5cbb4437404231e79d1",
+      "docs/migration/phase4-ui-results.md": "a873b23718a95a685476a6f1fc1db5322728f4ae2b656cd28515fbc8fdf4d672",
+      "docs/migration/phase4-upload-results.md": "f94266754598e493494a03abb5457ec886bee290611190fa465f6272c714f2dc",
+      "docs/migration/phase5-compose-results.md": "c8bd48c8be4338eabfcd5af6b668da7851a0844f98e25925479c824688f8100b",
+      "docs/migration/phase5-contract-results.md": "e6b4286ffddbfddd12d63484792cb88f9fbef3a240b5d45464aaa95f6afdb09c",
+      "docs/migration/phase5-cutover-results.md": "2dc571f1a11347ee469ed8dfdda691ced58580e0871330223f97ee6c0a5cf3a2",
+      "docs/migration/phase5-http-contract-results.md": "012c4691271850b5910ebad42e21d9d72a643f8e323b832265c62e16f819ba79",
+      "docs/migration/phase6-final-verification.md": "c54af0b08e7a63af63cce63680ccdf97a3fd744d3c716ba12d444d45fa8259f3",
+      "docs/retrieval/README.md": "f31e0302c9b75d42209059b60121e879c49384b80c6a3c4b4d3a01d9b00bd0dc",
+      "docs/retrieval/auth-test-mapping.md": "2da84458f715dc23f15c3bb9ab49fe8e964be0b5f668c9cd1ed5793879f1874a",
+      "docs/retrieval/demo-a.md": "5f0a0eb710115b079dd5d81ab199abc4d2614d76e1fd37cb005958332ad4c603",
+      "go.mod": "8bd6ec76cfd082a85a8bdd0c8de8f8e77b0ffa9b761b2def4a717280f80af69f",
+      "go.sum": "a16f19ba296fd0dd9d6c61ad1e29ad46fba9ab0175df999e2adced01400f0f86",
+      "internal/auth/identity.go": "7fc0e179825cbdf608d5340799e4ca76c3e4e8bd5a787f536eca575a27f7b9cc",
+      "internal/auth/login.go": "af6949e797042f735c86c871cb70af9f7a4186d43610d18c201aca0c0aa291fd",
+      "internal/auth/testdata/flask-token.json": "da56903e2effbefd9c33d110e6bc1ffd98637dd82bfffd3b5b6219ee89a06b3b",
+      "internal/auth/tokens.go": "505e8c6b9c28588dd4308eb10e2e0aa68b38c09a44f95eacaafde2f33b256f20",
+      "internal/auth/tokens_test.go": "f2b91744585a488ef06a5496fae9d531404951c92389a2b47d95144d23e52404",
+      "internal/config/auth.go": "92411d110a4c284fd72ebb23fcd88bf99b53eeb71823be17c594c07880580f21",
+      "internal/config/auth_test.go": "e5c6d38ac8264f97a7827f7c31f0324f6309e537879a8a8b0dc9a0a3f008813a",
+      "internal/config/config.go": "1743c121faeb51c1485c75ec88bad5b30996f6864c43fabfce8daf402d8be6c9",
+      "internal/config/config_test.go": "1fe1f3221643dbe6368b7b875eb8fa38bab416ecf05ea05efda0debdd9d5b308",
+      "internal/config/upload.go": "deaa59225de321bb2c8041c304a1168bfe85284f72aa740a9b00661b4f9cba58",
+      "internal/config/upload_test.go": "3c9c48a79cba3e308dccca8cd81febe99f2f69d0df3e5e4062815f7d00688245",
+      "internal/health/service.go": "54fc3cdb32cafcae9bf5ae88ed21e8a9da1ba07e370a15fa566e9ce9707a7a90",
+      "internal/http/auth.go": "1331a3dfbbc285dbefa8202256e317171af573698580baccd96a5e01188f4c82",
+      "internal/http/auth_test.go": "48d7201e8fcf6f0b4f19249fcfcabad62fbd727fab9ad39c6eef6cb280f72526",
+      "internal/http/handler.go": "b704e06f5bd0252f89a5251ba9c0cbb87578b4089f63a4c38f98165fae2e4d17",
+      "internal/http/handler_test.go": "c5885f396d8742b546fe4950ffe58f13fc46f04098e6675604a90703ca425f57",
+      "internal/http/login.go": "a5108137643465ba613a773128eddf47fa9bf4c89acb93fe895e982ee9aef68c",
+      "internal/http/login_test.go": "25302ea3bc57369a6412cf164f89d99f0f072d12afc6f96e01afd933d73ef3db",
+      "internal/http/material_reads.go": "097e699627c56977b1a62532559408fe0cc7def43baf1d33f80a223ea3e70ef4",
+      "internal/http/material_reads_test.go": "d92f490db920d75ea55cce2dc8ee71a9fb2d8b47c116c543ee806d12925151b7",
+      "internal/http/pages.go": "d864562be4280cf9785723a8d4d86ecd1f129ea867cce45c032b67b35f7e3e20",
+      "internal/http/pages_test.go": "b567bffd86ef0652872c1f3d339a7b5ab2ef26fab634d14bc78193887e43e311",
+      "internal/http/upload.go": "99186b519845e3b7157a73993556636aca0698ea8b8bdd3fdd3716b2ad666c8e",
+      "internal/http/upload_input_test.go": "c9045d4bedd653e0fbf6af30d81706c8526d4a9a5da93163c6b540d7d23a742b",
+      "internal/http/upload_test.go": "55ea4df18373658164fdc0e309b8404289f12489619d819b797d3a1e899e2f88",
+      "internal/http/web/README.md": "0804971bba8a0ef5f7023df6fdad70c4622582f12589bf0a241525d11bf3e621",
+      "internal/http/web/static/api.js": "037a7e364cdf6e0d61e6d8b0ec56e11bde1f0241bdac00f481ed24be4722bf2a",
+      "internal/http/web/static/login.js": "4dd06fd04534fcff6d196e615464b9cb31c6e05c4eb9bec2871a47ba0c5449ea",
+      "internal/http/web/static/logo.png": "7a07bb109fc0c939d497b8db8baff0ebe6721fc5242ad2f8676f7d08d3a5a757",
+      "internal/http/web/static/materials.js": "b4f8ede466a502ce5feab0f107ef962c7396151369b44343c73ab589adc387f9",
+      "internal/http/web/static/styles.css": "dbe523838a0a2e561a1cdbe5deffc6e337c49a4b1640e0ea4d0d03bce68d0790",
+      "internal/http/web/templates/login.html": "7ff72560c53f93dba593223c1e5c25d6bbaa130339a3326980932978f20e28de",
+      "internal/http/web/templates/materials.html": "f016e4fa68408c2b62e1c39700596f6463cb6b300a51439ab2e00ddc7d8bc9fe",
+      "internal/material/read.go": "91c7aee62238e7f63d2957eed6df7177d71340f11bf672febc275ac92c756912",
+      "internal/material/upload.go": "6f0b2dabc08149931af536d223643d1deb69c95b1a09f6b68465274ce7f8af71",
+      "internal/material/upload_test.go": "0785fd6485a7f33e84a102bad83fa07ab2a1b4180d5d933fae509b438af9d1e1",
+      "internal/migration/integration_test.go": "bd01781e04b9fe0833896edd93f4ff53a892a499d4a12434545e3c7f6c69f0ce",
+      "internal/migration/source.go": "9e3f766ddc9ce0735ec6a4f296a71944c3be329922ef87063a494dea9ab35c23",
+      "internal/migration/sqlite_schema.sql": "2cf0426b04d895fc5acc76d2ac2534a3c9ca5a81333ddf39ec3854b5197ceb0b",
+      "internal/migration/sqlite_sessions.sql": "879f4f6c07c52bff8cb45cf26fc3fe38d88e1d87dc802801f1c3c4179d86cbd3",
+      "internal/provision/provision.go": "ba9f42734447f77c02f1751e9c06bbc81e0b85b3e68578a90e9431be7a17e974",
+      "internal/recovery/startup.go": "0ffca5b1e32991a9a9e923e68c4b6b5b5d3efa84ab5e3b46e9a35bdce617f96c",
+      "internal/repository/mysql/auth.go": "7f2e8148e90492010d63511631648215c6b12ccd5db510dda0df8d6e6a05f716",
+      "internal/repository/mysql/auth_integration_test.go": "3514fc77daa534a7c44819389e6d25ca163cba6cf973e84fbc2d4bd90e9969dd",
+      "internal/repository/mysql/auth_test.go": "786151f28c97bdc3788dde1f5c6696fe89c0f22cf6cd80e1f108fa966fd3b371",
+      "internal/repository/mysql/catalog.go": "dc1676d589d8c43f930c060dde9ccbd57f63b794f4eb21f3ee4e88c026e02cc5",
+      "internal/repository/mysql/material_reads.go": "5d6042e868e3eaccb60d47b736efb416e27406b20255cc021615ec47097e353a",
+      "internal/repository/mysql/material_reads_integration_test.go": "5c4a0dfda40300645f4bd4a1b543178f25a67f489bbf60c83043d21001fe5326",
+      "internal/repository/mysql/material_reads_test.go": "841a7344060e7e6091efa77032ac0068bfd01b41aca745b6934474aac0a9b073",
+      "internal/repository/mysql/material_recovery.go": "159a9b90c0fd266c28066a3badf2165acf0a301b5387a3e28b4bd299339651af",
+      "internal/repository/mysql/material_ui_integration_test.go": "c495cf4b813883e2eec4557a57f1eca10f35997d209a6972d32454fe96467e79",
+      "internal/repository/mysql/materials.go": "0f7b092bdc297dd0a611a336e04f7a975b65c59cb967852b2b193faa9355910d",
+      "internal/repository/mysql/mysql.go": "ea96262bc9a5d5d9057fae0bfe29592de929c4c8e78547f60375e50392d26ea7",
+      "internal/repository/mysql/schema.go": "eebbf6cc4915e5ae62d67cc03df805b135972bd94c56170fbf2306fe0bdbaca4",
+      "internal/repository/mysql/schema_v1.sql": "20e2595bf9cdb476d0fe455eedb534ab7314a3c9c9a56af615aeb522d143219e",
+      "internal/repository/mysql/schema_v1_catalog.json": "1089fb3031856ce558868dc4efc33eb5c524ec83ece29f14cf3fd4c989e0b032",
+      "internal/repository/mysql/upload_integration_test.go": "328bf80786e4e41ec33357abd9f4c21c5be436ddf62ace699f3f6e330a0ecc45",
+      "internal/security/doc.go": "fa085831a9d9c67f31d4c3c8121f9d55fadea0c0434e8804e9716b1ca601b8a3",
+      "internal/security/password.go": "6295d53591e2631b3b9e7f53345d1ae90aca1153beca82c166aa524d232ec6b6",
+      "internal/security/password_test.go": "c4cfb2c74cd5a93dea643bb4fa4b0d9c26899237bcf4a69bc61640415c5dd072",
+      "internal/storage/probe.go": "e396aaaea2079ef5cbda60d42ea663b2fa87ddf14914f8cb0db18feeb7f5d0c8",
+      "internal/storage/read.go": "efb5eef0881f68a2f8f7cd2505fb1f64ed8de6200ee7260460f209ee09334351",
+      "internal/storage/recovery.go": "5b3203231af84c7d36b8af35c8038d51a03a77230b817c176e433f65ebfb8810",
+      "internal/storage/recovery_test.go": "ebe3202b601317772cedc7b194bec2c53b9ae261ed6feac8c4e512f307a96266",
+      "internal/storage/upload.go": "4866d80879a411c194b53ee4530364495d64f4be523a590f55cd844a1b5f254d",
+      "internal/storage/upload_input_test.go": "3274a6249870327930affd9e6ae23b57837333e29703a444a9015c608cca90a4",
+      "internal/storage/upload_test.go": "d710db70b4cdffb67697435091c8bddff6fab6a114e237b515cb6b7e89736fea",
+      "internal/transfer/integration_test.go": "0c216c9dc29f2d51c9c6ab0a8f98538bb77516ec7cfaffff4ad1e301ce0caf6d",
+      "internal/transfer/publish.go": "223f8fdbdd5039798eac27cd3cc365defa4cab7b601822d684bce1016412e4a1",
+      "internal/transfer/ready.go": "10c68e5d79816e1b2dea7211d2626506370342fbd56f01609663f10040c3d157",
+      "internal/transfer/snapshot.go": "7d44eb463f0fb7971a3ad2a8b2e49c15d19868f8eb02cb0d85427c3bad8a762e",
+      "openspec/changes/add-class-scoped-material-library/.openspec.yaml": "d04b6ad7c1b1e5eb9e8ec8cfdae94bc49d29216b59b73cea7a3cc1de9d508463",
+      "openspec/changes/add-class-scoped-material-library/design.md": "9c96f1553a02d06c868b742d75456ccd24bc083f98e4dff5ccc81aae9f252748",
+      "openspec/changes/add-class-scoped-material-library/proposal.md": "3e9dae650baf4a1c8f6a4ed66e7948a821cf5bf37306525e31dec703fe747b14",
+      "openspec/changes/add-class-scoped-material-library/specs/app-runtime/spec.md": "0f396609a0fbfafb836329d19d7e33ea0d2194de4299af830a728478003402df",
+      "openspec/changes/add-class-scoped-material-library/specs/class-access-control/spec.md": "c78f81ee70e04e07d128dedb75a982e305aa967ed3567b3545b94a4d279d0d46",
+      "openspec/changes/add-class-scoped-material-library/specs/material-library/spec.md": "695b8c6698188c5e40331f6a667312b9c06447abe1ece8fc02d652c8a7416b96",
+      "openspec/changes/add-class-scoped-material-library/specs/user-auth/spec.md": "e9fe276502522b77485814249c63e228832b8f7261bf433f6f59e103d723ef3c",
+      "openspec/changes/add-class-scoped-material-library/tasks.md": "78434d77efcd063b48b6cb5a98a53a14614d99fdcb237adf0907df923ccc3e61",
+      "openspec/changes/add-class-scoped-material-library/verification.md": "f45df0b1f15d03fd3b786b9e0a538ee0fcf2654f378f5b0e59a218e5529bb0be",
+      "openspec/changes/add-traceable-vector-retrieval/.openspec.yaml": "062e545e250441aa0692c22d7a65e07334f1c0f2e706c0e297f36065b6a0699c",
+      "openspec/changes/add-traceable-vector-retrieval/design.md": "2a069e93285c12ef91740e66db71e696e7f9e65cc57f5bc4e47269c947a409f5",
+      "openspec/changes/add-traceable-vector-retrieval/proposal.md": "c24d5d67bebfe5dd8e6f72d6055c8485ae4dbf6655b4b88adf6e09fec4e72d03",
+      "openspec/changes/add-traceable-vector-retrieval/specs/traceable-vector-retrieval/spec.md": "22be35c8aaa52e74960bbb66e7d1c3924f85999ba2ac8f121288355686f61ad3",
+      "openspec/changes/add-traceable-vector-retrieval/tasks.md": "939ff741579e9a87d4f0e85fa8b6d01532976c74070c61b6556bd0cfedc9b731",
+      "openspec/changes/add-traceable-vector-retrieval/verification.md": "45592230a19a58aaf3646c9c76001d6d2b02de4426be97d4ff44bed8e815b948",
+      "openspec/changes/archive/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "openspec/changes/migrate-backend-to-go-mysql/.openspec.yaml": "65ff9df577b54daf8b21917c880c564135cf80d9e6a2de690feb0f4a842393f1",
+      "openspec/changes/migrate-backend-to-go-mysql/design.md": "13a038e91f716231c707a8f69d1895026aac968d795c2297d18b47c1ca2aeba3",
+      "openspec/changes/migrate-backend-to-go-mysql/proposal.md": "0262dfc36e5f46e8e733447a8c36e7f7879117cd9e1dae4274b764c1f9478ef4",
+      "openspec/changes/migrate-backend-to-go-mysql/specs/backend-stack-migration/spec.md": "2d1ed12565b87750c3b85c5d9fa0427adbb7600e8f1f8208b8956cf1848ac6c1",
+      "openspec/changes/migrate-backend-to-go-mysql/tasks.md": "4ec67ad58b53da70c10ee4c29fc414227f0b98db3d0246b11bea883c39e7ee74",
+      "openspec/changes/move-auth-to-server-side-session/.openspec.yaml": "062e545e250441aa0692c22d7a65e07334f1c0f2e706c0e297f36065b6a0699c",
+      "openspec/changes/move-auth-to-server-side-session/design.md": "b581c12171e88bd0a17b015acce0a9fd7e78d4f69efc59fa04ddcb77b16189d9",
+      "openspec/changes/move-auth-to-server-side-session/proposal.md": "6fd10ff64130f79e4a1820c29013849c9311199c966e1d719114d04ead8fac3f",
+      "openspec/changes/move-auth-to-server-side-session/specs/server-side-session/spec.md": "c03a945bfb83ed0bc88c851f4b38a65892f95cfb02480147946452ed3f847a67",
+      "openspec/changes/move-auth-to-server-side-session/tasks.md": "ad60deff9b7089e1960a73e32846664fc9bf35016b07e72b6d0f96b871a35d1c",
+      "openspec/changes/replace-session-auth-with-token-auth/.openspec.yaml": "dadfffd827282f22738d1215a8fa326bc6e3bda0a2aae3e3af6d203a1ef4c4aa",
+      "openspec/changes/replace-session-auth-with-token-auth/design.md": "9e2d493d943765b58abe5300665250cbcd41b91de6a55515f088425a4cfe805c",
+      "openspec/changes/replace-session-auth-with-token-auth/proposal.md": "4c86a20bcf6b523a85a78c496a474c5ce4c383a4ac6db00501dec97d69327bfe",
+      "openspec/changes/replace-session-auth-with-token-auth/specs/bearer-token-auth/spec.md": "b54cfaa77fdda2b7386fe28d5c2716475c076092d56aa78e183810b666664ca6",
+      "openspec/changes/replace-session-auth-with-token-auth/tasks.md": "79bba8307aa314615c1e35631e6590a977846da4220e9031bfdb9966741d934b",
+      "openspec/config.yaml": "2a791b0ccc50e2c2ebbb3ba28692a4ad0e4b6ab94ed2151375ac404d7056e89a",
+      "openspec/specs/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "requirements.txt": "187fadb36749dac728edec51e279ae75299f6db8dbbaf55a5801a08dcab1533d",
+      "scripts/check_phase4_go_browser.py": "563287bd9ead55a0a83188cc468596cf721c3ae4cdd6d8f4f13c1bc20e655be1",
+      "scripts/check_retrieval_demo.py": "de90b7ec0121f556a6f807e3720d4f9f09ace49b71b025ddad5f9a87447ea319",
+      "scripts/create_account.py": "66831f2e2e9ff45f4654c6ab0266d5ceffb1f982415f86efc4ec81c6e0d7def1",
+      "scripts/init_db.py": "bb5275fe2ca33a295846aede68b3887c46658902eb2c437e61f07152ac48a998",
+      "scripts/migrate_retrieval_materials.py": "8e04042e3f23f01678bf5a9bd3ddf93c14a0ef5acd9f7d6f654299f5646cf608",
+      "scripts/serve.py": "5110e7510da43db59f2238bedec9cba932c6287776170d0f44e6e99def1f8687",
+      "scripts/serve_retrieval.py": "3bc08be672d1b108c7f147e86356c061f0595fa2244f31468add73f20f141348",
+      "scripts/verify_compose.py": "9c341d7a747633a0b883e9eef0c765def04e645c30ad63d2125234402aab0623",
+      "scripts/verify_phase1.py": "ac36bb29b6fdbbaca89b1004b13929e3de321db9f60a2d3ebe69d367f18539dd",
+      "scripts/verify_phase2.py": "1225213b3f9cc47daa7880c7301ce9b5b616fcfcf136c6fc59659fd29a3311f2",
+      "scripts/verify_phase3_auth.py": "02f528cd4b86b811ea08b48a6e04c0ce9002ff985ff96779741f745b0d09ad84",
+      "scripts/verify_phase4_reads.py": "8329051327057ed5308e1c7dc897ac355b9e16caa08a4d0cfa60672ae4227777",
+      "scripts/verify_phase4_ui.py": "6d401d43d9fae5d97436ba4439b5f58b2a69ea1f426f87f98b556ccc4a2b5ccd",
+      "scripts/verify_phase4_upload.py": "8d81d423b3ed910d9ecac22bff4893cbbf117d928f67f7b02d3955c52827b607",
+      "tests/compose/phase6.py": "1928df8d03afa5fa22cd0bbf3fe5387bc0e556b875cd10fd37014b67181a1828",
+      "tests/compose/run.py": "daa8e659d803c6e885a304b046c28f07385249a9522b943174cc62ad72297b1f",
+      "tests/conftest.py": "9f6cd394cc400a3c84faf065baccb46a96859cead9b1abeb81ed27df02e3b9f7",
+      "tests/cutover/Dockerfile.backend": "16a6dda51c82dad354824d1bff937c1656ff934346d179b4eb149d80b60ae742",
+      "tests/cutover/README.md": "1a6500560c55b85a5421d903e2ac2d5ba204a920b6a95b923e2cea73b1ef7e93",
+      "tests/cutover/gate.py": "4dae95dc99b949450b16a5513626ed141db72a53c53bad424c04ed3614390646",
+      "tests/cutover/run.py": "b6db74d6c416eb1fec6bddb8751fa9a07d1d210b9cc01460bbb06686fe7b67f4",
+      "tests/cutover/test_gate.py": "48e67c5305330f1360f8f4f8cfd0bf2342bcbc0446ba0ce33388fb85f7ef2be8",
+      "tests/http_contract/README.md": "0f78f12eb808544967bd024dd72b8a232e71b188d791c8aec4305133781eaaba",
+      "tests/http_contract/accepted_differences.py": "55be015f145c86a25009a9700041fb7216e88b8e2b1100c3426b3fec279ab8e5",
+      "tests/http_contract/adapters.py": "193e87bbb95fbcc4a85e55b04f81334b30b151307dcfd473b680adea6e413a88",
+      "tests/http_contract/cases.py": "12376fd01785d990d2fb299e223afee20f74b9e4272930a75eaec1617f77f10b",
+      "tests/http_contract/fixture/main.go": "16d7ed663bf69040c09f38545fbfe76279495411bbc80933f44c47b2b4aadc70",
+      "tests/http_contract/fixtures.json": "ef0329bfcea0cd59ed13de47f00634735ef6ad265883a29684f1aa46895ba81d",
+      "tests/http_contract/run.py": "b7c0dd6ff07e762231508463a7e15426443b5b9cf4626ce58a921f2dcb4a47d1",
+      "tests/http_contract/test_harness.py": "c19c19547c296df15387b81bf0d4f3ccb3d6d37f19b965f2ac0ba31d020c124f",
+      "tests/retrieval/gateway.py": "91c26faabe7f8e72a12daf1e71a79ecf5b0d3b04d346aa2d78b0162c294f2ce3",
+      "tests/retrieval/test_clients.py": "3d254ae7c30f4a363d5101a4044a4c7a0799fdd50deb63b0ee32a9e3d02dcef6",
+      "tests/retrieval/test_configuration.py": "b98faeb5d7ac7e394f3a9f1718abb2d607b922f7a7336cb4291416c38e9a3ba3",
+      "tests/retrieval/test_core.py": "220b285e91a466debf33fa3e00bfeef301a88f62b8edbc92389bd9982a20d78d",
+      "tests/retrieval/test_integration.py": "d7797b5c6cf54526ab27a70598bb602b6a56ce8090fa4ccae3e7587fe3c70d5c",
+      "tests/retrieval/test_remaining_integration.py": "a9f1ddc8eb9c024b42eaefc6f9566aa6b3c63891ee1df12a857ece884cb1bd1b",
+      "tests/test_auth.py": "6b33a155cfd18ec91ae8cbbc50163d13ec81eff6d3f6db77d13263c782d4e565",
+      "tests/test_db.py": "e19d4812eeb92d336d741103e1a4931f23b8cbadc25b1721e3a60a896530dfd3",
+      "tests/test_factory.py": "3862425d68a4449c9693cbd5a9b1fafaf5645d3c1e15dabf70fcf6c59f1ca944",
+      "tests/test_health.py": "8c0fdcb15b376fd08ce2e52025a28911188fd019a9034106b16d196a4298e4b3",
+      "tests/test_material_routes.py": "3488ab093d0be4125ec23cb3ba91e8be503cd82887dacb272b1e311b1d39b54e",
+      "tests/test_recovery.py": "21d1757d9b0d47abd8ad0ca0589ff6761b92922b3ab559d6bcfc54caba4ff4dd",
+      "tests/test_schema.py": "68e9def15c5ae77fad7e34823b327ff7f38b39625968f3bbbf91ab139f0c08e6",
+      "tests/test_seed.py": "90d2c6a59a118a96ff73f360781803d67369398d686fcb3210c054fb2db291a8",
+      "tests/test_sessions.py": "d7414d0a31d298b65641b46add3e3004c629ec4fab9e7ece902110b5f07c47ca",
+      "tests/test_startup.py": "4e22dbb7272a0772e5fe0ee3911d578929e0da2fbe47d61f5077d25d89a318f0",
+      "tests/test_uploads.py": "f7b9dac4c2db6bd0ef06c970c12d32833d8745337b5bbb8a0f8ff8ca82aa67e2",
+      "tests/token_auth/conftest.py": "a8d6ab0606f575baaaa4c94a83861a4c1e1e9fde03dbf52b8fc95d7c09ef368d",
+      "tests/token_auth/requirements-browser.txt": "b0efb80b4faee203bd69fe101d8ac39f26f03a633926932ca874b88cafa30b07",
+      "tests/token_auth/test_browser.py": "2c1fe29bad8e8e89e11bddadb5f8ded83cce770bab1dcc5700aec865718baeac",
+      "tests/token_auth/test_http.py": "bd98ac80f4a5f251ee0db26eb165f9cc4d059780b2eff6b2770a458dd4010e00",
+      "tests/token_auth/test_tokens.py": "6887a8163908007ad38078ed64789ad737b43e999607fca27bfffe17cb942c60",
+      "wsgi.py": "d0e730c9f0089d5c52970d5cd0beec0557567936e631f7236b13f4245b7eea2a"
+    },
+    "before_change_sha256": {
+      ".openspec.yaml": "dc08c29816def5c12ac71497ed005c1c0d6d779aa76f03fa6cd1d3ed38d91ec9",
+      "acceptance-matrix.md": "9f789b7d0dbceb1d8d26d024cd5c4babb13b58011be37caa594f32e6bd9c4b2b",
+      "design.md": "6509942d1d1ecbae70ede0a85bd7ad656f564cea88b08c344f80445eb520ecd2",
+      "phase0-baseline.md": "f53cc3b7fec3e2713395c2976140d83170dbe59794d8f000cd27806295dc86ae",
+      "preservation-baseline.json": "afd7957d1aac1097db076b9ede3b88be85b28bd3b31beacc42de14b465a5eeae",
+      "proposal.md": "98a19e2575a3480fb20fe40bd7b46e7f4c4138846081113c43e322f7e6ad45c5",
+      "requirements-traceability.md": "530292d7d5c3116985c4204e60026f9205dbdbad5f0bd9d484287ed36318b535",
+      "review-summary.md": "2805fd878c34a233124bd4f170c1d91553c45ad3ad50822f3a929e3a42c1c8ab",
+      "risks-and-open-questions.md": "ea97d5d08412d457f047845a30cdf7e582d75ef89e265bf0311c4b92a2656e44",
+      "tasks.md": "5e9c5653c1cbb2c7ee50724744c03adf029beceb7959760216a78f6e43fab74b",
+      "verification-result.json": "7a387dcaa76faf56674455b76039309bff46d3a8c5bf90fc4e8ef616f14ac41d",
+      "specs\\week6-mcp-acceptance\\spec.md": "ca08dafd01d536fd1086780b08701cff7ad92d684da38d8e3341aced6ca52396",
+      "specs\\week6-mcp-management\\spec.md": "83d2673b5466d5c6cf85fc231379db6fe8ba4b05c10fa9dc7be00b77040d372c",
+      "specs\\week6-mcp-service\\spec.md": "139f80c8107eecf69dce34b0d3b7d41062525fc3aa196538a6776f4bd82f8253",
+      "specs\\week6-skill-tools\\spec.md": "4e7615c247e41ef35e5996a4f8f8ace54f2528de9f57e80f5e061dc3b90c610e",
+      "specs\\week6-tool-conversations\\spec.md": "97011dea85f7db8abc0e47c8c5f8fc500b78efb3a6380c6cdfd3197968e11b2a"
+    },
+    "authorization": "User explicitly requested existing change official alignment and document revision; no business edits",
+    "requirements": [
+      {
+        "n": 1,
+        "id": "W6-F01",
+        "test": "W6-T01",
+        "cap": "week6-mcp-service",
+        "name": "独立网络服务",
+        "desc": "提供仓库内 mcp-server/ 独立进程，Go通过网络调用真实工具，不在主程序伪造结果",
+        "when": "独立启动服务并用独立客户端调用，再停止服务",
+        "then": "启动可发现工具，停止后Go观察到不可用而非返回模拟成功",
+        "old_sha256": "9bb30115ffb17f9aacd7fdc055c445c342e7f21bce4ca63afae95138359984b3",
+        "official": [
+          "O01",
+          "O33"
+        ],
+        "task": "1.1",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 2,
+        "id": "W6-F02",
+        "test": "W6-T02",
+        "cap": "week6-mcp-service",
+        "name": "课程HTTP协议边界",
+        "desc": "以独立HTTP JSON-RPC实现initialize、tools/list、tools/call，握手版本由项目声明，不把课程子集宣称为完整标准Streamable HTTP实现",
+        "when": "独立客户端握手后发现并调用，另发送不兼容握手和未知方法",
+        "then": "三方法真实可用，返回可读RPC错误；不要求课程未规定的GET SSE/批量/session才能通过",
+        "old_sha256": "40a0d389a91dc27c8946cc37ebd91bc48cffe306bce41a28ed836c578858ca52",
+        "official": [
+          "O02",
+          "O38"
+        ],
+        "task": "1.2",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 3,
+        "id": "W6-F03",
+        "test": "W6-T03",
+        "cap": "week6-mcp-service",
+        "name": "传输与信封",
+        "desc": "提供POST /mcp与UTF8 JSON-RPC 2.0、匹配id的result/error，base_url自动补/mcp；学生会话SSE与MCP HTTP分开",
+        "when": "发送正常RPC、畸形JSON、未知方法、错id；以不带/mcp的Base URL连接",
+        "then": "正确端点可用，result/error互斥，错误可读；错id不可算成功",
+        "old_sha256": "69d2db09dbafb8ed504a63b2d01ce0b78e4df77488011c7adcc92a80efc7e54a",
+        "official": [
+          "O02"
+        ],
+        "task": "1.2",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 4,
+        "id": "W6-F04",
+        "test": "W6-T04",
+        "cap": "week6-mcp-service",
+        "name": "工具发现",
+        "desc": "通过tools/list返回工具名称、说明和inputSchema，连接后以事务完整覆盖缓存，不追加幽灵项；项目限100项",
+        "when": "连续连接两次，再让远端移除工具或返回重复名/超量列表",
+        "then": "两工具真实可见、行数不翻倍，失踪工具消失；非法列表不发布部分缓存",
+        "old_sha256": "efcb8f7fc338ca3718a4c18a24e528ea35983898e66a232e6df7cdb52d95e43f",
+        "official": [
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "task": "1.3",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 5,
+        "id": "W6-F05",
+        "test": "W6-T05",
+        "cap": "week6-mcp-service",
+        "name": "输入Schema",
+        "desc": "为每个工具发布并执行严格JSON Schema，不接受额外属性、类型错误、过长文本或非有限数值",
+        "when": "读取Schema并对缺字段、类型错、额外字段、超长输入发起调用",
+        "then": "Schema与执行一致；JSON-RPC -32602，无计算副作用",
+        "old_sha256": "afebd589230e98961682387413db369298f668ed0d056f04c220b4cf06bd221a",
+        "official": [
+          "O02",
+          "O04"
+        ],
+        "task": "1.3",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 6,
+        "id": "W6-F06",
+        "test": "W6-T06",
+        "cap": "week6-mcp-service",
+        "name": "公式提示工具",
+        "desc": "实现formula_hint(query:string)并通过MCP content返回公式/步骤文本，不直接代算最终数值；具体题型为项目示范",
+        "when": "以query传去括号或圆面积问题，再发送缺query/类型错误",
+        "then": "真实返回可用提示文本，输入非法被拒；不强制返回嵌套JSON",
+        "old_sha256": "5b9fe73259b4893f520eac3e11411465869632bacdb1a35ebf26ea61b532d7e0",
+        "official": [
+          "O04",
+          "O19",
+          "O39"
+        ],
+        "task": "1.4",
+        "classification": "课程示范+项目选择",
+        "audit": "修订"
+      },
+      {
+        "n": 7,
+        "id": "W6-F07",
+        "test": "W6-T07",
+        "cap": "week6-mcp-service",
+        "name": "单位换算工具命名",
+        "desc": "以unit_convert作为项目最终主名称，参数value/from/to，真实提供同维度换算文本；unit_converter仅为上一版草案名称，不自动注册别名",
+        "when": "tools/list检查名称，再用value=1,from=m,to=cm调用及异维度输入",
+        "then": "发现unit_convert且换算100 cm；不存在必选unit_converter要求，非法维度失败可读",
+        "old_sha256": "ed5edc59b27710a30376c07ee050b7a8de16b59047480298237b32be9d673f91",
+        "official": [
+          "O01",
+          "O04",
+          "O19",
+          "O39"
+        ],
+        "task": "1.4",
+        "classification": "课程示范+项目选择",
+        "audit": "修订"
+      },
+      {
+        "n": 8,
+        "id": "W6-F08",
+        "test": "W6-T08",
+        "cap": "week6-mcp-service",
+        "name": "执行返回格式",
+        "desc": "tools/call结果接受MCP content的text数组和isError，成功文本先安全处理；不得要求所有远端text本身也是JSON",
+        "when": "执行返回普通中文文本、工具isError及未知工具",
+        "then": "正常文本能用于回答，isError为error且不把失败载荷当成功数据",
+        "old_sha256": "a3bd56b694465896cccb582fdec67a66792741b5b3d3456329b957dbfbe5dfb1",
+        "official": [
+          "O02",
+          "O04"
+        ],
+        "task": "1.4",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 9,
+        "id": "W6-F09",
+        "test": "W6-T09",
+        "cap": "week6-mcp-service",
+        "name": "服务Bearer鉴权",
+        "desc": "独立服务对协议入口校验专用Bearer凭据，缺失/错误为401，不能使用学生JWT代替服务凭据",
+        "when": "分别携正确、缺失、错误服务Token和学生JWT调用/mcp",
+        "then": "仅正确服务Token可发现或调用；响应无Token明文",
+        "old_sha256": "0b67b617da5135400708ee2b1661ed1eb9d88e95ba955e2642002e15a68b5eed",
+        "official": [
+          "O03",
+          "O33"
+        ],
+        "task": "1.5",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 10,
+        "id": "W6-F10",
+        "test": "W6-T10",
+        "cap": "week6-mcp-service",
+        "name": "健康与启动",
+        "desc": "提供最小无敏感信息健康检查和明确启动命令，缺少服务密钥启动失败；不以health成功替代协议连接成功",
+        "when": "缺配置启动，再正确启动并检查/health及initialize",
+        "then": "缺配置非零退出；健康仅暴露状态，连接必须实际握手",
+        "old_sha256": "6f874d661518b0aa24383d4d0d0d8da5e0f693456694bff562b1aabe952825fc",
+        "official": [
+          "O02",
+          "O03"
+        ],
+        "task": "1.1",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 11,
+        "id": "W6-F11",
+        "test": "W6-T11",
+        "cap": "week6-mcp-service",
+        "name": "工具执行限时",
+        "desc": "单工具执行及网络请求受可取消截止时间约束，不自动重试tools/call",
+        "when": "让工具延迟超过3秒或取消请求",
+        "then": "在限时内取消并返回timeout；实际执行次数至多一次",
+        "old_sha256": "3f728e04ac0a1318c2595efe4c006bbfc2889c98e2859b12da0fd1d19a43bfb7",
+        "official": [
+          "PROJECT"
+        ],
+        "task": "1.5",
+        "classification": "项目补强（非老师新增要求）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 12,
+        "id": "W6-F12",
+        "test": "W6-T12",
+        "cap": "week6-mcp-service",
+        "name": "服务异常隔离",
+        "desc": "网络断开、非200、非法JSON、响应超限或协议错误不能伪装正常结果",
+        "when": "停止服务及注入畸形/超限响应",
+        "then": "客户端产生稳定脱敏错误，不向模型注入失败载荷",
+        "old_sha256": "240bd3a27423ff5528dbd7938c809fe2cc87822134ed9b0791a17866f344063a",
+        "official": [
+          "O02",
+          "O09"
+        ],
+        "task": "2.5",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 13,
+        "id": "W6-F13",
+        "test": "W6-T13",
+        "cap": "week6-mcp-service",
+        "name": "Compose私网集成",
+        "desc": "以独立Compose服务接入Go私网，密钥由环境或secret注入，无默认公开宿主端口，不依赖Flask",
+        "when": "在独立项目构建启动并从Go容器握手调用两工具",
+        "then": "服务健康且网络调用真实，无现有卷或Demo变动",
+        "old_sha256": "a6aec1a73357e845b83e45698099da5f25649e4b2a0bcc9a54c1f2ef594af082",
+        "official": [
+          "O01",
+          "O40"
+        ],
+        "task": "1.6",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 14,
+        "id": "W6-F14",
+        "test": "W6-T14",
+        "cap": "week6-mcp-service",
+        "name": "入站安全",
+        "desc": "验证Origin及Content-Type，限制请求大小，禁止任意脚本、文件读取和命令执行",
+        "when": "发送不允许Origin、超64KiB请求及脚本样式参数",
+        "then": "分别403、413或参数拒绝，无命令/文件副作用",
+        "old_sha256": "399a5dc764c134b78d3c7987f68ff2daa5b313ff3c5a1d67594f39d83ebc0bcf",
+        "official": [
+          "O03"
+        ],
+        "task": "1.5",
+        "classification": "项目补强（非老师新增要求）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 15,
+        "id": "W6-F15",
+        "test": "W6-T15",
+        "cap": "week6-mcp-management",
+        "name": "登记服务器",
+        "desc": "教师以name/base_url/auth_token登记本班服务器，同班名称唯一且初始connected=false；响应has_auth与tool_count，不含凭据",
+        "when": "A教师登记、同班重名再登记、B班同名登记，并检查全部JSON字段",
+        "then": "分别201/400/201；响应含base_url/has_auth/connected/tool_count，不含auth_token或token",
+        "old_sha256": "ca6331f50403ecb2c9f40c5a2e3b698c085bcb75394ad5355380efd6c875612f",
+        "official": [
+          "O05",
+          "O07",
+          "O11",
+          "O33"
+        ],
+        "task": "3.1",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 16,
+        "id": "W6-F16",
+        "test": "W6-T16",
+        "cap": "week6-mcp-management",
+        "name": "列表隔离",
+        "desc": "服务器列表仅显示Principal当前班级，不接受客户端class_id覆盖",
+        "when": "A/B教师分别列表并传伪造class_id",
+        "then": "仅各自班级；覆盖字段400，无外班数据",
+        "old_sha256": "f3eaa4b7d518e10255d254ec06dac0c4a99c998c44c13e647e2c534fb69c6d5a",
+        "official": [
+          "O06",
+          "O11",
+          "O37"
+        ],
+        "task": "3.4",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 17,
+        "id": "W6-F17",
+        "test": "W6-T17",
+        "cap": "week6-mcp-management",
+        "name": "列表读取与状态",
+        "desc": "通过本班服务器列表提供配置及connected/tool_count/has_auth，不增加单条GET详情作为课程必需接口",
+        "when": "读取列表，并请求不存在或外班编号的tools接口",
+        "then": "列表只含本班，按编号资源404一致；无需GET /servers/{id}额外路由",
+        "old_sha256": "bd70c9411ffb4d94a08868b642267cd0465febe5c6d3f1621bf4f5f0a3e4099e",
+        "official": [
+          "O05",
+          "O11"
+        ],
+        "task": "3.1",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 18,
+        "id": "W6-F18",
+        "test": "W6-T18",
+        "cap": "week6-mcp-management",
+        "name": "修改与改名",
+        "desc": "PUT以name/base_url及可选auth_token修改本班服务器，空auth_token保留旧值；修改清空连接与工具缓存，改名不改技能原文",
+        "when": "连接后改地址/Token/名称；令牌留空，并用原技能引用提问",
+        "then": "响应200且connected=false/tool_count=0；空令牌保留；旧名引用denied且无新审计行",
+        "old_sha256": "663e2f9d1d00048be6bb514277ff89f882a2d1e82921800bd9bf44e1fd18cf62",
+        "official": [
+          "O05",
+          "O11",
+          "O12"
+        ],
+        "task": "3.1",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 19,
+        "id": "W6-F19",
+        "test": "W6-T19",
+        "cap": "week6-mcp-management",
+        "name": "连接握手",
+        "desc": "connect实际完成initialize与tools/list后返回connected/tools，远端不可达、鉴权或握手失败返回502并connected=false；数据库失败503",
+        "when": "正常连接、错令牌、超时、非法发现及DB发布失败",
+        "then": "正常200含connected=true及工具；远端失败502，DB失败503，无部分新缓存或假成功",
+        "old_sha256": "7a32cf558f74a8ba7b955a7f2fa6675c07391492cc54a2ccf3f39a533d3d1cd4",
+        "official": [
+          "O08",
+          "O09",
+          "O11",
+          "O33"
+        ],
+        "task": "3.2",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 20,
+        "id": "W6-F20",
+        "test": "W6-T20",
+        "cap": "week6-mcp-management",
+        "name": "断开服务器",
+        "desc": "disconnect幂等置connected=false并清空工具缓存，保留技能原文和已有审计",
+        "when": "两次断开，查tools再用命中该技能的问题提问",
+        "then": "返回connected=false、tools=[]、零远端call；meta denied且增加一条本服务器denied审计",
+        "old_sha256": "c872bcf018adc49208b7af6395628df5484ea14d6c7e84203042769f1a9eacda",
+        "official": [
+          "O10",
+          "O11",
+          "O28",
+          "O33"
+        ],
+        "task": "3.2",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 21,
+        "id": "W6-F21",
+        "test": "W6-T21",
+        "cap": "week6-mcp-management",
+        "name": "通过重连重新发现",
+        "desc": "重新发现复用既有connect接口，不新增discover接口；每次都握手并完整覆盖缓存",
+        "when": "教师连续两次connect，第二次远端工具发生变化",
+        "then": "通过同一官方接口刷新，缓存不翻倍；不要求POST /discover或单独的409状态",
+        "old_sha256": "7bcfaa9c023c250df7489fa84b2b54c6fc5b4a1038caf039d5be9485dc6c4eef",
+        "official": [
+          "O08",
+          "O11"
+        ],
+        "task": "3.3",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 22,
+        "id": "W6-F22",
+        "test": "W6-T22",
+        "cap": "week6-mcp-management",
+        "name": "缓存原子刷新",
+        "desc": "重连事务内先删后插，断开/修改时清空；项目revision/CAS防止旧响应覆盖新配置",
+        "when": "重连刷新时并发修改地址或断开并让旧响应晚到",
+        "then": "只有当前配置对应列表可用，无部分列表、幽灵工具或旧响应复活",
+        "old_sha256": "08f8fd9d239d45005ca6b1f7caf397811920f8f8d1e8b043cebe83e7dfd0e082",
+        "official": [
+          "O08",
+          "O12"
+        ],
+        "task": "3.3",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 23,
+        "id": "W6-F23",
+        "test": "W6-T23",
+        "cap": "week6-mcp-management",
+        "name": "工具列表",
+        "desc": "仅教师通过官方tools接口查询本班服务器最近成功发现的清单，断开后返回空列表",
+        "when": "A教师、A学生和B教师查A服务器工具，再由A断开重查",
+        "then": "分别200/403/404；断开后tools=[]且无凭据",
+        "old_sha256": "8e9d1907302fac9dba8c63a2a62b7a3ef551abbf2711be9684e6588c54584d22",
+        "official": [
+          "O04",
+          "O06",
+          "O08",
+          "O11"
+        ],
+        "task": "3.3",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 24,
+        "id": "W6-F24",
+        "test": "W6-T24",
+        "cap": "week6-mcp-management",
+        "name": "删除与审计外键",
+        "desc": "DELETE无审计服务器时物理删除并级联缓存；已有mcp_tool_calls引用则返回503且整体不变，重复成功删除404；技能原文不改",
+        "when": "分别删除无审计/有审计服务，并对已成功删除的旧引用提问",
+        "then": "无审计204且缓存清空；有审计503且服务/缓存/审计不变；旧引用meta denied无新增审计",
+        "old_sha256": "9e4fddc012793c6ccd78c1671156da7d0b430b55de8a238128bc28518dc21b6f",
+        "official": [
+          "O11",
+          "O14",
+          "O28",
+          "O30",
+          "O33"
+        ],
+        "task": "3.1",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 25,
+        "id": "W6-F25",
+        "test": "W6-T25",
+        "cap": "week6-mcp-management",
+        "name": "教师角色与班级校验",
+        "desc": "所有管理操作复用Bearer当前身份和teacher guard，查询/更新包含class_id；匿名及学生不可访问",
+        "when": "对全部管理URL/方法分别使用匿名、学生、外班教师",
+        "then": "匿名401、学生403、外班资源404，拒绝不改DB或发起网络调用",
+        "old_sha256": "df5182053b9ed45750169de7d0b5a2d59f91750cbbbdb40ce822847bce81403e",
+        "official": [
+          "O06",
+          "O11",
+          "O37"
+        ],
+        "task": "3.4",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 26,
+        "id": "W6-F26",
+        "test": "W6-T26",
+        "cap": "week6-mcp-management",
+        "name": "凭据保密",
+        "desc": "API以auth_token接收服务令牌且只返回has_auth；原文不进响应、前端持久存储、Git、镜像或日志；认证加密为项目补强",
+        "when": "保存标记Token，检查列表/编辑响应、SSE/审计/报告及镜像构建输入",
+        "then": "仅has_auth布尔返回；密码框写后清空；服务端可用于Bearer，外部无密钥明文",
+        "old_sha256": "fdbd3aa196cef5a052fa441bc7a0e1ff605ecb714dc5bdcd61e4314736e6222a",
+        "official": [
+          "O03",
+          "O05",
+          "O33"
+        ],
+        "task": "2.4",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 27,
+        "id": "W6-F27",
+        "test": "W6-T27",
+        "cap": "week6-mcp-management",
+        "name": "出站地址限制",
+        "desc": "服务器登记和每次连接/call校验管理员允许的scheme/host/port及实际解析IP，禁重定向和云元数据/回环/未允许内网",
+        "when": "登记metadata/localhost或以DNS重绑定及302跳转绕过",
+        "then": "被拒绝且目标零访问；仅显式允许的私网mcp-server可访问",
+        "old_sha256": "310b5d2d8380cf5deb2af3fdfbc286a64bc481b72157d6d2268d19339599d416",
+        "official": [
+          "O38"
+        ],
+        "task": "2.6",
+        "classification": "项目补强（非老师新增要求）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 28,
+        "id": "W6-F28",
+        "test": "W6-T28",
+        "cap": "week6-mcp-management",
+        "name": "三表存储约束",
+        "desc": "三张MCP表保留base_url/connected/tool_name/schema_json/tool_ref/detail等字段分工，班级唯一、缓存server唯一、审计三状态及外键约束生效",
+        "when": "隔离库检查字段、重复名、重复工具、非法status、断开缓存及有审计删除",
+        "then": "约束拒绝违规，connected仅0/1；审计保留且关联服务删除503，不用软删除替代",
+        "old_sha256": "7196255f49df0cb7fa758a9918e27723368b4882d679092b380078c8b2918ad8",
+        "official": [
+          "O05",
+          "O07",
+          "O13",
+          "O14",
+          "O40"
+        ],
+        "task": "2.1",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 29,
+        "id": "W6-F29",
+        "test": "W6-T29",
+        "cap": "week6-mcp-management",
+        "name": "显式幂等迁移",
+        "desc": "新schema通过显式离线v4升级及完整catalog/账本/就绪校验，新旧路径、重试及中断可恢复，HTTP不执行DDL",
+        "when": "独立库跑fresh、v1/v2/v3到v4、重复及每步中断；漂移后启动",
+        "then": "合法路径就绪；重复不复活数据；漂移/不完整拒绝，无静默修复",
+        "old_sha256": "fca6dd3babc64b699761a16517c2570c49588054dbaf03f83605989c767e8e33",
+        "official": [
+          "O40"
+        ],
+        "task": "2.2",
+        "classification": "项目补强（非老师新增要求）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 30,
+        "id": "W6-F30",
+        "test": "W6-T30",
+        "cap": "week6-mcp-management",
+        "name": "旧数据保护",
+        "desc": "迁移保留用户、材料、切片、助手、技能source/绑定、历史消息引用和占位数据，不自动扩大授权",
+        "when": "升级前后比较ID、数量、source/hash及旧消息快照",
+        "then": "旧内容逐项一致；没有给旧技能补MCP绑定或改变空材料语义",
+        "old_sha256": "b169532f34c961f8f6e2917d5862d55befbbcfd70a0be7c9149fd3a4e7f5364b",
+        "official": [
+          "O40"
+        ],
+        "task": "2.3",
+        "classification": "项目补强（非老师新增要求）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 31,
+        "id": "W6-F31",
+        "test": "W6-T31",
+        "cap": "week6-mcp-management",
+        "name": "审计归属与例外",
+        "desc": "找到本班服务器时对ok、未连接denied、远端失败error各追加一行，含tool_ref/server/user/conversation/time/detail；改名或删除导致找不到旧名时仅返回denied而无审计行",
+        "when": "触发成功、断开、改名、无审计服务删除、工具失败并比较审计增量",
+        "then": "各存在服务分支各加一条终态行；找不到旧名零新增，detail脱敏且≤512字，成功摘要≤200字",
+        "old_sha256": "8cdc578be6322a501b8d63cff4cf8456f1e2c1635a0fd2c10334b08724768fd5",
+        "official": [
+          "O13",
+          "O27",
+          "O28",
+          "O33"
+        ],
+        "task": "2.7",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 32,
+        "id": "W6-F32",
+        "test": "W6-T32",
+        "cap": "week6-mcp-management",
+        "name": "终态追加及持久化失败",
+        "desc": "mcp_tool_calls只追加终态ok/denied/error，不写pending后改行；审计写失败不得伪报完整成功或重放远端动作",
+        "when": "故障注入终态INSERT失败，并在远端返回后模拟进程退出",
+        "then": "meta前503/failed且不重放；披露崩溃可能无审计，不伪造全路径可追踪保证",
+        "old_sha256": "c0db933501882b1c2bc2f6f518d66e271f05ed6b8a21901abbd8b2b179918687",
+        "official": [
+          "O13",
+          "O27",
+          "O30"
+        ],
+        "task": "2.7",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 33,
+        "id": "W6-F33",
+        "test": "W6-T33",
+        "cap": "week6-mcp-management",
+        "name": "历史审计保护",
+        "desc": "不随服务/工具/技能/会话清理级联删除调用审计；有审计服务删除受限；课程未规定保存天数，不虚构要求",
+        "when": "尝试删除有审计服务、删除内部会话并查询历史",
+        "then": "服务删除503；历史仍在，审计无公开删除API；期限作为项目运维事项而非缺课程来源",
+        "old_sha256": "f4a9ec2325934a94a09cb0ddaef19d01a4b1dc2611acf747fe0574008a932c80",
+        "official": [
+          "O13",
+          "O14",
+          "O30"
+        ],
+        "task": "2.7",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 34,
+        "id": "W6-F34",
+        "test": "W6-T34",
+        "cap": "week6-skill-tools",
+        "name": "引用语法与分隔符",
+        "desc": "工具字段按逗号/顿号/分号/竖线分项，支持,，、;；|；tool匹配[a-z][a-z0-9_]{0,31}，server匹配[a-z][a-z0-9_-]{0,31}，保留knowledge_search及空",
+        "when": "分别用六种分隔符和混合分隔、首尾空白；测试32/33字符、大写、工具连字符、服务器连字符、裸工具名及多个@",
+        "then": "合法分项保存且顺序不变；工具连字符/大写/33字符/裸工具名拒绝，服务器合法连字符允许",
+        "old_sha256": "55cdff33a671ede880c8d88ea7b3c420e5c13087be1235b7bca7b38841b704d4",
+        "official": [
+          "O15",
+          "O16",
+          "O17"
+        ],
+        "task": "4.1",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 35,
+        "id": "W6-F35",
+        "test": "W6-T35",
+        "cap": "week6-skill-tools",
+        "name": "引用去重上限",
+        "desc": "一技能最多3个不同MCP引用，重复引用拒绝；内置knowledge_search不消耗MCP调用额度",
+        "when": "提交三项、四项及重复引用",
+        "then": "三项通过，四项/重复400；保存和运行上限一致",
+        "old_sha256": "f6724c512dbb305376877cb44b7cf6fd077d193a8b06a1169cea1c27794119da",
+        "official": [
+          "O38"
+        ],
+        "task": "4.1",
+        "classification": "项目补强（非老师新增要求）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 36,
+        "id": "W6-F36",
+        "test": "W6-T36",
+        "cap": "week6-skill-tools",
+        "name": "保存时四道校验",
+        "desc": "保存技能前逐条校验格式、本班服务器存在、connected及工具已发现，全部通过后原子保存source/hash/version，不隐式持久化稳定ID绑定改变改名行为",
+        "when": "混合合法与未发现/外班/未连接引用保存",
+        "then": "整份拒绝无部分写入；外班与不存在错误一致，旧技能保持",
+        "old_sha256": "5471002b354d6807c9bef6f7a1f22cfe566c24922ed4c9db2b540dddf9690f39",
+        "official": [
+          "O16",
+          "O17",
+          "O33"
+        ],
+        "task": "4.2",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 37,
+        "id": "W6-F37",
+        "test": "W6-T37",
+        "cap": "week6-skill-tools",
+        "name": "绑定班级校验",
+        "desc": "按当前Principal班级与引用服务器名称解析，不允许请求覆盖class或借外班同名服务绑定",
+        "when": "A教师绑定仅存在于B班的服务器名并对比不存在名",
+        "then": "两者同样拒绝且响应一致，A/B数据不变；不以全局名称查找",
+        "old_sha256": "2f03706273ba9bf9c35eb927588338697fe8a893293d5e06c7751cc6d786030e",
+        "official": [
+          "O06",
+          "O17"
+        ],
+        "task": "4.2",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 38,
+        "id": "W6-F38",
+        "test": "W6-T38",
+        "cap": "week6-skill-tools",
+        "name": "连接有效性校验",
+        "desc": "新建/修改技能的MCP引用须指向本班connected服务器，断开/删除/改名不自动改技能文本",
+        "when": "先合法保存，再断开/改名/删除并尝试重存原引用",
+        "then": "原技能原文保持；重新保存不合法引用拒绝，停用专用toggle仍可用",
+        "old_sha256": "c69051b93962ad0e377288bd136346cbe53b4c8bbd5290f02ba1703bdbe666bc",
+        "official": [
+          "O10",
+          "O12",
+          "O17"
+        ],
+        "task": "4.2",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 39,
+        "id": "W6-F39",
+        "test": "W6-T39",
+        "cap": "week6-skill-tools",
+        "name": "发现有效性校验",
+        "desc": "保存前工具须在该服务器当前缓存清单；inputSchema用于展示及项目确定性参数适配，不把工具自述当指令",
+        "when": "绑定未发现或旧缓存工具及返回普通text的已发现工具",
+        "then": "未知工具拒绝；合法已发现工具不因未返回嵌套JSON被拒，Schema不赋予调用权限",
+        "old_sha256": "3d6a7dbfa62fd94538787b684285de353dd0e79e61cce44f397fbdb669258566",
+        "official": [
+          "O04",
+          "O17"
+        ],
+        "task": "4.2",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 40,
+        "id": "W6-F40",
+        "test": "W6-T40",
+        "cap": "week6-skill-tools",
+        "name": "启用与路由",
+        "desc": "仅当前问题命中的已绑定且启用技能的工具可调用，保留最高词分/小ID路由",
+        "when": "同题分别启用、停用、解绑技能并比较",
+        "then": "启用且命中才调用；停用/解绑/零分零工具调用",
+        "old_sha256": "905fd729838ff7970a5e9b95b4d21c7eae618db45eb84668c6a043ba9d289da5",
+        "official": [
+          "O18",
+          "O23",
+          "O37"
+        ],
+        "task": "4.3",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 41,
+        "id": "W6-F41",
+        "test": "W6-T41",
+        "cap": "week6-skill-tools",
+        "name": "断开绑定行为",
+        "desc": "断开后技能照常路由，调用denied且写审计；同名同服务重新连接且工具还在可恢复",
+        "when": "断开提问再connect后提问",
+        "then": "前者零RPC/一条denied审计；后者正常调用，既有技能原文不改",
+        "old_sha256": "fba64001604bfdb80461eb45817e4cf86e0603dabbe371c0dd03717eecd4b473",
+        "official": [
+          "O10",
+          "O28"
+        ],
+        "task": "4.3",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 42,
+        "id": "W6-F42",
+        "test": "W6-T42",
+        "cap": "week6-skill-tools",
+        "name": "改名删除绑定行为",
+        "desc": "服务器改名或成功删除后技能引用保持旧名，按旧名查不到则meta denied而不写调用审计",
+        "when": "分别改名、成功删除无审计服务后提问，并测试有审计删除被拒",
+        "then": "前两者denied且新增审计0；有审计删除503后原引用仍归原服务器，不能算已删",
+        "old_sha256": "96dfcd6f48b8c79db9c53754f84d4a5519288611c42657547758a0f2aa76a274",
+        "official": [
+          "O12",
+          "O14",
+          "O28"
+        ],
+        "task": "4.3",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 43,
+        "id": "W6-F43",
+        "test": "W6-T43",
+        "cap": "week6-skill-tools",
+        "name": "旧技能兼容",
+        "desc": "空工具、knowledge_search、旧source来源/版本/原文往返、enabled-only toggle及已有材料绑定继续可用",
+        "when": "读取和保存旧技能并开关，比较历史和下一轮",
+        "then": "无MCP时无额外网络请求；原功能、旧数据与技能哈希规则保持",
+        "old_sha256": "5d747763f4ed2c43e39b037d91f0134bcf0deae5fa6c107c8e0531903acb75a8",
+        "official": [
+          "O18",
+          "O23",
+          "O37"
+        ],
+        "task": "4.1",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 44,
+        "id": "W6-F44",
+        "test": "W6-T44",
+        "cap": "week6-skill-tools",
+        "name": "运行授权复核",
+        "desc": "每次调用按当前班级及技能引用查服务器和连接状态；项目额外复核当前工具缓存/revision及预算，不使用旧稳定ID跨改名恢复",
+        "when": "保存后断开、改名、删工具或改Token，再并发提问",
+        "then": "新配置立即生效；旧名失配无审计，存在服务拒绝有审计；旧结果不能冒充当前成功",
+        "old_sha256": "69480dd5d2296fe9cbcce7597cf1308bca25ccfd4172b26633280e919f355a0e",
+        "official": [
+          "O12",
+          "O38"
+        ],
+        "task": "4.3",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 45,
+        "id": "W6-F45",
+        "test": "W6-T45",
+        "cap": "week6-skill-tools",
+        "name": "禁止自由工具调用",
+        "desc": "模型、学生文本、上传材料和工具描述不得新增白名单、切换服务或触发未绑定工具",
+        "when": "问题及工具输出要求调用外班/未绑定工具",
+        "then": "仅已授权计划可执行；攻击目标零请求且权限不改变",
+        "old_sha256": "dbee8b2d271f0aa1a4dc73f2025959b83bfca22189100dc3880393e0469859e8",
+        "official": [
+          "O18",
+          "O20",
+          "O38"
+        ],
+        "task": "4.3",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 46,
+        "id": "W6-F46",
+        "test": "W6-T46",
+        "cap": "week6-tool-conversations",
+        "name": "沿用真实问答入口",
+        "desc": "将MCP接入现有会话消息SSE入口，保留POST /api/ask非流式输入输出和零证据零对话行为",
+        "when": "同题分别走会话和旧ask",
+        "then": "仅会话可产生工具记录；旧ask无MCP且不创建消息",
+        "old_sha256": "2d6295e0c19b6546633d610554ad83787c7d511b3dd02e0911bac0ab0a1930cb",
+        "official": [
+          "O37"
+        ],
+        "task": "4.7",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 47,
+        "id": "W6-F47",
+        "test": "W6-T47",
+        "cap": "week6-tool-conversations",
+        "name": "meta前确定性编排",
+        "desc": "认证/班级与原技能路由之后按白名单逐个调用，工具终态备齐后才发送meta，再生成回答；knowledge_search仍由检索负责",
+        "when": "门控远端工具与模型并记录RPC/SSE/模型输入时间",
+        "then": "工具返回早于meta、meta早于模型首字，按声明顺序且无模型自主选择，无跨网络长事务",
+        "old_sha256": "94a7fc1bac52c8ebc4802b29910364b61f41b7db7ec8da0e7f4cc13bccb61ec2",
+        "official": [
+          "O09",
+          "O18",
+          "O20",
+          "O21",
+          "O40"
+        ],
+        "task": "4.5",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 48,
+        "id": "W6-F48",
+        "test": "W6-T48",
+        "cap": "week6-tool-conversations",
+        "name": "确定性参数与示范差异",
+        "desc": "formula_hint传当前问题原文为query；unit_convert由项目明确确定性解析生成value/from/to，课程固定换算参数仅作示范，不引入模型规划",
+        "when": "以1 m转cm命中绑定技能，并用缺单位或多个换算项问题；另用未绑定技能提问要求调用",
+        "then": "合法解析固定100 cm；歧义denied零RPC；无绑定不调用，原生function calling未启用",
+        "old_sha256": "b8ba3fc31328cc46627c5aef34e3fd434896e1988c93cda4a8f200aa57a41ac1",
+        "official": [
+          "O18",
+          "O19",
+          "O20"
+        ],
+        "task": "4.4",
+        "classification": "课程示范+项目选择",
+        "audit": "修订"
+      },
+      {
+        "n": 49,
+        "id": "W6-F49",
+        "test": "W6-T49",
+        "cap": "week6-tool-conversations",
+        "name": "官方工具元数据",
+        "desc": "有MCP调用尝试时meta.tool_calls每项含ref/status/text，status为ok/denied/error；没有命中技能或无MCP项时省略字段，不发空数组",
+        "when": "依次触发ok/denied/error、未命中、停用、仅knowledge_search",
+        "then": "前三者都有ref/status/text；后三者断言属性不存在，meta.status及既有第五课字段不变",
+        "old_sha256": "34f819bafdf5d59168bb886146fc1f48a479f38008b4483ef9cb9243e4f676bc",
+        "official": [
+          "O21",
+          "O22",
+          "O23",
+          "O33"
+        ],
+        "task": "4.5",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 50,
+        "id": "W6-F50",
+        "test": "W6-T50",
+        "cap": "week6-tool-conversations",
+        "name": "断开服务降级",
+        "desc": "存在但未连接的服务器调用为denied，返回安全text并追加一行denied审计，原问答继续",
+        "when": "断开后命中技能并检查远端请求计数、meta和审计",
+        "then": "RPC0、meta ref/status/text齐全、审计新增1；模型仍按原角色/RAG回答",
+        "old_sha256": "f786064bf9674c6beb0b5cf587cba0dd01a3d14413f21c8b02405cdeae69987e",
+        "official": [
+          "O10",
+          "O22",
+          "O28",
+          "O33",
+          "O40"
+        ],
+        "task": "4.5",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 51,
+        "id": "W6-F51",
+        "test": "W6-T51",
+        "cap": "week6-tool-conversations",
+        "name": "改名删除失配降级",
+        "desc": "按旧名找不到服务器或仅外班存在时返回denied安全text，不新增调用审计，不泄露外班",
+        "when": "改名、成功删除或用外班名/不存在名构造运行失配",
+        "then": "RPC0、审计新增0、meta明确denied；不把有审计删除503误算已删除",
+        "old_sha256": "fcc0ffc24c4c8b84dc7a9ef267ded02c57b680e52a23de6de90fe8f2e77b526d",
+        "official": [
+          "O12",
+          "O22",
+          "O28",
+          "O33",
+          "O40"
+        ],
+        "task": "4.5",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 52,
+        "id": "W6-F52",
+        "test": "W6-T52",
+        "cap": "week6-tool-conversations",
+        "name": "工具未发现降级",
+        "desc": "项目加固：存在服务的旧引用工具不在当前缓存时拒绝远端调用，denied且写本服务器审计，原问答继续",
+        "when": "connect刷新移除工具后命中旧引用",
+        "then": "RPC0，meta denied，审计新增1且detail为安全原因",
+        "old_sha256": "7cc0d751d1b07b2a5b041119cab668d50fa5454ff1c29ca96583d8f086e28c1f",
+        "official": [
+          "PROJECT"
+        ],
+        "task": "4.3",
+        "classification": "项目补强（非老师新增要求）",
+        "audit": "修订"
+      },
+      {
+        "n": 53,
+        "id": "W6-F53",
+        "test": "W6-T53",
+        "cap": "week6-tool-conversations",
+        "name": "鉴权失败降级",
+        "desc": "MCP 401/403归error/auth_failed，不回传服务凭据或把上游401当学生JWT失效",
+        "when": "轮换服务Token使Go持有旧值后提问",
+        "then": "学生身份仍有效，记录error；UI不退出学生登录，问答继续",
+        "old_sha256": "6393ad2b345e9efa4336a32e3e7f40dd48d8a021911815c313c62e8c0990b0c9",
+        "official": [
+          "O03",
+          "O09",
+          "O22",
+          "O28"
+        ],
+        "task": "4.5",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 54,
+        "id": "W6-F54",
+        "test": "W6-T54",
+        "cap": "week6-tool-conversations",
+        "name": "工具超时降级",
+        "desc": "超时归error/timeout，取消该请求不重试，在总问答预算内继续",
+        "when": "令首工具延迟超3秒",
+        "then": "记录超时且余下合法工具及模型可继续；整轮不被无条件失败",
+        "old_sha256": "83d61fc8cf20e93cd90693c7ea4d58da57f1203ac2116a42659c8cb9f788822a",
+        "official": [
+          "O09",
+          "O22",
+          "O28"
+        ],
+        "task": "4.5",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 55,
+        "id": "W6-F55",
+        "test": "W6-T55",
+        "cap": "week6-tool-conversations",
+        "name": "非法返回降级",
+        "desc": "RPC畸形/错误id/无文本/不支持content为error；普通文本合法，危险句式及超1200字整条丢弃后仅用固定说明",
+        "when": "注入畸形JSON、错id、正常中文text、含危险句式文本和1201字文本",
+        "then": "普通文本通过；危险或超长正文任何片段均不进入meta.text/审计detail/模型，仅固定说明，问答仍继续",
+        "old_sha256": "e22a5192c015b908c867dd33b66c5ade899646f288b0f25ae7450e3f7357fe9f",
+        "official": [
+          "O22",
+          "O24",
+          "O25"
+        ],
+        "task": "4.6",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 56,
+        "id": "W6-F56",
+        "test": "W6-T56",
+        "cap": "week6-tool-conversations",
+        "name": "多工具顺序",
+        "desc": "按技能文本声明顺序串行去重计划，最多3次，单工具≤3秒、工具阶段总≤10秒；一个失败不自动停止其他合法工具",
+        "when": "三工具中首失败、次成功、末超时及四项输入",
+        "then": "顺序稳定、总预算可控；末项可因预算不足denied/budget_exceeded，第四项保存时拒绝",
+        "old_sha256": "3619b35e62f26e862121b01e04ccd64ba99e0d3954fcde607d6e96899355c548",
+        "official": [
+          "O18",
+          "O20",
+          "O38"
+        ],
+        "task": "4.4",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 57,
+        "id": "W6-F57",
+        "test": "W6-T57",
+        "cap": "week6-tool-conversations",
+        "name": "外部数据边界",
+        "desc": "安全工具结果置于用户消息的数据位并标明工具引用，不进入system、不覆盖教师或教学边界；拒绝的原文不进入任何模型输入",
+        "when": "返回要求改角色/系统指令的工具文本并捕获输入",
+        "then": "命中危险句式整条丢弃；通过文本只在user且带工具来源，不能触发新工具或外发",
+        "old_sha256": "3b9e3bff791ea002bed501a182f730fa576d552bc3cc68bbd22716646d371fcd",
+        "official": [
+          "O20",
+          "O24",
+          "O26",
+          "O38"
+        ],
+        "task": "4.6",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 58,
+        "id": "W6-F58",
+        "test": "W6-T58",
+        "cap": "week6-tool-conversations",
+        "name": "危险句式与1200字边界",
+        "desc": "进入上下文前扫描完整工具正文：含忽略前述、ignore previous instructions、你现在是或system:等危险句式，以及超过1200 Unicode字的正文均整条丢弃换固定说明，不删句/截断后使用；先于审计与SSE脱敏",
+        "when": "分别返回危险句位于开头/中间/尾部、英文大小写变体、1199/1200/1201字、多text块拼接超限和密钥标记",
+        "then": "1199/1200字正常安全正文可用；1201或命中句式全丢弃且无前缀残留，detail≤512/成功摘要≤200，秘密不泄露",
+        "old_sha256": "36ac1d52dda20a9cd3dc86b60816b68617088ce35a0b558e5ef2e1f3c6896e0d",
+        "official": [
+          "O24",
+          "O25"
+        ],
+        "task": "4.6",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 59,
+        "id": "W6-F59",
+        "test": "W6-T59",
+        "cap": "week6-tool-conversations",
+        "name": "零证据与引用",
+        "desc": "Week5无知识库依据仍生成，工具仅独立外部依据，不授予数字引用资格；资料引用只能来自合法检索证据",
+        "when": "零证据工具返回[1]，有证据工具伪造[99]",
+        "then": "空证据最终citations=[]且无伪造数字引用；有证据保留原校验，不把工具写成材料引用",
+        "old_sha256": "6ac467e67e88db3b6333063ae3c41cf9bf934ceb19f4c32ed4370db13c268069",
+        "official": [
+          "O26",
+          "O37"
+        ],
+        "task": "4.6",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 60,
+        "id": "W6-F60",
+        "test": "W6-T60",
+        "cap": "week6-tool-conversations",
+        "name": "历史持久与展示",
+        "desc": "在现有消息配置快照中保存安全ref/status/text并允许本人历史读取，旧消息缺字段兼容且刷新不重放工具；SSE无调用仍省略",
+        "when": "完成后刷新、读取旧消息及done丢失补读",
+        "then": "安全状态可回看，RPC数不增加，旧快照不改；内部空列表不能使SSE输出空tool_calls",
+        "old_sha256": "6f1d2d24b766a601f4b5d3b64972dce4e2929bf5bc0a2be4a56c8f95005d4568",
+        "official": [
+          "O23",
+          "O37"
+        ],
+        "task": "4.5",
+        "classification": "项目补强（非老师新增要求）",
+        "audit": "修订"
+      },
+      {
+        "n": 61,
+        "id": "W6-F61",
+        "test": "W6-T61",
+        "cap": "week6-tool-conversations",
+        "name": "失败恢复与并发",
+        "desc": "保留active_turn并发409、delta先落库、failed/interrupted前缀、取消传播及崩溃恢复，工具副作用不因重试自动重放",
+        "when": "并发发送、工具中取消、首delta后断连及进程崩溃恢复",
+        "then": "无额外重复工具执行或孤儿消息；失败不发成功done，锁可释放",
+        "old_sha256": "143a8fda19eeafea9d56d8e1eb7c25ea1a2e16bd9fcb90ef93b315d28457cedc",
+        "official": [
+          "O37"
+        ],
+        "task": "4.7",
+        "classification": "项目补强（非老师新增要求）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 62,
+        "id": "W6-F62",
+        "test": "W6-T62",
+        "cap": "week6-tool-conversations",
+        "name": "审计查询50与100",
+        "desc": "GET /api/mcp/tool-calls只读返回本班按时间倒序记录，默认最近50、最多100，含tool_ref/server_name/tool_name/status/detail/user_id/conversation_id/created_at",
+        "when": "准备120条同班及外班记录，用默认/limit=1/50/100/101请求并交叉身份检查",
+        "then": "默认50、上限100不泄漏外班；limit=101按项目夹至100，学生403、只读无写入、detail安全",
+        "old_sha256": "d8a21ef2be6462561113cc4898234d210b9b8f98b9517edbe305183d806f1084",
+        "official": [
+          "O06",
+          "O11",
+          "O13",
+          "O27",
+          "O29",
+          "O33"
+        ],
+        "task": "2.7",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 63,
+        "id": "W6-F63",
+        "test": "W6-T63",
+        "cap": "week6-mcp-acceptance",
+        "name": "教师MCP页签",
+        "desc": "最小扩展现有教师tutor页面提供MCP页签、服务器列表/登记/修改/删除/连接发现/断开/工具数/最近调用，复用8个官方操作",
+        "when": "教师完成全链路并查看有审计删除503、改名失效及连接502",
+        "then": "UI反映真实状态和失败，has_auth反馈但无令牌回填，不依赖额外详情/discover接口",
+        "old_sha256": "1f061d5d2e0ee7f95be6d1da5cb149873df5a1808bd220d9588395ab11f9e4ca",
+        "official": [
+          "O05",
+          "O31",
+          "O40"
+        ],
+        "task": "5.1",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 64,
+        "id": "W6-F64",
+        "test": "W6-T64",
+        "cap": "week6-mcp-acceptance",
+        "name": "学生最小反馈",
+        "desc": "学生正常流式问答显示脱敏工具成功/拒绝/失败反馈，无管理入口或服务器凭据",
+        "when": "学生走三种工具状态及无工具流",
+        "then": "工具反馈与meta一致，delta仍增量，不能打开管理操作",
+        "old_sha256": "3d373274764c98f9f5ff57cae3b18b03e5cb695acc4caba79819729560dbdce4",
+        "official": [
+          "O22",
+          "O23",
+          "O31",
+          "O40"
+        ],
+        "task": "5.2",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 65,
+        "id": "W6-F65",
+        "test": "W6-T65",
+        "cap": "week6-mcp-acceptance",
+        "name": "视觉交互兼容",
+        "desc": "保留CampusClaw品牌、Logo、导航、知识库、材料页、历史及原SSE解析/异常交互",
+        "when": "浏览器比较各角色页面并测试UTF8跨块、EOF和401",
+        "then": "原页面功能及身份处理保持，无破坏布局或无done假成功",
+        "old_sha256": "defd5699befd0fbc389532171ad16bc6318e35042c8848155ee01e0b007020eb",
+        "official": [
+          "O31",
+          "O37"
+        ],
+        "task": "5.2",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 66,
+        "id": "W6-F66",
+        "test": "W6-T66",
+        "cap": "week6-mcp-acceptance",
+        "name": "OpenAPI官方兼容",
+        "desc": "沿用注解生成链，覆盖官方8个MCP URL/方法及base_url/auth_token输入、has_auth输出、tool_ref/detail、ref/status/text和无调用省略；Swagger可试调",
+        "when": "生成及-Check、动态对照8操作，再浏览器Authorize执行connect/tools/技能保存",
+        "then": "无漏项/漂移或手写第二份契约；无额外详情/discover必需操作，不重写第五课JWT或材料UUID",
+        "old_sha256": "d351df38b93b96dcec89a85d5917b856120c52abecd479bd3da1a8d9c7e02403",
+        "official": [
+          "O05",
+          "O11",
+          "O22",
+          "O23",
+          "O32",
+          "O33",
+          "O40"
+        ],
+        "task": "5.3",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 67,
+        "id": "W6-F67",
+        "test": "W6-T67",
+        "cap": "week6-mcp-acceptance",
+        "name": "自动化真实工具矩阵",
+        "desc": "以隔离MySQL/Qdrant和独立MCP真实网络调用覆盖正常/错误鉴权、Schema、缓存、权限、迁移、审计与全部拒绝/故障",
+        "when": "执行逐条W6测试并故意注入一次失败",
+        "then": "正常全通过，注入失败非零；不能用模拟Go返回替代两个真实工具",
+        "old_sha256": "e8f80d2b520a8d1eea1de60813b6d4c47859cf48d9dc7cb3bfda11d0a8bea070",
+        "official": [
+          "O01",
+          "O33",
+          "O34",
+          "O40"
+        ],
+        "task": "6.1",
+        "classification": "官方建议、项目要求",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 68,
+        "id": "W6-F68",
+        "test": "W6-T68",
+        "cap": "week6-mcp-acceptance",
+        "name": "双向隔离与真实同伴",
+        "desc": "自动验证A/B双向和同班owner边界，并由真实同伴用本人账号完成服务器/工具隔离、令牌不回传、断开denied审计及本班审计四项，留请求响应证据",
+        "when": "执行自动负测，再请真实同伴按四项操作并记录本人确认、账号角色及脱敏证据",
+        "then": "自动权限全部通过且真实同伴四项证据齐备；自动账号不可冒充同伴，缺人不得勾选人工任务",
+        "old_sha256": "1b5407c63d688e6d4d5fdc78a73fb91c5570f0cc7fb13f43660c082cff3c3657",
+        "official": [
+          "O06",
+          "O34",
+          "O36"
+        ],
+        "task": "6.2/6.7",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      },
+      {
+        "n": 69,
+        "id": "W6-F69",
+        "test": "W6-T69",
+        "cap": "week6-mcp-acceptance",
+        "name": "第五课回归",
+        "desc": "回归Bearer/撤销、材料/索引、三种检索、旧Ask零命中、技能启停/解绑/路由、6条窗口、引用、SSE及恢复",
+        "when": "在新隔离环境运行当前align验收及相关Go/browser测试",
+        "then": "原保护矩阵全部通过；不沿用旧无据零调用断言到Week5",
+        "old_sha256": "489c8b9e4a8872ca6b4af0c140b37d439b7f51c617049f4f61f01a70fb04e2df",
+        "official": [
+          "O37"
+        ],
+        "task": "6.3",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 70,
+        "id": "W6-F70",
+        "test": "W6-T70",
+        "cap": "week6-mcp-acceptance",
+        "name": "报告与官方建议分类",
+        "desc": "项目继续交付脱敏JSON/HTML与完整测试元信息；课程任务清单第五节将apitest/run_all.py及HTML列为建议，不能称老师强制",
+        "when": "执行完整/故意失败/缺配置报告分支，核对来源分类",
+        "then": "报告真实区分执行状态和模型性质、HTML不入Git；官方建议与项目必交付分开",
+        "old_sha256": "791c5b55639235c0483d9af18ae52fdc5bf5f6c5774fb396f9c013851eee2899",
+        "official": [
+          "O35",
+          "O40"
+        ],
+        "task": "6.4",
+        "classification": "官方建议、项目要求",
+        "audit": "修订"
+      },
+      {
+        "n": 71,
+        "id": "W6-F71",
+        "test": "W6-T71",
+        "cap": "week6-mcp-acceptance",
+        "name": "真实模型预算人工验收",
+        "desc": "真实模型验证需新的明确上限/费用授权，默认禁用、禁止自动重试；真实教学安全需人工审读，不把受控模型算真实",
+        "when": "无授权尝试real阶段，再在授权额度内执行有限场景",
+        "then": "无授权零收费请求；账本逐次扣减，人工审核工具依据/公式/换算与注入边界，未执行明确列出",
+        "old_sha256": "33144a05ab2d9c7823e4b615d3d7b0de836fd7a9e38f35fdcf5473faa9609a83",
+        "official": [
+          "O38"
+        ],
+        "task": "6.5",
+        "classification": "项目补强（非老师新增要求）",
+        "audit": "保留；补足官方归属与项目扩展分类"
+      },
+      {
+        "n": 72,
+        "id": "W6-F72",
+        "test": "W6-T72",
+        "cap": "week6-mcp-acceptance",
+        "name": "来源审核与后续门槛",
+        "desc": "保留现有change及本轮文档边界，对已读取任务清单/概览/9子页/官方OpenAPI建立双向映射，明确来源冲突与项目扩展；完成后等待审核不自动实施",
+        "when": "核对11份课程正文读取、8接口及72项双向追踪、文档修改范围和strict",
+        "then": "来源核对记录真实可定位，未宣称浏览器已调试或业务已验收；待决冲突保留，实施需新指令",
+        "old_sha256": "a536f51ad2ae066b3cc1085e5d629f5c823e2d0deb7b465ec8ab77ef612f8116",
+        "official": [
+          "O38",
+          "O40"
+        ],
+        "task": "6.6",
+        "classification": "官方强制/兼容基线（附项目实现选择）",
+        "audit": "修订"
+      }
+    ],
+    "official_catalog": [
+      {
+        "id": "O01",
+        "classification": "强制",
+        "description": "同仓独立mcp-server、Compose网络可达、至少两个真实工具",
+        "source": "L1.1/L1.4/L1.5；C-scope§1、C-apply§1.1",
+        "requirements": [
+          "W6-F01",
+          "W6-F07",
+          "W6-F13",
+          "W6-F67"
+        ]
+      },
+      {
+        "id": "O02",
+        "classification": "强制",
+        "description": "POST /mcp、/health、initialize/list/call及可读JSON-RPC错误",
+        "source": "L1.2/L1.3；C-preview§2–3、C-bridge§1",
+        "requirements": [
+          "W6-F02",
+          "W6-F03",
+          "W6-F04",
+          "W6-F05",
+          "W6-F08",
+          "W6-F10",
+          "W6-F12"
+        ]
+      },
+      {
+        "id": "O03",
+        "classification": "强制",
+        "description": "环境Bearer、错误401、密钥不回前端/Git/镜像/日志",
+        "source": "L1.2–3/L2.1/L6.4；C-security§3、C-model§3",
+        "requirements": [
+          "W6-F09",
+          "W6-F10",
+          "W6-F14",
+          "W6-F26",
+          "W6-F53"
+        ]
+      },
+      {
+        "id": "O04",
+        "classification": "强制",
+        "description": "tools/list包含名称/描述/inputSchema且call返回text",
+        "source": "L1.4；C-preview§3、C-model§2",
+        "requirements": [
+          "W6-F04",
+          "W6-F05",
+          "W6-F06",
+          "W6-F07",
+          "W6-F08",
+          "W6-F23",
+          "W6-F39"
+        ]
+      },
+      {
+        "id": "O05",
+        "classification": "强制",
+        "description": "name/base_url/auth_token输入和has_auth/tool_count/connected输出",
+        "source": "L2.1；C-scope§3；OA-MCP001–003",
+        "requirements": [
+          "W6-F15",
+          "W6-F17",
+          "W6-F18",
+          "W6-F26",
+          "W6-F28",
+          "W6-F63",
+          "W6-F66"
+        ]
+      },
+      {
+        "id": "O06",
+        "classification": "强制",
+        "description": "教师专属，学生403，当前认证班级，跨班/不存在404",
+        "source": "L3.5；C-scope§2；C-audit§3",
+        "requirements": [
+          "W6-F16",
+          "W6-F23",
+          "W6-F25",
+          "W6-F37",
+          "W6-F62",
+          "W6-F68"
+        ]
+      },
+      {
+        "id": "O07",
+        "classification": "强制",
+        "description": "同班服务器唯一，重复400",
+        "source": "L2.1/L6.1；C-scope§3、C-model§2",
+        "requirements": [
+          "W6-F15",
+          "W6-F28"
+        ]
+      },
+      {
+        "id": "O08",
+        "classification": "强制",
+        "description": "connect握手+发现、事务先删后插刷新、connected状态",
+        "source": "L2.2/L2.4；C-bridge§1、C-apply§1.4",
+        "requirements": [
+          "W6-F04",
+          "W6-F19",
+          "W6-F21",
+          "W6-F22",
+          "W6-F23"
+        ]
+      },
+      {
+        "id": "O09",
+        "classification": "强制",
+        "description": "远端连接失败502、未连接；DB503；不阻断原问答",
+        "source": "L2.3；C-scope§3、C-bridge§1/3；OA-MCP005",
+        "requirements": [
+          "W6-F12",
+          "W6-F19",
+          "W6-F47",
+          "W6-F53",
+          "W6-F54"
+        ]
+      },
+      {
+        "id": "O10",
+        "classification": "强制",
+        "description": "disconnect清缓存；绑定拒绝，后续调用denied",
+        "source": "L2.2/L6.3；C-binding§3、C-bridge§3",
+        "requirements": [
+          "W6-F20",
+          "W6-F38",
+          "W6-F41",
+          "W6-F50"
+        ]
+      },
+      {
+        "id": "O11",
+        "classification": "兼容强制",
+        "description": "官方八个管理接口为公共基线，不含详情GET或discover",
+        "source": "C-audit§3；OA-MCP001–008",
+        "requirements": [
+          "W6-F15",
+          "W6-F16",
+          "W6-F17",
+          "W6-F18",
+          "W6-F19",
+          "W6-F20",
+          "W6-F21",
+          "W6-F23",
+          "W6-F24",
+          "W6-F25",
+          "W6-F62",
+          "W6-F66"
+        ]
+      },
+      {
+        "id": "O12",
+        "classification": "强制",
+        "description": "允许修改/改名，空令牌保留，配置变更失效缓存",
+        "source": "C-model§3–4、C-binding§3；OA-MCP003",
+        "requirements": [
+          "W6-F18",
+          "W6-F22",
+          "W6-F38",
+          "W6-F42",
+          "W6-F44",
+          "W6-F51"
+        ]
+      },
+      {
+        "id": "O13",
+        "classification": "课程数据模型基线",
+        "description": "三表字段/长度：server名64/Base URL512、tool名64、tool_ref128、detail512、三状态/关联",
+        "source": "C-model§1–2；C-audit§1",
+        "requirements": [
+          "W6-F28",
+          "W6-F31",
+          "W6-F32",
+          "W6-F33",
+          "W6-F62"
+        ]
+      },
+      {
+        "id": "O14",
+        "classification": "明确约束",
+        "description": "缓存级联，历史审计不删，有审计服务器删除503",
+        "source": "C-model§4；OA-MCP004的删除失败503",
+        "requirements": [
+          "W6-F24",
+          "W6-F28",
+          "W6-F33",
+          "W6-F42"
+        ]
+      },
+      {
+        "id": "O15",
+        "classification": "强制",
+        "description": "引用两段均小写字母开头≤32；工具禁连字符，服务器可连字符",
+        "source": "C-binding§1；L1.4/L3.1",
+        "requirements": [
+          "W6-F34"
+        ]
+      },
+      {
+        "id": "O16",
+        "classification": "强制",
+        "description": "工具栏支持逗号、顿号、分号、竖线多项",
+        "source": "C-binding§1",
+        "requirements": [
+          "W6-F34",
+          "W6-F36"
+        ]
+      },
+      {
+        "id": "O17",
+        "classification": "强制",
+        "description": "保存前格式/本班存在/已连接/工具已发现四道校验",
+        "source": "L3.1–2；C-binding§2",
+        "requirements": [
+          "W6-F34",
+          "W6-F36",
+          "W6-F37",
+          "W6-F38",
+          "W6-F39"
+        ]
+      },
+      {
+        "id": "O18",
+        "classification": "强制",
+        "description": "已选启用绑定技能驱动逐个调用，跳过knowledge_search",
+        "source": "L3.3；C-bridge§2、C-think§3",
+        "requirements": [
+          "W6-F40",
+          "W6-F43",
+          "W6-F45",
+          "W6-F47",
+          "W6-F48",
+          "W6-F56"
+        ]
+      },
+      {
+        "id": "O19",
+        "classification": "示范实现",
+        "description": "formula_hint的query、unit_convert的value/from/to，固定换算参数仅展示连通",
+        "source": "C-preview§3、C-bridge§2、C-security§3",
+        "requirements": [
+          "W6-F06",
+          "W6-F07",
+          "W6-F48"
+        ]
+      },
+      {
+        "id": "O20",
+        "classification": "强制",
+        "description": "代码先调用再生成，不用模型自主选择或function calling",
+        "source": "C-index§2、C-security§3、C-think§3",
+        "requirements": [
+          "W6-F45",
+          "W6-F47",
+          "W6-F48",
+          "W6-F56",
+          "W6-F57"
+        ]
+      },
+      {
+        "id": "O21",
+        "classification": "强制",
+        "description": "所有工具完成在meta及首delta之前",
+        "source": "L3.4；C-bridge§2、C-audit§2",
+        "requirements": [
+          "W6-F47",
+          "W6-F49"
+        ]
+      },
+      {
+        "id": "O22",
+        "classification": "兼容强制",
+        "description": "meta.tool_calls项为ref/status/text，三状态",
+        "source": "L3.4；C-audit§2",
+        "requirements": [
+          "W6-F49",
+          "W6-F50",
+          "W6-F51",
+          "W6-F53",
+          "W6-F54",
+          "W6-F55",
+          "W6-F64",
+          "W6-F66"
+        ]
+      },
+      {
+        "id": "O23",
+        "classification": "兼容强制",
+        "description": "无MCP调用不发tool_calls字段",
+        "source": "C-audit§2",
+        "requirements": [
+          "W6-F40",
+          "W6-F43",
+          "W6-F49",
+          "W6-F60",
+          "W6-F64",
+          "W6-F66"
+        ]
+      },
+      {
+        "id": "O24",
+        "classification": "强制",
+        "description": "危险句式命中整条丢弃换固定说明",
+        "source": "C-index§2、C-security§2、C-apply§1.10",
+        "requirements": [
+          "W6-F55",
+          "W6-F57",
+          "W6-F58"
+        ]
+      },
+      {
+        "id": "O25",
+        "classification": "强制",
+        "description": "超过1200字整条丢弃，不用裁剪残留",
+        "source": "C-security§2",
+        "requirements": [
+          "W6-F55",
+          "W6-F58"
+        ]
+      },
+      {
+        "id": "O26",
+        "classification": "强制",
+        "description": "工具返回作为user数据并标来源，不进system、不当知识库编号",
+        "source": "L3.3；C-security§1、C-think§4",
+        "requirements": [
+          "W6-F57",
+          "W6-F59"
+        ]
+      },
+      {
+        "id": "O27",
+        "classification": "强制",
+        "description": "审计工具引用/服务器/状态/用户/会话/时间/detail，成功摘要前200",
+        "source": "L4.1；C-bridge§3、C-audit§1",
+        "requirements": [
+          "W6-F31",
+          "W6-F32",
+          "W6-F62"
+        ]
+      },
+      {
+        "id": "O28",
+        "classification": "强制",
+        "description": "断开denied有审计；改名/删除查无旧名denied无审计；执行失败error有审计",
+        "source": "C-scope§3、C-binding§3、C-bridge§3、C-apply§2",
+        "requirements": [
+          "W6-F20",
+          "W6-F24",
+          "W6-F31",
+          "W6-F41",
+          "W6-F42",
+          "W6-F50",
+          "W6-F51",
+          "W6-F53",
+          "W6-F54"
+        ]
+      },
+      {
+        "id": "O29",
+        "classification": "强制",
+        "description": "审计本班倒序默认50最多100，只读",
+        "source": "C-audit§1；OA-MCP008",
+        "requirements": [
+          "W6-F62"
+        ]
+      },
+      {
+        "id": "O30",
+        "classification": "明确约束",
+        "description": "审计只增不改、不随服务删除回删；无公开保留天数要求",
+        "source": "C-model§1/4、C-audit§1",
+        "requirements": [
+          "W6-F24",
+          "W6-F32",
+          "W6-F33"
+        ]
+      },
+      {
+        "id": "O31",
+        "classification": "强制",
+        "description": "教师MCP页签、列表/状态/工具数/登记/最近调用；学生工具反馈",
+        "source": "C-apply§1.13–14、C-scope§2",
+        "requirements": [
+          "W6-F63",
+          "W6-F64",
+          "W6-F65"
+        ]
+      },
+      {
+        "id": "O32",
+        "classification": "强制",
+        "description": "代码注解生成OpenAPI3.0.3，Swagger试调connect/tools/技能保存",
+        "source": "L4.2；C-audit§3；OA",
+        "requirements": [
+          "W6-F66"
+        ]
+      },
+      {
+        "id": "O33",
+        "classification": "验收强制",
+        "description": "scope八项DoD逐项检查及独立服务/主机/断开/密钥自查",
+        "source": "L6.1–4；C-scope§3",
+        "requirements": [
+          "W6-F01",
+          "W6-F09",
+          "W6-F15",
+          "W6-F19",
+          "W6-F20",
+          "W6-F24",
+          "W6-F26",
+          "W6-F31",
+          "W6-F36",
+          "W6-F49",
+          "W6-F50",
+          "W6-F51",
+          "W6-F62",
+          "W6-F66",
+          "W6-F67"
+        ]
+      },
+      {
+        "id": "O34",
+        "classification": "官方建议/项目要求",
+        "description": "apitest管理角色与端到端成功审计测试",
+        "source": "L5.1–2",
+        "requirements": [
+          "W6-F67",
+          "W6-F68"
+        ]
+      },
+      {
+        "id": "O35",
+        "classification": "官方建议/项目要求",
+        "description": "run_all.py生成HTML且不提交Git",
+        "source": "L5.3",
+        "requirements": [
+          "W6-F70"
+        ]
+      },
+      {
+        "id": "O36",
+        "classification": "人工验收强制",
+        "description": "真实同伴四项：隔离、密钥不回传、断开审计、本班审计",
+        "source": "C-apply§3",
+        "requirements": [
+          "W6-F68"
+        ]
+      },
+      {
+        "id": "O37",
+        "classification": "强制兼容",
+        "description": "沿用第3–5课认证/班级/角色/检索/流式，增量改同仓",
+        "source": "L3.5及结尾；C-index§1、C-preview§1、C-apply§1",
+        "requirements": [
+          "W6-F16",
+          "W6-F25",
+          "W6-F40",
+          "W6-F43",
+          "W6-F46",
+          "W6-F59",
+          "W6-F60",
+          "W6-F61",
+          "W6-F65",
+          "W6-F69"
+        ]
+      },
+      {
+        "id": "O38",
+        "classification": "研讨/示范取舍",
+        "description": "五道思考：HTTP子集、保存/运行校验、确定性、数据位置、后续安全扩展",
+        "source": "C-think§1–5",
+        "requirements": [
+          "W6-F02",
+          "W6-F27",
+          "W6-F35",
+          "W6-F44",
+          "W6-F45",
+          "W6-F56",
+          "W6-F57",
+          "W6-F71",
+          "W6-F72"
+        ]
+      },
+      {
+        "id": "O39",
+        "classification": "可替换示范",
+        "description": "至少两工具强制，formula_hint/unit_convert命名与语义可按班级更换",
+        "source": "L1.4、C-preview§3",
+        "requirements": [
+          "W6-F06",
+          "W6-F07"
+        ]
+      },
+      {
+        "id": "O40",
+        "classification": "实践路线/验证",
+        "description": "14层实现步骤与常见故障表，端到端证据和排查",
+        "source": "C-apply§1–2",
+        "requirements": [
+          "W6-F13",
+          "W6-F28",
+          "W6-F29",
+          "W6-F30",
+          "W6-F47",
+          "W6-F50",
+          "W6-F51",
+          "W6-F63",
+          "W6-F64",
+          "W6-F66",
+          "W6-F67",
+          "W6-F70",
+          "W6-F72"
+        ]
+      }
+    ],
+    "phase_task_counts": [
+      4,
+      6,
+      7,
+      6,
+      7,
+      5,
+      7
+    ],
+    "task_total": 42,
+    "sources": [
+      {
+        "id": "L",
+        "url": "https://devops.hello1023.com/课程任务清单-第6课.html",
+        "http_status": 200,
+        "sha256_utf8_content": "f53026a92543e103be6255a0730449b33a5447771e00105330492ba2b21e454e",
+        "characters": 5945,
+        "read_scope": "六节23个li；每条均读",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "id": "C-index",
+        "url": "https://devops.hello1023.com/课件/第6课-课件-MCP与工具接入/index.html",
+        "http_status": 200,
+        "sha256_utf8_content": "d9e783d8ec39bf42af379e89a0d7fbb6ca547b380f48582cc6ce4985c23b94e1",
+        "characters": 4356,
+        "read_scope": "§1承接；§2三结论及9个导航链接",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "id": "C-preview",
+        "url": "https://devops.hello1023.com/课件/第6课-课件-MCP与工具接入/pages/preview.html",
+        "http_status": 200,
+        "sha256_utf8_content": "d5c17e63ab0ebb2a5f0f75efc72e9db12908693a2000980fe3ab6b26e5947901",
+        "characters": 10944,
+        "read_scope": "§1旧工具栏；§2HTTP子集/三方法；§3报文和Schema示例",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "id": "C-scope",
+        "url": "https://devops.hello1023.com/课件/第6课-课件-MCP与工具接入/pages/scope.html",
+        "http_status": 200,
+        "sha256_utf8_content": "d1db599a018acb77552aaf07e93b3a33fb7f943d7c21c5d64ddd87bdbf03e929",
+        "characters": 8729,
+        "read_scope": "§1七交付及流程图；§2角色；§3八DoD",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "id": "C-model",
+        "url": "https://devops.hello1023.com/课件/第6课-课件-MCP与工具接入/pages/mcp-model.html",
+        "http_status": 200,
+        "sha256_utf8_content": "b3161763493befd383ac836d8979bdfab3d7ac2961b72fabeba81a85562ff4ed",
+        "characters": 9766,
+        "read_scope": "§1三表/图；§2字段；§3凭据；§4写权限与删除FK503",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "id": "C-binding",
+        "url": "https://devops.hello1023.com/课件/第6课-课件-MCP与工具接入/pages/binding.html",
+        "http_status": 200,
+        "sha256_utf8_content": "1db7ba60294c63bc34945afb5f66b854c4dced216746cc523cba77ff1c703341",
+        "characters": 7805,
+        "read_scope": "§1语法/分隔/例子/图；§2四校验；§3断开改名删除重连",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "id": "C-bridge",
+        "url": "https://devops.hello1023.com/课件/第6课-课件-MCP与工具接入/pages/bridge.html",
+        "http_status": 200,
+        "sha256_utf8_content": "e4107e9617b81e0008465022abedf4260dfe78372263b82245a398d2c9c59bcc",
+        "characters": 10478,
+        "read_scope": "§1连接五步及图；§2确定性时序/图；§3审计例外",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "id": "C-security",
+        "url": "https://devops.hello1023.com/课件/第6课-课件-MCP与工具接入/pages/security.html",
+        "http_status": 200,
+        "sha256_utf8_content": "e2ff8320f17e3a63094c4cbba6829637dc6bee844f850395d9fafda8c4232133",
+        "characters": 7187,
+        "read_scope": "§1user来源前缀/图；§2句式/1200/整丢；§3能力/参数/令牌边界",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "id": "C-audit",
+        "url": "https://devops.hello1023.com/课件/第6课-课件-MCP与工具接入/pages/audit.html",
+        "http_status": 200,
+        "sha256_utf8_content": "25996a0569357f1e0f2f7021e7b22bd61c95ef2ec2d7e4f45a16d30457247229",
+        "characters": 7933,
+        "read_scope": "§1字段/图/50与100；§2SSE示例/省略；§3八接口/注解",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "id": "C-apply",
+        "url": "https://devops.hello1023.com/课件/第6课-课件-MCP与工具接入/pages/apply.html",
+        "http_status": 200,
+        "sha256_utf8_content": "8ed9bd58e2ee8cef81b4d4344193c6abee5d79b4bf8b8cb6c9a227ad16d6c3d0",
+        "characters": 7613,
+        "read_scope": "§1全部14步骤；§2全部故障/预期行为；§3四项真实同伴",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "id": "C-think",
+        "url": "https://devops.hello1023.com/课件/第6课-课件-MCP与工具接入/pages/think.html",
+        "http_status": 200,
+        "sha256_utf8_content": "bf0deeb860e0cd500785f8abc30b501b6fdf8b940236876db5af31e58b1f5854",
+        "characters": 14495,
+        "read_scope": "§1HTTP子集；§2校验时点；§3确定性；§4同数据位；§5注入/后续边界；各含观察/含义/替代/图",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "id": "OA",
+        "url": "https://devops.hello1023.com/week06/openapi.json",
+        "http_status": 200,
+        "read_scope": "解析全部8个MCP operation、parameters/requestBody/responses及OpMCP001–008相关schema；其余旧接口未作全量兼容审核"
+      },
+      {
+        "id": "SW",
+        "url": "https://devops.hello1023.com/week06/swagger/",
+        "http_status": 200,
+        "characters": 516,
+        "read_scope": "仅HTML及资源链接；未浏览器执行/Authorize/业务调用"
+      },
+      {
+        "id": "PROTO",
+        "url": "https://devops.hello1023.com/week06/",
+        "http_status": 200,
+        "read_scope": "仅原型入口HTML，无登录/功能验证"
+      }
+    ],
+    "source_summary": {
+      "task_list_items": 23,
+      "courseware_index": 1,
+      "courseware_subpages": 9,
+      "openapi_mcp_operations": 8,
+      "official_review_clauses_all_classes": 40,
+      "unread_linked_course_html_pages": [],
+      "browser_or_business_validation": false
+    },
+    "strict": {
+      "command": "openspec validate add-week6-mcp-tool-integration --strict",
+      "exit_code": 0,
+      "output": "Change 'add-week6-mcp-tool-integration' is valid"
+    },
+    "checks": {
+      "requirements": 72,
+      "main_scenarios": 72,
+      "tests_defined": 72,
+      "task_count": 42,
+      "task_completed": 0,
+      "official_catalog_clauses_all_categories": 40,
+      "checklist_items": 23,
+      "course_subpages_read": 9,
+      "mcp_operations_reviewed": 8,
+      "crosswalk_orphans": 0,
+      "broken_local_links": 0,
+      "markdown_table_width_errors": 0,
+      "json_examples_valid": true,
+      "outside_change_files_hashed": 449,
+      "changed_outside_change": [],
+      "changed_existing_change_files": [
+        "acceptance-matrix.md",
+        "design.md",
+        "phase0-baseline.md",
+        "proposal.md",
+        "requirements-traceability.md",
+        "review-summary.md",
+        "risks-and-open-questions.md",
+        "tasks.md",
+        "verification-result.json",
+        "specs\\week6-mcp-acceptance\\spec.md",
+        "specs\\week6-mcp-management\\spec.md",
+        "specs\\week6-mcp-service\\spec.md",
+        "specs\\week6-skill-tools\\spec.md",
+        "specs\\week6-tool-conversations\\spec.md"
+      ],
+      "new_files": [],
+      "openspec_yaml_unchanged": true,
+      "original_preservation_baseline_unchanged": true
+    },
+    "audit_summary": {
+      "semantic_contracts_revised": 44,
+      "other_requirements_reviewed_and_classified": 28
+    },
+    "implementation_ready": false,
+    "unresolved": "User review of documented source conflicts, engineering choices and original Week5 compatibility differences; no missing public course subpage",
+    "side_effects": {
+      "business_code_edits": 0,
+      "database_reads_writes_migrations": 0,
+      "docker_operations": 0,
+      "real_model_calls": 0,
+      "commit_push": 0
+    }
+  },
+  "phase0_review": {
+    "date": "2026-10-18",
+    "timezone": "Asia/Shanghai",
+    "state": "phase0_complete_stop_before_phase1",
+    "authorization": "User explicitly limited this turn to 0.1-0.4 and specified design decisions and engineering choices A-F",
+    "baseline": "phase0-session-baseline.json",
+    "evidence": "phase0-baseline.md",
+    "tasks": {
+      "0.1": "complete: reuse L/C source records, supplement OA hash, verify bidirectional mapping",
+      "0.2": "complete: D1-D8 and source-conflict interpretations frozen per user instruction",
+      "0.3": "complete: A-F compatible extension seams; project limits distinguished",
+      "0.4": "complete: static v3 ledger/catalog and isolated v4/backup/resource plan reviewed; no live database validation"
+    },
+    "checks": {
+      "requirements": 72,
+      "unique_requirements": 72,
+      "main_scenarios": 72,
+      "unique_scenarios": 72,
+      "task_total": 42,
+      "task_completed": 4,
+      "completed_ids": [
+        "0.1",
+        "0.2",
+        "0.3",
+        "0.4"
+      ],
+      "phase1_to_6_incomplete": 38,
+      "trace_orphans": [],
+      "matrix_main_rows": 72,
+      "official_operations": 8,
+      "operation_set_matches": true,
+      "source_registry_hashes_match_trace": true,
+      "checklist_items": 23,
+      "changed_outside_change": [],
+      "outside_existing_files": 449,
+      "original_449_preserved": true,
+      "spec_files_unchanged": true,
+      "proposal_yaml_original_baseline_unchanged": true,
+      "changed_existing_files": [
+        "design.md",
+        "phase0-baseline.md",
+        "requirements-traceability.md",
+        "review-summary.md",
+        "risks-and-open-questions.md",
+        "tasks.md",
+        "verification-result.json"
+      ],
+      "new_files": [
+        "phase0-openapi-evidence.json",
+        "phase0-session-baseline.json"
+      ],
+      "broken_local_links": []
+    },
+    "source_reuse": {
+      "L_C_records_reused": 11,
+      "courseware_subpages": 9,
+      "live_L_C_refetched": false,
+      "limitation": "Existing page read records and registered hashes agree; raw pages not retained here, no claim of current byte-level drift absence",
+      "OA_http_status": 200,
+      "OA_sha256_utf8_content": "69cff10b191f9b35ea46582dc29f458913cbe2b69f1270d121bcb2b04c89e566",
+      "OA_evidence": "phase0-openapi-evidence.json",
+      "OA_prior_hash_absent": true,
+      "OA_new_contract_discrepancies": []
+    },
+    "schema": {
+      "basis": "source only; online catalog not queried",
+      "legacy_DDL_hashes_verified": 41,
+      "legacy_DDL_hashes_match": true,
+      "v4_tables_planned": 3,
+      "v4_implemented": false,
+      "v3_ledger_total_one_check_requires_version_aware_extension": true,
+      "catalog_stages_reconstructed": 41,
+      "final_catalog_section_row_counts": [
+        14,
+        102,
+        74,
+        25,
+        3
+      ],
+      "final_catalog_tables": [
+        "assignments",
+        "assistants",
+        "classes",
+        "knowledge_entries",
+        "materials",
+        "sessions",
+        "skills",
+        "users",
+        "knowledge_chunks",
+        "conversations",
+        "conversation_messages",
+        "schema_upgrades",
+        "assistant_skill_bindings",
+        "assistant_material_bindings"
+      ]
+    },
+    "strict": {
+      "command": "openspec validate add-week6-mcp-tool-integration --strict",
+      "exit_code": 0,
+      "output": "Change 'add-week6-mcp-tool-integration' is valid"
+    },
+    "blockers": [],
+    "retained_risks": [
+      "server name reuse",
+      "call/audit crash gap",
+      "incomplete injection filter",
+      "existing auth DB 500 versus MCP business 503",
+      "live target state unverified"
+    ],
+    "phase1_planning_prerequisites_met": true,
+    "phase1_authorized_this_turn": false,
+    "business_acceptance_complete": false,
+    "side_effects": {
+      "business_code_edits": 0,
+      "database_connections_reads_writes_migrations": 0,
+      "docker_operations": 0,
+      "real_model_or_paid_calls": 0,
+      "git_stage_commit_push_merge_rebase": 0
+    }
+  },
+  "phase1_review": {
+    "state": "phase1_complete_stop_before_phase2",
+    "date": "2026-10-18",
+    "evidence": "phase1-verification.json",
+    "report": "phase1-verification.md",
+    "final_run": "runtime/week6-phase1-20261018T105629Z-032749c0",
+    "strict": {
+      "command": "openspec validate add-week6-mcp-tool-integration --strict",
+      "exit_code": 0,
+      "output": "Change 'add-week6-mcp-tool-integration' is valid"
+    },
+    "checks": {
+      "total": 42,
+      "complete": 10,
+      "phase0_complete": 4,
+      "phase1_complete": 6,
+      "phase2_to_6_incomplete": 32,
+      "requirements": 72,
+      "main_scenarios": 72
+    },
+    "tests": {
+      "go_leaf_passed": 62,
+      "docker_protocol_passed": 52,
+      "docker_stopped_rpc_passed": 1,
+      "total_counted_checks_passed": 115,
+      "final_failed": 0,
+      "phase1_required_unexecuted": 0,
+      "go_packages_without_test_files": 3,
+      "note": "Host protocol 52 are included in Go leaf 62; do not add them twice. Startup/log/host-stop assertions also passed inside parent test. Three Go package skip events mean no test files, not skipped required tests."
+    },
+    "source_hashes_match_final_test_run": true,
+    "outside_change_existing_files_unchanged": true,
+    "added_implementation_root": "mcp-server/",
+    "docker_closeout": "phase1-closeout-docker.json",
+    "historical_failure_preserved": true,
+    "business_phase2_to_6_implemented": false,
+    "phase2_prerequisites_met": true,
+    "phase2_authorized": false,
+    "side_effects_this_closeout": {
+      "code_edits": 0,
+      "business_test_reruns": 0,
+      "docker_mutations": 0,
+      "database_operations": 0,
+      "paid_model_calls": 0,
+      "git_mutations": 0
+    },
+    "blockers": []
+  },
+  "phase2_review": {
+    "state": "phase2_complete_stop_before_phase3",
+    "date": "2026-10-18",
+    "report": "phase2-verification.md",
+    "verification": "phase2-verification.json",
+    "final_run": "runtime/week6-phase2-20261018T133028Z-5844f06a",
+    "checks": {
+      "requirements": 72,
+      "main_scenarios": 72,
+      "official_operations": 8,
+      "tasks": 42,
+      "completed": 17,
+      "phase0_complete": 4,
+      "phase1_complete": 6,
+      "phase2_complete": 7,
+      "phase3_to_6_incomplete": 25,
+      "specs_unchanged": true,
+      "broken_local_links": []
+    },
+    "tests": {
+      "integration": {
+        "passed_leaf_tests": 84,
+        "failed": 0,
+        "skipped_tests": 0
+      },
+      "compatibility": {
+        "passed_leaf_tests": 217,
+        "failed": 0,
+        "skipped_tests": 0
+      }
+    },
+    "unique_test_identifiers": 276,
+    "strict": {
+      "command": "openspec validate add-week6-mcp-tool-integration --strict",
+      "exit_code": 0,
+      "output": "Change 'add-week6-mcp-tool-integration' is valid"
+    },
+    "legacy_41_ddl_hashes_unchanged": true,
+    "existing_code_changes_authorized": [
+      "internal/repository/mysql/rag_schema.go",
+      "internal/repository/mysql/tutor_schema.go",
+      "cmd/bootstrap/main.go",
+      "cmd/server/main.go",
+      "internal/repository/mysql/catalog.go",
+      "internal/transfer/ready.go"
+    ],
+    "unexpected_existing_changes": [],
+    "existing_demo_operations": 0,
+    "real_model_calls": 0,
+    "management_http_ui_skill_sse_implementation": false,
+    "phase3_prerequisites_met": true,
+    "phase3_authorized": false,
+    "blockers": []
+  },
+  "phase3_review": {
+    "verified_at": "2026-10-18T14:03:11.096012+00:00",
+    "tasks": {
+      "3.1": "passed",
+      "3.2": "passed",
+      "3.3": "passed",
+      "3.4": "passed",
+      "3.5": "passed",
+      "3.6": "passed"
+    },
+    "progress": {
+      "complete": 23,
+      "total": 42,
+      "phase4_to_6_unchecked": 19
+    },
+    "runtime": "runtime/week6-phase3-20261018T135556Z-b05263e7",
+    "test_counts": {
+      "integration": {
+        "pass": 80,
+        "fail": 0,
+        "skip": 0
+      },
+      "compatibility": {
+        "pass": 223,
+        "fail": 0,
+        "skip": 0
+      },
+      "week5_real_mysql": {
+        "pass": 57,
+        "fail": 0,
+        "skip": 0
+      },
+      "leaf_executions": 360,
+      "unique_leaf_cases": 335,
+      "final_required_not_executed": 0,
+      "historical_initial_failures": 2
+    },
+    "contract": {
+      "requirements": 72,
+      "primary_scenarios": 72,
+      "management_operations": 8,
+      "task_count": 42,
+      "duplicate_name_status": 400,
+      "remote_failure_status": 502,
+      "business_db_status": 503,
+      "legacy_auth_db_status": 500
+    },
+    "docker_closeout": "phase3-docker-closeout.json",
+    "paid_model_calls": 0,
+    "existing_database_connections": 0,
+    "phase4_ready": true,
+    "phase4_started": false,
+    "report": "phase3-verification.md",
+    "strict_validation": {
+      "exit_code": 0,
+      "valid": true
+    },
+    "final_checks": "phase3-final-checks.json"
+  },
+  "phase4_review": {
+    "verified_at": "2026-10-18T23:44:24.375602+00:00",
+    "tasks": {
+      "4.1": "passed",
+      "4.2": "passed",
+      "4.3": "passed",
+      "4.4": "passed",
+      "4.5": "passed",
+      "4.6": "passed",
+      "4.7": "passed"
+    },
+    "progress": {
+      "complete": 30,
+      "total": 42,
+      "phase5_to_6_unchecked": 12
+    },
+    "runtime": "runtime/week6-phase4-20261018T233731Z-6247b3b7",
+    "test_counts": {
+      "integration": {
+        "pass": 168,
+        "fail": 0,
+        "skip": 0
+      },
+      "compatibility": {
+        "pass": 279,
+        "fail": 0,
+        "skip": 0
+      },
+      "week5-storage-regression": {
+        "pass": 57,
+        "fail": 0,
+        "skip": 0
+      }
+    },
+    "unique_leaf_cases": 423,
+    "leaf_executions": 504,
+    "final_required_not_executed": 0,
+    "docker_closeout": "phase4-docker-closeout.json",
+    "paid_model_calls": 0,
+    "phase5_started": false,
+    "phase5_prerequisites_met": true,
+    "report": "phase4-verification.md",
+    "strict_validation": {
+      "exit_code": 0,
+      "valid": true
+    },
+    "final_checks": "phase4-final-checks.json"
+  },
+  "phase5_review": {
+    "status": "passed",
+    "tasks_completed": [
+      "5.1",
+      "5.2",
+      "5.3",
+      "5.4",
+      "5.5"
+    ],
+    "progress": {
+      "complete": 35,
+      "total": 42
+    },
+    "test_counts": {
+      "go_leaf": {
+        "pass": 279,
+        "fail": 0,
+        "skip": 0
+      },
+      "sse_parser": {
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      "browser_groups": {
+        "pass": 21,
+        "fail": 0,
+        "skip": 0
+      },
+      "default_compose_deployment_group": {
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      }
+    },
+    "leaf_cases_and_acceptance_groups": 304,
+    "historical_failed_attempts": 5,
+    "final_required_not_executed": 0,
+    "report": "phase5-verification.md",
+    "machine_evidence": "phase5-verification.json",
+    "docker_closeout": "phase5-docker-closeout.json",
+    "paid_model_calls": 0,
+    "phase6_started": false,
+    "strict_validation": {
+      "exit_code": 0,
+      "valid": true,
+      "command": "openspec validate add-week6-mcp-tool-integration --strict",
+      "output": "Change 'add-week6-mcp-tool-integration' is valid"
+    },
+    "phase6_technical_prerequisites_met": true,
+    "final_checks": "phase5-final-checks.json"
+  },
+  "phase6_review": {
+    "utc": "2026-10-19T01:33:54.102192+00:00",
+    "status": "passed_under_user_approved_project_adjustments",
+    "tasks": {
+      "completed": 42,
+      "total": 42,
+      "phase6": 7
+    },
+    "evidence_root": "runtime/week6-phase6-20261019T012340Z-a3c89340",
+    "go_suites": {
+      "mcp-full-matrix": {
+        "passed_leaf_executions": 201,
+        "failed": 0,
+        "skipped": 0,
+        "passed_roots": [
+          "TestMCPClientRealService",
+          "TestMCPConversationRealTools",
+          "TestMCPClientFaults",
+          "TestMCPClientDNSPinningAndStoppedServer",
+          "TestVault",
+          "TestPolicyRejectsUnsafeTargets",
+          "TestPolicyMetadataOverridesAllowlist",
+          "TestToolReferences",
+          "TestToolArguments",
+          "TestToolOutputSafety",
+          "TestToolPlanBudgetAndOrder",
+          "TestMCPConversationSkillValidation",
+          "TestMCPSchemaReceiptInterruptedInitializer",
+          "TestMCPMigrationPaths",
+          "TestMCPSchemaReceipt",
+          "TestMCPConversationFaults",
+          "TestMCPInterruptedRecovery",
+          "TestMCPConversationDeletedReference",
+          "TestMCPLock",
+          "TestMCPConversationRacesAndCancellation",
+          "TestMCPDriftRefusal",
+          "TestMCPStoreAndRealService",
+          "TestMCPBackupAndLegacyProtection",
+          "TestMCPConversationSequentialBudget",
+          "TestMCPConversationTransportFailures",
+          "TestMCPConversationOrdering",
+          "TestMCPHTTPManagement",
+          "TestMCPHTTPFaults",
+          "TestMCPHTTPDNSRebinding",
+          "TestMCPHTTPRaces",
+          "TestMCPHTTPRefreshAndDBFailure"
+        ],
+        "evidence": "runtime/week6-phase6-20261019T012340Z-a3c89340/mcp-full-matrix.stdout"
+      },
+      "week5-full-regression": {
+        "passed_leaf_executions": 128,
+        "failed": 0,
+        "skipped": 0,
+        "passed_roots": [
+          "TestAlignDeleteScopedTransaction",
+          "TestAlignDeleteRealDatabaseFailure",
+          "TestAlignDeleteNoPublicRoute",
+          "TestAlignPhase2EvidenceCurrentMaterialSet",
+          "TestAlignPhase2HistoryAcceptedTurnWindow",
+          "TestAlignPhase2HistoryUnicodeTitleAndOrdering",
+          "TestAlignPhase2APISkillCRUDAndGuards",
+          "TestAlignPhase2APIDatabaseFailureAtomic",
+          "TestAlignPhase2RolesDefaultAndDisabledContinuation",
+          "TestAlignPhase2RolesConfigurationBoundsAndGuards",
+          "TestAlignPhase2RoutingCurrentBindings",
+          "TestAlignPhase2Week4RetrievalAndAskProtection",
+          "TestAlignPhase3IntegrationRealServices",
+          "TestAlignPhase3PreparationFailuresAndAtomicStart",
+          "TestAlignPhase3FourCombinationsAndEarlyMeta",
+          "TestAlignPhase3StreamFailuresAndCleaning",
+          "TestAlignPhase3TurnTokenIsolationAndRecovery",
+          "TestAlignPhase3PreparationFrozenConfigurationAndZeroResults",
+          "TestAlignPhase3LifecyclePersistenceTransportAndRecovery",
+          "TestAlignPhase3StreamEvidencedValidation",
+          "TestAlignPhase3PreparationConcurrentHTTP",
+          "TestAlignLegacyPreservation",
+          "TestAlignLegacyConflicts",
+          "TestAlignLegacyBackfillRollback",
+          "TestAlignLegacyRelationFailureRollsBackAll",
+          "TestAlignLegacyMarkerTamperingDoesNotReimport",
+          "TestAlignSchemaPaths",
+          "TestAlignSchemaInterruptedSteps",
+          "TestAlignSchemaDrift",
+          "TestAlignStoreSkillCRUD",
+          "TestAlignStoreBindingRollback",
+          "TestAlignStoreCurrentRelationsAndSnapshot",
+          "TestAlignStoreConcurrentSourceEdits"
+        ],
+        "evidence": "runtime/week6-phase6-20261019T012340Z-a3c89340/week5-full-regression.stdout"
+      },
+      "compatibility": {
+        "passed_leaf_executions": 279,
+        "failed": 0,
+        "skipped": 0,
+        "passed_roots": [
+          "TestDeploymentConfiguration",
+          "TestSigningSecret",
+          "TestConfiguration",
+          "TestRAGConfiguration",
+          "TestUploadLimit",
+          "TestLoginUserQuery",
+          "TestMaterialReadRepository",
+          "TestWeekFiveEvidenceCitationPromptAndIdentities",
+          "TestNoEvidenceCrossFragmentCitations",
+          "TestAnswerCompletionValidation",
+          "TestBearerIdentityAndRevocation",
+          "TestModelEvidenceUnicodeLimits",
+          "TestTrueIncrementalModelStream",
+          "TestEmbeddingProtocolsAndValidation",
+          "TestThresholdAndPayloadDoubleCheck",
+          "TestChunkingAndRRF",
+          "TestEvidenceAnswers",
+          "TestVault",
+          "TestPolicyRejectsUnsafeTargets",
+          "TestPolicyMetadataOverridesAllowlist",
+          "TestToolReferences",
+          "TestToolArguments",
+          "TestStreamProtocolFailures",
+          "TestToolOutputSafety",
+          "TestToolPlanBudgetAndOrder",
+          "TestUploadTransactionOutcomes",
+          "TestHistoryBudgetAndQuestions",
+          "TestSixMessageWindowAndValidInput",
+          "TestCurrentTurnIsNotTextDeduplication",
+          "TestFlaskIssuedToken",
+          "TestTokenExpiryAndIssuance",
+          "TestStreamingPayloadHasSixMessagesIncludingCurrent",
+          "TestWeekFiveEmptyBindingShortCircuits",
+          "TestWeekFiveTopFourThenSubjectAndNumbering",
+          "TestInvalidTokenMatrix",
+          "TestBlankRoleAndDisabledExistingPreparation",
+          "TestDeterministicLexicalRoute",
+          "TestSelectedSourceAndServerGuidance",
+          "TestRouteUsesCurrentQuestionNotRetrievalHistory",
+          "TestParseSkillSourceRoundTrip",
+          "TestParseSkillSourceLimits",
+          "TestParseSkillSourceRejectsMalformed",
+          "TestSelectedLoadedAndNoEvidence",
+          "TestConfigurationAndGuidanceConstraints",
+          "TestDocumentationRoutesAndContract",
+          "TestAlignedOpenAPISchemasAndSSE",
+          "TestDocumentedStrictFieldsMatchHandlers",
+          "TestHealth",
+          "TestRecoveryPreflightAndCleanup",
+          "TestMaterialOpenRejectsUnsafeKeys",
+          "TestUploadInputFailureClassification",
+          "TestUploadParsing",
+          "TestUploadLimit",
+          "TestSafeNamesAndConcurrentUploads",
+          "TestStorageFailures",
+          "TestLoginHTTPContract",
+          "TestMaterialReadHTTP",
+          "TestMCPOpenAPIContract",
+          "TestMaterialPagesAndStaticBoundary",
+          "TestConfirmedUploadErrorCombinations",
+          "TestUploadTruncatedMultipartAndStorageFailure",
+          "TestUploadHTTPContract",
+          "TestPasswordCompatibility"
+        ],
+        "evidence": "runtime/week6-phase6-20261019T012340Z-a3c89340/compatibility.stdout"
+      },
+      "standalone-mcp-protocol": {
+        "passed_leaf_executions": 62,
+        "failed": 0,
+        "skipped": 0,
+        "passed_roots": [
+          "TestRegistryRejectsDuplicatesAndOverLimit",
+          "TestConfiguration",
+          "TestTimeoutAndCancellationNoRetry",
+          "TestChunkedBodyLimitAndNoExecution",
+          "TestRejectedRequestsNeverExecute",
+          "TestPublishedSchemaAndNumericAccuracy",
+          "TestRealServiceProcess"
+        ],
+        "evidence": "runtime/week6-phase6-20261019T012340Z-a3c89340/standalone-mcp-protocol.stdout"
+      }
+    },
+    "test_counts": {
+      "go_leaf_executions": 670,
+      "api_groups_passed": 35,
+      "browser_groups_passed": 21,
+      "sse_parser_passed": 3,
+      "fresh_production_e2e_passed": 1,
+      "v4_backup_restore_passed": 1,
+      "html_report_branches_passed": 3,
+      "cross_checks_passed": 4,
+      "unexpected_final_failures": 0,
+      "mandatory_adjusted_project_tests_not_executed": 0,
+      "expected_negative_report_branches": 2,
+      "counting_note": "Separate units; overlapping Go suites and cross checks within API are not unique tests and must not be summed as unique cases."
+    },
+    "original_requirements_not_executed": [
+      "T71 real model invocation",
+      "T71 user human review",
+      "T68 real peer participation"
+    ],
+    "paid_model_calls": 0,
+    "human_review": false,
+    "real_peers": false,
+    "cross_verification": "Codex 自动化模拟交叉验证：4/4 通过。",
+    "cross_evidence": "runtime/week6-phase6-20261019T012340Z-a3c89340/cross-verification.json",
+    "strict": {
+      "command": "openspec validate add-week6-mcp-tool-integration --strict",
+      "exit_code": 0,
+      "stdout": "Change 'add-week6-mcp-tool-integration' is valid",
+      "stderr": ""
+    },
+    "docker_closeout": "phase6-docker-closeout.json",
+    "protection": "phase6-final-checks.json",
+    "coverage": "phase6-coverage.json",
+    "submission_readiness": "Ready for separately authorized pre-commit audit under adjusted project standard; no commit/push/archive executed."
+  }
+}

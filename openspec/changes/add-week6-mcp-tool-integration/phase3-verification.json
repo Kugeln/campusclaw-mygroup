@@ -1,0 +1,655 @@
+{
+  "verified_at": "2026-10-18T14:03:11.096012+00:00",
+  "phase": 3,
+  "tasks": {
+    "3.1": "passed",
+    "3.2": "passed",
+    "3.3": "passed",
+    "3.4": "passed",
+    "3.5": "passed",
+    "3.6": "passed"
+  },
+  "progress": {
+    "complete": 23,
+    "total": 42,
+    "phase4_to_6_unchecked": 19
+  },
+  "runtime": "runtime/week6-phase3-20261018T135556Z-b05263e7",
+  "test_counts": {
+    "integration": {
+      "pass": 80,
+      "fail": 0,
+      "skip": 0
+    },
+    "compatibility": {
+      "pass": 223,
+      "fail": 0,
+      "skip": 0
+    },
+    "week5_real_mysql": {
+      "pass": 57,
+      "fail": 0,
+      "skip": 0
+    },
+    "leaf_executions": 360,
+    "unique_leaf_cases": 335,
+    "final_required_not_executed": 0,
+    "historical_initial_failures": 2
+  },
+  "contract": {
+    "requirements": 72,
+    "primary_scenarios": 72,
+    "management_operations": 8,
+    "task_count": 42,
+    "duplicate_name_status": 400,
+    "remote_failure_status": 502,
+    "business_db_status": 503,
+    "legacy_auth_db_status": 500
+  },
+  "source_sha256": {
+    "cmd/server/main.go": "c43141fac920b4f3593bdcdce0e49a59d1b1c446c4fed3fd4ae3839f943ef33b",
+    "internal/http/mcp.go": "72e1b9701e9fa8945832f88896dcbfb2844aa3762a37bf0afc108389ef3fe552",
+    "internal/http/mcp_contract_test.go": "8e403aad95245d54cb15cc4b3870a2e4d97ec0be7f425301381c0d9f0874422a",
+    "internal/http/mcp_integration_test.go": "c15faa4892bbf1676b6dceb3fa8d6e6cb3ca89a292be15375fa2a58736069540",
+    "internal/http/web/swagger/openapi.json": "e1d6f06fef04a715f4864c986fdfccac16accca6ec038e877c32121be7331da2",
+    "internal/mcp/client.go": "15997694ed1634c8e213d01df9906acb5163cf48560849b0a169c211cf3607af",
+    "internal/mcp/management.go": "ff039ec9443201157986ffe39f2b31b34788f0b3c7126942653091df2464790a",
+    "internal/repository/mysql/mcp.go": "de5453dac0d946079c6ecf6a878ae784c60745560aa75f2f23c875d72b5191f5",
+    "tests/go_mcp/compose.phase3.yml": "436ca3ada5b056fbf316378acfe99c5e3b305fab1642d6da71e95cf290eb4738",
+    "tests/go_mcp/run_phase3.py": "beaca133dcb7b60dc28c686cf32e3edc398ff77a9fa7c8ae37c9b228a5fd0ca4"
+  },
+  "protection": {
+    "branch": "feature/week5-phase1-go-rag",
+    "head": "51a8749f6550c279efebe63bb67eda724878f5a1",
+    "changed_existing_code": [
+      "cmd/server/main.go",
+      "internal/mcp/client.go",
+      "internal/http/web/swagger/openapi.json",
+      "internal/repository/mysql/mcp.go"
+    ],
+    "unexpected_changes": [],
+    "old_schemas_and_catalogs_unchanged": true,
+    "week5_changes_unchanged": true,
+    "protected_material_skill_conversation_rag_auth_sse_code_unchanged": true,
+    "default_compose_env_gateway_unchanged": true
+  },
+  "runs": [
+    {
+      "path": "runtime/week6-phase3-20261018T134902Z-0be2fdef",
+      "result": {
+        "run_id": "20261018T134902Z-0be2fdef",
+        "project": "campusclaw-w6-p3-20261018t134902z-0be2fdef",
+        "commands": [
+          {
+            "name": "config",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t134902z-0be2fdef",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "config",
+              "--format",
+              "json"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "build",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t134902z-0be2fdef",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "build",
+              "--pull=false"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "up",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t134902z-0be2fdef",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "up",
+              "-d",
+              "--wait",
+              "mysql",
+              "mcp-demo"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "integration",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t134902z-0be2fdef",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "run",
+              "--rm",
+              "--no-deps",
+              "tests",
+              "go",
+              "test",
+              "-tags",
+              "mcpstorage",
+              "./internal/http",
+              "./internal/mcp",
+              "./internal/repository/mysql",
+              "-run",
+              "Test(MCPHTTP|MCPClient|MCPStore|Policy|Vault)",
+              "-count=1",
+              "-json",
+              "-timeout",
+              "8m"
+            ],
+            "exit_code": 1
+          },
+          {
+            "name": "service-logs",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t134902z-0be2fdef",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "logs",
+              "--no-color",
+              "mysql",
+              "mcp-demo"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "cleanup",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t134902z-0be2fdef",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "down",
+              "--remove-orphans"
+            ],
+            "exit_code": 0
+          }
+        ],
+        "failures": [
+          "RuntimeError: integration failed"
+        ],
+        "paid_model_calls": 0,
+        "existing_database_connections": 0,
+        "owned_resources_removed": true,
+        "passed": false
+      }
+    },
+    {
+      "path": "runtime/week6-phase3-20261018T135213Z-346113e2",
+      "result": {
+        "run_id": "20261018T135213Z-346113e2",
+        "project": "campusclaw-w6-p3-20261018t135213z-346113e2",
+        "commands": [
+          {
+            "name": "config",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135213z-346113e2",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "config",
+              "--format",
+              "json"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "build",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135213z-346113e2",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "build",
+              "--pull=false"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "up",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135213z-346113e2",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "up",
+              "-d",
+              "--wait",
+              "mysql",
+              "mcp-demo"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "integration",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135213z-346113e2",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "run",
+              "--rm",
+              "--no-deps",
+              "tests",
+              "go",
+              "test",
+              "-tags",
+              "mcpstorage",
+              "./internal/http",
+              "./internal/mcp",
+              "./internal/repository/mysql",
+              "-run",
+              "Test(MCPHTTP|MCPClient|MCPStore|Policy|Vault)",
+              "-count=1",
+              "-json",
+              "-timeout",
+              "8m"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "compatibility",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135213z-346113e2",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "run",
+              "--rm",
+              "--no-deps",
+              "tests",
+              "go",
+              "test",
+              "./cmd/...",
+              "./internal/...",
+              "-count=1",
+              "-json",
+              "-timeout",
+              "5m"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "vet",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135213z-346113e2",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "run",
+              "--rm",
+              "--no-deps",
+              "tests",
+              "go",
+              "vet",
+              "./cmd/...",
+              "./internal/..."
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "service-logs",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135213z-346113e2",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "logs",
+              "--no-color",
+              "mysql",
+              "mcp-demo"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "cleanup",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135213z-346113e2",
+              "-f",
+              "tests/go_mcp/compose.test.yml",
+              "down",
+              "--remove-orphans"
+            ],
+            "exit_code": 0
+          }
+        ],
+        "failures": [],
+        "paid_model_calls": 0,
+        "existing_database_connections": 0,
+        "existing_containers_unchanged": 213,
+        "subnet": "10.241.1.0/24",
+        "owned_resources_removed": true,
+        "passed": true
+      }
+    },
+    {
+      "path": "runtime/week6-phase3-20261018T135556Z-b05263e7",
+      "result": {
+        "run_id": "20261018T135556Z-b05263e7",
+        "project": "campusclaw-w6-p3-20261018t135556z-b05263e7",
+        "commands": [
+          {
+            "name": "config",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135556z-b05263e7",
+              "-f",
+              "tests/go_mcp/compose.phase3.yml",
+              "config",
+              "--format",
+              "json"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "build",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135556z-b05263e7",
+              "-f",
+              "tests/go_mcp/compose.phase3.yml",
+              "build",
+              "--pull=false"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "up",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135556z-b05263e7",
+              "-f",
+              "tests/go_mcp/compose.phase3.yml",
+              "up",
+              "-d",
+              "--wait",
+              "mysql",
+              "mcp-demo"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "integration",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135556z-b05263e7",
+              "-f",
+              "tests/go_mcp/compose.phase3.yml",
+              "run",
+              "--rm",
+              "--no-deps",
+              "tests",
+              "go",
+              "test",
+              "-tags",
+              "mcpstorage",
+              "./internal/http",
+              "./internal/mcp",
+              "./internal/repository/mysql",
+              "-run",
+              "Test(MCPHTTP|MCPClient|MCPStore|Policy|Vault)",
+              "-count=1",
+              "-json",
+              "-timeout",
+              "8m"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "compatibility",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135556z-b05263e7",
+              "-f",
+              "tests/go_mcp/compose.phase3.yml",
+              "run",
+              "--rm",
+              "--no-deps",
+              "tests",
+              "go",
+              "test",
+              "./cmd/...",
+              "./internal/...",
+              "-count=1",
+              "-json",
+              "-timeout",
+              "5m"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "week5-storage-regression",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135556z-b05263e7",
+              "-f",
+              "tests/go_mcp/compose.phase3.yml",
+              "run",
+              "--rm",
+              "--no-deps",
+              "tests",
+              "go",
+              "test",
+              "-tags",
+              "alignstorage",
+              "./internal/repository/mysql",
+              "-run",
+              "TestAlign(Store|Phase2|Phase3(Preparation|Four|Stream|Turn|Lifecycle))",
+              "-count=1",
+              "-json",
+              "-timeout",
+              "10m"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "vet",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135556z-b05263e7",
+              "-f",
+              "tests/go_mcp/compose.phase3.yml",
+              "run",
+              "--rm",
+              "--no-deps",
+              "tests",
+              "go",
+              "vet",
+              "./cmd/...",
+              "./internal/..."
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "service-logs",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135556z-b05263e7",
+              "-f",
+              "tests/go_mcp/compose.phase3.yml",
+              "logs",
+              "--no-color",
+              "mysql",
+              "mcp-demo"
+            ],
+            "exit_code": 0
+          },
+          {
+            "name": "cleanup",
+            "command": [
+              "docker",
+              "compose",
+              "-p",
+              "campusclaw-w6-p3-20261018t135556z-b05263e7",
+              "-f",
+              "tests/go_mcp/compose.phase3.yml",
+              "down",
+              "--remove-orphans"
+            ],
+            "exit_code": 0
+          }
+        ],
+        "failures": [],
+        "paid_model_calls": 0,
+        "existing_database_connections": 0,
+        "existing_containers_unchanged": 213,
+        "subnet": "10.241.1.0/24",
+        "owned_resources_removed": true,
+        "passed": true
+      }
+    }
+  ],
+  "runtime_sha256": {
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/build.stderr": "3a77430431bbd789c9831bc35f41cf3fada95dee9f2b73def6f7e8f2f61075ff",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/build.stdout": "2c134e255732ed1a90dc9185b832aa72cc40459c058baf5c006d09b663bdb0b1",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/cleanup.stderr": "1180bc6c584d0e1706cec5ec241d9cf5fb3cf72378833e93d67e85d16e384307",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/client-real-service.json": "1483c763fa3eeb9e14dd074757aafc096e0ec845e54fa10537e658a1487dff39",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/config.stdout": "bfe9865680a3b39bca93f94710c4c0d364bff7359ad567e203c891e882feaf07",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/existing-containers-before.txt": "08182b5f9eedc9465f037f918782e5b9ec26107e63e2c8487b5d7bf125875706",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/integration.stderr": "b78ec487ff8c62c1806f692d52e85f79310f23ee3559689dcc5d98b5effda6f6",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/integration.stdout": "a2b4c8c5f480fb54c2360d68561d74fa82a4358d48825ab3fdc7ddb5f64181cd",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/result.json": "2a89ee76bb408f70ec760be8f8141545aadd2743c8b1b8ff8357ff014c7c2acf",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/service-logs.stdout": "8a3cc7af301f8bb9e71914e01242443606f703dd5b2b80b0552737580ba7ee18",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/TestMCPHTTPDNSRebinding.json": "8fbd82ffbb87b58fbf2aa2beeae9497c123a6312a1aeebf4c4c2c7efcc78f88e",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/TestMCPHTTPFaults.json": "a3f44cd821f94ba068e58e396315d6830811aff81b93411f25dba6512bb64432",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/TestMCPHTTPManagement.json": "a582f56dfe8f7572b2b6ece68d8b0421124e7d3d4a032a9f1ee3d1c390ac5cbc",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/TestMCPHTTPRaces.json": "99acc63c2ba689f9111eca12cab70cd1efd4345ec69992fdaefdfcce7c67de28",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/up.stderr": "27df041a35c989bcd7ee0e89c38da602a8e3d3d9cf4bcbee3a323b51006b38dd",
+    "runtime/week6-phase3-20261018T134902Z-0be2fdef/up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/build.stderr": "250b2b376c5f7a10b2dffb288e82e65952f4a9d4b22c56e8620ce95f17d20b4c",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/build.stdout": "6f822cba53f027224959374dbd9da85c41c1ef2785e1c1496f915bbb9de4890f",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/cleanup.stderr": "84bce36c5c845e64419154313f81bc7be6fe578eec72d4341a2eae2beb31a547",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/client-real-service.json": "1483c763fa3eeb9e14dd074757aafc096e0ec845e54fa10537e658a1487dff39",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/compatibility.stderr": "65e75ff9823bdb881df52b2028e42eca1dd5a06f4a6164ae327db47c61463859",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/compatibility.stdout": "943446f0f14de90333eac5ebf511779907e34e3e359cbf2bb2759b608c4166c8",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/config.stdout": "f31fe9cdbae794b5bba15801ddfc783b7d2d632245b0900cf9ff9cb35fa2b567",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/existing-containers-before.txt": "08182b5f9eedc9465f037f918782e5b9ec26107e63e2c8487b5d7bf125875706",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/integration.stderr": "cb9919398978271a7a8fe7513d14febee5c153d9ec0f4767921b3ec3bac0ba17",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/integration.stdout": "e9f82dd34a33e30b432c64304db4a7521b3247665f91e76db64e9b16cb61c7e1",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/result.json": "cf8557cb0743349d60812f11de92eb6e2de7bb8964e118139855266c6a039c48",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/service-logs.stdout": "ff9b2bc585e77a0d6c79c4ca6c703ca29c8ad9c402c82a959b646a3eaee65a01",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/TestMCPHTTPDNSRebinding.json": "acf93e97e111c0a63e84df620cc3ef7b46c1474cd1510c39d05d7fa33d1a6503",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/TestMCPHTTPFaults.json": "c1f1b5d75677f29c4d51551ba4044fcf6cf2b47191220f886592a5060d73857e",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/TestMCPHTTPManagement.json": "a290dce038cc8d39b7dd4ee76ae3bd73da93ec676b6dd45786aada01b876370d",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/TestMCPHTTPRaces.json": "c8adc51f220ecca67807d212433c066fbb4cd451c6cda9d2ce7af072b3ce4fbf",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/TestMCPHTTPRefreshAndDBFailure.json": "3978d4851a04b763efba096cc05988844304668acccc6306b2fcb91c927e64eb",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/up.stderr": "16e5a17d1188acde761a08f088ff00fd616e3c611965b87dea6eb409c6c522f8",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/vet.stderr": "e359f27777e2e30bddc1d0021173ec6702c81cc60e4f88bb5e890f1332f901f3",
+    "runtime/week6-phase3-20261018T135213Z-346113e2/vet.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/build.stderr": "80b65686fd9855993d6a1204fd9f4eb04e08de091118c1568337882a5f3d5c44",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/build.stdout": "130ceb15c3dadd016f4ab1b4ca62d3f5352ee640ee30c658c518c91f5c4b9695",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/cleanup.stderr": "e38099168ae403c96ea3fd230059cfa065056fef79c354d76f9d3c4adb29c139",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/cleanup.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/client-real-service.json": "1483c763fa3eeb9e14dd074757aafc096e0ec845e54fa10537e658a1487dff39",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/compatibility.stderr": "c10e298b041d079c501ee1b9a9e6228c4e8fea0dbf0f9c569361641115725384",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/compatibility.stdout": "2b4a4a56e08fe32336d7233c0e183ca450c9f39594778b345d5c5c8cd6b7a6ef",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/config.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/config.stdout": "605c84880992877bd665f1f6957484a6676b7a21f9ac7fb557f9358f382ca840",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/existing-containers-before.txt": "08182b5f9eedc9465f037f918782e5b9ec26107e63e2c8487b5d7bf125875706",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/integration.stderr": "c6e37cf26b9c7ca9ec6fc9c5121d277cba35cff9b985d7a2b98b47c018a32ffd",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/integration.stdout": "b433c44d962b7d48bedbc75ac493239767e9a437f60b326068a01b9e95693202",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/result.json": "c72947cc1e65e63fd1874aabc1bc89541aa26c9230f757c03695c27473dad2ed",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/service-logs.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/service-logs.stdout": "e2caf194a1090625e62a180e76ec18bc8ae592b37ca3a33fadf6abb144b548ff",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/TestMCPHTTPDNSRebinding.json": "5901c77afd4c086d67e52c654bd332855c52438cf2820c7b0888a95b1238021c",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/TestMCPHTTPFaults.json": "611346e7c3c0e99016f2ea7ac76a8268d183fa6fe034f88d6df91168ec13d183",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/TestMCPHTTPManagement.json": "f47ceed8bd954f90dc655596eee02f27640f106ce496f3f97b5009f4571b5c0b",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/TestMCPHTTPRaces.json": "19d2364df331fed2d52fd471ba0d4e9c188e4dd8bd82451763b673e0d6bc57cd",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/TestMCPHTTPRefreshAndDBFailure.json": "9a216b7f6870b9560a622c0c2150ee88c99cb5ddbaa03c113718e99714f31f28",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/up.stderr": "2a0f6d214633bfdfbe2696103a60760e4f82249b4e5c7a8560c407f4ee3e3fe3",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/up.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/vet.stderr": "1bcbeae63281863f116bfb2b48bfceb8e26694c57128775fc2016eb7bb6e592f",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/vet.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/week5-storage-regression.stderr": "0941afc9892744e99ef8fc46ebbeb9a9538255535062b1df5612e08dc545adbb",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/week5-storage-regression.stdout": "c4188d1bb4851f924a90d8d81eec652366d052d8231267407aa52663387e3a8d",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/closeout/document-contract.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/closeout/document-contract.stdout": "016721dbd6e6a759ca4a81b329c4fa2fbeb7930877e48fb22260fa7cbcc893d9",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/closeout/openapi-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/closeout/openapi-check.stdout": "fdd758829a7bfa2e0c9d8f54c9a16194b0983cc86e73176bdda87935129b005f",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/closeout/openspec-strict.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/week6-phase3-20261018T135556Z-b05263e7/closeout/openspec-strict.stdout": "0651b8c0f92a0fc7013fe9574eced644d16fab38401efc279e95d000291d3b83"
+  },
+  "docker_closeout": "phase3-docker-closeout.json",
+  "paid_model_calls": 0,
+  "existing_database_connections": 0,
+  "scope_exclusions": [
+    "Phase 4 tool references/parameters/SSE/model input",
+    "Phase 5 frontend/default Compose",
+    "Phase 6 full Qdrant/browser/paid model/real peer acceptance"
+  ],
+  "openapi_final_annotation_followup": "Only error example annotations and contract assertion changed after final Docker run; generated+Check and local 10 leaf document cases passed; behavioral code unchanged.",
+  "risks": [
+    "Name reuse can resolve old textual references",
+    "External call before terminal INSERT can crash without audit (Phase 4 integration pending)",
+    "Legacy authentication storage 500 retained",
+    "Concurrent superseded connect returns safe 502; deleted target 404; no invented 409"
+  ],
+  "phase4_ready": true,
+  "phase4_started": false,
+  "final_checks": "phase3-final-checks.json",
+  "strict_validation": {
+    "exit_code": 0,
+    "valid": true
+  }
+}

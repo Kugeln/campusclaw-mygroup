@@ -1,0 +1,24 @@
+{
+  "sse_parser": {
+    "chunk_id": "4cde73",
+    "wall_time_seconds": 0.9150178,
+    "exit_code": 0,
+    "original_token_count": 85,
+    "output": "✔ byte-split UTF-8, CRLF, heartbeat and multiline data (61.778ms)\n✔ first delta callback runs before remaining content is produced (1.7459ms)\n✔ error remains failure, EOF and malformed sequences never complete (2.826ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 337.2614\n"
+  },
+  "openapi_check": {
+    "chunk_id": "bb5b00",
+    "wall_time_seconds": 8.50506,
+    "exit_code": 0,
+    "original_token_count": 651,
+    "output": "2026/10/19 09:06:11 Generate swagger docs....\n2026/10/19 09:06:11 Generate general API Info, search dir:.\n2026/10/19 09:06:11 warning: failed to get package name in dir: ., error: execute go list command, exit status 1, stdout:, stderr:no Go files in <repository-root>\n2026/10/19 09:06:11 Generating httpapi.IdentityOutput\n2026/10/19 09:06:11 Generating httpapi.APIError\n2026/10/19 09:06:11 Generating httpapi.ConversationList\n2026/10/19 09:06:11 Generating conversation.Conversation\n2026/10/19 09:06:11 Generating httpapi.CreateConversationInput\n2026/10/19 09:06:11 Generating httpapi.ConversationOutput\n2026/10/19 09:06:11 Generating conversation.Message\n2026/10/19 09:06:11 Generating rag.Source\n2026/10/19 09:06:11 Generating tutor.Snapshot\n2026/10/19 09:06:11 Generating tutor.Agent\n2026/10/19 09:06:11 Generating tutor.Skill\n2026/10/19 09:06:11 Generating mcp.ToolCall\n2026/10/19 09:06:11 Generating rag.Evidence\n2026/10/19 09:06:11 Generating httpapi.SendMessageInput\n2026/10/19 09:06:11 Generating httpapi.SSEEnvelope\n2026/10/19 09:06:11 Generating httpapi.SSEMeta\n2026/10/19 09:06:11 Generating httpapi.SSEDelta\n2026/10/19 09:06:11 Generating httpapi.SSEDone\n2026/10/19 09:06:11 Generating httpapi.SSEError\n2026/10/19 09:06:11 Generating httpapi.LoginInput\n2026/10/19 09:06:11 Generating auth.LoginResponse\n2026/10/19 09:06:11 Generating httpapi.MaterialList\n2026/10/19 09:06:11 Generating material.Item\n2026/10/19 09:06:11 Generating material.Detail\n2026/10/19 09:06:11 Generating httpapi.MCPServerList\n2026/10/19 09:06:11 Generating mcp.Server\n2026/10/19 09:06:11 Generating httpapi.MCPCreateInput\n2026/10/19 09:06:11 Generating httpapi.MCPUpdateInput\n2026/10/19 09:06:11 Generating httpapi.MCPConnected\n2026/10/19 09:06:11 Generating mcp.Tool\n2026/10/19 09:06:11 Generating httpapi.MCPDisconnected\n2026/10/19 09:06:11 Generating httpapi.MCPToolList\n2026/10/19 09:06:11 Generating httpapi.MCPCallList\n2026/10/19 09:06:11 Generating mcp.AuditCall\n2026/10/19 09:06:11 Generating httpapi.SearchOutput\n2026/10/19 09:06:11 Generating httpapi.AskInput\n2026/10/19 09:06:11 Generating rag.Answer\n2026/10/19 09:06:11 Generating httpapi.ReindexInput\n2026/10/19 09:06:11 Generating httpapi.IndexOutput\n2026/10/19 09:06:11 Generating httpapi.AgentList\n2026/10/19 09:06:11 Generating httpapi.AgentInput\n2026/10/19 09:06:11 Generating httpapi.SkillList\n2026/10/19 09:06:11 Generating httpapi.SkillSourceInput\n2026/10/19 09:06:11 Generating httpapi.SkillUpdateInput\n2026/10/19 09:06:11 Generating httpapi.UploadOutput\n2026/10/19 09:06:11 create swagger.json at runtime/week5-openapi-v2/swagger.json\n"
+  },
+  "fixed_generation_chain": "swag v1.16.6 -> kin-openapi -> 3.0.3",
+  "warning_note": "swag root has no Go files; non-fatal existing warning, Check exited 0.",
+  "publication_note": {
+    "kind": "sanitized derivative; original evidence unchanged",
+    "original_repository_path": "openspec/changes/add-week6-mcp-tool-integration/phase6-static-checks.json",
+    "original_sha256": "7747d16d1ed785300352f89789101454315397491a3b29cb1be32d37c848338f",
+    "redaction": "Only local repository-root or personal attachment location replaced. All results, timestamps, original tasks, approval scope and assertion text preserved."
+  }
+}

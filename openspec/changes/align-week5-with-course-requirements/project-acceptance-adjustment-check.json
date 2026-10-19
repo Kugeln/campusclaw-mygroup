@@ -1,0 +1,535 @@
+{
+  "utc": "2026-10-18T09:28:53.867539+00:00",
+  "status": "project acceptance adjustment completed after read-only evidence review",
+  "substeps": {
+    "passed": 28,
+    "failed": 0,
+    "not_executed": 0
+  },
+  "independent_identities": true,
+  "denials_no_database_side_effects": true,
+  "streams": [
+    {
+      "label": "P1-own",
+      "delta_database_sources_snapshot_timing": "passed"
+    },
+    {
+      "label": "P1-continue",
+      "delta_database_sources_snapshot_timing": "passed"
+    },
+    {
+      "label": "P2-agent-B",
+      "delta_database_sources_snapshot_timing": "passed"
+    },
+    {
+      "label": "P2-disabled-current",
+      "delta_database_sources_snapshot_timing": "passed"
+    },
+    {
+      "label": "P4.enabled",
+      "delta_database_sources_snapshot_timing": "passed"
+    },
+    {
+      "label": "P4.disabled",
+      "delta_database_sources_snapshot_timing": "passed"
+    },
+    {
+      "label": "P4.unbound",
+      "delta_database_sources_snapshot_timing": "passed"
+    }
+  ],
+  "production_browser": "passed",
+  "prior_runtime_hashes_matched": 51,
+  "real_calls": {
+    "new_dialogues": 0,
+    "new_embeddings": 0,
+    "dialogues": 11,
+    "embeddings": 8,
+    "total_tokens": 7978,
+    "blocked": true
+  },
+  "genuine_peer_confirmation": false,
+  "strict_validate": {
+    "exit_code": 0,
+    "output": "Change 'align-week5-with-course-requirements' is valid",
+    "log": "project-acceptance-adjustment-strict.log"
+  },
+  "all_report_conditions_satisfied": true,
+  "original_official_peer_condition_satisfied": false,
+  "project_method_revision_authorized_by_user": true,
+  "changed_existing_files": [
+    "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+    "openspec/changes/align-week5-with-course-requirements/acceptance-handoff-draft.md",
+    "openspec/changes/align-week5-with-course-requirements/design.md",
+    "openspec/changes/align-week5-with-course-requirements/proposal.md",
+    "openspec/changes/align-week5-with-course-requirements/specs/week5-api-documentation-and-acceptance/spec.md",
+    "openspec/changes/align-week5-with-course-requirements/tasks.md"
+  ],
+  "protected_existing_file_count": 614,
+  "all_other_existing_files_unchanged": true,
+  "phase0_and_original_verification_history_unchanged": true,
+  "source_code_migrations_and_runtime_unchanged": true,
+  "local_markdown_links": [
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "proposal.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/proposal.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "design.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/design.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "tasks.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/tasks.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase0-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase0-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase0-source-review.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase0-source-review.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "specs/tutor-configuration/spec.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/specs/tutor-configuration/spec.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "specs/student-streaming-conversations/spec.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/specs/student-streaming-conversations/spec.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "specs/week5-api-documentation-and-acceptance/spec.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/specs/week5-api-documentation-and-acceptance/spec.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "specs/week5-schema-evolution/spec.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/specs/week5-schema-evolution/spec.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase0-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase0-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase0-check-result.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase0-check-result.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase1-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase1-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase1-check-result.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase1-check-result.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase1-migration-preflight.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase1-migration-preflight.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase2-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase2-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase2-check-result.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase2-check-result.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase3-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase3-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase3-check-result.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase3-check-result.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase4-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase4-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase4-check-result.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase4-check-result.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-browser-9c9349f8/browser.json",
+      "target": "runtime/align-browser-9c9349f8/browser.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase5-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase5-check-result.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-check-result.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../reports/apitest/20261018T021738Z-9e44c742/result.json",
+      "target": "reports/apitest/20261018T021738Z-9e44c742/result.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-browser-d08b5cd8/browser.json",
+      "target": "runtime/align-browser-d08b5cd8/browser.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-browser-d08b5cd8/nginx-effective.txt",
+      "target": "runtime/align-browser-d08b5cd8/nginx-effective.txt"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase5-real-model-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-real-model-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase5-citation-retest-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-citation-retest-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase5-remaining-real-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-remaining-real-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase5-human-review-confirmation.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-human-review-confirmation.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase5-p1p4-technical-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-p1p4-technical-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-browser-4b8ddd77/browser.json",
+      "target": "runtime/align-browser-4b8ddd77/browser.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-browser-4b8ddd77/ui-production.json",
+      "target": "runtime/align-browser-4b8ddd77/ui-production.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "project-acceptance-adjustment-baseline.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/project-acceptance-adjustment-baseline.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/phase5-openapi-check.log",
+      "target": "runtime/phase5-openapi-check.log"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/phase5-unit-final.log",
+      "target": "runtime/phase5-unit-final.log"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-real-26bcce67/answers-for-review.md",
+      "target": "runtime/align-real-26bcce67/answers-for-review.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-real-26bcce67/citation-retest-b8478118/answers-for-review.md",
+      "target": "runtime/align-real-26bcce67/citation-retest-b8478118/answers-for-review.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-real-26bcce67/remaining-real-01a6ec28/answers-for-review.md",
+      "target": "runtime/align-real-26bcce67/remaining-real-01a6ec28/answers-for-review.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-real-26bcce67/remaining-real-01a6ec28/result.json",
+      "target": "runtime/align-real-26bcce67/remaining-real-01a6ec28/result.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase5-human-review-confirmation.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-human-review-confirmation.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-browser-d7912cdf/browser.json",
+      "target": "runtime/align-browser-d7912cdf/browser.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-browser-4b8ddd77/ui-first-failure.json",
+      "target": "runtime/align-browser-4b8ddd77/ui-first-failure.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-real-26bcce67/budget.json",
+      "target": "runtime/align-real-26bcce67/budget.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-browser-4b8ddd77/isolation.json",
+      "target": "runtime/align-browser-4b8ddd77/isolation.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "../../../runtime/align-browser-4b8ddd77/final-resource-status.json",
+      "target": "runtime/align-browser-4b8ddd77/final-resource-status.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "project-acceptance-adjustment-check.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/project-acceptance-adjustment-check.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "project-acceptance-adjustment-baseline.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/project-acceptance-adjustment-baseline.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "project-acceptance-adjustment-strict.log",
+      "target": "openspec/changes/align-week5-with-course-requirements/project-acceptance-adjustment-strict.log"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase5-report-check.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-report-check.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md",
+      "reference": "phase5-report-baseline.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-report-baseline.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-handoff-draft.md",
+      "reference": "acceptance-final-report.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-handoff-draft.md",
+      "reference": "phase0-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase0-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-handoff-draft.md",
+      "reference": "phase1-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase1-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-handoff-draft.md",
+      "reference": "phase1-migration-preflight.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase1-migration-preflight.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-handoff-draft.md",
+      "reference": "phase2-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase2-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-handoff-draft.md",
+      "reference": "phase3-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase3-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-handoff-draft.md",
+      "reference": "phase4-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase4-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/acceptance-handoff-draft.md",
+      "reference": "phase5-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/design.md",
+      "reference": "acceptance-final-report.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/design.md",
+      "reference": "project-acceptance-adjustment-check.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/project-acceptance-adjustment-check.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/design.md",
+      "reference": "phase5-real-model-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-real-model-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase3-verification.md",
+      "reference": "phase3-baseline.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase3-baseline.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase3-verification.md",
+      "reference": "phase3-check-result.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase3-check-result.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase4-verification.md",
+      "reference": "phase4-check-result.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase4-check-result.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase4-verification.md",
+      "reference": "phase4-baseline.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase4-baseline.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase5-human-review-confirmation.md",
+      "reference": "../../../runtime/align-real-26bcce67/citation-retest-b8478118/answers-for-review.md",
+      "target": "runtime/align-real-26bcce67/citation-retest-b8478118/answers-for-review.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase5-human-review-confirmation.md",
+      "reference": "../../../runtime/align-real-26bcce67/remaining-real-01a6ec28/answers-for-review.md",
+      "target": "runtime/align-real-26bcce67/remaining-real-01a6ec28/answers-for-review.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase5-human-review-confirmation.md",
+      "reference": "phase5-remaining-real-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-remaining-real-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase5-p1p4-technical-verification.md",
+      "reference": "../../../runtime/align-browser-4b8ddd77/browser.json",
+      "target": "runtime/align-browser-4b8ddd77/browser.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase5-p1p4-technical-verification.md",
+      "reference": "../../../runtime/align-browser-4b8ddd77/ui-production.json",
+      "target": "runtime/align-browser-4b8ddd77/ui-production.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase5-real-model-verification.md",
+      "reference": "phase5-human-review-confirmation.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-human-review-confirmation.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase5-real-model-verification.md",
+      "reference": "phase5-remaining-real-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-remaining-real-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase5-real-model-verification.md",
+      "reference": "phase5-citation-retest-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-citation-retest-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase5-remaining-real-verification.md",
+      "reference": "phase5-human-review-confirmation.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-human-review-confirmation.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase5-remaining-real-verification.md",
+      "reference": "../../../runtime/align-real-26bcce67/remaining-real-01a6ec28/answers-for-review.md",
+      "target": "runtime/align-real-26bcce67/remaining-real-01a6ec28/answers-for-review.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/phase5-verification.md",
+      "reference": "acceptance-handoff-draft.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/acceptance-handoff-draft.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/proposal.md",
+      "reference": "acceptance-final-report.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/proposal.md",
+      "reference": "project-acceptance-adjustment-check.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/project-acceptance-adjustment-check.json"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/proposal.md",
+      "reference": "phase5-real-model-verification.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/phase5-real-model-verification.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/tasks.md",
+      "reference": "acceptance-final-report.md",
+      "target": "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md"
+    },
+    {
+      "source": "openspec/changes/align-week5-with-course-requirements/tasks.md",
+      "reference": "project-acceptance-adjustment-check.json",
+      "target": "openspec/changes/align-week5-with-course-requirements/project-acceptance-adjustment-check.json"
+    }
+  ],
+  "missing_paths": [],
+  "report_coverage": {
+    "F": 13,
+    "DoD": 8,
+    "P1_P4_substeps": 28
+  },
+  "secret_scan": "passed",
+  "document_diffs": {
+    "proposal.md": "--- before/proposal.md\n+++ after/proposal.md\n@@ -7,7 +7,7 @@\n - **BREAKING（仅 Week5）**：F03 空材料绑定从全班改为无材料；F01/F02 从内置开关改为教师文本技能 CRUD、多绑定、确定性评分及学科过滤；F07 零命中仍生成；F10 meta 恒为 ok 且先带本轮证据。旧 Week5 客户端/测试须显式适配。\n - F04 允许空提示词并回退默认角色；F05 停用只阻止新会话；F06 上下文末尾6条含本轮问题、每条500字；F08 首问前24字标题；F11 模型资料每条800字。\n - F09 仅补会话删除时的消息清理语义与存储测试，不新增公开 DELETE API。F12 处理器注解生成 OpenAPI，保留现有 Swagger/SSE 调试页面。\n-- F13 按官方八项 DoD、四项同伴交叉验证收集证据；自动化、受控网关、真实模型、历史结果分开，不伪造人工记录。\n+- F13 保留官方八项DoD与原始四项真实同伴要求的来源记录；按用户明确选择，本项目5.4改为独立教师/学生账号自动化交叉验证P1～P4，技术断言、浏览器/数据库证据及失败阻止条件不降低。自动化、受控网关、真实模型、用户审核与历史结果分开，不伪造同伴参与。\n - 显式增量 schema 升级、旧助手/技能/绑定兼容、完整 catalog 校验、幂等/中断恢复及回滚风险说明；不重建数据库、材料、Qdrant collection 或消息历史。\n - 保留 Go/MySQL/Qdrant、Bearer、owner+class 隔离、共享三模式检索、Week4 `/api/ask` 零命中固定文案及零对话调用，复用 SSE 解析、逐段先落库再推送、done/error、取消和中断恢复。\n \n@@ -19,7 +19,7 @@\n \n - `tutor-configuration`: 教师技能文件与 CRUD、当前绑定、词法路由、空角色回退、材料范围。\n - `student-streaming-conversations`: 会话生命周期、历史窗口、无依据生成、meta 来源与持久化协议。\n-- `week5-api-documentation-and-acceptance`: 注解文档、官方 DoD、回归矩阵及同伴证据。\n+- `week5-api-documentation-and-acceptance`: 注解文档、官方DoD、回归矩阵及本项目独立账号交叉验证；明确与官方真实同伴方式的差异。\n - `week5-schema-evolution`: 显式增量升级、旧数据映射、catalog 完整性与安全恢复。\n \n ### Modified Capabilities\n@@ -30,12 +30,12 @@\n \n 后续预计涉及 `internal/tutor/`、`internal/conversation/`、HTTP handlers/教师页面、MySQL tutor/conversation/schema/catalog 与 bootstrap 接线、注解文档生成、`apitest/` 和隔离验收脚本。数据库升级需独立维护窗口；旧 v2 严格 catalog 二进制不能直接用于升级后的库。生成工具属于构建依赖，不增加业务框架或线上服务。\n \n-Phase 0–4及5.1/5.2已完成，进度26/29。本轮证据见[Phase 5验证](phase5-verification.md)及[验收准备稿](acceptance-handoff-draft.md)。5.3已获本轮限额授权、预检阻塞、5.4待真实同伴、5.5仅准备，三项保持未勾选。完整课程验收尚未通过；正式迁移、收费模型、部署及资源清理需另行授权。\n+按用户本轮明确授权的本项目验收方案修订，5.4采用独立账号自动化验证；现有28项全部通过，原始请求/响应、真实浏览器及数据库证据已只读复核。5.3真实模型及用户审核、5.5最终报告与风险核对均齐备，本change按调整后的项目标准完成29/29，见[最终报告](acceptance-final-report.md)及[本轮复核](project-acceptance-adjustment-check.json)。官方原始真实同伴要求仍未执行；29/29不代表原始官方要求全部满足，也不代表已正式迁移或部署。真实账本保持对话11/12、Embedding8/8、7978 tokens，本轮无新增调用。\n \n 官方依据：已在本会话成功读取的[课程入口](https://devops.hello1023.com/课件/第5课-课件-提示词AI技能与流式会话/index.html)、本课重点、会话模型、技能模型、路由、SSE、回答链路、实践与思考章节；逐项来源与强制/可选边界见 design.md。\n \n \n-### 5.3 current authorization and preflight (2026-10-18)\n+### 历史时点：5.3授权及首次预检（2026-10-18，以下不是当前状态）\n \n User authorized the course gateway only, at most 12 dialogue and 8 Embedding calls, serial and without retries. The authenticated model-list GET returned 200, but configured course-chat/course-embedding aliases were not listed and their mapping/format/dimension could not be confirmed. Stopped before any generation or database/Qdrant operations; actual dialogue=0, Embedding=0. See [5.3 verification](phase5-real-model-verification.md). This authorization supersedes earlier pending-authorization status; 5.3 remains unchecked pending configuration and user review. 5.4/5.5 remain unchecked; total 26/29.\n ",
+    "design.md": "--- before/design.md\n+++ after/design.md\n@@ -2,7 +2,7 @@\n \n 动机见 proposal。当前 Go 入口为 `cmd/server/main.go`；认证、三模式检索与 Week4 Ask 共享已有模块，Week5 在 `internal/tutor/`、`internal/conversation/`、HTTP handler 和 MySQL 仓储增量编排。规划时基线证据：`tutor.go:60` 拒绝空 prompt/多个技能，`:162` 无证据旁路；MySQL `tutor.go:215` 续聊也要求启用；`conversation.go:120/208` 取6对历史/64字标题；HTTP `conversation.go:157/213` 先预读模型再发空引用 meta；`stream.go:30` 不截证据；文档来自 Python 手工定义。上述冲突已由Phase1–4按本change替代，原历史保持。\n \n-本change已完成Phase0–4及5.1/5.2，进度26/29；历史验证保留，本轮证据见[Phase5验证](phase5-verification.md)及[准备稿](acceptance-handoff-draft.md)。5.3已获12/8调用授权、待配置确认，5.4待真实同伴，5.5未完成。不以受控模型或自动化账号代替真实证据，原change32/32不改。\n+本change按用户本轮明确调整后的项目验收方案完成29/29。5.3真实课程网关回答已获用户审核；5.4独立账号P1～P4自动化验证28/28及浏览器/数据库证据已只读复核；5.5报告与迁移风险齐备。见[最终报告](acceptance-final-report.md)及[调整复核](project-acceptance-adjustment-check.json)。没有真实同伴参与，不宣称原始官方同伴要求已满足；原change32/32及历史证据保持。\n \n ### 官方来源登记（本会话 2026-10-16 成功读取）\n \n@@ -34,7 +34,7 @@\n \n 旧 `tutor-configuration` 的固定技能/证据门控/空prompt400，由新TC1–TC5替代；旧 `student-streaming-conversations` 的零命中旁路/完整轮次历史/空meta，由SC2–SC5替代；旧文档契约由DA1–DA3补充。同名旧要求未冲突的Bearer、私有性、逐段持久化与恢复继续受保护。本文引用的TC/SC/DA/SE编号是新spec中需求标题前缀。\n \n-不以planning done或strict通过作为实施完成。当前授权5.3限额复验，预检阻塞后停止。测试仅新建独立测试库/collection及代理，未授权正式库迁移或清理；5.3/5.4各需独立授权/真实参与者。\n+不以planning done或strict通过作为实施完成。真实模型仅在明确限额授权内执行，现有11/12对话、8/8 Embedding及7978 tokens账本保持锁定；本轮不调用。测试只在独立库/collection及代理，正式迁移、清理、部署仍需独立授权。5.4的项目验收方式按D7下述用户选择调整，不追认真实同伴参与。\n \n ### D2. 材料范围采用显式集合，不改Week4接口\n \n@@ -88,7 +88,13 @@\n \n 处理器注解作为路径/参数/响应/security和SSE说明的唯一输入，复用嵌入OpenAPI与Swagger页面。Phase0只读核对工具官方能力并选定能保留OpenAPI3和SSE扩展的Go注解方案，不安装或创建试验代码；实际生成验证在Phase4进行。必要时薄格式转换由注解产物驱动，不再用第二份Python手写契约。不更改运行时框架；工具选择不得改变文档约定或扩大业务范围。CI生成差异与实际路由（含新增DELETE技能）对照，删除硬编码23操作假设。\n \n-单元/真实隔离DB+Qdrant/受控上游/浏览器+Nginx/真实模型/同伴分别记录命令、时间、版本、环境、结果和脱敏证据位置。未运行或环境缺失不标通过；旧模型四轮报告继续作历史证据。新真实模型复验必须有费用限额和授权；不自动重试扩大费用。同伴四项为会话归属、智能体隔离含停用续聊、班级边界、技能开关/解绑；保留真实参与者确认及请求/响应，不用自测替代。\n+单元/真实隔离DB+Qdrant/受控上游/浏览器+Nginx/真实模型/用户内容审核/独立账号自动化分别记录命令、时间、版本、环境、结果和脱敏证据位置。未运行或环境缺失不标通过；旧模型四轮报告继续作历史证据。新真实模型复验必须有费用限额和授权；不自动重试扩大费用。\n+\n+**本项目5.4验收方式调整（用户明确选择，并非官方要求变更）：** 官方S7及Phase0仍如实记录真实同伴本人操作四项并确认。用户决定本项目改用独立教师T-A、同班学生S-A1/S-A2及外班学生S-B1账号，由Codex自动化执行；不把账号数冒称参与人数，不虚构同伴、签名或反馈。\n+\n+P1必须证明本人可读取续聊、他人列表不含会话且读取/发送404、拒绝无DB副作用；P2必须证明异绑定材料/技能不串用、agent覆盖400且未改绑、停用拒新404或无可用助手400、旧会话用当前配置续聊且历史快照不改；P3必须证明跨班会话/助手/技能/材料及下载404、身份覆盖400、跨班混合绑定整体回滚；P4使用同题同材料、每种状态新会话，比较技能启用命中、停用但绑定、启用后解绑的实际System/meta/回答/引用与数据库。技术标准不变，现有28个关键子步骤必须全通过、0失败/0未执行；权限、部分写入、串用、SSE/引用/持久化异常或证据缺失均阻止完成，不因调整方法忽略阻塞。\n+\n+交付必须保留实际请求/响应、浏览器及截图、DB前后状态、技能/证据快照、模型输入和SSE事件、时间/时区、HEAD/工作区摘要及隔离目标；受控模型仅证明流程，真实教学质量仍由独立5.3与用户审核证明。现有结果可只读复核，不需重复收费测试。5.5按调整后的全部项目必需证据、路径/脱敏/历史hash及迁移风险复核完成；最终结论须同时写明项目29/29与官方真实同伴方式未履行。Phase0及原始验证历史不得重写成官方允许替代。\n \n ## Risks / Trade-offs\n \n@@ -131,16 +137,16 @@\n | F10 | SC4/SC5 | 3.1/3.3/3.5/3.6、4.2、5.2 | A；持久化/解析保护 |\n | F11 | TC5 | 2.3、5.1 | A；仅模型资料截断 |\n | F12 | DA1 | 0.3、4.3/4.4、5.2 | A；工具可替换 |\n-| F13 | DA2/DA3 | 0.1/0.2、5.1–5.5 | A验收；人工事实待证 |\n+| F13 | DA2/DA3 | 0.1/0.2、5.1–5.5 | 项目验收完成；官方真实同伴方式未履行，用户选择独立账号自动化 |\n \n ## Open Questions\n \n Phase0审查未发现尚未解决的需求设计冲突。D3关联迁移、旧toggle兼容、D6失败持久化已冻结，后续不能临时改变spec。v3 LONGTEXT名称前缀唯一索引、升级账本与v1收据分离、心跳不得提前提交响应等实施约束见Phase0验证。\n \n-0.3已冻结swag v1.16.6→kin-openapi v0.133.0→OpenAPI3.0.3构建链、默认角色精确措辞及迁移trigger词表（见Phase0验证）。同伴参与者/时间、真实模型费用上限、正式迁移目标/窗口仍待对应阶段确认，不阻止存储层设计；未确认费用/目标库前不作对应外部操作。生成转换器在4.3实现，静态能力核对不是生成链运行通过。\n+0.3冻结的swag v1.16.6→kin-openapi v0.133.0→OpenAPI3.0.3、默认角色与迁移trigger词表保持。真实模型限额复验及用户审核、4.3生成链已完成，证据按原阶段记录。真实同伴未参与，本项目5.4按用户选择改用独立账号自动化。正式迁移目标/窗口及部署仍未授权，不能用测试结果代替正式库预检或授权。\n \n \n-### 5.3 current authorization and preflight (2026-10-18)\n+### 历史时点：5.3授权及首次预检（2026-10-18，以下不是当前状态）\n \n User authorized the course gateway only, at most 12 dialogue and 8 Embedding calls, serial and without retries. The authenticated model-list GET returned 200, but configured course-chat/course-embedding aliases were not listed and their mapping/format/dimension could not be confirmed. Stopped before any generation or database/Qdrant operations; actual dialogue=0, Embedding=0. See [5.3 verification](phase5-real-model-verification.md). This authorization supersedes earlier pending-authorization status; 5.3 remains unchecked pending configuration and user review. 5.4/5.5 remain unchecked; total 26/29.\n ",
+    "tasks.md": "--- before/tasks.md\n+++ after/tasks.md\n@@ -1,12 +1,8 @@\n-# Implementation status / authorization\n+# Implementation status and project acceptance method\n \n-5.3 completed following explicit USER approval of the prior evidence/no-skill answer and all eight remaining real-model answers. Progress 27/29. See [human review confirmation](phase5-human-review-confirmation.md). Dialogue 11/12, Embedding 8/8; original locked ledger and raw evidence preserved. Teaching-guidance polish is a non-blocking suggestion. Tasks 5.4 and 5.5 remain unchecked and incomplete. No new model calls, business changes, classroom operations, commit, push, deployment or archive.\n+The USER explicitly revised project task 5.4 to independent-account automated P1-P4 verification. Original official genuine-peer requirements remain recorded and have NOT been performed. Task 5.4 is complete after read-only review of 28 passed / 0 failed / 0 unexecuted substeps, real browser and database evidence; task 5.5 is complete after final report, risk, evidence-path, preservation and strict checks. Progress: 29/29 under the USER-adjusted project standard. No genuine peers or signatures are claimed. See [final report](acceptance-final-report.md) and [revision check](project-acceptance-adjustment-check.json).\n \n-Phase 0-4 and 5.1-5.3 completed. Original Week5 32/32 history preserved.\n-\n-P1-P4 automated technical supplement: 28/28 substeps passed plus production browser rendering evidence. Codex simulated test accounts only; no genuine peer or peer confirmation. Formal 5.4 and 5.5 remain unchecked, progress 27/29. See [technical verification](phase5-p1p4-technical-verification.md). No real model calls; locked ledger unchanged.\n-\n-5.5 report prepared: [acceptance report](acceptance-final-report.md). Evidence/index and strict verification are documented; mandatory genuine-peer evidence for 5.4 remains unavailable, so 5.5 completion conditions are not met. Both 5.4/5.5 remain unchecked, progress 27/29. No model calls or business changes in this reporting round.\n+Real course ledger stays locked: dialogue 11/12, Embedding 8/8, 7978 total tokens. No new model calls or business changes. Original Week5 32/32 and original verification history preserved.\n \n ## 0. Phase 0：基线与实施决策冻结（3项）\n \n@@ -59,13 +55,13 @@\n \n ## 5. Phase 5：整体验收与证据交付（5项）\n \n-依赖：Phase4退出及对应实施授权。5.1先行；5.2依赖5.1；5.3/5.4依赖5.2且分别具备费用授权/真实同伴；5.5待全部必要证据齐备。退出：所有课程DoD和回归有可复核结果，未完成项不得勾选或宣称可提交。\n+依赖：Phase4退出及对应实施授权。5.1先行；5.2依赖5.1；5.3/5.4依赖5.2且分别具备限额授权/独立教师和不同owner及班级学生的自动化证据；5.5待调整后的全部项目必需证据齐备。退出：八项DoD技术行为、回归与本项目DA3均有可复核结果，披露官方真实同伴方式未履行；不能将项目完成宣称为原始官方要求全部满足。技术失败、缺证据或阻塞不得忽略。\n \n - [x] 5.1 运行F01–F12完整自动化及Week4回归（DA2）。范围：更新URL/方法apitest与必要单元/build-tag集成脚本，对新规范替换反向断言，保留旧Ask断言。验收：13项矩阵的自动化部分、角色/owner/class、schema/DB拒绝无改动、路由/历史/标题/删除、无据/引用全部有记录；测试：隔离MySQL/Qdrant与受控网关全套，缺环境非成功退出，不因旧32/32或缓存历史算本轮通过。\n - [x] 5.2 完成官方八项DoD端到端矩阵（F13、DA2）。范围：默认Go与现有代理路径下的真实浏览器、Swagger、材料来源和SSE时序，记录提交/工作区摘要、命令/时间及脱敏产物。验收：八DoD逐条通过、跨用户跨班/绑定/技能开关差异可见、增量与DB一致；测试：两助手异绑定、强行换agent拒绝且未改绑、同题解绑、零命中仍答、首帧引用、Swagger Execute及旧Compose入口保护。\n - [x] 5.3 在授权限额内完成真实模型教学复验（F07/F13、DA2）。范围：沿用已配置供应商和隔离数据，先取得明确调用上限/费用授权；验证有据引导启停/解绑和无据按角色作答。验收：人工审读不给最终答案、关闭可给结论、空依据无编号/非固定文案，调用数及供应商/模型版本独立记录；测试：固定含答案材料、连续追问和无据问题，禁止超额/自动重试；无授权保留未执行，不勾任务。\n-- [ ] 5.4 收集真实同伴四项交叉验证（F13、DA3）。范围：同伴本人账号在同一隔离环境验证会话归属、智能体隔离/停用续聊、班级边界、技能停用/解绑。验收：参与者确认、时间/版本及四项脱敏请求响应或截图齐备，跨班体参数不能扩大权限（拒绝覆盖参数亦保留证据）；测试：实际人工执行并复核，不以A/B自动fixture冒充；缺同伴时标待人工交叉验证且任务不勾选。\n-- [ ] 5.5 交付最终验收与迁移风险报告（DA3、SE3）。范围：仅新增本change验收记录，更新本change任务状态与F覆盖，汇总正式迁移前提/降级/恢复演练和剩余风险，原历史不覆盖。验收：全部必需任务有证据、人工/真实/受控分开、秘密脱敏、旧change32/32保持；测试：strict validate、文档引用/依赖一致性、旧文件hash和Git待提交范围检查，不能以strict代业务通过；不自动迁移/部署/归档/commit/push。\n+- [x] 5.4 完成本项目独立账号自动化四项交叉验证（F13、DA3；用户明确调整验收方式）。范围：独立教师、同班不同owner学生及外班学生身份，在隔离环境覆盖P1会话归属、P2智能体隔离/停用续聊、P3班级边界、P4技能启用/停用/解绑。验收：实际请求/响应、预期及实际HTTP、浏览器、SSE/引用、数据库前后状态、时间/版本/身份及资源ID齐备；28项全通过、0失败/0未执行，无权限泄露、改绑、部分写入、串用或持久化阻塞。测试：只读复核现有原始证据即可，不需重复模型调用；标明Codex自动化模拟、无真实同伴确认，保留官方原始方式与项目调整差异，不降低技术断言或伪造参与者。完成依据见project-acceptance-adjustment-check.json。\n+- [x] 5.5 交付最终验收与迁移风险报告（DA3、SE3，按用户调整后的项目标准）。范围：更新本change最终报告、任务状态与F覆盖，汇总正式迁移前提/降级/恢复演练和风险，原始验证历史不覆盖。验收：调整后的全部项目必需任务有证据，F01～F13、八DoD、5.3真实模型及用户审核、P1～P4自动化28项均保留；明确官方真实同伴方式未履行与项目方式调整，人工/真实/受控分开、秘密脱敏、旧change32/32保持。测试：strict validate、全部报告本地引用/依赖一致性、原始证据hash和Git工作区范围检查；调用账本11/12、8/8、7978 tokens不变，不能以strict代业务通过；不自动迁移/部署/归档/commit/push。\n \n ## 数量、依赖与证据原则\n ",
+    "specs/week5-api-documentation-and-acceptance/spec.md": "--- before/specs/week5-api-documentation-and-acceptance/spec.md\n+++ after/specs/week5-api-documentation-and-acceptance/spec.md\n@@ -1,6 +1,6 @@\n ## Purpose\n \n-让课程对齐后的接口、注解文档、分层验证和人工交叉验证形成一致的可审查证据，防止任务完成或历史成功替代实际行为验收。保留既有Swagger和受控故障测试，同时明确课程要求、兼容保护与可选工程增强之间的边界。\n+让课程对齐后的接口、注解文档、分层验证和本项目独立账号交叉验证形成一致的可审查证据，防止任务完成或历史成功替代实际行为验收。保留既有Swagger和受控故障测试；官方原始真实同伴要求保持来源真实，本项目由用户明确选择自动化方式，必须披露差异。\n \n ## ADDED Requirements\n \n@@ -26,13 +26,23 @@\n - **WHEN** 经默认Go/现有代理入口重跑三模式、故障、无命中Ask及敏感配置检查\n - **THEN** 原items/answer/sources、材料UUID/1-based、阈值和故障不降级保持，Ask零命中对话零次；报告脱敏且不入Git，不读取输出真实密钥，不重建课堂数据\n \n-### Requirement: DA3 Genuine peer verification and preserved history\n-交付 SHALL 留存真实同伴账号完成的四项请求/响应证据：会话归属、智能体隔离含停用续聊、班级边界、技能停用/解绑同题变化。参与者、时间、环境/版本和脱敏截图或日志可追溯；自动化自测不能代替同伴确认，未完成标待人工交叉验证。原change的32/32和历史报告 MUST 保留；新任务未验收不得勾选，新规划/strict通过不是业务验收。\n+### Requirement: DA3 Independent account project verification and preserved history\n+按用户明确选择，本项目5.4 SHALL 使用独立教师T-A、同班学生S-A1/S-A2、外班学生S-B1身份，在隔离环境完成P1会话归属、P2智能体隔离含停用续聊、P3班级权限边界、P4技能启用/停用/解绑同题变化。项目调整只改变执行与确认方式，MUST NOT 放宽技术行为、错误码、无副作用及证据标准。官方S7及Phase0的真实同伴要求 MUST 如实保留；自动化不得表述为真实同伴操作或确认，项目完成不得表述为原始官方要求全部满足。\n \n-#### Scenario: Peer evidence is unavailable\n-- **WHEN** 自动化全部通过但没有真实同伴四项记录，或真实模型尚无授权\n-- **THEN** 分别标待人工交叉验证及未执行，不伪造参与者/结果，不宣称完整课程验收通过，不回写原历史为新结果\n+P1 MUST 验证本人读取续聊、同班他人列表隔离、直接读取/发送404且owner/agent/消息不变。P2 MUST 验证A/B各自绑定材料与技能、agent覆盖400且绑定不变、停用禁止新会话404（班内无启用助手400）、已有会话按原agent当前配置续聊且历史快照保持。P3 MUST 验证外班会话/助手/技能/材料及文件或引用资源404、身份覆盖字段400、混合跨班绑定整体拒绝且完整配置/版本/关系无部分写入。P4 MUST 在相同材料、问题和其他配置下，每个状态使用新会话，核对实际技能选择与System注入、启用引导/停用解绑差异、合法引用、SSE与数据库一致及历史不重写。\n+\n+交付 SHALL 保存每个子步骤的实际输入、预期/实际HTTP、响应、SSE事件/完整回答/候选及最终引用、浏览器证据、数据库前后状态、时间/时区、身份角色班级、资源ID、环境/版本及HEAD/工作区摘要。现有28项关键子步骤必须全通过，0失败、0未执行；权限泄露、非法改绑、串用、部分写入、持久化不一致或缺证据等未解决阻塞 MUST 阻止完成。可只读复核真实存在的既有证据，不强制重跑已通过测试。受控模型行为和5.3真实课程模型/用户审核 MUST 分开，不虚构参与者、签名或反馈。\n+\n+原change32/32、Phase0官方来源与所有原始验证结果 MUST 保留。5.5完成须具备调整后的全部项目必需证据、F/DoD映射、历史失败/修复/复测及迁移风险说明，检查路径/脱敏/历史保护及strict；最终迁移/部署仍需独立授权。\n+\n+#### Scenario: Independent account evidence satisfies the project method\n+- **WHEN** 独立教师和不同owner/班级学生的P1～P4现有28项全部通过，实际请求/响应、浏览器/数据库与模型输入/SSE证据可追溯，且无未解决技术阻塞\n+- **THEN** 本项目5.4可判完成并勾选，记录由Codex自动化执行、未邀请真实同伴，保留官方原始方式与本项目方式的差异，不伪造同伴确认\n+\n+#### Scenario: Missing evidence or technical failures prevent completion\n+- **WHEN** 任一P1～P4关键子步骤失败、未执行、身份不独立、证据不可追溯，或有未解决的权限/绑定/引用/持久化阻塞\n+- **THEN** 5.4及依赖它的5.5保持未完成，不因执行方式调整忽略失败、改预期或伪造响应\n \n #### Scenario: Traceable final handoff\n-- **WHEN** 同伴实际完成四项并由参与者确认，其他DoD证据齐备\n-- **THEN** 新记录关联各项F编号/版本/来源/脱敏产物和通过状态，原change及历史文件保持原内容，最终发布/迁移仍需单独授权\n+- **WHEN** 调整后的5.4、其他项目必需任务及证据均齐备，最终报告、风险、引用及历史保护检查通过\n+- **THEN** 本项目5.5可完成，关联F编号/版本/来源/脱敏产物；29/29仅代表调整后的项目标准，官方真实同伴方式未履行仍明确披露，原change及原始验证记录不改写，最终发布/迁移仍需单独授权",
+    "acceptance-final-report.md": "--- before/acceptance-final-report.md\n+++ after/acceptance-final-report.md\n@@ -1,8 +1,8 @@\n # CampusClaw Week 5课程对齐最终验收报告\n \n-**证据汇总版：正式验收尚未全部完成。当前进度27/29，5.4、5.5保持未勾选。**\n-\n-本报告整理已经执行的测试与审核，不代表本轮重新执行这些测试。报告编写轮仅进行文件读取、证据路径/hash核对和OpenSpec strict校验，没有调用模型、运行数据库迁移、修改业务代码或部署。5.5要求全部必需任务证据齐备；目前缺少DA3规定的真实同伴参与与确认，故报告文档已整理不等于5.5任务完成。\n+**本项目调整后的验收标准已满足：29/29，5.4、5.5完成。官方原始要求的真实同伴操作与确认未执行，不宣称原始官方要求全部满足。**\n+\n+本报告整理已经执行的测试与审核，不代表本轮重新执行这些测试。用户本轮明确授权将本项目5.4从真实同伴方式调整为独立账号自动化P1～P4交叉验证，正式修订proposal/design/DA3/tasks；不是追认曾有同伴参与。现有28项及浏览器、数据库证据只读复核通过，调整后的项目必需证据与5.5风险报告齐备。本轮只有规约/任务/验收文档修订、路径/hash及strict检查，没有调用模型、运行数据库迁移、修改业务代码或部署。\n \n ## 1. 背景、目标及判定依据\n \n@@ -10,7 +10,17 @@\n \n 依据为本change的[proposal](proposal.md)、[design](design.md)、[tasks](tasks.md)、四份spec及[Phase0官方来源映射](phase0-verification.md)。官方S1～S9来源、冻结决策及原文复核记录在[来源核对记录](phase0-source-review.json)；本轮没有重新联网审查课程内容。\n \n-四份有效规格：[教师配置TC1～TC5](specs/tutor-configuration/spec.md)、[学生会话SC1～SC6](specs/student-streaming-conversations/spec.md)、[文档及验收DA1～DA3](specs/week5-api-documentation-and-acceptance/spec.md)、[升级SE1～SE3](specs/week5-schema-evolution/spec.md)。现有CLI显示planning artifacts complete仅说明规划齐备，不能替代任务27/29的实际完成状态。\n+四份有效规格：[教师配置TC1～TC5](specs/tutor-configuration/spec.md)、[学生会话SC1～SC6](specs/student-streaming-conversations/spec.md)、[文档及验收DA1～DA3](specs/week5-api-documentation-and-acceptance/spec.md)、[升级SE1～SE3](specs/week5-schema-evolution/spec.md)。CLI的planning artifacts complete只说明规划齐备；项目29/29还以调整后任务、原始证据和本轮复核为依据，不能单凭planning或strict判通过。\n+\n+### 1.1 用户选择的项目验收方式调整与官方差异\n+\n+| 内容 | 官方原始要求 | 本项目经用户明确选择后的要求 | 实际事实 |\n+|---|---|---|---|\n+| 5.4执行与确认方式 | 真实同伴本人操作四项并确认，可追溯参与者及请求/响应 | 独立教师、同班不同owner学生、外班学生账号，由Codex自动化执行并提供完整技术证据 | 无真实同伴、无人工签名/反馈；自动化28项通过 |\n+| 技术覆盖 | 会话归属、助手隔离含停用续聊、班级边界、技能停用/解绑 | 保留P1～P4全部行为、错误码、无副作用、SSE/引用/历史与持久化标准，0失败/0未执行且无阻塞 | 未因执行方式调整放宽技术断言 |\n+| 结论边界 | 原始官方同伴条件须真实参与才能声称满足 | 本项目5.4及依赖它的5.5按修订DA3完成 | 29/29是项目结论；官方同伴条件仍未履行 |\n+\n+本调整来自用户对本课程项目验收方案的选择，不是老师或课程平台批准的事实。官方S7、Phase0来源映射和原始验证报告保持不改；本项目没有把自动化账号描述为真实同伴，没有虚构参与者、签名或人工反馈。真实课程模型教学质量及用户内容审核仍由5.3独立证明。数据库正式迁移、上线或归档不在本次完成范围。\n \n ## 2. 证据分层与索引\n \n@@ -26,7 +36,7 @@\n | E53 | [真实模型专项](phase5-real-model-verification.md)、[修复后复测](phase5-citation-retest-verification.md)、[后续八轮](phase5-remaining-real-verification.md)、[用户人工审核确认](phase5-human-review-confirmation.md) | 课程真实网关、实际回答/引用/流式与用户内容审核 |\n | E54 | [P1～P4技术报告](phase5-p1p4-technical-verification.md)、[28步原始记录](../../../runtime/align-browser-4b8ddd77/browser.json)、[页面补证](../../../runtime/align-browser-4b8ddd77/ui-production.json) | Codex自动化模拟账号，真实浏览器/服务、受控模型；无真实同伴 |\n \n-历史记录中的旧进度、阶段未授权或Swagger失败说明保留其原时点，不按当前状态解释。当前状态以tasks、5.3人工审核确认及本报告为准；未将早期失败覆盖为通过。\n+历史记录中的旧进度、阶段未授权或Swagger失败说明保留其原时点，不按当前状态解释。尤其原P1～P4技术报告及phase5-report-check.json中“缺真实同伴、27/29”的判断符合调整前规约，原文与原始结果保留；本次只将已通过技术证据按用户新选择纳入项目验收。修订前六份当前文档全文及hash保存在[调整基线](project-acceptance-adjustment-baseline.json)。当前状态以修订tasks、5.3人工审核确认、本报告及本轮复核为准，未将早期失败改写为通过。\n \n ## 3. F01～F13实现与证据映射\n \n@@ -44,11 +54,11 @@\n | F10 SSE协议与可靠性 | meta先Flush、delta增量、Finish后done、meta候选与done最终子集、错误及DB一致性；通过 | SC4/5；3.1/3.3/3.5/4.2；E3/E4/E52.D7/E53/E54 |\n | F11 有界证据 | top4后subject标题过滤、去空、连续编号；交模型每条最多800 Unicode字，最终子集保留原号；通过 | TC5；2.3/3.3；E2/E3/E51/E52.D6 |\n | F12 注解OpenAPI | 唯一维护源为Go处理器注解及类型；固定工具链、重复生成检查、真实Authorize/Execute/SSE；通过 | DA1；4.3/4.4；E4/E51/E52.D8 |\n-| F13 分层验收与同伴 | 自动化、八DoD、真实模型及用户审核已有证据；**真实同伴四项确认未取得，F13正式验收未完整满足** | DA2/3；5.1～5.5；E51～E54；5.4/5.5未完成 |\n+| F13 分层验收与交叉验证 | 自动化、八DoD、真实模型及用户审核已有证据；P1～P4按用户修订后的项目DA3满足，**官方原始真实同伴方式未履行** | DA2/3；5.1～5.5；E51～E54；项目5.4/5.5完成，官方差异见§1.1 |\n \n ## 4. 八项官方DoD\n \n-以下是E52中实际执行的技术端到端结果，每项均有inputs、outputs、UTC、环境及证据字段；八项通过不自动等价于DA3同伴要求完成。\n+以下是E52中实际执行的技术端到端结果，每项均有inputs、outputs、UTC、环境及证据字段；八项通过不自动等价于官方真实同伴要求满足。项目DA3另外依据E54独立账号自动化证据复核。\n \n | DoD | 实际结果 | 证据位置 |\n |---|---|---|\n@@ -176,17 +186,17 @@\n \n 正式迁移尚未执行。必须单独确认目标、权限、停写窗口与负责人，先做完整catalog/数据冲突/活动turn预检，取得一致数据库及材料备份，并在独立目标实际恢复核对。空材料不再等同全班，需教师明确重绑。MySQL多步DDL隐式提交，优先按账本前向恢复；旧v2严格catalog二进制不能直接连v3，回退可能损失升级后新增写入，须先制定导出/重放方案。不能删除新表/卷/collection或跳过catalog假回退；RAG_ENABLED也影响Week4，不能称仅禁Week5。部署、切换、迁移与清理均需独立授权。\n \n-## 14. 已知限制、未完成项及后续建议\n-\n-1. **正式阻塞：5.4未取得真实同伴本人四项操作及确认。** 用户决定不邀请同伴并未修改DA3；自动化28项不能抵充。没有虚构参与者、时间、签名或反馈。\n-2. **5.5自身条件未全部满足。** 本任务要求全部必需任务有证据；故本报告已编写、路径和strict已检查，但5.5保持未勾选。当前仅27/29，不能宣称完整课程验收通过、29/29、已部署或正式迁移就绪。\n+## 14. 官方差异、已知限制及后续建议\n+\n+1. **官方差异仍存在：真实同伴本人四项操作及确认未取得。** 本轮用户明确修订本项目DA3为独立账号自动化，故不再将此作为项目5.4/5.5阻塞；不得宣称它已经满足原始官方同伴条件，也没有虚构参与者、时间、签名或反馈。\n+2. **调整后项目5.4、5.5条件均已满足。** 独立账号28项、请求/响应、真实浏览器/数据库、5.3真实模型及用户审核、完整F/DoD/失败历史、迁移风险与证据核对齐备，无未解决项目技术阻塞。29/29仅为调整后的项目标准，不是原始官方要求全部满足、已部署或正式迁移就绪的声明。\n 3. 已通过的真实教学审核仅针对保留的实际回答；后续模型仍可能不遵循引用或教学边界。继续保留校验与失败策略，不靠自动补引用掩盖问题。\n 4. 非阻塞体验建议：教学追问可更自然、提示粒度更贴近学生已尝试步骤并减少机械重复；本轮未改提示词或业务代码。\n 5. strict只证明OpenSpec结构；文件存在/hash一致证明证据可定位且未改写，不证明历史服务当前在线、所有测试本轮重跑或正式库无数据冲突。\n-6. 完成正式同伴证据后，仍需更新最终F13/任务状态、证据版本/索引及脱敏、历史和迁移风险复核，再决定5.5是否可完成。若选择改变同伴要求，必须另行审议正式规约，不能由报告默许豁免。\n+6. 如后续要求恢复原始官方同伴验收，仍须邀请真实参与者亲自完成四项并留下确认，不能复用自动化账号冒充；这不是本次项目29/29所证明的事实。任何后续真实模型、迁移、发布或资源清理仍须相应授权。\n \n ## 15. 本报告轮核对与结论\n \n-本轮已读取当前change相关规约、任务、验证及机器记录；原本地Markdown引用检查无缺失。新报告的全部本地链接、主要原始日志、28步状态、八DoD、5.3账本及人工确认再次核对；详细路径、存在性、SHA256、保护范围及最终strict退出码记录在 [phase5-report-check.json](phase5-report-check.json)，读取基线为 [phase5-report-baseline.json](phase5-report-baseline.json)，strict输出在 [phase5-report-strict.log](phase5-report-strict.log)。\n-\n-**验收结论：技术实施与已执行的分层验收有可复核证据，5.3已获用户人工审核通过；正式5.4条件未满足，5.5尚不具备全部完成条件。任务保持27/29，5.4、5.5均不勾选。本轮完成报告整理后停止。**\n+本轮已读取当前change相关规约、任务、验证及机器记录，并按用户授权修订项目方式。最终报告全部本地链接、主要原始日志、28步状态、七轮SSE/引用/DB及旧快照、身份独立、权限拒绝无副作用、生产页面证据、5.3账本及用户确认均只读核对。详细路径、SHA256、修订范围、Git工作区及strict退出码见[本轮复核](project-acceptance-adjustment-check.json)；修订前文档全文及保护hash见[调整基线](project-acceptance-adjustment-baseline.json)，strict输出见[本轮strict日志](project-acceptance-adjustment-strict.log)。原[报告核对](phase5-report-check.json)及[原报告基线](phase5-report-baseline.json)保留调整前时点，不覆盖。\n+\n+**验收结论：按用户明确修订后的本项目标准，5.4独立账号P1～P4验证及5.5报告条件全部满足，任务29/29。5.3真实课程模型及用户审核保持有效；没有新增真实调用，账本仍为对话11/12、Embedding8/8、7978 tokens。官方原始真实同伴要求未履行，不能宣称原始官方要求全部满足。没有修改业务代码、迁移脚本或正式环境，没有commit、push、部署或归档；本轮完成后停止。**",
+    "acceptance-handoff-draft.md": "--- before/acceptance-handoff-draft.md\n+++ after/acceptance-handoff-draft.md\n@@ -1,4 +1,5 @@\n-> ??????[?????????????????](acceptance-final-report.md)?5.3????5.4????????5.5??????27/29?????????????????????????????\n+> Current project acceptance: [final report](acceptance-final-report.md). USER revised 5.4 to independent-account automation; project 29/29, while original official genuine-peer participation remains unperformed. Below is the unchanged historical draft, not current project status.\n+\n \n # 验收交付准备稿（5.5未完成）\n "
+  },
+  "progress": {
+    "completed": 29,
+    "total": 29,
+    "remaining": 0,
+    "5.4": "passed under USER-adjusted independent-account project standard",
+    "5.5": "final report and revised mandatory evidence complete",
+    "original_official_genuine_peer_requirement": "not performed; explicitly disclosed"
+  },
+  "openspec_apply_state": "all_done",
+  "git": {
+    "branch": "feature/week5-phase1-go-rag",
+    "head": "51a8749f6550c279efebe63bb67eda724878f5a1",
+    "status": " M .env.example\n M Dockerfile.backend\n M cmd/admin/main.go\n M cmd/bootstrap/main.go\n M cmd/server/main.go\n M deploy/nginx.conf\n M docker-compose.yml\n M internal/http/auth.go\n M internal/http/handler.go\n M internal/http/login.go\n M internal/http/material_reads.go\n M internal/http/pages.go\n M internal/http/pages_test.go\n M internal/http/upload.go\n M internal/http/web/templates/materials.html\n M internal/repository/mysql/catalog.go\n M tests/test_recovery.py\n?? apitest/\n?? docker-compose.retrieval.host.yml\n?? docs/migration/phase5-contract-comparison.json\n?? internal/config/rag.go\n?? internal/config/rag_test.go\n?? internal/conversation/\n?? internal/http/conversation.go\n?? internal/http/conversation_integration_test.go\n?? internal/http/documentation.go\n?? internal/http/documentation_test.go\n?? internal/http/openapi_types.go\n?? internal/http/rag.go\n?? internal/http/rag_integration_test.go\n?? internal/http/real_budget_test.go\n?? internal/http/tutor.go\n?? internal/http/tutor_browser_integration_test.go\n?? internal/http/tutor_integration_test.go\n?? internal/http/web/static/knowledge.js\n?? internal/http/web/static/sse.js\n?? internal/http/web/static/tutor.css\n?? internal/http/web/static/tutor.js\n?? internal/http/web/swagger/\n?? internal/http/web/templates/knowledge.html\n?? internal/http/web/templates/tutor.html\n?? internal/rag/\n?? internal/repository/mysql/conversation.go\n?? internal/repository/mysql/conversation_delete.go\n?? internal/repository/mysql/conversation_delete_integration_test.go\n?? internal/repository/mysql/phase2_evidence_integration_test.go\n?? internal/repository/mysql/phase2_history_integration_test.go\n?? internal/repository/mysql/phase2_http_integration_test.go\n?? internal/repository/mysql/phase2_roles_integration_test.go\n?? internal/repository/mysql/phase2_routing_integration_test.go\n?? internal/repository/mysql/phase2_week4_integration_test.go\n?? internal/repository/mysql/phase3_services_integration_test.go\n?? internal/repository/mysql/phase3_stream_integration_test.go\n?? internal/repository/mysql/phase4_browser_integration_test.go\n?? internal/repository/mysql/phase5_citation_retest_integration_test.go\n?? internal/repository/mysql/phase5_real_integration_test.go\n?? internal/repository/mysql/phase5_remaining_real_integration_test.go\n?? internal/repository/mysql/rag.go\n?? internal/repository/mysql/rag_catalog_capture_test.go\n?? internal/repository/mysql/rag_schema.go\n?? internal/repository/mysql/rag_schema_integration_test.go\n?? internal/repository/mysql/schema_rag.sql\n?? internal/repository/mysql/schema_rag_catalog.json\n?? internal/repository/mysql/schema_tutor_v3.sql\n?? internal/repository/mysql/schema_upgrade_steps.json\n?? internal/repository/mysql/tutor.go\n?? internal/repository/mysql/tutor_migration.go\n?? internal/repository/mysql/tutor_migration_integration_test.go\n?? internal/repository/mysql/tutor_recovery_integration_test.go\n?? internal/repository/mysql/tutor_schema.go\n?? internal/repository/mysql/tutor_schema_integration_test.go\n?? internal/repository/mysql/tutor_store_integration_test.go\n?? internal/tutor/\n?? openspec/changes/add-week5-ai-tutor-and-streaming-chat/\n?? openspec/changes/align-week5-with-course-requirements/\n?? scripts/generate_openapi.ps1\n?? scripts/openapi-convert/\n?? tests/go_rag/\n",
+    "status_listing_unchanged_from_before": true,
+    "diff_check_exit_code": 0,
+    "diff_stat": " .env.example                               | 11 +++++++\n Dockerfile.backend                         |  1 +\n cmd/admin/main.go                          | 28 +++++++++++++++--\n cmd/bootstrap/main.go                      | 10 ++++++\n cmd/server/main.go                         | 50 +++++++++++++++++++++++++++++-\n deploy/nginx.conf                          | 17 ++++++++++\n docker-compose.yml                         | 23 +++++++++++++-\n internal/http/auth.go                      | 19 ++++++++++++\n internal/http/handler.go                   | 32 +++++++++++++++++++\n internal/http/login.go                     | 11 +++++++\n internal/http/material_reads.go            | 41 ++++++++++++++++++++++++\n internal/http/pages.go                     |  6 ++--\n internal/http/pages_test.go                |  4 +--\n internal/http/upload.go                    | 29 ++++++++++++++++-\n internal/http/web/templates/materials.html |  2 +-\n internal/repository/mysql/catalog.go       | 23 ++++++++++++--\n 16 files changed, 294 insertions(+), 13 deletions(-)\n",
+    "original_uncommitted_content_preserved": true,
+    "no_commit_or_push": true
+  },
+  "new_audit_files": [
+    "openspec/changes/align-week5-with-course-requirements/project-acceptance-adjustment-baseline.json",
+    "openspec/changes/align-week5-with-course-requirements/project-acceptance-adjustment-check.json"
+  ],
+  "old_week5_files_unchanged": 17,
+  "original_validation_history_unchanged": true,
+  "original_models_ledger_sha256": "141d66a78c8c4fd0b4ab59c3ec783c13897090e9b806a18e9c12e75dacb84fed",
+  "current_document_sha256": {
+    "openspec/changes/align-week5-with-course-requirements/acceptance-final-report.md": "44997069d497cdbe4c4e0f8cf5c14177fdaab0cf93881cbc69a5dd2eeaaa16ec",
+    "openspec/changes/align-week5-with-course-requirements/acceptance-handoff-draft.md": "d0d0bc56f997d2b11a5e9e71bca9fac478ee1974d46253dc6d3f1ad91376b3e8",
+    "openspec/changes/align-week5-with-course-requirements/design.md": "018851f2ad99aa65027b86baf40ee8474cc63c17ceee13a955e4624105c656db",
+    "openspec/changes/align-week5-with-course-requirements/proposal.md": "1ef1f21475ce0b7c5ec261d8c5e280d5e48d46e564f7b1199ea498a8a8d30cca",
+    "openspec/changes/align-week5-with-course-requirements/specs/week5-api-documentation-and-acceptance/spec.md": "9c8594e6533d1591bea4aa40f51421aaa10642b6f35ec1c1b2e9b5fc027f3f90",
+    "openspec/changes/align-week5-with-course-requirements/tasks.md": "ef358e1b0632d516d4be0876c45ede1db0ce515dc6c2e56c1198793832889e03"
+  },
+  "audit_baseline_sha256": "c0246182ff603952afb3b6bd12a9d4fbf479f38459275176abfe31f2543036fe",
+  "strict_log_sha256": "8ac5a45d3b06d8f9c51ff797cfd7683457a015e182e5ed0aa16cae0a572c20a9"
+}

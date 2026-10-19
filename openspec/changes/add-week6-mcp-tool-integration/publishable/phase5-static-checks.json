@@ -1,0 +1,65 @@
+{
+  "sse_parser": {
+    "chunk_id": "4665f6",
+    "wall_time_seconds": 0.4153013,
+    "exit_code": 0,
+    "original_token_count": 85,
+    "output": "✔ byte-split UTF-8, CRLF, heartbeat and multiline data (31.0075ms)\n✔ first delta callback runs before remaining content is produced (1.0591ms)\n✔ error remains failure, EOF and malformed sequences never complete (1.515ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 182.4937\n"
+  },
+  "openapi_check": {
+    "chunk_id": "91cccb",
+    "wall_time_seconds": 5.4856091,
+    "exit_code": 0,
+    "original_token_count": 651,
+    "output": "2026/10/19 08:40:01 Generate swagger docs....\n2026/10/19 08:40:01 Generate general API Info, search dir:.\n2026/10/19 08:40:01 warning: failed to get package name in dir: ., error: execute go list command, exit status 1, stdout:, stderr:no Go files in <repository-root>\n2026/10/19 08:40:01 Generating httpapi.IdentityOutput\n2026/10/19 08:40:01 Generating httpapi.APIError\n2026/10/19 08:40:01 Generating httpapi.ConversationList\n2026/10/19 08:40:01 Generating conversation.Conversation\n2026/10/19 08:40:01 Generating httpapi.CreateConversationInput\n2026/10/19 08:40:01 Generating httpapi.ConversationOutput\n2026/10/19 08:40:01 Generating conversation.Message\n2026/10/19 08:40:01 Generating rag.Source\n2026/10/19 08:40:01 Generating tutor.Snapshot\n2026/10/19 08:40:01 Generating tutor.Agent\n2026/10/19 08:40:01 Generating tutor.Skill\n2026/10/19 08:40:01 Generating mcp.ToolCall\n2026/10/19 08:40:01 Generating rag.Evidence\n2026/10/19 08:40:01 Generating httpapi.SendMessageInput\n2026/10/19 08:40:01 Generating httpapi.SSEEnvelope\n2026/10/19 08:40:01 Generating httpapi.SSEMeta\n2026/10/19 08:40:01 Generating httpapi.SSEDelta\n2026/10/19 08:40:01 Generating httpapi.SSEDone\n2026/10/19 08:40:01 Generating httpapi.SSEError\n2026/10/19 08:40:01 Generating httpapi.LoginInput\n2026/10/19 08:40:01 Generating auth.LoginResponse\n2026/10/19 08:40:01 Generating httpapi.MaterialList\n2026/10/19 08:40:01 Generating material.Item\n2026/10/19 08:40:01 Generating material.Detail\n2026/10/19 08:40:01 Generating httpapi.MCPServerList\n2026/10/19 08:40:01 Generating mcp.Server\n2026/10/19 08:40:01 Generating httpapi.MCPCreateInput\n2026/10/19 08:40:01 Generating httpapi.MCPUpdateInput\n2026/10/19 08:40:01 Generating httpapi.MCPConnected\n2026/10/19 08:40:01 Generating mcp.Tool\n2026/10/19 08:40:01 Generating httpapi.MCPDisconnected\n2026/10/19 08:40:01 Generating httpapi.MCPToolList\n2026/10/19 08:40:01 Generating httpapi.MCPCallList\n2026/10/19 08:40:01 Generating mcp.AuditCall\n2026/10/19 08:40:01 Generating httpapi.SearchOutput\n2026/10/19 08:40:01 Generating httpapi.AskInput\n2026/10/19 08:40:01 Generating rag.Answer\n2026/10/19 08:40:01 Generating httpapi.ReindexInput\n2026/10/19 08:40:01 Generating httpapi.IndexOutput\n2026/10/19 08:40:01 Generating httpapi.AgentList\n2026/10/19 08:40:01 Generating httpapi.AgentInput\n2026/10/19 08:40:01 Generating httpapi.SkillList\n2026/10/19 08:40:01 Generating httpapi.SkillSourceInput\n2026/10/19 08:40:01 Generating httpapi.SkillUpdateInput\n2026/10/19 08:40:01 Generating httpapi.UploadOutput\n2026/10/19 08:40:01 create swagger.json at runtime/week5-openapi-v2/swagger.json\n"
+  },
+  "openapi_generation": "swag v1.16.6 -> kin-openapi -> OpenAPI 3.0.3",
+  "warning_note": "Repository root intentionally has no Go files; swag continued and Check exited 0.",
+  "compose_default_switch_checks": [
+    {
+      "command": [
+        "docker",
+        "compose",
+        "-p",
+        "campusclaw-w6-p5-config-17dc52e7",
+        "-f",
+        "docker-compose.yml",
+        "config",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "profile_mcp": false,
+      "application_MCP_ENABLED": "false",
+      "mcp_service_present": false,
+      "passed": true
+    },
+    {
+      "command": [
+        "docker",
+        "compose",
+        "-p",
+        "campusclaw-w6-p5-config-17dc52e7",
+        "-f",
+        "docker-compose.yml",
+        "--profile",
+        "mcp",
+        "config",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "profile_mcp": true,
+      "application_MCP_ENABLED": "false",
+      "mcp_service_present": true,
+      "passed": true
+    }
+  ],
+  "compose_switch_note": "Read-only config checks; profile alone does not enable application MCP. No resources created. Missing active master key fail-closed is covered by existing Go configuration tests.",
+  "publication_note": {
+    "kind": "sanitized derivative; original evidence unchanged",
+    "original_repository_path": "openspec/changes/add-week6-mcp-tool-integration/phase5-static-checks.json",
+    "original_sha256": "ffff648d7463396d6b3c11f6521ada6fd5a117495d2afdbb0a0dabed4a128620",
+    "redaction": "Only local repository-root or personal attachment location replaced. All results, timestamps, original tasks, approval scope and assertion text preserved."
+  }
+}
