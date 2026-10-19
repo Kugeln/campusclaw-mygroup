@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>讲义与检索 · CampusClaw</title>
+<link rel="stylesheet" href="/static/styles.css"><link rel="stylesheet" href="/static/tutor.css">
+</head><body class="knowledge-page">
+<header class="topbar"><div class="topbar-inner">
+  <div class="brand"><img class="materials-logo" src="/static/logo.png" alt=""><span>CampusClaw</span><span class="brand-caption">课程资料空间</span></div>
+  <div class="account-area"><span class="class-badge" data-class>正在确认班级…</span><span class="role-badge" id="role"></span><button id="logout" type="button">退出登录</button></div>
+</div></header>
+<main class="page-shell">
+  <nav aria-label="页面导航"><a href="/materials">返回班级材料</a><a href="/tutor">智能解题助手</a></nav>
+  <div class="page-heading"><div><p class="eyebrow">课堂资源 · 共享知识</p><h1>讲义与检索</h1><p class="subtitle">在<span data-class>当前班级</span>知识库中搜索，查看讲义片段与引用来源。</p></div><span class="scope-label">仅本班可访问的资料</span></div>
+  <p id="notice" role="status" aria-live="polite"></p>
+  <section class="card knowledge-search" aria-label="知识库搜索"><form id="query">
+    <label for="question">你想查找什么？</label>
+    <div class="knowledge-search-row"><input id="question" type="search" maxlength="500" required placeholder="输入问题或讲义中的关键词" autocomplete="off"><button class="button-primary" name="action" value="search" id="search-button">检索</button></div>
+    <div class="knowledge-search-options"><label for="mode">检索方式 <select id="mode"><option value="hybrid">综合检索 · hybrid</option><option value="keyword">关键词 · keyword</option><option value="vector">语义检索 · vector</option></select></label><button name="action" value="ask" id="ask-button">单次问答</button></div>
+    <p class="subtitle">综合检索结合关键词与语义。需要连续讨论？<a href="/tutor">进入智能解题助手</a></p>
+  </form></section>
+  <section id="results-section" aria-labelledby="results-title" hidden>
+    <div class="knowledge-section-heading"><h2 id="results-title">检索结果</h2><span id="result-summary" class="subtitle"></span></div>
+    <p id="answer" class="knowledge-answer" role="status"></p><div id="sources" class="knowledge-results"></div>
+  </section>
+  <section aria-labelledby="library-title">
+    <div class="knowledge-section-heading"><div><h2 id="library-title">本班讲义</h2><p class="subtitle">浏览全部讲义，点击卡片阅读原文。</p></div><button id="reload-materials" type="button">刷新讲义</button></div>
+    <p id="materials-status" role="status">正在加载本班讲义…</p><div id="lecture-cards" class="knowledge-library" aria-busy="true"></div>
+    <div id="library-pagination" class="knowledge-pagination" role="group" aria-label="讲义分页" hidden><button id="previous-page" type="button">上一页</button><span id="page-status" role="status" aria-live="polite"></span><button id="next-page" type="button">下一页</button></div>
+  </section>
+  <section id="source-panel" class="card knowledge-source" aria-labelledby="source-title" hidden>
+    <div class="knowledge-section-heading"><h2 id="source-title">材料来源</h2><button id="close-source" type="button">关闭原文</button></div>
+    <p id="source-status" role="status"></p><pre id="source-text" tabindex="-1"></pre>
+  </section>
+</main><script src="/static/api.js" defer></script><script src="/static/knowledge.js" defer></script>
+</body></html>

@@ -27,6 +27,21 @@ services:
       DB_USER: campusclaw
       DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in process environment}
       UPLOAD_ROOT: /uploads
+      RAG_ENABLED: ${RAG_ENABLED:-false}
+      QDRANT_URL: ${QDRANT_URL:-http://qdrant:6333}
+      QDRANT_COLLECTION: ${QDRANT_COLLECTION:-campusclaw_chunks}
+      EMBEDDING_BASE_URL: ${EMBEDDING_BASE_URL:-}
+      EMBEDDING_API_KEY: ${EMBEDDING_API_KEY:-}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-}
+      EMBEDDING_DIMENSION: ${EMBEDDING_DIMENSION:-}
+      EMBEDDING_API_FORMAT: ${EMBEDDING_API_FORMAT:-ark_multimodal}
+      DIALOGUE_BASE_URL: ${DIALOGUE_BASE_URL:-}
+      DIALOGUE_API_KEY: ${DIALOGUE_API_KEY:-}
+      DIALOGUE_MODEL: ${DIALOGUE_MODEL:-}
+      MCP_ENABLED: ${MCP_ENABLED:-false}
+      MCP_MASTER_KEY: ${MCP_MASTER_KEY:-}
+      MCP_KEY_ID: ${MCP_KEY_ID:-}
+      MCP_ALLOWED_TARGETS: ${MCP_ALLOWED_TARGETS:-}
     volumes:
       - go-uploads:/uploads
     depends_on:
@@ -39,7 +54,18 @@ services:
       interval: 5s
       timeout: 6s
       retries: 6
-    networks: [backend]
+    networks: [backend, outbound, mcp]
+  mcp-demo:
+    image: ${MCP_IMAGE:-campusclaw-mcp:local}
+    profiles: [mcp]
+    build:
+      context: ./mcp-server
+      target: server
+    environment:
+      MCP_AUTH_TOKEN: ${MCP_AUTH_TOKEN:-}
+    read_only: true
+    cap_drop: [ALL]
+    networks: [mcp]
   initialize:
     image: ${GO_INIT_IMAGE:-campusclaw-go-init:local}
     build:
@@ -50,6 +76,7 @@ services:
         GOPROXY: ${GOPROXY:-https://proxy.golang.org,direct}
     environment:
       INITIALIZATION_MODE: ${INITIALIZATION_MODE:?Choose fresh or migrate explicitly}
+      RAG_ENABLED: ${RAG_ENABLED:-false}
       JWT_SIGNING_SECRET: ${JWT_SIGNING_SECRET:?Set JWT_SIGNING_SECRET in process environment}
       DB_HOST: mysql
       DB_PORT: "3306"
@@ -77,6 +104,7 @@ services:
     network_mode: none
   mysql:
     image: mysql:8.4.4
+    command: ["--ngram-token-size=2"]
     environment:
       MYSQL_DATABASE: campusclaw
       MYSQL_USER: campusclaw
@@ -91,11 +119,24 @@ services:
       retries: 30
       start_period: 30s
     networks: [backend]
+  qdrant:
+    image: qdrant/qdrant:v1.13.4
+    profiles: [rag]
+    volumes:
+      - go-qdrant:/qdrant/storage
+    networks: [backend]
 networks:
   frontend:
+  outbound:
   backend:
     internal: true
+  mcp:
+    internal: true
+    ipam:
+      config:
+        - subnet: ${MCP_NETWORK_CIDR:-10.242.60.0/24}
 volumes:
   go-mysql:
   go-uploads:
+  go-qdrant:
 

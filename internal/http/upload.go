@@ -3,6 +3,7 @@ package httpapi
 import (
 	"campusclaw/internal/auth"
 	"campusclaw/internal/material"
+	"campusclaw/internal/rag"
 	"campusclaw/internal/storage"
 	"encoding/json"
 	"errors"
@@ -18,6 +19,7 @@ type UploadHandler struct {
 	Store    *storage.PrivateStore
 	Uploader material.Uploader
 	Limit    int64
+	Indexer  *rag.Indexer
 }
 
 // Tag only malformed multipart input at the HTTP boundary. Storage write/open
@@ -82,6 +84,23 @@ func confirmedUploadError(mr *multipart.Reader, first *multipart.Part, original 
 	}
 	return message
 }
+
+// ServeHTTP documents this registered handler.
+// @Summary 教师上传本班UTF-8 TXT/MD
+// @Description 仅一个file，最大20MiB，不允许身份覆盖字段。先提交原文；RAG启用时返回index_status，索引失败仍201且原文保留。
+// @Tags materials
+// @Accept mpfd
+// @Produce json
+// @Security bearerAuth
+// @Param file formData file true "UTF-8 TXT/MD文件（≤20MiB）"
+// @Success 201 {object} UploadOutput
+// @Failure 400 {object} APIError
+// @Failure 401 {object} APIError
+// @Failure 403 {object} APIError
+// @Failure 413 {string} string "文件过大，HTML错误"
+// @Failure 500 {string} string "存储故障，HTML错误"
+// @x-response-media {"413":"text/html","500":{"text/html":{"type":"string"},"application/json":{"$ref":"#/components/schemas/httpapi.APIError"}}}
+// @Router /api/materials [post]
 func (h *UploadHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if len(r.URL.Query()) != 0 {
 		authError(w, 400, "Client identity fields are not accepted")
@@ -159,7 +178,15 @@ func (h *UploadHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 		return
 	}
+	response := map[string]string{"material_id": id}
+	if h.Indexer != nil {
+		status, e := h.Indexer.Run(r.Context(), rag.Scope{UserID: p.UserID(), ClassID: p.ClassID(), Role: p.Role()}, id, nil, true)
+		if e != nil {
+			status = "failed"
+		}
+		response["index_status"] = status
+	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
-	_ = json.NewEncoder(w).Encode(map[string]string{"material_id": id})
+	_ = json.NewEncoder(w).Encode(response)
 }

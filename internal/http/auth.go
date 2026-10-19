@@ -57,6 +57,16 @@ func TeacherRequired(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 	})
 }
+
+// me documents this registered handler.
+// @Summary 当前可信身份
+// @Tags auth
+// @Produce json
+// @Security bearerAuth
+// @Success 200 {object} IdentityOutput
+// @Failure 401 {object} APIError
+// @Failure 500 {object} APIError
+// @Router /api/auth/me [get]
 func me(w http.ResponseWriter, r *http.Request) {
 	p, _ := auth.FromContext(r.Context())
 	w.Header().Set("Content-Type", "application/json")
@@ -67,6 +77,15 @@ func me(w http.ResponseWriter, r *http.Request) {
 		ClassName string `json:"class_name"`
 	}{p.UserID(), p.Role(), p.ClassID(), p.ClassName()})
 }
+
+// logout documents this registered handler.
+// @Summary 退出并撤销账号旧Token
+// @Tags auth
+// @Security bearerAuth
+// @Success 204 "No Content"
+// @Failure 401 {object} APIError
+// @Failure 500 {object} APIError
+// @Router /api/auth/logout [post]
 func logout(identity *auth.Identity) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		p, _ := auth.FromContext(r.Context())

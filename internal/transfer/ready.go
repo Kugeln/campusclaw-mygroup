@@ -16,6 +16,10 @@ func Ready(ctx context.Context, db *sql.DB, root string) error {
 	if err := repository.ValidateSchema(ctx, db); err != nil {
 		return err
 	}
+	return readyInitializedData(ctx, db, root)
+}
+
+func readyInitializedData(ctx context.Context, db *sql.DB, root string) error {
 	if err := SafeDirectory(root); err != nil {
 		return err
 	}

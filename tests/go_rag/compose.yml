@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:8.4.4
+    command: ["--ngram-token-size=2"]
+    environment:
+      MYSQL_DATABASE: week5_rag_test
+      MYSQL_USER: week5_test
+      MYSQL_PASSWORD: ${WEEK5_TEST_PASSWORD:?test-only password required}
+      MYSQL_ROOT_PASSWORD: ${WEEK5_TEST_ROOT_PASSWORD:?test-only root password required}
+    ports: ["127.0.0.1::3306"]
+    volumes: ["mysql-test:/var/lib/mysql"]
+    networks: [isolated]
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=\"$$MYSQL_PASSWORD\" mysql -h127.0.0.1 -u\"$$MYSQL_USER\" -D week5_rag_test -e 'SELECT 1' >/dev/null 2>&1"]
+      interval: 2s
+      timeout: 4s
+      retries: 60
+  qdrant:
+    image: qdrant/qdrant:v1.13.4
+    ports: ["127.0.0.1::6333"]
+    volumes: ["qdrant-test:/qdrant/storage"]
+    networks: [isolated]
+networks:
+  isolated:
+    internal: true
+    ipam:
+      config:
+        - subnet: ${WEEK5_TEST_SUBNET:?route-checked isolated subnet required}
+volumes:
+  mysql-test:
+  qdrant-test:
+  uploads-test:

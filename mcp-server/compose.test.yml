@@ -1,0 +1,32 @@
+# Always use an explicit, unique -p campusclaw-w6-<run-id>.
+services:
+  mcp-demo:
+    image: ${MCP_TEST_PROJECT:?unique test project required}-server:phase1
+    build:
+      context: .
+      target: server
+    environment:
+      MCP_AUTH_TOKEN: ${MCP_AUTH_TOKEN:?ephemeral test credential required}
+      MCP_ALLOWED_ORIGINS: https://teacher.example
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    networks: [mcp-test]
+  probe:
+    image: ${MCP_TEST_PROJECT:?unique test project required}-probe:phase1
+    build:
+      context: .
+      target: probe
+    environment:
+      MCP_AUTH_TOKEN: ${MCP_AUTH_TOKEN:?ephemeral test credential required}
+      MCP_TEST_URL: http://mcp-demo:8090
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    networks: [mcp-test]
+networks:
+  mcp-test:
+    internal: true
+    ipam:
+      config:
+        - subnet: ${MCP_TEST_SUBNET:?unused private test subnet required}

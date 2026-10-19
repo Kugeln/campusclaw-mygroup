@@ -1,0 +1,4102 @@
+{
+  "components": {
+    "schemas": {
+      "auth.LoginResponse": {
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "expires_in": {
+            "type": "integer"
+          },
+          "redirect": {
+            "type": "string"
+          },
+          "token_type": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "conversation.Conversation": {
+        "properties": {
+          "agent_id": {
+            "type": "integer"
+          },
+          "class_id": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "conversation.Message": {
+        "properties": {
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/rag.Source"
+            },
+            "type": "array"
+          },
+          "configuration_snapshot": {
+            "$ref": "#/components/schemas/tutor.Snapshot"
+          },
+          "content": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "evidence_snapshot": {
+            "items": {
+              "$ref": "#/components/schemas/rag.Evidence"
+            },
+            "type": "array"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "prompt_revision": {
+            "type": "integer"
+          },
+          "result_status": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "skill_hash": {
+            "type": "string"
+          },
+          "skill_name": {
+            "type": "string"
+          },
+          "skill_version": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "httpapi.APIError": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "httpapi.AgentInput": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "material_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "name": {
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "prompt": {
+            "maxLength": 2000,
+            "type": "string"
+          },
+          "skill_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "enabled",
+          "material_ids",
+          "name",
+          "prompt",
+          "skill_ids"
+        ],
+        "type": "object"
+      },
+      "httpapi.AgentList": {
+        "properties": {
+          "agents": {
+            "items": {
+              "$ref": "#/components/schemas/tutor.Agent"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "agents"
+        ],
+        "type": "object"
+      },
+      "httpapi.AskInput": {
+        "properties": {
+          "mode": {
+            "default": "hybrid",
+            "enum": [
+              "keyword",
+              "vector",
+              "hybrid"
+            ],
+            "type": "string"
+          },
+          "question": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "type": "object"
+      },
+      "httpapi.ConversationList": {
+        "properties": {
+          "conversations": {
+            "items": {
+              "$ref": "#/components/schemas/conversation.Conversation"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "conversations"
+        ],
+        "type": "object"
+      },
+      "httpapi.ConversationOutput": {
+        "properties": {
+          "conversation": {
+            "$ref": "#/components/schemas/conversation.Conversation"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/conversation.Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "conversation",
+          "messages"
+        ],
+        "type": "object"
+      },
+      "httpapi.CreateConversationInput": {
+        "additionalProperties": false,
+        "properties": {
+          "agent_id": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "agent_id"
+        ],
+        "type": "object"
+      },
+      "httpapi.IdentityOutput": {
+        "properties": {
+          "class_id": {
+            "type": "integer"
+          },
+          "class_name": {
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "teacher",
+              "student"
+            ],
+            "type": "string"
+          },
+          "user_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "class_id",
+          "class_name",
+          "role",
+          "user_id"
+        ],
+        "type": "object"
+      },
+      "httpapi.IndexOutput": {
+        "properties": {
+          "index_status": {
+            "type": "string"
+          },
+          "material_id": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "index_status",
+          "material_id"
+        ],
+        "type": "object"
+      },
+      "httpapi.LoginInput": {
+        "properties": {
+          "password": {
+            "format": "password",
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "password",
+          "username"
+        ],
+        "type": "object"
+      },
+      "httpapi.MCPCallList": {
+        "properties": {
+          "calls": {
+            "items": {
+              "$ref": "#/components/schemas/mcp.AuditCall"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "calls"
+        ],
+        "type": "object"
+      },
+      "httpapi.MCPConnected": {
+        "properties": {
+          "connected": {
+            "type": "boolean"
+          },
+          "tools": {
+            "items": {
+              "$ref": "#/components/schemas/mcp.Tool"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "connected",
+          "tools"
+        ],
+        "type": "object"
+      },
+      "httpapi.MCPCreateInput": {
+        "additionalProperties": false,
+        "properties": {
+          "auth_token": {
+            "description": "AuthToken is a write-only service Bearer credential; only has_auth is returned. Empty is valid for services without authentication.",
+            "maxLength": 4096,
+            "type": "string"
+          },
+          "base_url": {
+            "description": "BaseURL is the service root, without credentials, query or fragment; the server appends /mcp and enforces its outbound allowlist.",
+            "example": "http://mcp-demo:8090",
+            "maxLength": 512,
+            "type": "string"
+          },
+          "name": {
+            "description": "Name is unique within the current class; renaming does not rewrite skill references.",
+            "example": "math-demo",
+            "maxLength": 64,
+            "type": "string"
+          }
+        },
+        "required": [
+          "auth_token",
+          "base_url",
+          "name"
+        ],
+        "type": "object"
+      },
+      "httpapi.MCPDisconnected": {
+        "properties": {
+          "connected": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "connected"
+        ],
+        "type": "object"
+      },
+      "httpapi.MCPServerList": {
+        "properties": {
+          "servers": {
+            "items": {
+              "$ref": "#/components/schemas/mcp.Server"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "servers"
+        ],
+        "type": "object"
+      },
+      "httpapi.MCPToolList": {
+        "properties": {
+          "tools": {
+            "items": {
+              "$ref": "#/components/schemas/mcp.Tool"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "tools"
+        ],
+        "type": "object"
+      },
+      "httpapi.MCPUpdateInput": {
+        "additionalProperties": false,
+        "properties": {
+          "auth_token": {
+            "maxLength": 4096,
+            "type": "string"
+          },
+          "base_url": {
+            "maxLength": 512,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 64,
+            "type": "string"
+          }
+        },
+        "required": [
+          "base_url",
+          "name"
+        ],
+        "type": "object"
+      },
+      "httpapi.MaterialList": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/material.Item"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "type": "object"
+      },
+      "httpapi.ReindexInput": {
+        "properties": {
+          "delimiter": {
+            "type": "string"
+          },
+          "overlap": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "size": {
+            "default": 800,
+            "maximum": 20971520,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "strategy": {
+            "default": "fixed",
+            "enum": [
+              "fixed",
+              "markdown",
+              "delimiter"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "httpapi.SSEDelta": {
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "type": "object"
+      },
+      "httpapi.SSEDone": {
+        "properties": {
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/rag.Source"
+            },
+            "type": "array"
+          },
+          "message_id": {
+            "type": "integer"
+          },
+          "skill_name": {
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "completed"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "citations",
+          "message_id",
+          "skill_name",
+          "state"
+        ],
+        "type": "object"
+      },
+      "httpapi.SSEEnvelope": {
+        "properties": {
+          "delta": {
+            "$ref": "#/components/schemas/httpapi.SSEDelta"
+          },
+          "done": {
+            "$ref": "#/components/schemas/httpapi.SSEDone"
+          },
+          "error": {
+            "$ref": "#/components/schemas/httpapi.SSEError"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/httpapi.SSEMeta"
+          }
+        },
+        "type": "object"
+      },
+      "httpapi.SSEError": {
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error",
+          "reason"
+        ],
+        "type": "object"
+      },
+      "httpapi.SSEMeta": {
+        "properties": {
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/rag.Source"
+            },
+            "type": "array"
+          },
+          "message_id": {
+            "type": "integer"
+          },
+          "skill_name": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "ok"
+            ],
+            "type": "string"
+          },
+          "tool_calls": {
+            "items": {
+              "$ref": "#/components/schemas/mcp.ToolCall"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "citations",
+          "message_id",
+          "skill_name",
+          "status"
+        ],
+        "type": "object"
+      },
+      "httpapi.SearchOutput": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/rag.Evidence"
+            },
+            "type": "array"
+          },
+          "mode": {
+            "enum": [
+              "keyword",
+              "vector",
+              "hybrid"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "mode"
+        ],
+        "type": "object"
+      },
+      "httpapi.SendMessageInput": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "maxLength": 500,
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "content"
+        ],
+        "type": "object"
+      },
+      "httpapi.SkillList": {
+        "properties": {
+          "skills": {
+            "items": {
+              "$ref": "#/components/schemas/tutor.Skill"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "skills"
+        ],
+        "type": "object"
+      },
+      "httpapi.SkillSourceInput": {
+        "additionalProperties": false,
+        "properties": {
+          "source": {
+            "maxLength": 8000,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "source"
+        ],
+        "type": "object"
+      },
+      "httpapi.SkillUpdateInput": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "source": {
+                "maxLength": 8000,
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "source"
+            ],
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "enabled"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "httpapi.UploadOutput": {
+        "properties": {
+          "index_status": {
+            "enum": [
+              "ready",
+              "failed"
+            ],
+            "type": "string"
+          },
+          "material_id": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "material_id"
+        ],
+        "type": "object"
+      },
+      "material.Detail": {
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "original_name": {
+            "type": "string"
+          },
+          "plain_text": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "uploader": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "material.Item": {
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "original_name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "uploader": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "mcp.AuditCall": {
+        "properties": {
+          "conversation_id": {
+            "nullable": true,
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "server_name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "tool_name": {
+            "type": "string"
+          },
+          "tool_ref": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "conversation_id",
+          "created_at",
+          "detail",
+          "id",
+          "server_name",
+          "status",
+          "tool_name",
+          "tool_ref",
+          "user_id"
+        ],
+        "type": "object"
+      },
+      "mcp.Server": {
+        "properties": {
+          "base_url": {
+            "type": "string"
+          },
+          "connected": {
+            "type": "boolean"
+          },
+          "has_auth": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tool_count": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "base_url",
+          "connected",
+          "has_auth",
+          "id",
+          "name",
+          "tool_count"
+        ],
+        "type": "object"
+      },
+      "mcp.Tool": {
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "inputSchema": {
+            "type": "object"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "name"
+        ],
+        "type": "object"
+      },
+      "mcp.ToolCall": {
+        "properties": {
+          "ref": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "ok",
+              "denied",
+              "error"
+            ],
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ref",
+          "status",
+          "text"
+        ],
+        "type": "object"
+      },
+      "rag.Answer": {
+        "properties": {
+          "answer": {
+            "type": "string"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/rag.Source"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "rag.Evidence": {
+        "properties": {
+          "chunk_id": {
+            "type": "string"
+          },
+          "chunk_index": {
+            "type": "integer"
+          },
+          "chunk_text": {
+            "type": "string"
+          },
+          "material_id": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "rag.Source": {
+        "properties": {
+          "chunk_id": {
+            "type": "string"
+          },
+          "chunk_index": {
+            "type": "integer"
+          },
+          "chunk_text": {
+            "type": "string"
+          },
+          "material_id": {
+            "type": "string"
+          },
+          "number": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "tutor.Agent": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "material_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "name": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "integer"
+          },
+          "skill_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "tutor.Skill": {
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "instruction_version": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "integer"
+          },
+          "source": {
+            "type": "string"
+          },
+          "source_hash": {
+            "type": "string"
+          },
+          "source_origin": {
+            "type": "string"
+          },
+          "source_version": {
+            "type": "integer"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "tools": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "trigger": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "tutor.Snapshot": {
+        "properties": {
+          "agent": {
+            "$ref": "#/components/schemas/tutor.Agent"
+          },
+          "class_id": {
+            "type": "integer"
+          },
+          "selected_skill": {
+            "$ref": "#/components/schemas/tutor.Skill"
+          },
+          "skills": {
+            "items": {
+              "$ref": "#/components/schemas/tutor.Skill"
+            },
+            "type": "array"
+          },
+          "tool_calls": {
+            "items": {
+              "$ref": "#/components/schemas/mcp.ToolCall"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "description": "HS256 JWT，8小时；退出撤销账号旧Token。转换产物使用HTTP bearer，输入JWT本身。",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "contact": {},
+    "description": "处理器注解生成的实际契约。Bearer每请求核验当前身份；Week4 Ask无据零模型调用，Week5无据仍生成。材料UUID、1-based切片；无公开会话DELETE。",
+    "title": "CampusClaw Go API",
+    "version": "week5-aligned"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/api/agents": {
+      "get": {
+        "description": "教师可看本班全部；学生只看启用项。班级来自Bearer身份。",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.AgentList"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "本班智能体列表",
+        "tags": [
+          "agents"
+        ]
+      },
+      "post": {
+        "description": "完整字段必填，两个绑定数组不可为null。空prompt使用默认助教角色；空材料不检索，仍生成。绑定仅允许本班资源。",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.AgentInput"
+              }
+            }
+          },
+          "description": "完整配置，名称1–64字、prompt≤2000字",
+          "required": true,
+          "x-originalParamName": "body"
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tutor.Agent"
+                }
+              }
+            },
+            "description": "Created"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "重名、非法或缺失字段"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "仅教师"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "外班或不存在的绑定"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "身份存储故障"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "教师创建本班智能体",
+        "tags": [
+          "agents"
+        ],
+        "x-strict-request": true
+      }
+    },
+    "/api/agents/{id}": {
+      "get": {
+        "description": "学生读取停用、外班或不存在项均404；教师可管理本班停用项。",
+        "parameters": [
+          {
+            "description": "本班ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tutor.Agent"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "读取本班智能体",
+        "tags": [
+          "agents"
+        ]
+      },
+      "put": {
+        "description": "完整字段必填。修改/停用/解绑下一轮生效，正在生成及历史快照不变；停用只禁止新建会话。",
+        "parameters": [
+          {
+            "description": "本班智能体ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.AgentInput"
+              }
+            }
+          },
+          "description": "完整配置，空数组合法，null或省略拒绝",
+          "required": true,
+          "x-originalParamName": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tutor.Agent"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "教师更新本班智能体",
+        "tags": [
+          "agents"
+        ],
+        "x-strict-request": true
+      }
+    },
+    "/api/ask": {
+      "post": {
+        "description": "question/mode输入，answer/sources输出；不写会话或注入教师技能。无命中固定“资料中未找到相关内容”、sources=[]、对话调用0次。有据非法引用502，依赖故障503。",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.AskInput"
+              }
+            }
+          },
+          "description": "单次问题",
+          "required": true,
+          "x-originalParamName": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rag.Answer"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Week4非流式单次问答",
+        "tags": [
+          "rag"
+        ]
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "description": "接受JSON或表单username/password。无Cookie，角色/班级由数据库确定；退出撤销旧Token。",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.LoginInput"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.LoginInput"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.LoginInput"
+              }
+            }
+          },
+          "description": "登录凭据（JSON或同名表单字段）",
+          "required": true,
+          "x-originalParamName": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/auth.LoginResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "登录并获取8小时Bearer JWT",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "退出并撤销账号旧Token",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.IdentityOutput"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "当前可信身份",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/api/conversations": {
+      "get": {
+        "description": "owner+当前class隔离，按updated_at倒序。",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.ConversationList"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "学生自己的会话列表",
+        "tags": [
+          "conversations"
+        ]
+      },
+      "post": {
+        "description": "只接受agent_id。本班无启用助手400；外班/不存在/停用404。已有会话可在助手停用后续聊；不得换绑。",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.CreateConversationInput"
+              }
+            }
+          },
+          "description": "本班启用智能体",
+          "required": true,
+          "x-originalParamName": "body"
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/conversation.Conversation"
+                }
+              }
+            },
+            "description": "Created"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "学生创建锁定智能体的私有会话",
+        "tags": [
+          "conversations"
+        ],
+        "x-strict-request": true
+      }
+    },
+    "/api/conversations/{id}": {
+      "get": {
+        "description": "owner+当前class限定；外班/他人/不存在404，教师403。保留失败前缀和最终引用；done丢失时据此确认completed，不自动重试模型。首问标题前24个Unicode字符。",
+        "parameters": [
+          {
+            "description": "本人会话ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.ConversationOutput"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "本人会话及完整消息历史",
+        "tags": [
+          "conversations"
+        ]
+      }
+    },
+    "/api/conversations/{id}/messages": {
+      "post": {
+        "description": "仅content，trim后2–500字，owner+class限定，单会话并发409。原子保存user/assistant占位，准备本轮快照和末尾6条历史（含当前user一次，每条历史≤500字），再meta/Flush，之后才连接模型。有据/无据均生成，空绑定不检索；无据不虚构数字引用。每片先落库再delta，completed提交后done；15秒心跳。meta.citations是完整候选/空数组，done.citations是实际引用子集且保留原号。meta前参数/权限/准备故障返回JSON（503可能已保留failed轮次），meta后模型连接/生成/引用/持久化失败保持HTTP200 + error，无成功done。取消保留interrupted草稿；EOF无done请读历史确认，不自动重试。Swagger即时增量请使用实时SSE面板。",
+        "parameters": [
+          {
+            "description": "本人会话ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.SendMessageInput"
+              }
+            }
+          },
+          "description": "只允许content",
+          "required": true,
+          "x-originalParamName": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "text/event-stream": {
+                "examples": {
+                  "failure": {
+                    "summary": "meta后连接/生成失败：HTTP200，无done",
+                    "value": "event: meta\ndata: {\"status\":\"ok\",\"citations\":[],\"skill_name\":\"\",\"message_id\":12}\n\nevent: error\ndata: {\"error\":\"回答失败\",\"reason\":\"model_connection_failed\"}\n\n"
+                  },
+                  "no_evidence": {
+                    "summary": "空候选仍调用模型，清洗数字引用",
+                    "value": "event: meta\ndata: {\"status\":\"ok\",\"citations\":[],\"skill_name\":\"\",\"message_id\":12}\n\nevent: delta\ndata: {\"text\":\"无资料也按角色解释问题。\"}\n\nevent: done\ndata: {\"message_id\":12,\"citations\":[],\"skill_name\":\"\",\"state\":\"completed\"}\n\n"
+                  }
+                },
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "meta → delta* → done，或meta → delta* → error"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "身份存储故障"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "仅meta前模型输入预算校验失败；模型尚未连接"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "meta前准备或数据库故障，模型尚未调用"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "学生发送问题并读取实时SSE",
+        "tags": [
+          "conversations"
+        ],
+        "x-sse": {
+          "examples": {
+            "failure": {
+              "summary": "meta后连接/生成失败：HTTP200，无done",
+              "value": "event: meta\ndata: {\"status\":\"ok\",\"citations\":[],\"skill_name\":\"\",\"message_id\":12}\n\nevent: error\ndata: {\"error\":\"回答失败\",\"reason\":\"model_connection_failed\"}\n\n"
+            },
+            "no_evidence": {
+              "summary": "空候选仍调用模型，清洗数字引用",
+              "value": "event: meta\ndata: {\"status\":\"ok\",\"citations\":[],\"skill_name\":\"\",\"message_id\":12}\n\nevent: delta\ndata: {\"text\":\"无资料也按角色解释问题。\"}\n\nevent: done\ndata: {\"message_id\":12,\"citations\":[],\"skill_name\":\"\",\"state\":\"completed\"}\n\n"
+            }
+          },
+          "heartbeat_seconds": 15,
+          "meta_before_model": true
+        },
+        "x-sse-events": {
+          "delta": {
+            "$ref": "#/components/schemas/httpapi.SSEDelta"
+          },
+          "done": {
+            "$ref": "#/components/schemas/httpapi.SSEDone"
+          },
+          "error": {
+            "$ref": "#/components/schemas/httpapi.SSEError"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/httpapi.SSEMeta"
+          }
+        },
+        "x-strict-request": true
+      }
+    },
+    "/api/materials": {
+      "get": {
+        "description": "不接受客户端scope查询参数；使用可信当前班级。",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.MaterialList"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "存储故障为HTML500，身份故障为JSON500"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "本班材料列表",
+        "tags": [
+          "materials"
+        ],
+        "x-response-media": {
+          "500": {
+            "application/json": {
+              "$ref": "#/components/schemas/httpapi.APIError"
+            },
+            "text/html": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "仅一个file，最大20MiB，不允许身份覆盖字段。先提交原文；RAG启用时返回index_status，索引失败仍201且原文保留。",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "file": {
+                    "description": "UTF-8 TXT/MD文件（≤20MiB）",
+                    "format": "binary",
+                    "type": "string",
+                    "x-formData-name": "file"
+                  }
+                },
+                "required": [
+                  "file"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.UploadOutput"
+                }
+              }
+            },
+            "description": "Created"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "413": {
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "文件过大，HTML错误"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "存储故障，HTML错误"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "教师上传本班UTF-8 TXT/MD",
+        "tags": [
+          "materials"
+        ],
+        "x-response-media": {
+          "413": "text/html",
+          "500": {
+            "application/json": {
+              "$ref": "#/components/schemas/httpapi.APIError"
+            },
+            "text/html": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/materials/{id}": {
+      "get": {
+        "description": "不存在/外班统一404；正文是数据，不提升为系统权限。",
+        "parameters": [
+          {
+            "description": "材料UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/material.Detail"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "存储故障为HTML500"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "本班材料原文",
+        "tags": [
+          "materials"
+        ],
+        "x-response-media": {
+          "500": {
+            "application/json": {
+              "$ref": "#/components/schemas/httpapi.APIError"
+            },
+            "text/html": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/materials/{id}/file": {
+      "get": {
+        "description": "校验当前班级及文件完整性，附件名称清理路径/控制字符；支持Range。",
+        "parameters": [
+          {
+            "description": "材料UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "text/plain; charset=utf-8": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "206": {
+            "content": {
+              "text/plain; charset=utf-8": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Partial Content"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "存储故障为HTML500"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "授权后下载材料",
+        "tags": [
+          "materials"
+        ],
+        "x-response-media": {
+          "200": "text/plain; charset=utf-8",
+          "206": "text/plain; charset=utf-8",
+          "401": "application/json",
+          "404": "application/json",
+          "500": {
+            "application/json": {
+              "$ref": "#/components/schemas/httpapi.APIError"
+            },
+            "text/html": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/materials/{id}/reindex": {
+      "post": {
+        "description": "空对象使用默认策略；size默认800，overlap默认size/10且必须小于size，delimiter策略需要非空delimiter。失败不删除原文或改历史引用。",
+        "parameters": [
+          {
+            "description": "材料UUID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.ReindexInput"
+              }
+            }
+          },
+          "description": "切片策略",
+          "required": true,
+          "x-originalParamName": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.IndexOutput"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "教师重建本班材料索引",
+        "tags": [
+          "materials"
+        ]
+      }
+    },
+    "/api/mcp/servers": {
+      "get": {
+        "description": "Teacher only; class comes from current verified Principal. Legacy authentication storage failure remains 500; MCP database failure is 503.\nLists only the current class. has_auth is a boolean, never the credential; connected and tool_count reflect persisted connection/cache state.",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.MCPServerList"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List current class MCP servers",
+        "tags": [
+          "mcp"
+        ],
+        "x-error-examples": {
+          "400": {
+            "error": "Invalid MCP request"
+          },
+          "401": {
+            "error": "Authentication required"
+          },
+          "403": {
+            "error": "Teacher role required"
+          },
+          "500": {
+            "error": "Authentication storage unavailable"
+          },
+          "503": {
+            "error": "MCP service unavailable"
+          }
+        },
+        "x-success-example": {
+          "servers": [
+            {
+              "base_url": "http://mcp-demo:8090",
+              "connected": true,
+              "has_auth": true,
+              "id": 1,
+              "name": "math-demo",
+              "tool_count": 2
+            }
+          ]
+        }
+      },
+      "post": {
+        "description": "Teacher only; class comes from current verified Principal. Legacy authentication storage failure remains 500; MCP database failure is 503.\nRegisters configuration without connecting or calling tools. auth_token is write-only; base_url is a service root and must pass the configured server-side allowlist. Response contains has_auth only.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.MCPCreateInput"
+              }
+            }
+          },
+          "description": "Configuration; credentials never returned",
+          "required": true,
+          "x-originalParamName": "body"
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/mcp.Server"
+                }
+              }
+            },
+            "description": "Created"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Register current class MCP server",
+        "tags": [
+          "mcp"
+        ],
+        "x-error-examples": {
+          "400": {
+            "error": "Invalid MCP request"
+          },
+          "401": {
+            "error": "Authentication required"
+          },
+          "403": {
+            "error": "Teacher role required"
+          },
+          "500": {
+            "error": "Authentication storage unavailable"
+          },
+          "503": {
+            "error": "MCP service unavailable"
+          }
+        },
+        "x-strict-request": true,
+        "x-success-example": {
+          "base_url": "http://mcp-demo:8090",
+          "connected": false,
+          "has_auth": true,
+          "id": 1,
+          "name": "math-demo",
+          "tool_count": 0
+        }
+      }
+    },
+    "/api/mcp/servers/{id}": {
+      "delete": {
+        "description": "Teacher only; class comes from current verified Principal. Legacy authentication storage failure remains 500; MCP database failure is 503.\nUnaudited servers are physically deleted with 204. Existing append-only audits prohibit deletion and return 503; no force-delete or audit purge exists.",
+        "parameters": [
+          {
+            "description": "Current class server ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Delete unaudited server; audited deletion returns 503",
+        "tags": [
+          "mcp"
+        ],
+        "x-error-examples": {
+          "400": {
+            "error": "Invalid MCP request"
+          },
+          "401": {
+            "error": "Authentication required"
+          },
+          "403": {
+            "error": "Teacher role required"
+          },
+          "404": {
+            "error": "MCP resource not found"
+          },
+          "500": {
+            "error": "Authentication storage unavailable"
+          },
+          "503": {
+            "error": "MCP service unavailable"
+          }
+        }
+      },
+      "put": {
+        "description": "Teacher only; class comes from current verified Principal. Legacy authentication storage failure remains 500; MCP database failure is 503.\nOmitted or empty auth_token retains the previous credential. Every update disconnects and clears cached tools. Rename does not rewrite tool@server skill references; update and resave skills explicitly.",
+        "parameters": [
+          {
+            "description": "Current class server ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.MCPUpdateInput"
+              }
+            }
+          },
+          "description": "Configuration; credentials never returned",
+          "required": true,
+          "x-originalParamName": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/mcp.Server"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Update configuration; empty token retains; clears cache",
+        "tags": [
+          "mcp"
+        ],
+        "x-error-examples": {
+          "400": {
+            "error": "Invalid MCP request"
+          },
+          "401": {
+            "error": "Authentication required"
+          },
+          "403": {
+            "error": "Teacher role required"
+          },
+          "404": {
+            "error": "MCP resource not found"
+          },
+          "500": {
+            "error": "Authentication storage unavailable"
+          },
+          "503": {
+            "error": "MCP service unavailable"
+          }
+        },
+        "x-strict-request": true,
+        "x-success-example": {
+          "base_url": "http://mcp-demo:8090",
+          "connected": false,
+          "has_auth": true,
+          "id": 1,
+          "name": "math-demo-renamed",
+          "tool_count": 0
+        }
+      }
+    },
+    "/api/mcp/servers/{id}/connect": {
+      "post": {
+        "description": "Teacher only; class comes from current verified Principal. Legacy authentication storage failure remains 500; MCP database failure is 503.\nUses stored service Bearer credentials for initialize then tools/list; does not call tools/call. Successful discovery atomically replaces cached tools. Remote/protocol/authentication failure is 502, not browser JWT revocation.",
+        "parameters": [
+          {
+            "description": "Current class server ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.MCPConnected"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Initialize and discover tools; remote failures 502",
+        "tags": [
+          "mcp"
+        ],
+        "x-error-examples": {
+          "400": {
+            "error": "Invalid MCP request"
+          },
+          "401": {
+            "error": "Authentication required"
+          },
+          "403": {
+            "error": "Teacher role required"
+          },
+          "404": {
+            "error": "MCP resource not found"
+          },
+          "500": {
+            "error": "Authentication storage unavailable"
+          },
+          "502": {
+            "error": "MCP connection failed"
+          },
+          "503": {
+            "error": "MCP service unavailable"
+          }
+        },
+        "x-success-example": {
+          "connected": true,
+          "tools": [
+            {
+              "description": "Formula hints",
+              "inputSchema": {
+                "properties": {
+                  "query": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "query"
+                ],
+                "type": "object"
+              },
+              "name": "formula_hint"
+            },
+            {
+              "description": "Unit conversion",
+              "inputSchema": {
+                "properties": {
+                  "from": {
+                    "type": "string"
+                  },
+                  "to": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "value",
+                  "from",
+                  "to"
+                ],
+                "type": "object"
+              },
+              "name": "unit_convert"
+            }
+          ]
+        }
+      }
+    },
+    "/api/mcp/servers/{id}/disconnect": {
+      "post": {
+        "description": "Teacher only; class comes from current verified Principal. Legacy authentication storage failure remains 500; MCP database failure is 503.\nIdempotently marks disconnected and removes cached tools; does not delete audits or skill source. Subsequent resolved calls are denied and append terminal audit records.",
+        "parameters": [
+          {
+            "description": "Current class server ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.MCPDisconnected"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Idempotently disconnect and clear tools",
+        "tags": [
+          "mcp"
+        ],
+        "x-error-examples": {
+          "400": {
+            "error": "Invalid MCP request"
+          },
+          "401": {
+            "error": "Authentication required"
+          },
+          "403": {
+            "error": "Teacher role required"
+          },
+          "404": {
+            "error": "MCP resource not found"
+          },
+          "500": {
+            "error": "Authentication storage unavailable"
+          },
+          "503": {
+            "error": "MCP service unavailable"
+          }
+        },
+        "x-success-example": {
+          "connected": false
+        }
+      }
+    },
+    "/api/mcp/servers/{id}/tools": {
+      "get": {
+        "description": "Teacher only; class comes from current verified Principal. Legacy authentication storage failure remains 500; MCP database failure is 503.\nReturns only cached name/description/inputSchema fields. Does not discover or invoke tools, and does not return credentials or internal revision.",
+        "parameters": [
+          {
+            "description": "Current class server ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.MCPToolList"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Read cached tools without network I/O",
+        "tags": [
+          "mcp"
+        ],
+        "x-error-examples": {
+          "400": {
+            "error": "Invalid MCP request"
+          },
+          "401": {
+            "error": "Authentication required"
+          },
+          "403": {
+            "error": "Teacher role required"
+          },
+          "404": {
+            "error": "MCP resource not found"
+          },
+          "500": {
+            "error": "Authentication storage unavailable"
+          },
+          "503": {
+            "error": "MCP service unavailable"
+          }
+        },
+        "x-success-example": {
+          "tools": []
+        }
+      }
+    },
+    "/api/mcp/tool-calls": {
+      "get": {
+        "description": "Teacher only; class comes from current verified Principal. Legacy authentication storage failure remains 500; MCP database failure is 503.\nReturns only the current class, newest terminal records first. Default 50, maximum 100 (larger positive limits clamp); detail is a safe summary, not raw arguments or remote errors.",
+        "parameters": [
+          {
+            "description": "Default 50; values above 100 clamp to 100",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 50,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.MCPCallList"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Read current class terminal audit records newest first",
+        "tags": [
+          "mcp"
+        ],
+        "x-error-examples": {
+          "400": {
+            "error": "Invalid MCP request"
+          },
+          "401": {
+            "error": "Authentication required"
+          },
+          "403": {
+            "error": "Teacher role required"
+          },
+          "500": {
+            "error": "Authentication storage unavailable"
+          },
+          "503": {
+            "error": "MCP service unavailable"
+          }
+        },
+        "x-success-example": {
+          "calls": [
+            {
+              "conversation_id": 1,
+              "created_at": "2026-10-19T00:00:00Z",
+              "detail": "Safe summary",
+              "id": 1,
+              "server_name": "math-demo",
+              "status": "ok",
+              "tool_name": "formula_hint",
+              "tool_ref": "formula_hint@math-demo",
+              "user_id": 3
+            }
+          ]
+        }
+      }
+    },
+    "/api/search": {
+      "get": {
+        "description": "固定top4；keyword零Embedding，向量阈值0.35及RRF保持；依赖故障503不降级。本接口nil材料范围为本班，不采用Week5空绑定语义。",
+        "parameters": [
+          {
+            "description": "非空问题",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "检索模式",
+            "in": "query",
+            "name": "mode",
+            "schema": {
+              "default": "hybrid",
+              "enum": [
+                "keyword",
+                "vector",
+                "hybrid"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.SearchOutput"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Week4本班三模式检索",
+        "tags": [
+          "rag"
+        ]
+      }
+    },
+    "/api/skills": {
+      "get": {
+        "description": "已登录用户可读本班技能原文、解析字段、启用状态和版本；写操作仅教师。",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.SkillList"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "本班文本技能列表",
+        "tags": [
+          "skills"
+        ]
+      },
+      "post": {
+        "description": "名称/适用条件/启用必填，空行后为正文；source≤8000、名称1–32、条件1–120、资料≤32、正文1–2000个Unicode字符。保留原文；班内重名400，非法UTF-8/字段/工具拒绝。",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.SkillSourceInput"
+              }
+            }
+          },
+          "description": "source完整文本",
+          "required": true,
+          "x-originalParamName": "body"
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tutor.Skill"
+                }
+              }
+            },
+            "description": "Created"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "教师创建文本技能",
+        "tags": [
+          "skills"
+        ],
+        "x-strict-request": true
+      }
+    },
+    "/api/skills/{id}": {
+      "delete": {
+        "description": "清理当前绑定，历史技能名/配置/证据快照不重写；外班或不存在统一404。",
+        "parameters": [
+          {
+            "description": "本班技能ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "教师删除本班技能",
+        "tags": [
+          "skills"
+        ]
+      },
+      "get": {
+        "parameters": [
+          {
+            "description": "本班技能ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tutor.Skill"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "读取本班技能原文与元数据",
+        "tags": [
+          "skills"
+        ]
+      },
+      "put": {
+        "description": "仅接受source完整文本或enabled-only二选一；混合/null/未知字段400。开关原子同步source与解析元数据。下一轮生效，历史不改。",
+        "parameters": [
+          {
+            "description": "本班技能ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/httpapi.SkillUpdateInput"
+              }
+            }
+          },
+          "description": "source或enabled-only，禁止混合",
+          "required": true,
+          "x-originalParamName": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tutor.Skill"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/httpapi.APIError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "教师更新技能或兼容启停",
+        "tags": [
+          "skills"
+        ],
+        "x-request-oneof": [
+          [
+            "source"
+          ],
+          [
+            "enabled"
+          ]
+        ],
+        "x-strict-request": true
+      }
+    },
+    "/openapi.json": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "注解生成的OpenAPI契约",
+        "tags": [
+          "documentation"
+        ]
+      }
+    },
+    "/swagger/": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Swagger UI与实时SSE调试",
+        "tags": [
+          "documentation"
+        ]
+      }
+    },
+    "/swagger/index.html": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Swagger UI与实时SSE调试",
+        "tags": [
+          "documentation"
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ]
+}

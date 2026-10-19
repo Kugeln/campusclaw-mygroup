@@ -15,6 +15,9 @@ import (
 //go:embed schema_v1_catalog.json
 var schemaCatalog []byte
 
+//go:embed schema_rag_catalog.json
+var ragCatalog []byte
+
 var catalogQueries = []string{
 	`SELECT TABLE_NAME,ENGINE,TABLE_COLLATION FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() ORDER BY TABLE_NAME`,
 	`SELECT TABLE_NAME,ORDINAL_POSITION,COLUMN_NAME,COLUMN_TYPE,IS_NULLABLE,COALESCE(COLUMN_DEFAULT,'<NULL>'),EXTRA,COALESCE(COLLATION_NAME,'') FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() ORDER BY TABLE_NAME,ORDINAL_POSITION`,
@@ -25,8 +28,33 @@ var catalogQueries = []string{
 
 // ValidateSchema is read-only; startup never repairs or silently accepts drift.
 func ValidateSchema(ctx context.Context, db *sql.DB) error {
+	var count int
+	if err := db.QueryRowContext(ctx, "SELECT COUNT(*) FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='schema_upgrades'").Scan(&count); err != nil {
+		return fmt.Errorf("schema metadata unavailable")
+	}
+	if count > 0 {
+		var mcp int
+		if db.QueryRowContext(ctx, "SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='schema_upgrades' AND COLUMN_NAME='ddl_hash'").Scan(&mcp) != nil {
+			return fmt.Errorf("schema metadata unavailable")
+		}
+		if mcp > 0 {
+			return ValidateMCPSchema(ctx, db)
+		}
+		// Valid v3 remains readable for the offline initializer's pre-upgrade
+		// receipt check. RAG HTTP startup separately requires current v4.
+		return validateTutorReady(ctx, db)
+	}
+	if err := db.QueryRowContext(ctx, "SELECT COUNT(*) FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='knowledge_chunks'").Scan(&count); err != nil {
+		return fmt.Errorf("schema metadata unavailable")
+	}
+	if count > 0 {
+		return validateRAGV2(ctx, db)
+	}
+	return validateCatalog(ctx, db, schemaCatalog)
+}
+func validateCatalog(ctx context.Context, db *sql.DB, catalog []byte) error {
 	var expected [][][]string
-	if err := json.Unmarshal(schemaCatalog, &expected); err != nil {
+	if err := json.Unmarshal(catalog, &expected); err != nil || len(expected) != len(catalogQueries) {
 		return fmt.Errorf("schema catalog unavailable")
 	}
 	for i, query := range catalogQueries {
@@ -55,7 +83,7 @@ func ValidateSchema(ctx context.Context, db *sql.DB) error {
 		err = rows.Err()
 		rows.Close()
 		if err != nil || !reflect.DeepEqual(expected[i], actual) {
-			return fmt.Errorf("schema version %d mismatch (section %d)", SchemaVersion, i)
+			return fmt.Errorf("schema catalog mismatch (section %d)", i)
 		}
 	}
 	return nil

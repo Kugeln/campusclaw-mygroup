@@ -95,3 +95,26 @@ python -m venv .venv
 ```
 
 测试使用隔离目录与运行时生成的凭据。OpenSpec 验证记录见 `openspec/changes/add-class-scoped-material-library/verification.md`。
+
+
+## 第六课：Go 部署的 MCP 工具服务（可选）
+
+本节针对根目录当前 Go Compose，前文 Python/Session 操作只适用于旧版本。Go 使用既有 JWT、MySQL 和私有上传卷；不使用旧 Session 初始化命令。MCP 为独立 HTTP JSON-RPC 服务，提供 `initialize`、`tools/list`、`tools/call`，主工具为 `formula_hint` 和 `unit_convert`。不要求完整 Streamable HTTP、GET SSE 或 MCP session。
+
+默认 `MCP_ENABLED=false`，独立服务由 `--profile mcp` 显式开启。使用现有环境/Secret 注入机制设置 `RAG_ENABLED=true`、`MCP_ENABLED=true`、`MCP_KEY_ID`、`MCP_MASTER_KEY`（32 字节随机主密钥的 base64）和随机 `MCP_AUTH_TOKEN`，以及既有 JWT/数据库/模型配置。不得将真实值写入本仓库、镜像、日志或截图。`MCP_MASTER_KEY` 与 JWT 密钥独立；现有密文需要原主密钥及 key ID，备份时应安全保管，不能直接更换后期望旧凭据仍可解密。
+
+默认独立内部网络为 `MCP_NETWORK_CIDR=10.242.60.0/24`。部署前检查与现有网络不重叠；如果调整，必须同步 `MCP_ALLOWED_TARGETS` 中的 CIDR。明确白名单示例（不含秘密）：
+
+```text
+[{"scheme":"http","host":"mcp-demo","port":8090,"cidrs":["10.242.60.0/24"]}]
+```
+
+MCP 服务不发布宿主端口，以 UID 10001、只读根文件系统运行，自带健康检查；应用仅通过白名单访问 `http://mcp-demo:8090`。缺服务凭据时独立服务拒绝启动；应用启用 MCP 却缺主密钥或合法白名单时也拒绝启动。只开服务 profile 不等于开启应用功能。显式允许 Compose 服务不放宽其他 URL、解析 IP、DNS 重绑定、重定向及云元数据防护。
+
+在已完成备份并确认目标的**新部署**中，沿用现有初始化步骤选择 `INITIALIZATION_MODE=fresh`，使用 `docker compose --profile rag --profile mcp up --build -d --wait`。既有部署升级前，停止写入并备份同一时点的 MySQL、上传文件、Qdrant 及初始化回执，另行安全备份主密钥；不得使用 `down -v`。不要对旧目标改设 fresh、重新播种或删除回执。保留原初始化模式和已验证回执，运行既有 initialize 一次性门禁：v1/v2/v3 经已验证的增量账本升级 v4，追加三张 MCP 表并写入 MCP schema 回执，完成后再允许应用启动。应用启动自身不执行迁移。升级遇到 catalog 漂移、缺失回执、密钥错误或中断异常时停止应用启动并保留日志，先在隔离副本恢复验证；仅在账本允许的检查点重试，不手工跳过失败步骤。回退需恢复配套数据库、文件、回执及主密钥，不能只退镜像或回滚删表。
+
+教师在“学习助手 → MCP 工具服务”登记服务，输入上述 base_url 与注入给服务的 auth_token，然后连接、查看两个工具。编辑凭据留空表示保留；响应只有 has_auth。技能以 `formula_hint@math-demo` 或 `unit_convert@math-demo` 绑定，改名后须更新并重新保存技能。每技能最多 3 个不同引用、单调用 3 秒、工具阶段 10 秒及整轮 120 秒均为项目工程限额，非老师新增规定；tools/call 不自动重试。
+
+学生仅看到安全的 ref/status/text，工具结果为不可信外部数据，和 RAG 引用分开。工具正文危险句式或超过 1200 Unicode 字时整条弃用。调用审计仅追加终态，无审计服务器可物理删除，有审计服务器删除返回 503 并保留记录；不提供强制删除、审计清理或虚构保留期限。服务器名称复用风险仍存在，不宣称完全解决。历史刷新只读取既有安全快照，不重新执行工具。
+
+Swagger 在 `/swagger/`，用本人的测试 JWT 执行 Authorize 后可调用现有八项 MCP 管理操作及技能保存；凭据只写不读。普通 Try it out 可能等待 SSE 完成，页面实时 SSE 面板可查看工具状态、增量和终态。OpenAPI 由 `scripts/generate_openapi.ps1`（swag v1.16.6 → kin-openapi → 3.0.3）生成，`-Check` 校验一致性。旧认证存储故障仍为 500，MCP 业务存储故障为 503，连接远端失败为 502。

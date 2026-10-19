@@ -15,7 +15,7 @@ func TestMaterialPagesAndStaticBoundary(t *testing.T) {
 		r := httptest.NewRequest("GET", path+"?role=teacher&class_id=999&name=%3Cscript%3E", nil)
 		w := httptest.NewRecorder()
 		h.ServeHTTP(w, r)
-		if w.Code != 200 || w.Header().Get("Cache-Control") != "no-store" || w.Header().Get("Set-Cookie") != "" || !strings.Contains(w.Body.String(), `lang="zh-CN"`) || strings.Contains(w.Body.String(), "<script>") || strings.Contains(w.Body.String(), "/knowledge") || strings.Contains(w.Body.String(), "999") {
+		if w.Code != 200 || w.Header().Get("Cache-Control") != "no-store" || w.Header().Get("Set-Cookie") != "" || !strings.Contains(w.Body.String(), `lang="zh-CN"`) || strings.Contains(w.Body.String(), "<script>") || strings.Contains(w.Body.String(), "999") {
 			t.Fatal("public page shell contract")
 		}
 		if !strings.Contains(w.Header().Get("Content-Security-Policy"), "script-src 'self'") || w.Header().Get("X-Content-Type-Options") != "nosniff" {
@@ -34,7 +34,7 @@ func TestMaterialPagesAndStaticBoundary(t *testing.T) {
 			t.Fatal("reused asset differs: " + name)
 		}
 	}
-	for _, path := range []string{"/static/", "/static/knowledge.js", "/knowledge", "/static/uploads/files/secret", "/uploads/files/secret", "/files/secret", "/static/.env", "/static/logo.png/extra"} {
+	for _, path := range []string{"/static/", "/static/uploads/files/secret", "/uploads/files/secret", "/files/secret", "/static/.env", "/static/logo.png/extra"} {
 		w := httptest.NewRecorder()
 		h.ServeHTTP(w, httptest.NewRequest("GET", path, nil))
 		if w.Code != 404 {

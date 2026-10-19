@@ -1,0 +1,82 @@
+services:
+  mysql:
+    image: mysql:8.4.4
+    container_name: ${MCP_TEST_MYSQL:?dedicated host}
+    command: ["--ngram-token-size=2"]
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MCP_TEST_PASSWORD:?ephemeral password}
+      MYSQL_ROOT_HOST: "%"
+    tmpfs: [/var/lib/mysql]
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=\"$$MYSQL_ROOT_PASSWORD\" mysqladmin ping -h127.0.0.1 -uroot --silent"]
+      interval: 2s
+      timeout: 3s
+      retries: 50
+    networks:
+      isolated:
+        aliases: ["${MCP_TEST_LEGACY_ALIAS:?owned alias}"]
+  qdrant:
+    image: qdrant/qdrant:v1.13.4
+    networks:
+      isolated:
+        aliases: ["${MCP_TEST_QDRANT:?owned alias}"]
+  mcp-demo:
+    image: ${MCP_TEST_PROJECT:?project}-mcp:phase5
+    build:
+      context: ../../mcp-server
+      target: server
+    environment:
+      MCP_AUTH_TOKEN: ${MCP_AUTH_TOKEN:?ephemeral token}
+    read_only: true
+    cap_drop: [ALL]
+    networks: [isolated]
+  app:
+    image: ${MCP_TEST_PROJECT:?project}-tests:phase5
+    build:
+      context: ../..
+      dockerfile: tests/go_mcp/Dockerfile
+    working_dir: /src
+    command: ["go", "test", "-tags", "alignstorage", "./internal/repository/mysql", "-run", "^TestWeek6Phase5BrowserFixture$", "-v", "-count=1", "-timeout", "16m"]
+    volumes:
+      - ../..:/src:ro
+      - ${MCP_TEST_EVIDENCE_HOST:?new evidence}:/evidence
+    environment:
+      ALIGN_STORAGE_CONTAINER: ${MCP_TEST_LEGACY_ALIAS:?owned alias}
+      ALIGN_STORAGE_DSN: ${MCP_TEST_LEGACY_DSN:?isolated DSN}
+      W6_BROWSER_EVIDENCE: /evidence
+      W6_BROWSER_PASSWORD: ${W6_BROWSER_PASSWORD:?random browser password}
+      ALIGN_STREAM_QDRANT: http://${MCP_TEST_QDRANT:?owned alias}:6333
+      MCP_AUTH_TOKEN: ${MCP_AUTH_TOKEN:?ephemeral token}
+      MCP_ALLOWED_TARGETS: ${MCP_ALLOWED_TARGETS:?precise allowlist}
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mcp-demo:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/health"]
+      interval: 2s
+      timeout: 3s
+      retries: 80
+    networks: [isolated]
+  nginx:
+    image: nginx:1.28.0-alpine
+    ports: ["127.0.0.1::8080"]
+    volumes:
+      - ../../deploy/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      app:
+        condition: service_healthy
+    networks: [isolated, frontend]
+networks:
+  frontend:
+    ipam:
+      config:
+        - subnet: ${MCP_TEST_FRONTEND_SUBNET:?explicit frontend subnet}
+  isolated:
+    internal: true
+    ipam:
+      config:
+        - subnet: ${MCP_TEST_SUBNET:?explicit nonoverlapping subnet}

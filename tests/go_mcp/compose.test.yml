@@ -1,0 +1,47 @@
+services:
+  mysql:
+    image: mysql:8.4.4
+    container_name: ${MCP_TEST_MYSQL:?dedicated host required}
+    command: ["--ngram-token-size=2"]
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MCP_TEST_PASSWORD:?ephemeral password required}
+      MYSQL_ROOT_HOST: "%"
+    tmpfs: [/var/lib/mysql]
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=\"$$MYSQL_ROOT_PASSWORD\" mysqladmin ping -h127.0.0.1 -uroot --silent"]
+      interval: 2s
+      timeout: 3s
+      retries: 50
+    networks: [isolated]
+  mcp-demo:
+    image: ${MCP_TEST_PROJECT:?project required}-mcp:phase2
+    build:
+      context: ../../mcp-server
+      target: server
+    environment:
+      MCP_AUTH_TOKEN: ${MCP_AUTH_TOKEN:?ephemeral credential required}
+    read_only: true
+    cap_drop: [ALL]
+    networks: [isolated]
+  tests:
+    image: ${MCP_TEST_PROJECT:?project required}-tests:phase2
+    build:
+      context: ../..
+      dockerfile: tests/go_mcp/Dockerfile
+    working_dir: /src
+    volumes:
+      - ../..:/src:ro
+      - ${MCP_TEST_EVIDENCE_HOST:?new evidence directory required}:/evidence
+    environment:
+      MCP_TEST_DSN: ${MCP_TEST_DSN:?isolated DSN required}
+      MCP_TEST_MYSQL: ${MCP_TEST_MYSQL:?dedicated host required}
+      MCP_TEST_EVIDENCE: /evidence
+      MCP_AUTH_TOKEN: ${MCP_AUTH_TOKEN:?ephemeral credential required}
+      MCP_ALLOWED_TARGETS: ${MCP_ALLOWED_TARGETS:?precise test targets required}
+    networks: [isolated]
+networks:
+  isolated:
+    internal: true
+    ipam:
+      config:
+        - subnet: ${MCP_TEST_SUBNET:?nonoverlapping subnet required}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>学习助手 · CampusClaw</title><link rel="stylesheet" href="/static/styles.css"><link rel="stylesheet" href="/static/tutor.css"></head>
+<body class="tutor-page">
+<header class="topbar"><div class="topbar-inner"><div class="brand">CampusClaw · 学习助手</div><nav><a href="/materials">班级材料</a> · <a href="/knowledge">检索与单次问答</a> <span id="identity"></span> <button id="logout" type="button">退出登录</button></nav></div></header>
+<main class="page-shell">
+<h1>学习助手</h1><p id="notice" role="status" aria-live="polite"></p>
+<section id="teacher" class="card" hidden>
+<div class="teacher-tabs" role="tablist" aria-label="教师管理"><button id="config-tab" type="button" role="tab" aria-controls="teacher-config-panel" aria-selected="true">助手与技能</button><button id="mcp-tab" type="button" role="tab" aria-controls="mcp-panel" aria-selected="false">MCP 工具服务</button></div>
+<div id="teacher-config-panel" role="tabpanel" aria-labelledby="config-tab">
+<h2>教师配置</h2><p>保存后下一轮生效，历史回答保持原样。技能开关作用于本班。</p>
+<label>选择助手 <select id="edit-agent"><option value="">新建助手</option></select></label>
+<form id="config"><label>名称 <input id="agent-name" maxlength="64" required></label><label>角色、风格及教学原则 <textarea id="prompt" maxlength="2000" rows="6" placeholder="留空使用默认助教角色"></textarea></label><p>角色留空时使用默认助教角色。</p><label><input id="agent-enabled" type="checkbox" checked>允许学生新建会话（停用后已有会话仍可继续）</label><fieldset><legend>绑定技能（可多选或不选）</legend><div id="agent-skills"></div></fieldset><fieldset><legend>绑定材料（可多选或不选）</legend><div id="agent-materials"></div><p id="empty-material-note">不选材料意味着不检索任何材料，助手仍会按角色和命中技能回答。</p></fieldset><button class="button-primary">保存助手</button></form>
+<h3>本班技能</h3><div id="skills"></div>
+<button id="new-skill" type="button">新建技能</button>
+<form id="skill-config"><h3 id="skill-heading">新建技能</h3><label>读取本地技能文本 <input id="skill-file" type="file" accept=".txt,.md,text/plain,text/markdown"></label><label>技能 source 文本 <textarea id="skill-source" rows="10" required spellcheck="false" placeholder="名称：学习引导&#10;适用条件：方程,问题&#10;资料：&#10;工具：knowledge_search&#10;启用：是&#10;&#10;在这里编写技能说明。"></textarea></label><p>粘贴或读取UTF-8文本。元数据与说明之间留一个空行，最多8000字；名称、适用条件和启用必填。</p><button id="save-skill" class="button-primary">保存技能</button><button id="delete-skill" type="button" hidden>删除技能</button></form>
+</div>
+<section id="mcp-panel" role="tabpanel" aria-labelledby="mcp-tab" hidden>
+<h2>本班 MCP 工具服务</h2><p>技能使用 tool@server 引用。修改名称后，请更新并重新保存相关技能；历史记录保持原样。</p>
+<p id="mcp-notice" role="status" aria-live="polite"></p><div class="mcp-actions"><button id="mcp-new" type="button">新增服务</button><button id="mcp-refresh" type="button">刷新列表</button></div><div id="mcp-servers" class="mcp-grid"></div>
+<h3>最近工具调用</h3><label>条数 <select id="mcp-limit"><option value="50">最近 50 条</option><option value="100">最近 100 条</option></select></label><button id="mcp-audit-refresh" type="button">刷新审计</button><div id="mcp-audits"></div>
+<dialog id="mcp-editor"><form id="mcp-form"><h3 id="mcp-editor-title">新增服务</h3><label>服务名称 <input id="mcp-name" maxlength="64" pattern="[a-z][a-z0-9_\-]{0,63}" required autocomplete="off"></label><p>小写英文字母开头，后接小写字母、数字、下划线或连字符。技能引用中的服务名称最多 32 个字符。</p><label>服务 base_url <input id="mcp-url" type="url" maxlength="512" required placeholder="http://mcp-demo:8090" autocomplete="off"></label><label>服务 auth_token <input id="mcp-token" type="password" maxlength="4096" autocomplete="new-password"></label><p id="mcp-token-note">凭据仅在提交时发送，随后清空。编辑时留空保留原凭据。</p><p id="mcp-form-error" role="alert"></p><div class="mcp-actions"><button id="mcp-save" class="button-primary">保存服务</button><button id="mcp-cancel" type="button">取消</button></div></form></dialog>
+</section>
+</section>
+<section id="student" class="tutor-grid" hidden>
+<aside class="card"><details id="conversation-disclosure" open><summary>我的会话</summary><label>学习助手 <select id="agent"></select></label><button id="create" type="button">创建会话</button><ul id="conversations"></ul></details></aside>
+<section class="card"><h2 id="conversation-title">选择或创建会话</h2><div id="messages" aria-live="polite"></div><form id="send"><label>问题 <textarea id="question" minlength="2" maxlength="500" rows="3" required></textarea></label><button id="send-button" class="button-primary" disabled>发送</button><button id="cancel" type="button" hidden>停止回答</button></form></section>
+</section>
+<pre id="source-text" class="reading-panel" tabindex="0"></pre>
+</main><script src="/static/api.js" defer></script><script src="/static/sse.js" defer></script><script src="/static/mcp.js" defer></script><script src="/static/tutor.js" defer></script>
+</body></html>

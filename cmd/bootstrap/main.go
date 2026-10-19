@@ -39,6 +39,18 @@ func run() error {
 	defer db.Close()
 	ctx, cancel := context.WithTimeout(context.Background(), 120*time.Second)
 	defer cancel()
+	if os.Getenv("RAG_ENABLED") == "true" {
+		if receipt, receiptErr := transfer.Receipt(c.UploadRoot); receiptErr == nil {
+			if receipt.Mode != os.Getenv("INITIALIZATION_MODE") {
+				return fmt.Errorf("initialization mode differs from receipt")
+			}
+			if err = transfer.PrepareCurrentSchema(ctx, db, c.UploadRoot); err != nil {
+				return err
+			}
+		} else if !os.IsNotExist(receiptErr) {
+			return receiptErr
+		}
+	}
 	if os.Getenv("INITIALIZATION_MODE") == "fresh" {
 		if err = repository.PrepareSchema(ctx, db); err != nil {
 			return err
@@ -56,6 +68,19 @@ func run() error {
 	}
 	if err = transfer.Ready(ctx, db, c.UploadRoot); err != nil {
 		return err
+	}
+	if os.Getenv("RAG_ENABLED") == "true" {
+		if err = repository.PrepareRAGSchema(ctx, db); err != nil {
+			return err
+		}
+		// v3 migration preserves existing skills; never automatically recreate
+		// a teacher-deleted skill when initialization is repeated.
+		if err = transfer.Ready(ctx, db, c.UploadRoot); err != nil {
+			return err
+		}
+		if err = transfer.RecordMCPSchema(ctx, db, c.UploadRoot); err != nil {
+			return err
+		}
 	}
 	fmt.Println("initialization verified; application may start")
 	return nil

@@ -10,6 +10,17 @@ import (
 	"strings"
 )
 
+// loginHandler documents this registered handler.
+// @Summary 登录并获取8小时Bearer JWT
+// @Description 接受JSON或表单username/password。无Cookie，角色/班级由数据库确定；退出撤销旧Token。
+// @Tags auth
+// @Accept json,x-www-form-urlencoded,mpfd
+// @Produce json
+// @Param body body LoginInput true "登录凭据（JSON或同名表单字段）"
+// @Success 200 {object} auth.LoginResponse
+// @Failure 401 {object} APIError
+// @Failure 500 {object} APIError
+// @Router /api/auth/login [post]
 func loginHandler(login *auth.Login) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "no-store")
