@@ -107,3 +107,55 @@ nav { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
   .tutor-page #conversations { max-height:36vh; }
   .tutor-page .topbar-inner nav { max-width:100%; }
 }
+
+/* Teacher workspace: keep the original forms and event targets intact. */
+.tutor-page #teacher { padding:0; overflow:hidden; }
+.tutor-page .teacher-tabs { margin:0; padding:14px 24px; background:#fafcff; gap:10px; }
+.tutor-page .teacher-tabs [aria-selected=true] { background:#eaf2ff; border-color:#cbdcff; }
+.tutor-page #teacher-config-panel, .tutor-page #mcp-panel { padding:24px; }
+.tutor-page .config-heading { margin-bottom:22px; }
+.tutor-page .config-heading > p, .tutor-page form > p, .tutor-page fieldset > p, .tutor-page #mcp-panel > p { color:var(--muted); font-size:13px; line-height:1.8; margin-top:6px; }
+.tutor-page .teacher-workspace { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:24px; align-items:start; }
+.tutor-page .teacher-workspace > section { min-width:0; padding:22px; border:1px solid var(--line); border-radius:12px; }
+.tutor-page .teacher-workspace h3 { margin:0 0 12px; font-size:17px; }
+.tutor-page #edit-agent, .tutor-page #agent-name { display:block; width:100%; margin-top:7px; }
+.tutor-page textarea { display:block; margin-top:7px; }
+.tutor-page #config > label, .tutor-page #skill-config > label { font-weight:600; margin:16px 0; }
+.tutor-page #config > label:has(input[type=checkbox]) { font-weight:400; padding:12px; background:#f5f8fd; border-radius:8px; }
+.tutor-page fieldset { padding:14px; margin:20px 0; }
+.tutor-page legend { padding:0 6px; font-weight:600; }
+.tutor-page #agent-skills, .tutor-page #agent-materials { max-height:224px; overflow:auto; scrollbar-gutter:stable; }
+.tutor-page #agent-skills label, .tutor-page #agent-materials label { margin:0 0 6px; padding:9px; background:#f7f9fd; border:1px solid #edf1f7; border-radius:7px; }
+.tutor-page #agent-skills label:has(:checked), .tutor-page #agent-materials label:has(:checked) { background:#edf4ff; border-color:#c8dcff; }
+.tutor-page #skills { max-height:330px; overflow:auto; padding:2px; margin:14px 0; }
+.tutor-page .skill-row { padding:14px; margin:0 0 10px; border:1px solid var(--line); border-radius:10px; background:#fafcff; line-height:1.8; }
+.tutor-page .skill-row:has(:checked) { border-left:3px solid var(--blue); }
+.tutor-page .skill-row button { display:block; margin:10px 0 0; font-size:12px; color:var(--blue); }
+.tutor-page #skill-config { border-top:1px solid var(--line); margin-top:20px; padding-top:20px; }
+.tutor-page #skill-source { font-family:ui-monospace,Consolas,"Microsoft YaHei",monospace; font-size:13px; line-height:1.75; }
+.tutor-page #delete-skill { color:#b42335; border-color:#f0cbd0; margin-top:8px; }
+.tutor-page #save-skill { margin-right:8px; }
+.tutor-page #student > .card { margin:0; }
+.tutor-page #conversation-title { padding-bottom:16px; border-bottom:1px solid var(--line); }
+.tutor-page #send { border-top:1px solid var(--line); margin-top:18px; padding-top:8px; }
+.tutor-page .message { margin:14px 0; padding:16px; border:1px solid var(--line); border-radius:10px; background:#fafcff; }
+.tutor-page .message:has(.state:empty) { background:#eef4ff; border-color:#dbe6fb; }
+.tutor-page .message .state { font-size:12px; }
+.knowledge-page .workspace-nav { margin-bottom:28px; gap:6px; }
+.knowledge-page .knowledge-search { border-top:3px solid var(--blue); box-shadow:0 6px 24px #26385808; }
+.knowledge-page .knowledge-search-options { padding-top:16px; border-top:1px solid #edf1f7; }
+.knowledge-page .knowledge-lecture { padding:20px; gap:8px; border-radius:12px; }
+.knowledge-page .knowledge-lecture-title { font-size:17px; }
+.knowledge-page .knowledge-link { padding-top:10px; }
+.knowledge-page .knowledge-library.is-paginated { min-height:0; grid-auto-rows:minmax(206px,auto); }
+.knowledge-page .knowledge-answer:not(:empty) { padding:20px 24px; border:1px solid #dce7f9; border-radius:12px; background:#eef4ff; }
+.knowledge-page .knowledge-result-heading { flex-wrap:wrap; }
+@media(max-width:1000px) { .tutor-page .teacher-workspace { grid-template-columns:minmax(0,1fr); } }
+@media(max-width:600px) {
+ .tutor-page .teacher-tabs { padding:12px; }
+ .tutor-page #teacher-config-panel, .tutor-page #mcp-panel { padding:16px; }
+ .tutor-page .teacher-workspace { gap:16px; }
+ .tutor-page .teacher-workspace > section { padding:16px; }
+ .tutor-page .teacher-tabs button { flex:1; padding-inline:8px; }
+ .knowledge-page .workspace-nav { gap:2px; }
+}

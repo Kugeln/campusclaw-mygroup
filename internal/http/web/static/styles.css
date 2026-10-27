@@ -121,3 +121,33 @@ input[type="file"]::file-selector-button { font: inherit; background: #fff; colo
   .login-card { padding: 30px 26px; }
   .reading-panel { padding: 20px; }
 }
+
+/* Shared visual system for the existing course workspace. */
+[hidden] { display:none !important; }
+button, input, select, textarea { transition:border-color .15s, background-color .15s, box-shadow .15s; }
+input, select, textarea { font:inherit; color:var(--ink); accent-color:var(--blue); }
+input:not([type=checkbox]):not([type=radio]):not([type=file]), select, textarea { padding:11px 13px; border:1px solid #d5dfed; border-radius:9px; background:#fff; min-width:0; max-width:100%; }
+input:hover, textarea:hover, select:hover { border-color:#abc0df; }
+input:focus-visible, textarea:focus-visible, select:focus-visible { border-color:var(--blue); outline:3px solid #2563eb24; outline-offset:1px; }
+input[type=checkbox] { width:16px; height:16px; flex-shrink:0; vertical-align:middle; margin:0 8px 2px 0; }
+button:disabled, input:disabled, select:disabled, textarea:disabled { opacity:.5; cursor:not-allowed; box-shadow:none; }
+button:disabled:hover { background:revert; }
+button.button-primary:disabled:hover { background:var(--blue); }
+.topbar-inner { min-height:76px; }
+.workspace-nav { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 28px; padding:5px; width:fit-content; max-width:100%; background:#eaf0f8; border:1px solid var(--line); border-radius:12px; }
+.workspace-nav a { display:block; padding:9px 18px; border-radius:8px; color:#52637b; text-decoration:none; font-weight:600; }
+.workspace-nav a:hover { color:var(--blue); background:#f8faff; }
+.workspace-nav a[aria-current=page] { color:var(--blue); background:#fff; box-shadow:0 2px 6px #2035540a; }
+.page-heading { align-items:flex-start; }
+.page-heading > *, .topbar-inner > * { min-width:0; }
+.card { box-shadow:0 4px 18px #26385806; }
+#notice:not(:empty), #mcp-notice:not(:empty) { padding:12px 16px; margin:0 0 20px; border:1px solid #dbe6f7; border-radius:10px; background:#eef4ff; overflow-wrap:anywhere; }
+#notice:empty, #mcp-notice:empty { display:none; }
+.reading-panel { box-shadow:0 4px 18px #26385806; }
+@media(prefers-reduced-motion:reduce) { *, *::before, *::after { transition:none !important; scroll-behavior:auto !important; } }
+@media(max-width:700px) {
+ .workspace-nav { width:100%; gap:2px; }
+ .workspace-nav a { flex:1; text-align:center; padding:9px 8px; font-size:13px; }
+ .page-heading { margin-bottom:22px; }
+ .topbar-inner, .account-area { gap:12px; }
+}
